@@ -1,0 +1,12 @@
+name: "bios2_education_distill"
+title: "BIOS2 Education resources"
+description: |
+  Educational materials, incluing links to pdfs, videos, and code to reproduce all of our trainings.
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+output: distill::distill_article
