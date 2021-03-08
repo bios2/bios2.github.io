@@ -5,6 +5,7 @@ description: |
 author:
   - name: Gracielle Higino
   - name: Katherine Hébert
+base_url: https://bios2.github.io/bios2_trainings
 preview: images/scicomm_training.png
 categories: 
   - Training
