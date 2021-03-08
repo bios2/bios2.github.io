@@ -34,7 +34,9 @@ This training was given on June 1 and 2, 2020. You can view recordings of each s
 <iframe width="560" height="315" src="https://www.youtube.com/embed/MJCXqsnlHZg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-Day 2: <https://youtu.be/Xo7bbJpj4PQ><br>
+### Day 2
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Xo7bbJpj4PQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 Training materials can be downloaded as "Supporting Data Files" at the top of the page.
