@@ -10,3 +10,6 @@ navbar:
     - text: "About"
       href: about.html
 output: distill::distill_article
+repository_url: https://github.com/bios2/bios2_trainings
+creative_commons: CC BY
+base_url: https://bios2.github.io/bios2_trainings

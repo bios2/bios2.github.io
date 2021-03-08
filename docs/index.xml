@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>BIOS2 Education resources</title>
+    <link>https://bios2.github.io/bios2_trainings</link>
+    <atom:link href="https://bios2.github.io/bios2_trainings/index.xml" rel="self" type="application/rss+xml"/>
+    <description>Educational materials, incluing links to pdfs, videos, and code to reproduce all of our trainings.
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Mon, 15 Jun 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Science Communication</title>
+      <dc:creator>Gracielle Higino</dc:creator>
+      <dc:creator>Katherine Hébert</dc:creator>
+      <link>https://bios2.github.io/bios2_trainings/posts/2020-06-15-science-communication</link>
+      <description>Recordings, content and handouts from a 6-hour Science Communication workshop held over two days on 15 and 16 June 2020.</description>
+      <category>Training</category>
+      <category>Fellow contributed</category>
+      <category>Six hour</category>
+      <guid>https://bios2.github.io/bios2_trainings/posts/2020-06-15-science-communication</guid>
+      <pubDate>Mon, 15 Jun 2020 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Mathematical Modeling in Ecology and Evolution</title>
+      <dc:creator>Dr Sarah P. Otto</dc:creator>
+      <link>https://bios2.github.io/bios2_trainings/posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution</link>
+      <description>This workshop will introduce participants to the logic behind modeling in biology, focusing on developing equations, finding equilibria, analyzing stability , and running simulations.  Techniques will be illustrated with the software tools, Mathematica and Maxima.  This workshop was held in two parts : January 14 and January 16, 2020.</description>
+      <category>Training</category>
+      <category>co-PI contributed</category>
+      <category>Six hour</category>
+      <guid>https://bios2.github.io/bios2_trainings/posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution</guid>
+      <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

@@ -5,6 +5,11 @@ description: |
 author:
   - name: Gracielle Higino
   - name: Katherine Hébert
+preview: images/scicomm_training.png
+categories: 
+  - Training
+  - Fellow contributed
+  - Six hour
 date: 2020-06-15
 output:
   distill::distill_article:
@@ -58,11 +63,4 @@ During this session, we:
 1. Discuss how to create a story structure using titles and the flow of ideas in blog posts, especially when we are used to writing scientific articles
 2. Cover the basics of how Twitter works (retweets, threads, replies, hashtags, photo captions, etc.) and how to find helpful connections
 3. Have short activities where participants will be invited to write their own Twitter biographies and to create a Twitter thread explaining a project of their choice.
-
-
-```{r}
-library(ggplot2)
-
-ggplot(diamonds, aes(x = carat, y = price, fill = log(..count..))) + geom_hex()
-```
 
