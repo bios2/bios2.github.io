@@ -4,6 +4,10 @@ description: |
   Introduction to spatial statistics offered by Philipe Marchand to BIOS2 Fellows in January 2021.
 author: Philipe Marchand
 date: 2021-01-12
+categories:
+  - Training
+  - co-PI contributed
+  - Six hour
 output:
   distill::distill_article:
     self_contained: false
