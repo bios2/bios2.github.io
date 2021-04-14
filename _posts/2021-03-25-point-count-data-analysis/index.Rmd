@@ -84,11 +84,10 @@ Prior exposure to R programming is not necessary, but knowledge of basic R objec
 
 If you don't want to use git:
 
-1. Visit [https://github.com/psolymos/qpad-workshop/releases](https://github.com/psolymos/qpad-workshop/releases)
-2. Download the latest release into a folder
-3. Extract the zip/tar.gz archive
-4. Open the `workshop.Rproj` file in RStudio (or open any other R GUI/console and `setwd()` to the directory where you downloaded the file)
-5. (You can delete the archive)
+1. Download the [workshop archive](qpad-workshop-Final.zip) release into a folder
+2. Extract the zip archive
+3. Open the `workshop.Rproj` file in RStudio (or open any other R GUI/console and `setwd()` to the directory where you downloaded the file)
+4. (You can delete the archive)
 
 If you want to use git: fork or clone the repository
 
