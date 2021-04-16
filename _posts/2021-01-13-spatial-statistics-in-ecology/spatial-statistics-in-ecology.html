@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Spatial Statistics in Ecology</title>
+
+  <meta property="description" itemprop="description" content="Introduction to spatial statistics offered by Philipe Marchand to BIOS2 Fellows in January 2021."/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-01-13"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-01-13"/>
+  <meta name="article:author" content="Philipe Marchand"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Spatial Statistics in Ecology"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Introduction to spatial statistics offered by Philipe Marchand to BIOS2 Fellows in January 2021."/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Spatial Statistics in Ecology"/>
+  <meta property="twitter:description" content="Introduction to spatial statistics offered by Philipe Marchand to BIOS2 Fellows in January 2021."/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Spatial Statistics in Ecology"]},{"type":"character","attributes":{},"value":["Introduction to spatial statistics offered by Philipe Marchand to BIOS2 Fellows in January 2021.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Philipe Marchand"]}]}]},{"type":"character","attributes":{},"value":["2021-01-13"]},{"type":"character","attributes":{},"value":["Training","co-PI contributed","Six hour"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["data/areal_data.zip","data/bryo_belg.csv","data/fir.csv","data/gambia_pred.csv","data/gambia.csv","data/semis_xy.csv","spatial-statistics-in-ecology_files/anchor-4.2.2/anchor.min.js","spatial-statistics-in-ecology_files/bowser-1.9.3/bowser.min.js","spatial-statistics-in-ecology_files/distill-2.2.21/template.v2.js","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-1-1.png","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-12-1.png","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-14-1.png","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-17-1.png","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-19-1.png","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-2-1.png","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-21-1.png","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-3-1.png","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-5-1.png","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-6-1.png","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-8-1.png","spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-9-1.png","spatial-statistics-in-ecology_files/header-attrs-2.7/header-attrs.js","spatial-statistics-in-ecology_files/jquery-1.11.3/jquery.min.js","spatial-statistics-in-ecology_files/popper-2.6.0/popper.min.js","spatial-statistics-in-ecology_files/tippy-6.2.7/tippy-bundle.umd.min.js","spatial-statistics-in-ecology_files/tippy-6.2.7/tippy-light-border.css","spatial-statistics-in-ecology_files/tippy-6.2.7/tippy.css","spatial-statistics-in-ecology_files/tippy-6.2.7/tippy.umd.min.js","spatial-statistics-in-ecology_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="spatial-statistics-in-ecology_files/header-attrs-2.7/header-attrs.js"></script>
+  <script src="spatial-statistics-in-ecology_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="spatial-statistics-in-ecology_files/popper-2.6.0/popper.min.js"></script>
+  <link href="spatial-statistics-in-ecology_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="spatial-statistics-in-ecology_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="spatial-statistics-in-ecology_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="spatial-statistics-in-ecology_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="spatial-statistics-in-ecology_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="spatial-statistics-in-ecology_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="spatial-statistics-in-ecology_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Spatial Statistics in Ecology","description":"Introduction to spatial statistics offered by Philipe Marchand to BIOS2 Fellows in January 2021.","authors":[{"author":"Philipe Marchand","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-13T00:00:00.000+00:00","citationText":"Marchand, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Spatial Statistics in Ecology</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">Training</div>
+<div class="dt=tag">co-PI contributed</div>
+<div class="dt=tag">Six hour</div>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>Introduction to spatial statistics offered by Philipe Marchand to BIOS2 Fellows in January 2021.</p></p>
+</div>
+
+<div class="d-byline">
+  
+  Philipe Marchand
+  
+<br/>2021-01-13
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#spatial-correlation-of-a-variable">Spatial correlation of a variable</a>
+<ul>
+<li><a href="#intrinsic-or-induced-dependence">Intrinsic or induced dependence</a></li>
+<li><a href="#different-ways-to-model-spatial-effects">Different ways to model spatial effects</a></li>
+</ul></li>
+<li><a href="#geostatistical-models">Geostatistical models</a>
+<ul>
+<li><a href="#variogram">Variogram</a></li>
+<li><a href="#theoretical-models-for-the-variogram">Theoretical models for the variogram</a></li>
+<li><a href="#empirical-variogram">Empirical variogram</a></li>
+<li><a href="#regression-model-with-spatial-correlation">Regression model with spatial correlation</a></li>
+</ul></li>
+<li><a href="#geostatistical-models-in-r">Geostatistical models in R</a>
+<ul>
+<li><a href="#regression-with-spatial-correlation">Regression with spatial correlation</a></li>
+<li><a href="#exercise">Exercise</a></li>
+</ul></li>
+<li><a href="#kriging">Kriging</a></li>
+<li><a href="#solutions">Solutions</a></li>
+</ul>
+</nav>
+</div>
+<h1 id="spatial-correlation-of-a-variable">Spatial correlation of a variable</h1>
+<p>Correlation between measurements of a variable taken at nearby points often occurs in environmental data. This principle is sometimes referred to as the “first law of geography” and is expressed in the following quote from Waldo Tobler: “Everything is related to everything else, but near things are more related than distant things”.</p>
+<p>In statistics, we often refer to <em>autocorrelation</em> as the correlation between measurements of the same variable taken at different times (temporal autocorrelation) or places (spatial autocorrelation).</p>
+<h2 id="intrinsic-or-induced-dependence">Intrinsic or induced dependence</h2>
+<p>There are two basic types of spatial dependence on a measured variable <span class="math inline">\(y\)</span>: an <em>intrinsic</em> dependence on <span class="math inline">\(y\)</span>, or a dependence <em>induced</em> by external variables influencing <span class="math inline">\(y\)</span>, which are themselves spatially correlated.</p>
+<p>For example, suppose that the abundance of a species is correlated between two sites located near each other:</p>
+<ul>
+<li><p>this spatial dependence can be induced if it is due to a spatial correlation of habitat factors that are favorable or unfavorable to the species;</p></li>
+<li><p>or it can be intrinsic if it is due to the dispersion of individuals to nearby sites.</p></li>
+</ul>
+<p>In many cases, both types of dependence affect a given variable.</p>
+<p>If the dependence is simply induced and the external variables that cause it are included in the model explaining <span class="math inline">\(y\)</span>, then the model residuals will be independent and we can use all the methods already seen that ignore spatial correlation.</p>
+<p>However, if the dependence is intrinsic or due to unmeasured external factors, then the spatial correlation of the residuals in the model will have to be taken into account.</p>
+<h2 id="different-ways-to-model-spatial-effects">Different ways to model spatial effects</h2>
+<p>In this training, we will directly model the spatial correlations of our data. It is useful to compare this approach to other ways of including spatial aspects in a statistical model.</p>
+<p>First, we could include predictors in the model that represent position (e.g., longitude, latitude). Such predictors may be useful for detecting a systematic large-scale trend or gradient, whether or not the trend is linear (e.g., with a generalized additive model).</p>
+<p>In contrast to this approach, the models we will see now serve to model a spatial correlation in the random fluctuations of a variable (i.e., in the residuals after removing any systematic effect).</p>
+<p>Mixed models use random effects to represent the non-independence of data on the basis of their grouping, i.e., after accounting for systematic fixed effects, data from the same group are more similar (their residual variation is correlated) than data from different groups. These groups were sometimes defined according to spatial criteria (observations grouped into sites).</p>
+<p>However, in the context of a random group effect, all groups are as different from each other, e.g., two sites within 100 km of each other are no more or less similar than two sites 2 km apart.</p>
+<p>The methods we will see here and in the next parts of the training therefore allow us to model non-independence on a continuous scale (closer = more correlated) rather than just discrete (hierarchy of groups).</p>
+<h1 id="geostatistical-models">Geostatistical models</h1>
+<p>Geostatistics refers to a group of techniques that originated in the earth sciences. Geostatistics is concerned with variables that are continuously distributed in space and where a number of points are sampled to estimate this distribution. A classic example of these techniques comes from the mining field, where the aim was to create a map of the concentration of ore at a site from samples taken at different points on the site.</p>
+<p>For these models, we will assume that <span class="math inline">\(z(x, y)\)</span> is a stationary spatial variable measured at points with coordinates <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<h2 id="variogram">Variogram</h2>
+<p>A central aspect of geostatistics is the estimation of the variogram <span class="math inline">\(\gamma_z\)</span> . The variogram is equal to half the mean square difference between the values of <span class="math inline">\(z\)</span> for two points <span class="math inline">\((x_i, y_i)\)</span> and <span class="math inline">\((x_j, y_j)\)</span> separated by a distance <span class="math inline">\(h\)</span>.</p>
+<p><span class="math display">\[\gamma_z(h) = \frac{1}{2} \text{E} \left[ \left( z(x_i, y_i) - z(x_j, y_j) \right)^2 \right]_{d_{ij} = h}\]</span></p>
+<p>In this equation, the <span class="math inline">\(\text{E}\)</span> function with the index <span class="math inline">\(d_{ij}=h\)</span> designates the statistical expectation (i.e., the mean) of the squared deviation between the values of <span class="math inline">\(z\)</span> for points separated by a distance <span class="math inline">\(h\)</span>.</p>
+<p>If we want instead to express the autocorrelation <span class="math inline">\(\rho_z(h)\)</span> between measures of <span class="math inline">\(z\)</span> separated by a distance <span class="math inline">\(h\)</span>, it is related to the variogram by the equation:</p>
+<p><span class="math display">\[\gamma_z = \sigma_z^2(1 - \rho_z)\]</span> ,</p>
+<p>where <span class="math inline">\(\sigma_z^2\)</span> is the global variance of <span class="math inline">\(z\)</span>.</p>
+<p>Note that <span class="math inline">\(\gamma_z = \sigma_z^2\)</span> when we reach a distance where the measurements of <span class="math inline">\(z\)</span> are independent, so <span class="math inline">\(\rho_z = 0\)</span>. In this case, we can see that <span class="math inline">\(\gamma_z\)</span> is similar to a variance, although it is sometimes called “semivariogram” or “semivariance” because of the 1/2 factor in the above equation.</p>
+<h2 id="theoretical-models-for-the-variogram">Theoretical models for the variogram</h2>
+<p>Several parametric models have been proposed to represent the spatial correlation as a function of the distance between sampling points. Let us first consider a correlation that decreases exponentially:</p>
+<p><span class="math display">\[\rho_z(h) = e^{-h/r}\]</span></p>
+<p>Here, <span class="math inline">\(\rho_z = 1\)</span> for <span class="math inline">\(h = 0\)</span> and the correlation is multiplied by <span class="math inline">\(1/e \approx 0.37\)</span> each time the distance increases by <span class="math inline">\(r\)</span>. In this context, <span class="math inline">\(r\)</span> is called the <em>range</em> of the correlation.</p>
+<p>From the above equation, we can calculate the corresponding variogram.</p>
+<p><span class="math display">\[\gamma_z(h) = \sigma_z^2 (1 - e^{-h/r})\]</span></p>
+<p>Here is a graphical representation of this variogram.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
+</div>
+<p>Because of the exponential function, the value of <span class="math inline">\(\gamma\)</span> at large distances approaches the global variance <span class="math inline">\(\sigma_z^2\)</span> without exactly reaching it. This asymptote is called a <em>sill</em> in the geostatistical context and is represented by the symbol <span class="math inline">\(s\)</span>.</p>
+<p>Finally, it is sometimes unrealistic to assume a perfect correlation when the distance tends towards 0, because of a possible variation of <span class="math inline">\(z\)</span> at a very small scale. A <em>nugget</em> effect, denoted <span class="math inline">\(n\)</span>, can be added to the model so that <span class="math inline">\(\gamma\)</span> approaches <span class="math inline">\(n\)</span> (rather than 0) if <span class="math inline">\(h\)</span> tends towards 0. The term nugget comes from the mining origin of these techniques, where a nugget could be the source of a sudden small-scale variation in the concentration of a mineral.</p>
+<p>By adding the nugget effect, the remainder of the variogram is “compressed” to keep the same sill, resulting in the following equation.</p>
+<p><span class="math display">\[\gamma_z(h) = n + (s - n) (1 - e^{-h/r})\]</span></p>
+<p>In the <em>gstat</em> package that we use below, the term <span class="math inline">\((s-n)\)</span> is called a <em>partial sill</em> or <code>psill</code> for the exponential portion of the variogram.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<p>In addition to the exponential model, two other common theoretical models for the variogram are the Gaussian model (where the correlation follows a half-normal curve), and the spherical model (where the variogram increases linearly at the start and then curves and reaches the plateau at a distance equal to its range <span class="math inline">\(r\)</span>). The spherical model thus allows the correlation to be exactly 0 at large distances, rather than gradually approaching zero in the case of the other models.</p>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 35%" />
+<col style="width: 41%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th><span class="math inline">\(\rho(h)\)</span></th>
+<th><span class="math inline">\(\gamma(h)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exponential</td>
+<td><span class="math inline">\(\exp\left(-\frac{h}{r}\right)\)</span></td>
+<td><span class="math inline">\(s \left(1 - \exp\left(-\frac{h}{r}\right)\right)\)</span></td>
+</tr>
+<tr class="even">
+<td>Gaussian</td>
+<td><span class="math inline">\(\exp\left(-\frac{h^2}{r^2}\right)\)</span></td>
+<td><span class="math inline">\(s \left(1 - \exp\left(-\frac{h^2}{r^2}\right)\right)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Spherical <span class="math inline">\((h &lt; r)\)</span> *</td>
+<td><span class="math inline">\(1 - \frac{3}{2}\frac{h}{r} + \frac{1}{2}\frac{h^3}{r^3}\)</span></td>
+<td><span class="math inline">\(s \left(\frac{3}{2}\frac{h}{r} - \frac{1}{2}\frac{h^3}{r^3} \right)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>* For the spherical model, <span class="math inline">\(\rho = 0\)</span> and <span class="math inline">\(\gamma = s\)</span> if <span class="math inline">\(h \ge r\)</span>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-3-1.png" width="864" /></p>
+</div>
+<h2 id="empirical-variogram">Empirical variogram</h2>
+<p>To estimate <span class="math inline">\(\gamma_z(h)\)</span> from empirical data, we need to define distance classes, thus grouping different distances within a margin of <span class="math inline">\(\pm \delta\)</span> around a distance <span class="math inline">\(h\)</span>, then calculating the mean square deviation for the pairs of points in that distance class.</p>
+<p><span class="math display">\[\hat{\gamma_z}(h) = \frac{1}{2 N_{\text{paires}}} \sum \left[ \left( z(x_i, y_i) - z(x_j, y_j) \right)^2 \right]_{d_{ij} = h \pm \delta}\]</span></p>
+<p>We will see in the next section how to estimate a variogram in R.</p>
+<h2 id="regression-model-with-spatial-correlation">Regression model with spatial correlation</h2>
+<p>The following equation represents a multiple linear regression including residual spatial correlation:</p>
+<p><span class="math display">\[v = \beta_0 + \sum_i \beta_i u_i + z + \epsilon\]</span></p>
+<p>Here, <span class="math inline">\(v\)</span> designates the response variable and <span class="math inline">\(u\)</span> the predictors, to avoid confusion with the spatial coordinates <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p>In addition to the residual <span class="math inline">\(\epsilon\)</span> that is independent between observations, the model includes a term <span class="math inline">\(z\)</span> that represents the spatially correlated portion of the residual variance.</p>
+<p>Here are suggested steps to apply this type of model:</p>
+<ol type="1">
+<li><p>Fit the regression model without spatial correlation.</p></li>
+<li><p>Verify the presence of spatial correlation from the empirical variogram of the residuals.</p></li>
+<li><p>Fit one or more regression models with spatial correlation and select the one that shows the best fit to the data.</p></li>
+</ol>
+<h1 id="geostatistical-models-in-r">Geostatistical models in R</h1>
+<p>The <em>gstat</em> package contains functions related to geostatistics. For this example, we will use the <code>oxford</code> dataset from this package, which contains measurements of physical and chemical properties for 126 soil samples from a site, along with their coordinates <code>XCOORD</code> and <code>YCOORD</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/r-spatial/gstat/'>gstat</a></span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>oxford</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>oxford</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>&#39;data.frame&#39;:   126 obs. of  22 variables:
+ $ PROFILE  : num  1 2 3 4 5 6 7 8 9 10 ...
+ $ XCOORD   : num  100 100 100 100 100 100 100 100 100 100 ...
+ $ YCOORD   : num  2100 2000 1900 1800 1700 1600 1500 1400 1300 1200 ...
+ $ ELEV     : num  598 597 610 615 610 595 580 590 598 588 ...
+ $ PROFCLASS: Factor w/ 3 levels &quot;Cr&quot;,&quot;Ct&quot;,&quot;Ia&quot;: 2 2 2 3 3 2 3 2 3 3 ...
+ $ MAPCLASS : Factor w/ 3 levels &quot;Cr&quot;,&quot;Ct&quot;,&quot;Ia&quot;: 2 3 3 3 3 2 2 3 3 3 ...
+ $ VAL1     : num  3 3 4 4 3 3 4 4 4 3 ...
+ $ CHR1     : num  3 3 3 3 3 2 2 3 3 3 ...
+ $ LIME1    : num  4 4 4 4 4 0 2 1 0 4 ...
+ $ VAL2     : num  4 4 5 8 8 4 8 4 8 8 ...
+ $ CHR2     : num  4 4 4 2 2 4 2 4 2 2 ...
+ $ LIME2    : num  4 4 4 5 5 4 5 4 5 5 ...
+ $ DEPTHCM  : num  61 91 46 20 20 91 30 61 38 25 ...
+ $ DEP2LIME : num  20 20 20 20 20 20 20 20 40 20 ...
+ $ PCLAY1   : num  15 25 20 20 18 25 25 35 35 12 ...
+ $ PCLAY2   : num  10 10 20 10 10 20 10 20 10 10 ...
+ $ MG1      : num  63 58 55 60 88 168 99 59 233 87 ...
+ $ OM1      : num  5.7 5.6 5.8 6.2 8.4 6.4 7.1 3.8 5 9.2 ...
+ $ CEC1     : num  20 22 17 23 27 27 21 14 27 20 ...
+ $ PH1      : num  7.7 7.7 7.5 7.6 7.6 7 7.5 7.6 6.6 7.5 ...
+ $ PHOS1    : num  13 9.2 10.5 8.8 13 9.3 10 9 15 12.6 ...
+ $ POT1     : num  196 157 115 172 238 164 312 184 123 282 ...</code></pre>
+</div>
+<p>Suppose that we want to model the magnesium concentration (<code>MG1</code>), represented as a function of the spatial position in the following graph.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>oxford</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>YCOORD</span>, y <span class='op'>=</span> <span class='va'>XCOORD</span>, size <span class='op'>=</span> <span class='va'>MG1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_fixed.html'>coord_fixed</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<p>Note that the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> axes have been inverted to save space. The <code>coord_fixed()</code> function of <em>ggplot2</em> ensures that the scale is the same on both axes, which is useful for representing spatial data.</p>
+<p>We can immediately see that these measurements were taken on a 100 m grid. It seems that the magnesium concentration is spatially correlated, although it may be a correlation induced by another variable. In particular, we know that the concentration of magnesium is negatively related to the soil pH (<code>PH1</code>).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>oxford</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>PH1</span>, y <span class='op'>=</span> <span class='va'>MG1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<p>The <code>variogram</code> function of <em>gstat</em> is used to estimate a variogram from empirical data. Here is the result obtained for the variable <code>MG1</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>var_mg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/gstat/man/variogram.html'>variogram</a></span><span class='op'>(</span><span class='va'>MG1</span> <span class='op'>~</span> <span class='fl'>1</span>, locations <span class='op'>=</span> <span class='op'>~</span> <span class='va'>XCOORD</span> <span class='op'>+</span> <span class='va'>YCOORD</span>, data <span class='op'>=</span> <span class='va'>oxford</span><span class='op'>)</span>
+<span class='va'>var_mg</span>
+</code></pre>
+</div>
+<pre><code>    np     dist    gamma dir.hor dir.ver   id
+1  225 100.0000 1601.404       0       0 var1
+2  200 141.4214 1950.805       0       0 var1
+3  548 215.0773 2171.231       0       0 var1
+4  623 303.6283 2422.245       0       0 var1
+5  258 360.5551 2704.366       0       0 var1
+6  144 400.0000 2948.774       0       0 var1
+7  570 427.5569 2994.621       0       0 var1
+8  291 500.0000 3402.058       0       0 var1
+9  366 522.8801 3844.165       0       0 var1
+10 200 577.1759 3603.060       0       0 var1
+11 458 619.8400 3816.595       0       0 var1
+12  90 670.8204 3345.739       0       0 var1</code></pre>
+</div>
+<p>The formula <code>MG1 ~ 1</code> indicates that no linear predictor is included in this model, while the argument <code>locations</code> indicates which variables in the data frame correspond to the spatial coordinates.</p>
+<p>In the resulting table, <code>gamma</code> is the value of the variogram for the distance class centered on <code>dist</code>, while <code>np</code> is the number of pairs of points in that class. Here, since the points are located on a grid, we obtain regular distance classes (e.g.: 100 m for neighboring points on the grid, 141 m for diagonal neighbors, etc.).</p>
+<p>Here, we limit ourselves to the estimation of isotropic variograms, i.e. the variogram depends only on the distance between the two points and not on the direction. Although we do not have time to see it today, it is possible with <em>gstat</em> to estimate the variogram separately in different directions.</p>
+<p>We can illustrate the variogram with <code>plot</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>var_mg</span>, col <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+</div>
+<p>If we want to estimate the residual spatial correlation of <code>MG1</code> after including the effect of <code>PH1</code>, we can add that predictor to the formula.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>var_mg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/gstat/man/variogram.html'>variogram</a></span><span class='op'>(</span><span class='va'>MG1</span> <span class='op'>~</span> <span class='va'>PH1</span>, locations <span class='op'>=</span> <span class='op'>~</span> <span class='va'>XCOORD</span> <span class='op'>+</span> <span class='va'>YCOORD</span>, data <span class='op'>=</span> <span class='va'>oxford</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>var_mg</span>, col <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+</div>
+<p>Including the effect of pH, the range of the spatial correlation seems to decrease, while the plateau is reached around 300 m. It even seems that the variogram decreases beyond 400 m. In general, we assume that the variance between two points does not decrease with distance, unless there is a periodic spatial pattern.</p>
+<p>The function <code>fit.variogram</code> accepts as arguments a variogram estimated from the data, as well as a theoretical model described in a <code>vgm</code> function, and then estimates the parameters of that model according to the data. The fitting is done by the method of least squares.</p>
+<p>For example, <code>vgm("Exp")</code> means we want to fit an exponential model.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>vfit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/gstat/man/fit.variogram.html'>fit.variogram</a></span><span class='op'>(</span><span class='va'>var_mg</span>, <span class='fu'><a href='https://rdrr.io/pkg/gstat/man/vgm.html'>vgm</a></span><span class='op'>(</span><span class='st'>"Exp"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>vfit</span>
+</code></pre>
+</div>
+<pre><code>  model    psill    range
+1   Nug    0.000  0.00000
+2   Exp 1951.496 95.11235</code></pre>
+</div>
+<p>There is no nugget effect, because <code>psill = 0</code> for the <code>Nug</code> (nugget) part of the model. The exponential part has a sill at 1951 and a range of 95 m.</p>
+<p>To compare different models, a vector of model names can be given to <code>vgm</code>. In the following example, we include the exponential, gaussian (“Gau”) and spherical (“Sph”) models.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>vfit</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/gstat/man/fit.variogram.html'>fit.variogram</a></span><span class='op'>(</span><span class='va'>var_mg</span>, <span class='fu'><a href='https://rdrr.io/pkg/gstat/man/vgm.html'>vgm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Exp"</span>, <span class='st'>"Gau"</span>, <span class='st'>"Sph"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>vfit</span>
+</code></pre>
+</div>
+<pre><code>  model    psill    range
+1   Nug    0.000  0.00000
+2   Exp 1951.496 95.11235</code></pre>
+</div>
+<p>The function gives us the result of the model with the best fit (lowest sum of squared deviations), which here is the same exponential model.</p>
+<p>Finally, we can superimpose the theoretical model and the empirical variogram on the same graph.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>var_mg</span>, <span class='va'>vfit</span>, col <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
+</div>
+<h2 id="regression-with-spatial-correlation">Regression with spatial correlation</h2>
+<p>We have seen above that the <em>gstat</em> package allows us to estimate the variogram of the residuals of a linear model. In our example, the magnesium concentration was modeled as a function of pH, with spatially correlated residuals.</p>
+<p>Another tool to fit this same type of model is the <code>gls</code> function of the <em>nlme</em> package, which is included with the installation of R.</p>
+<p>This function applies the <em>generalized least squares</em> method to fit linear regression models when the residuals are not independent or when the residual variance is not the same for all observations. Since the estimates of the coefficients depend on the estimated correlations between the residuals and the residuals themselves depend on the coefficients, the model is fitted by an iterative algorithm:</p>
+<ol type="1">
+<li><p>A classical linear regression model (without correlation) is fitted to obtain residuals.</p></li>
+<li><p>The spatial correlation model (variogram) is fitted with those residuals.</p></li>
+<li><p>The regression coefficients are re-estimated, now taking into account the correlations.</p></li>
+</ol>
+<p>Steps 2 and 3 are repeated until the estimates are stable at a desired precision.</p>
+<p>Here is the application of this method to the same model for the magnesium concentration in the <code>oxford</code> dataset. In the <code>correlation</code> argument of <code>gls</code>, we specify an exponential correlation model as a function of our spatial coordinates and we include a possible nugget effect.</p>
+<p>In addition to the exponential correlation <code>corExp</code>, the <code>gls</code> function can also estimate a Gaussian (<code>corGaus</code>) or spherical (<code>corSpher</code>) model.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://svn.r-project.org/R-packages/trunk/nlme/'>nlme</a></span><span class='op'>)</span>
+<span class='va'>gls_mg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/nlme/man/gls.html'>gls</a></span><span class='op'>(</span><span class='va'>MG1</span> <span class='op'>~</span> <span class='va'>PH1</span>, <span class='va'>oxford</span>, 
+              correlation <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/nlme/man/corExp.html'>corExp</a></span><span class='op'>(</span>form <span class='op'>=</span> <span class='op'>~</span> <span class='va'>XCOORD</span> <span class='op'>+</span> <span class='va'>YCOORD</span>, nugget <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>gls_mg</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generalized least squares fit by REML
+  Model: MG1 ~ PH1 
+  Data: oxford 
+      AIC      BIC   logLik
+  1278.65 1292.751 -634.325
+
+Correlation Structure: Exponential spatial correlation
+ Formula: ~XCOORD + YCOORD 
+ Parameter estimate(s):
+      range      nugget 
+478.0322959   0.2944753 
+
+Coefficients:
+               Value Std.Error   t-value p-value
+(Intercept) 391.1387  50.42343  7.757084       0
+PH1         -41.0836   6.15662 -6.673079       0
+
+ Correlation: 
+    (Intr)
+PH1 -0.891
+
+Standardized residuals:
+       Min         Q1        Med         Q3        Max 
+-2.1846957 -0.6684520 -0.3687813  0.4627580  3.1918604 
+
+Residual standard error: 53.8233 
+Degrees of freedom: 126 total; 124 residual</code></pre>
+</div>
+<p>To compare this result with the adjusted variogram above, the parameters given by <code>gls</code> must be transformed. The range has the same meaning in both cases and corresponds to 478 m for the result of <code>gls</code>. The global variance of the residuals is the square of <code>Residual standard error</code>. The nugget effect here (0.294) is expressed as a fraction of that variance. Finally, to obtain the partial sill of the exponential part, the nugget effect must be subtracted from the total variance.</p>
+<p>After performing these calculations, we can give these parameters to the <code>vgm</code> function of <em>gstat</em> to superimpose this variogram estimated by <code>gls</code> on our variogram of the residuals of the classical linear model.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>gls_range</span> <span class='op'>&lt;-</span> <span class='fl'>478</span>
+<span class='va'>gls_var</span> <span class='op'>&lt;-</span> <span class='fl'>53.823</span><span class='op'>^</span><span class='fl'>2</span>
+<span class='va'>gls_nugget</span> <span class='op'>&lt;-</span> <span class='fl'>0.294</span> <span class='op'>*</span> <span class='va'>gls_var</span>
+<span class='va'>gls_psill</span> <span class='op'>&lt;-</span> <span class='va'>gls_var</span> <span class='op'>-</span> <span class='va'>gls_nugget</span>
+
+<span class='va'>gls_vgm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/gstat/man/vgm.html'>vgm</a></span><span class='op'>(</span><span class='st'>"Exp"</span>, psill <span class='op'>=</span> <span class='va'>gls_psill</span>, range <span class='op'>=</span> <span class='va'>gls_range</span>, nugget <span class='op'>=</span> <span class='va'>gls_nugget</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>var_mg</span>, <span class='va'>gls_vgm</span>, col <span class='op'>=</span> <span class='st'>"black"</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>4000</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
+</div>
+<p>Does the model fit the data less well here? In fact, this empirical variogram represented by the points was obtained from the residuals of the linear model ignoring the spatial correlation, so it is a biased estimate of the actual spatial correlations. The method is still adequate to quickly check if spatial correlations are present. However, to simultaneously fit the regression coefficients and the spatial correlation parameters, the generalized least squares (GLS) approach is preferable and will produce more accurate estimates.</p>
+<p>Finally, note that the result of the <code>gls</code> model also gives the AIC, which we can use to compare the fit of different models (with different predictors or different forms of spatial correlation).</p>
+<h2 id="exercise">Exercise</h2>
+<p>The <a href="data/bryo_belg.csv">bryo_belg.csv</a> dataset is adapted from the data of this study:</p>
+<blockquote>
+<p>Neyens, T., Diggle, P.J., Faes, C., Beenaerts, N., Artois, T. et Giorgi, E. (2019) Mapping species richness using opportunistic samples: a case study on ground-floor bryophyte species richness in the Belgian province of Limburg. <em>Scientific Reports</em> 9, 19122. <a href="https://doi.org/10.1038/s41598-019-55593-x" class="uri">https://doi.org/10.1038/s41598-019-55593-x</a></p>
+</blockquote>
+<p>This data frame shows the specific richness of ground bryophytes (<em>richness</em>) for different sampling points in the Belgian province of Limburg, with their position <em>(x, y)</em> in km, in addition to information on the proportion of forest (<em>forest</em>) and wetlands (<em>wetland</em>) in a 1 km^2$ cell containing the sampling point.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>bryo_belg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/bryo_belg.csv"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>bryo_belg</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  richness    forest   wetland        x        y
+1        9 0.2556721 0.5036614 228.9516 220.8869
+2        6 0.6449114 0.1172068 227.6714 219.8613
+3        5 0.5039905 0.6327003 228.8252 220.1073
+4        3 0.5987329 0.2432942 229.2775 218.9035
+5        2 0.7600775 0.1163538 209.2435 215.2414
+6       10 0.6865434 0.0000000 210.4142 216.5579</code></pre>
+</div>
+<p>For this exercise, we will use the square root of the specific richness as the response variable. The square root transformation often allows to homogenize the variance of the count data in order to apply a linear regression.</p>
+<ol type="a">
+<li><p>Fit a linear model of the transformed species richness to the proportion of forest and wetlands, without taking into account spatial correlations. What is the effect of the two predictors in this model?</p></li>
+<li><p>Calculate the empirical variogram of the model residuals in (a). Does there appear to be a spatial correlation between the points?</p></li>
+</ol>
+<p><em>Note</em>: The <code>cutoff</code> argument to the <code>variogram</code> function specifies the maximum distance at which the variogram is calculated. You can manually adjust this value to get a good view of the sill.</p>
+<ol start="3" type="a">
+<li><p>Re-fit the linear model in (a) with the <code>gls</code> function in the <em>nlme</em> package, trying different types of spatial correlations (exponential, Gaussian, spherical). Compare the models (including the one without spatial correlation) with the AIC.</p></li>
+<li><p>What is the effect of the proportion of forests and wetlands according to the model in (c)? Explain the differences between the conclusions of this model and the model in (a).</p></li>
+</ol>
+<h1 id="kriging">Kriging</h1>
+<p>As mentioned before, a common application of geostatistical models is to predict the value of the response variable at unsampled locations, a form of spatial interpolation called kriging (pronounced with a hard “g”).</p>
+<p>There are three basic types of kriging based on the assumptions made about the response variable:</p>
+<ul>
+<li><p>Ordinary kriging: Stationary variable with an unknown mean.</p></li>
+<li><p>Simple kriging: Stationary variable with a known mean.</p></li>
+<li><p>Universal kriging: Variable with a trend given by a linear or non-linear model.</p></li>
+</ul>
+<p>For all kriging methods, the predictions at a new point are a weighted mean of the values at known points. These weights are chosen so that kriging provides the best linear unbiased prediction of the response variable, if the model assumptions (in particular the variogram) are correct. That is, among all possible unbiased predictions, the weights are chosen to give the minimum mean square error. Kriging also provides an estimate of the uncertainty of each prediction.</p>
+<p>While we will not present the detailed kriging equations here, the weights depend on both the correlations (estimated by the variogram) between the sampled points and the new point, as well of the correlations between the sampled points themselves. In other words, sampled points near the new point are given more weight, but isolated sampled points are also given more weight, because sample points close to each other provide redundant information.</p>
+<p>Kriging is an interpolation method, so the prediction at a sampled point will always be equal to the measured value (the measurement is supposed to have no error, just spatial variation). However, in the presence of a nugget effect, any small displacement from the sampled location will show variability according to the nugget.</p>
+<p>In the example below, we generate a new dataset composed of randomly-generated (x, y) coordinates within the study area as well as randomly-generated pH values based on the <code>oxford</code> data. We then apply the function <code>krige</code> to predict the magnesium values at these new points. Note that we specify the variogram derived from the GLS results in the <code>model</code> argument to <code>krige</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>14</span><span class='op'>)</span>
+<span class='va'>new_points</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+    XCOORD <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>oxford</span><span class='op'>$</span><span class='va'>XCOORD</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>oxford</span><span class='op'>$</span><span class='va'>XCOORD</span><span class='op'>)</span><span class='op'>)</span>,
+    YCOORD <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>min</a></span><span class='op'>(</span><span class='va'>oxford</span><span class='op'>$</span><span class='va'>YCOORD</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>oxford</span><span class='op'>$</span><span class='va'>YCOORD</span><span class='op'>)</span><span class='op'>)</span>,
+    PH1 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span>, <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>oxford</span><span class='op'>$</span><span class='va'>PH1</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>oxford</span><span class='op'>$</span><span class='va'>PH1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>)</span>
+
+<span class='va'>pred</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/gstat/man/krige.html'>krige</a></span><span class='op'>(</span><span class='va'>MG1</span> <span class='op'>~</span> <span class='va'>PH1</span>, locations <span class='op'>=</span> <span class='op'>~</span> <span class='va'>XCOORD</span> <span class='op'>+</span> <span class='va'>YCOORD</span>, data <span class='op'>=</span> <span class='va'>oxford</span>,
+              newdata <span class='op'>=</span> <span class='va'>new_points</span>, model <span class='op'>=</span> <span class='va'>gls_vgm</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[using universal kriging]</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>pred</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>    XCOORD    YCOORD var1.pred var1.var
+1 227.0169  162.1185  47.13065 1269.002
+2 418.9136  465.9013  79.68437 1427.269
+3 578.5943 2032.7477  60.30539 1264.471
+4 376.2734 1530.7193 127.22366 1412.875
+5 591.5336  421.6290 105.88124 1375.485
+6 355.7369  404.3378 127.73055 1250.114</code></pre>
+</div>
+<p>The result of <code>krige</code> includes the new point coordinates, the prediction of the variable <code>var1.pred</code> along with its estimated variance <code>var1.var</code>. In the graph below, we show the mean MG1 predictions from kriging (triangles) along with the measurements (circles).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pred</span><span class='op'>$</span><span class='va'>MG1</span> <span class='op'>&lt;-</span> <span class='va'>pred</span><span class='op'>$</span><span class='va'>var1.pred</span>
+
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>oxford</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>YCOORD</span>, y <span class='op'>=</span> <span class='va'>XCOORD</span>, color <span class='op'>=</span> <span class='va'>MG1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>pred</span>, shape <span class='op'>=</span> <span class='fl'>17</span>, size <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_fixed.html'>coord_fixed</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
+</div>
+<p>The estimated mean and variance from kriging can be used to simulate possible values of the variable at each new point, conditional on the sampled values. In the example below, we performed 4 conditional simulations by adding the argument <code>nsim = 4</code> to the same <code>krige</code> instruction.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sim_mg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/gstat/man/krige.html'>krige</a></span><span class='op'>(</span><span class='va'>MG1</span> <span class='op'>~</span> <span class='va'>PH1</span>, locations <span class='op'>=</span> <span class='op'>~</span> <span class='va'>XCOORD</span> <span class='op'>+</span> <span class='va'>YCOORD</span>, data <span class='op'>=</span> <span class='va'>oxford</span>,
+                newdata <span class='op'>=</span> <span class='va'>new_points</span>, model <span class='op'>=</span> <span class='va'>gls_vgm</span>, nsim <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>drawing 4 GLS realisations of beta...
+[using conditional Gaussian simulation]</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>sim_mg</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>    XCOORD    YCOORD      sim1      sim2      sim3      sim4
+1 227.0169  162.1185  13.22592  32.43060  42.81847  79.60594
+2 418.9136  465.9013  67.94216  15.53717  69.25356  63.42233
+3 578.5943 2032.7477  99.93083  77.98291  74.28468  58.98483
+4 376.2734 1530.7193 104.86240 155.50774  85.82552 143.07373
+5 591.5336  421.6290  78.14221  68.62827 147.33052 130.14264
+6 355.7369  404.3378 164.46754 117.26160 131.85158 143.58951</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyr.tidyverse.org'>tidyr</a></span><span class='op'>)</span>
+<span class='va'>sim_mg</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span><span class='va'>sim_mg</span>, cols <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>sim1</span>, <span class='va'>sim2</span>, <span class='va'>sim3</span>, <span class='va'>sim4</span><span class='op'>)</span>, 
+                       names_to <span class='op'>=</span> <span class='st'>"sim"</span>, values_to <span class='op'>=</span> <span class='st'>"MG1"</span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>sim_mg</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>YCOORD</span>, y <span class='op'>=</span> <span class='va'>XCOORD</span>, color <span class='op'>=</span> <span class='va'>MG1</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_fixed.html'>coord_fixed</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span> <span class='va'>sim</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-19-1.png" width="960" /></p>
+</div>
+<h1 id="solutions">Solutions</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>bryo_lm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>richness</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>forest</span> <span class='op'>+</span> <span class='va'>wetland</span>, data <span class='op'>=</span> <span class='va'>bryo_belg</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>bryo_lm</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = sqrt(richness) ~ forest + wetland, data = bryo_belg)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.8847 -0.4622  0.0545  0.4974  2.3116 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  2.34159    0.08369  27.981  &lt; 2e-16 ***
+forest       1.11883    0.13925   8.034 9.74e-15 ***
+wetland     -0.59264    0.17216  -3.442 0.000635 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.7095 on 417 degrees of freedom
+Multiple R-squared:  0.2231,    Adjusted R-squared:  0.2193 
+F-statistic: 59.86 on 2 and 417 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<p>The proportion of forest has a significant positive effect and the proportion of wetlands has a significant negative effect on bryophyte richness.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/gstat/man/variogram.html'>variogram</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>richness</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>forest</span> <span class='op'>+</span> <span class='va'>wetland</span>, locations <span class='op'>=</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>+</span> <span class='va'>y</span>,
+               data <span class='op'>=</span> <span class='va'>bryo_belg</span>, cutoff <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-21-1.png" width="624" /></p>
+</div>
+<p>The variogram is increasing from 0 to at least 40 km, so there appears to be spatial correlations in the model residuals.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>bryo_exp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/nlme/man/gls.html'>gls</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>richness</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>forest</span> <span class='op'>+</span> <span class='va'>wetland</span>, data <span class='op'>=</span> <span class='va'>bryo_belg</span>,
+                correlation <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/nlme/man/corExp.html'>corExp</a></span><span class='op'>(</span>form <span class='op'>=</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>+</span> <span class='va'>y</span>, nugget <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>bryo_gaus</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/nlme/man/gls.html'>gls</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>richness</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>forest</span> <span class='op'>+</span> <span class='va'>wetland</span>, data <span class='op'>=</span> <span class='va'>bryo_belg</span>,
+                correlation <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/nlme/man/corGaus.html'>corGaus</a></span><span class='op'>(</span>form <span class='op'>=</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>+</span> <span class='va'>y</span>, nugget <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>bryo_spher</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/nlme/man/gls.html'>gls</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>richness</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>forest</span> <span class='op'>+</span> <span class='va'>wetland</span>, data <span class='op'>=</span> <span class='va'>bryo_belg</span>,
+                  correlation <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/nlme/man/corSpher.html'>corSpher</a></span><span class='op'>(</span>form <span class='op'>=</span> <span class='op'>~</span> <span class='va'>x</span> <span class='op'>+</span> <span class='va'>y</span>, nugget <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/AIC.html'>AIC</a></span><span class='op'>(</span><span class='va'>bryo_lm</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 908.6358</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/AIC.html'>AIC</a></span><span class='op'>(</span><span class='va'>bryo_exp</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 867.822</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/AIC.html'>AIC</a></span><span class='op'>(</span><span class='va'>bryo_gaus</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 870.9592</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/AIC.html'>AIC</a></span><span class='op'>(</span><span class='va'>bryo_spher</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 866.9117</code></pre>
+</div>
+<p>The spherical model has the smallest AIC.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>bryo_spher</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generalized least squares fit by REML
+  Model: sqrt(richness) ~ forest + wetland 
+  Data: bryo_belg 
+       AIC      BIC    logLik
+  866.9117 891.1102 -427.4558
+
+Correlation Structure: Spherical spatial correlation
+ Formula: ~x + y 
+ Parameter estimate(s):
+     range     nugget 
+43.1725704  0.6063077 
+
+Coefficients:
+                 Value Std.Error   t-value p-value
+(Intercept)  2.0368754 0.2481673  8.207671   0.000
+forest       0.6989805 0.1481691  4.717450   0.000
+wetland     -0.2441117 0.1809121 -1.349339   0.178
+
+ Correlation: 
+        (Intr) forest
+forest  -0.251       
+wetland -0.235  0.241
+
+Standardized residuals:
+        Min          Q1         Med          Q3         Max 
+-1.75202529 -0.06568241  0.61415377  1.15239953  3.23320744 
+
+Residual standard error: 0.799832 
+Degrees of freedom: 420 total; 417 residual</code></pre>
+</div>
+<p>Both effects are less important in magnitude and the effect of wetlands is not significant anymore. As is the case for other types of non-independent residuals, the “effective sample size” here is less than the number of points, since points close to each other provide redundant information. Therefore, the relationship between predictors and response is less clear than given by the model assuming all these points were independent.</p>
+<p>Note that the results for all three <code>gls</code> models are quite similar, so the choice to include spatial correlations was more important than the exact shape assumed for the variogram.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
