@@ -7,7 +7,17 @@
     <description>Educational materials, incluing links to pdfs, videos, and code to reproduce all of our trainings.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 13 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Point-count Data Analysis</title>
+      <dc:creator>Peter Solymos</dc:creator>
+      <link>https://bios2.github.io/bios2_trainings/posts/2021-03-25-point-count-data-analysis</link>
+      <description>Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Peter Solymos to BIOS2 Fellows in March 2021.</description>
+      <category>Training</category>
+      <category>Twelve hour</category>
+      <guid>https://bios2.github.io/bios2_trainings/posts/2021-03-25-point-count-data-analysis</guid>
+      <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Spatial Statistics in Ecology</title>
       <dc:creator>Philipe Marchand</dc:creator>
