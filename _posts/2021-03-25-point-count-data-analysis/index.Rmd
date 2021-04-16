@@ -17,7 +17,10 @@ output:
 knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 ```
 
-![](https://github.com/psolymos/qpad-workshop/raw/main/images/thumb.jpg)
+```{r echo=FALSE}
+knitr::include_graphics("thumb.jpg")
+```
+
 
 This course is aimed towards researchers analyzing field observations, who are often faced by data heterogeneities due to field sampling protocols changing from one project to another, or through time over the lifespan of projects, or trying to combine 'legacy' data sets with new data collected by recording units.
 
