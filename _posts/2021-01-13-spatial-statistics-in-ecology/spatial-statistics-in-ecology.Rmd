@@ -1,13 +1,14 @@
 ---
-title: "Spatial Statistics in Ecology"
+title: "Spatial Statistics in Ecology, Part 2"
 description: |
-  Introduction to spatial statistics offered by Philipe Marchand to BIOS2 Fellows in January 2021.
-author: Philipe Marchand
-date: 2021-01-13
-categories:
-  - Training
-  - co-PI contributed
-  - Six hour
+  Introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021. This second part is focused on spatial correlations and geostatistical models.
+author:
+  - name: "Philippe Marchand"
+    affiliation: Université du Québec en Abitibi-Témiscamingue
+categories: 
+  - Technical
+  - English
+date: 2021-01-14
 output:
   distill::distill_article:
     self_contained: false

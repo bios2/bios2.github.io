@@ -1,8 +1,13 @@
 ---
 title: "Spatial Statistics in Ecology, Part 3"
 description: |
-  Third part of the introduction to spatial statistics offered by Philipe Marchand to BIOS2 Fellows in January 2021, focused on aerial data analysis in R.
-author: Philipe Marchand
+  Third part of the introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021, focused on aerial data analysis in R.
+author:
+  - name: "Philippe Marchand"
+    affiliation: Université du Québec en Abitibi-Témiscamingue
+categories: 
+  - Technical
+  - English
 date: 01-19-2021
 output:
   distill::distill_article:
