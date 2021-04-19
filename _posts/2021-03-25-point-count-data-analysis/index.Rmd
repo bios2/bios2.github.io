@@ -3,6 +3,7 @@ title: "Point-count Data Analysis"
 description: |
   Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Peter Solymos to BIOS2 Fellows in March 2021.
 author: Peter Solymos
+preview: thumb.jpg
 date: 2021-03-25
 categories:
   - Training
