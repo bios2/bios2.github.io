@@ -5,4 +5,6 @@ listing: Marchand
 
 <br>
 <br>
-An excellent training, though challenging on contemporary Macs :/
+**[EN]** Contents for the "Spatial statistics in ecology" training offered by [Philippe Marchand](https://github.com/pmarchand1) in January 2021 as part of the BIOS2 program. Original repository can be found [here](https://github.com/pmarchand1/BIOS2-spatial-stats).
+
+**[FR]** Contenu de la formation "Statistiques spatiales en écologie" offerte par [Philippe Marchand](https://github.com/pmarchand1) en janvier 2021 dans le cadre du programme BIOS2. Le repositoire original se trouve [ici](https://github.com/pmarchand1/BIOS2-spatial-stats).
