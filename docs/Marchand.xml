@@ -20,6 +20,17 @@
       <media:content url="https://bios2.github.io/bios2_trainings/Marchand/2021-01-21-spatial-statistics-in-ecology-part-4/spatial-statistics-in-ecology-part-4_files/figure-html5/unnamed-chunk-3-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
+      <title>Statistiques spatiales en écologie, Partie 4</title>
+      <dc:creator>Philippe Marchand</dc:creator>
+      <link>https://bios2.github.io/bios2_trainings/Marchand/2021-01-21-statistiques-spatiales-en-cologie-partie-4</link>
+      <description>Introduction aux statistiques spatiales offerte par Philippe Marchand aux boursiers BIOS2 en janvier 2021. Dans les parties précédentes, nous avons vu comment prendre en compte la dépendance spatiale dans les modèles de régression linéaire avec des modèles géostatistiques (aussi appelés processus Gaussiens) ou des modèles d'autocorrélation spatiale (CAR/SAR). Dans cette dernière partie, nous verrons comment combiner ces caractéristiques avec des modèles de régression plus complexes, en particulier les modèles linéaires mixtes généralisés (GLMM).</description>
+      <category>Technical</category>
+      <category>Français</category>
+      <guid>https://bios2.github.io/bios2_trainings/Marchand/2021-01-21-statistiques-spatiales-en-cologie-partie-4</guid>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/bios2_trainings/Marchand/2021-01-21-statistiques-spatiales-en-cologie-partie-4/statistiques-spatiales-en-cologie-partie-4_files/figure-html5/unnamed-chunk-3-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
       <title>Spatial Statistics in Ecology, Part 3</title>
       <dc:creator>Philippe Marchand</dc:creator>
       <link>https://bios2.github.io/bios2_trainings/Marchand/2021-01-19-spatial-statistics-in-ecology</link>
@@ -27,6 +38,17 @@
       <guid>https://bios2.github.io/bios2_trainings/Marchand/2021-01-19-spatial-statistics-in-ecology</guid>
       <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
       <media:content url="https://bios2.github.io/bios2_trainings/Marchand/2021-01-19-spatial-statistics-in-ecology/spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-3-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
+      <title>Statistiques spatiales en écologie, Partie 3</title>
+      <dc:creator>Philippe Marchand</dc:creator>
+      <link>https://bios2.github.io/bios2_trainings/Marchand/2021-01-19-statistiques-spatiales-en-cologie-partie-3</link>
+      <description>Troisième partie de l'introduction aux statistiques spatiales offerte par Philippe Marchand aux boursiers BIOS2 en janvier 2021, axée sur l'analyse de données aréales en R.</description>
+      <category>Technical</category>
+      <category>Français</category>
+      <guid>https://bios2.github.io/bios2_trainings/Marchand/2021-01-19-statistiques-spatiales-en-cologie-partie-3</guid>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/bios2_trainings/Marchand/2021-01-19-statistiques-spatiales-en-cologie-partie-3/statistiques-spatiales-en-cologie-partie-3_files/figure-html5/unnamed-chunk-3-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>Spatial Statistics in Ecology, Part 2</title>
