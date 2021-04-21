@@ -1,4 +1,5 @@
-distill::create_post(title = "Spatial Statistics in Ecology, Part 4",
+distill::create_post(title = "Statistiques spatiales en écologie, Partie 1",
                      author = "Philippe Marchand",
-                     date = lubridate::ymd("2021-01-21")
+                     collection = "Marchand",
+                     date = lubridate::ymd("2021-01-12")
 )

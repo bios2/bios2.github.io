@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Statistiques spatiales en écologie, Partie 1</title>
+
+  <meta property="description" itemprop="description" content="Cours de introduction aux statistiques spatiales offert par Philippe Marchand aux boursiers BIOS2 en janvier 2021. Cette première partie se concentre sur les concepts et les premières analyses."/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-01-12"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-01-12"/>
+  <meta name="article:author" content="Philippe Marchand"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Statistiques spatiales en écologie, Partie 1"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Cours de introduction aux statistiques spatiales offert par Philippe Marchand aux boursiers BIOS2 en janvier 2021. Cette première partie se concentre sur les concepts et les premières analyses."/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Statistiques spatiales en écologie, Partie 1"/>
+  <meta property="twitter:description" content="Cours de introduction aux statistiques spatiales offert par Philippe Marchand aux boursiers BIOS2 en janvier 2021. Cette première partie se concentre sur les concepts et les premières analyses."/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","categories","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Statistiques spatiales en écologie, Partie 1"]},{"type":"character","attributes":{},"value":["Cours de introduction aux statistiques spatiales offert par Philippe Marchand aux boursiers BIOS2 en janvier 2021. Cette première partie se concentre sur les concepts et les premières analyses.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Philippe Marchand"]},{"type":"character","attributes":{},"value":["Université du Québec en Abitibi-Témiscamingue"]}]}]},{"type":"character","attributes":{},"value":["Technical","Français"]},{"type":"character","attributes":{},"value":["01-12-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["data/fir.csv","data/semis_xy.csv","images/ripley_edge.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-10-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-11-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-13-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-14-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-15-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-16-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-17-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-18-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-19-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-2-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-20-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-22-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-23-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-24-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-25-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-26-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-27-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-27-2.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-4-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-7-1.png","statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-9-1.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="statistiques-spatiales-en-cologie-partie-1_files/header-attrs-2.7/header-attrs.js"></script>
+  <script src="statistiques-spatiales-en-cologie-partie-1_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="statistiques-spatiales-en-cologie-partie-1_files/popper-2.6.0/popper.min.js"></script>
+  <link href="statistiques-spatiales-en-cologie-partie-1_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="statistiques-spatiales-en-cologie-partie-1_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="statistiques-spatiales-en-cologie-partie-1_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="statistiques-spatiales-en-cologie-partie-1_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="statistiques-spatiales-en-cologie-partie-1_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="statistiques-spatiales-en-cologie-partie-1_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="statistiques-spatiales-en-cologie-partie-1_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Statistiques spatiales en écologie, Partie 1","description":"Cours de introduction aux statistiques spatiales offert par Philippe Marchand aux boursiers BIOS2 en janvier 2021. Cette première partie se concentre sur les concepts et les premières analyses.","authors":[{"author":"Philippe Marchand","authorURL":"#","affiliation":"Université du Québec en Abitibi-Témiscamingue","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-01-12T00:00:00.000+00:00","citationText":"Marchand, 2021"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Statistiques spatiales en écologie, Partie 1</h1>
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">Technical</div>
+<div class="dt=tag">Français</div>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>Cours de introduction aux statistiques spatiales offert par Philippe Marchand aux boursiers BIOS2 en janvier 2021. Cette première partie se concentre sur les concepts et les premières analyses.</p></p>
+</div>
+
+<div class="d-byline">
+  Philippe Marchand  (Université du Québec en Abitibi-Témiscamingue)
+  
+<br/>01-12-2021
+</div>
+
+<div class="d-article">
+<h1 id="introduction-aux-statistiques-spatiales">Introduction aux statistiques spatiales</h1>
+<h2 id="types-danalyses-spatiales">Types d’analyses spatiales</h2>
+<p>Dans le cadre de cette formation, nous discuterons de trois types d’analyses spatiales: l’analyse des patrons de points, les modèles géostatistiques et les modèles de données aréales.</p>
+<p>Dans l’<strong>analyse des patrons de points</strong>, nous avons des données ponctuelles représentant la position d’individus ou d’événements dans une région d’étude et nous supposons que tous les individus ou événements ont été recensés dans cette région. Cette analyse s’intéresse à la distribution des positions des points eux-mêmes. Voici quelques questions typiques de l’analyse des patrons de points:</p>
+<ul>
+<li><p>Les points sont-ils disposés aléatoirement ou agglomérés?</p></li>
+<li><p>Deux types de points sont-ils disposés indépendamment?</p></li>
+</ul>
+<p>Les <strong>modèles géostatistiques</strong> visent à représenter la distribution spatiale de variables continues qui sont mesurés à certains points d’échantillonnage. Ils supposent que les mesures de ces variables à différents points sont corrélées en fonction de la distance entre ces points. Parmi les applications des modèles géostatistiques, notons le lissage des données spatiales (ex.: produire une carte d’une variable sur l’ensemble d’une région en fonction des mesures ponctuelles) et la prédiction de ces variables pour des points non-échantillonnés.</p>
+<p>Les <strong>données aréales</strong> sont des mesures prises non pas à des points, mais pour des régions de l’espace représentées par des polygones (ex.: divisions du territoire, cellules d’une grille). Les modèles représentant ces types de données définissent un réseau de voisinage reliant les régions et incluent une corrélation spatiale entre régions voisines.</p>
+<h2 id="stationnarité-et-isotropie">Stationnarité et isotropie</h2>
+<p>Plusieurs analyses spatiales supposent que les variables sont <strong>stationnaires</strong> dans l’espace. Comme pour la stationnarité dans le domaine temporel, cette propriété signifie que les statistiques sommaires (moyenne, variance et corrélations entre mesures d’une variable) ne varient pas avec une translation dans l’espace. Par exemple, la corrélation spatiale entre deux points peut dépendre de la distance les séparant, mais pas de leur position absolue.</p>
+<p>En particulier, il ne peut pas y avoir de tendance à grande échelle (souvent appelée <em>gradient</em> dans un contexte spatial), ou bien cette tendance doit être prise en compte afin de modéliser la corrélation spatiale des résidus.</p>
+<p>Dans le cas de l’analyse des patrons de points, la stationnarité (aussi appelée homogénéité dans ce contexte) signifie que la densité des points ne suit pas de tendance à grande échelle.</p>
+<p>Dans un modèle statistique <strong>isotropique</strong>, les corrélations spatiales entre les mesures à deux points dépendent seulement de la distance entre ces points, pas de la direction. Dans ce cas, les statistiques sommaires ne varient pas si on effectue une rotation dans l’espace.</p>
+<h2 id="données-géoréférencées">Données géoréférencées</h2>
+<p>Les études environnementales utilisent de plus en plus de données provenant de sources de données géospatiales, c’est-à-dire des variables mesurées sur une grande partie du globe (ex.: climat, télédétection). Le traitement de ces données requiert des concepts liés aux systèmes d’information géographique (SIG), qui ne sont pas couverts dans cet atelier, alors que nous nous concentrons sur les aspects statistiques de données variant dans l’espace.</p>
+<p>L’utilisation de données géospatiales ne signifie pas nécessairement qu’il faut avoir recours à des statistiques spatiales. Par exemple, il est courant d’extraire les valeurs de ces variables géographiques à des points d’étude pour expliquer une réponse biologique observée sur le terrain. Dans ce cas, l’utilisation de statistiques spatiales est seulement nécessaire en présence d’une corrélation spatiale dans les résidus, après avoir tenu compte de l’effet des prédicteurs.</p>
+<h1 id="analyse-des-patrons-de-points">Analyse des patrons de points</h1>
+<h2 id="patron-de-points-et-processus-ponctuel">Patron de points et processus ponctuel</h2>
+<p>Un patron de points (<em>point pattern</em>) décrit la position spatiale (le plus souvent en 2D) d’individus ou d’événements, représentés par des points, dans une aire d’étude donnée, souvent appelée la <em>fenêtre</em> d’observation.</p>
+<p>On suppose que chaque point a une étendue spatiale négligeable par rapport aux distances entre les points. Des méthodes plus complexes existent pour traiter des patrons spatiaux d’objets qui ont une largeur non-néligeable, mais ce sujet dépasse la portée de cet atelier.</p>
+<p>Un processus ponctuel (<em>point process</em>) est un modèle statistique qui peut être utilisé pour simuler des patrons de points ou expliquer un patron de points observé.</p>
+<h2 id="structure-spatiale-totalement-aléatoire">Structure spatiale totalement aléatoire</h2>
+<p>Une structure spatiale totalement aléatoire (<em>complete spatial randomness</em>) est un des patrons les plus simples, qui sert de modèle nul pour évaluer les caractéristiques de patrons de points réels. Dans ce patron, la présence d’un point à une position donnée est indépendante de la présence de points dans un voisinage.</p>
+<p>Le processus créant ce patron est un processus de Poisson homogène. Selon ce modèle, le nombre de points dans toute région de superficie <span class="math inline">\(A\)</span> suit une distribution de Poisson: <span class="math inline">\(N(A) \sim \text{Pois}(\lambda A)\)</span>, où <span class="math inline">\(\lambda\)</span> est l’<em>intensité</em> du processus (i.e. la densité de points). <span class="math inline">\(N\)</span> est indépendant entre deux régions disjointes, peu importe comment ces régions sont définies.</p>
+<p>Dans le graphique ci-dessous, seul le patron à droite est totalement aléatoire. Le patron à gauche montre une agrégation des points (probabilité plus grande d’observer un point si on est à proximité d’un autre point), tandis que le patron du centre montre une répulsion (faible probabilité d’observer un point très près d’un autre).</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-2-1.png" width="864" /></p>
+</div>
+<h2 id="analyse-exploratoire-ou-inférentielle-pour-un-patron-de-points">Analyse exploratoire ou inférentielle pour un patron de points</h2>
+<p>Plusieurs statistiques sommaires sont utilisées pour décrire les caractéristiques un patron de points. La plus simple est l’<strong>intensité</strong> <span class="math inline">\(\lambda\)</span>, qui comme mentionné plus haut représente la densité de points par unité de surface. Si le patron de points est hétérogène, l’intensité n’est pas constante, mais dépend de la position: <span class="math inline">\(\lambda(x, y)\)</span>.</p>
+<p>Par rapport à l’intensité qui est une statistique dite de premier ordre, les statistiques de second ordre décrivent comment la probabilité de présence d’un point dans une région dépend de la présence d’autres points. L’indice <span class="math inline">\(K\)</span> de Ripley présenté dans la prochaine section est un exemple de statistique sommaire de second ordre.</p>
+<p>Les inférences statistiques réalisées sur des patrons de points consistent habituellement à tester l’hypothèse que le patron de points correspond à un modèle nul donné, par exemple une structure spatiale totalement aléatoire, ou un modèle nul plus complexe. Même pour les modèles nuls les plus simples, nous connaissons rarement la distribution théorique pour une statistique sommaire du patron de points sous le modèle nul. Les tests d’hypothèses sur les patrons de points sont donc réalisés par simulation: on simule un grand nombre de patrons de points à partir du modèle nul et on compare la distribution des statistiques sommaires qui nous intéressent pour ces simulations à la valeur des statistiques pour le patron de points observé.</p>
+<h2 id="indice-k-de-ripley">Indice <span class="math inline">\(K\)</span> de Ripley</h2>
+<p>L’indice de Ripley <span class="math inline">\(K(r)\)</span> est défini comme le nombre moyen de points se trouvant dans un cercle de rayon <span class="math inline">\(r\)</span> donné autour d’un point du patron, normalisé par l’intensité <span class="math inline">\(\lambda\)</span>.</p>
+<p>Pour un patron totalement aléatoire, le nombre moyen de points dans un cercle de rayon <span class="math inline">\(r\)</span> est <span class="math inline">\(\lambda \pi r^2\)</span>, donc en théorie <span class="math inline">\(K(r) = \pi r^2\)</span> pour ce modèle nul. Une valeur de <span class="math inline">\(K(r)\)</span> supérieure signifie qu’il y a agrégation des points à l’échelle <span class="math inline">\(r\)</span>, tandis qu’une valeur inférieure signifie qu’il y a une répulsion.</p>
+<p>En pratique, <span class="math inline">\(K(r)\)</span> est estimé pour un patron de points donné par l’équation:</p>
+<p><span class="math display">\[ K(r) = \frac{A}{n(n-1)} \sum_i \sum_{j &gt; i} I \left( d_{ij} \le r \right) w_{ij}\]</span></p>
+<p>où <span class="math inline">\(A\)</span> est l’aire de la fenêtre d’observation et <span class="math inline">\(n\)</span> est le nombre de points du patron, donc <span class="math inline">\(n(n-1)\)</span> est le nombre de paires de points distinctes. On fait la somme pour toutes les paires de points de la fonction indicatrice <span class="math inline">\(I\)</span>, qui prend une valeur de 1 si la distance entre les points <span class="math inline">\(i\)</span> et <span class="math inline">\(j\)</span> est inférieure ou égale à <span class="math inline">\(r\)</span>. Finalement, le terme <span class="math inline">\(w_{ij}\)</span> permet de donner un poids supplémentaire à certaines paires de points pour tenir compte des effets de bordure, tel que discuté dans la section suivante.</p>
+<p>Par exemple, les graphiques ci-dessous présentent la fonction estimée <span class="math inline">\(K(r)\)</span> pour les patrons illustrés ci-dessus, pour des valeurs de <span class="math inline">\(r\)</span> allant jusqu’à 1/4 de la largeur de la fenêtre. La courbe pointillée rouge indique la valeur théorique pour une structure spatiale totalement aléatoire et la zone grise est une “enveloppe” produite par 99 simulations de ce modèle nul. Le patron agrégé montre un excès de voisins jusqu’à <span class="math inline">\(r = 0.25\)</span> et le patron avec répulsion montre un déficit significatif de voisins pour les petites valeurs de <span class="math inline">\(r\)</span>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-4-1.png" width="864" /></p>
+</div>
+<p>Outre le <span class="math inline">\(K\)</span>, il existe d’autres statistiques pour décrire les propriétés de second ordre du patron, par exemple la distance moyenne entre un point et ses <span class="math inline">\(N\)</span> plus proches voisins. Vous pouvez consulter le manuel de Wiegand et Moloney (2013) suggéré en référence pour en apprendre plus sur différentes statistiques sommaires des patrons de points.</p>
+<h2 id="effets-de-bordure">Effets de bordure</h2>
+<p>Dans le contexte de l’analyse de patrons de points, l’effet de bordure (“edge effect”) est dû au fait que nous avons une connaissance incomplète du voisinage des points près du bord de la fenêtre d’observation, ce qui peut induire un biais dans le calcul des statistiques comme le <span class="math inline">\(K\)</span> de Ripley.</p>
+<p>Différentes méthodes ont été développées pour corriger le biais dû aux effets de bordure. Selon la méthode de Ripley, la contribution d’un voisin <span class="math inline">\(j\)</span> situé à une distance <span class="math inline">\(r\)</span> d’un point <span class="math inline">\(i\)</span> reçoit un poids <span class="math inline">\(w_{ij} = 1/\phi_i(r)\)</span>, où <span class="math inline">\(\phi_i(r)\)</span> est la fraction du cercle de rayon <span class="math inline">\(r\)</span> autour de <span class="math inline">\(i\)</span> contenu dans la fenêtre d’observation. Par exemple, si 2/3 du cercle se trouve dans la fenêtre, ce voisin compte pour 3/2 voisins dans le calcul d’une statistique comme <span class="math inline">\(K\)</span>.</p>
+<p><img src="images/ripley_edge.png" /></p>
+<p>La méthode de Ripley est une des plus simples pour corriger les effets de bordure, mais n’est pas nécessairement la plus efficace; notamment, les poids plus grands donnés à certaines paires de points tend à accroître la variance du calcul de la statistique. D’autres méthodes de correction sont présentées dans les manuels spécialisés, comme celui de Wiegand et Moloney (2013) en référence.</p>
+<h2 id="exemple">Exemple</h2>
+<p>Pour cet exemple, nous utilisons le jeu de données <a href="data/semis_xy.csv">semis_xy.csv</a>, qui représente les coordonnées <span class="math inline">\((x, y)\)</span> de semis de deux espèces (<em>sp</em>, B = bouleau et P = peuplier) dans une placette de 15 x 15 m.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>semis</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/semis_xy.csv"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>semis</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>      x    y sp
+1 14.73 0.05  P
+2 14.72 1.71  P
+3 14.31 2.06  P
+4 14.16 2.64  P
+5 14.12 4.15  B
+6  9.88 4.08  B</code></pre>
+</div>
+<p>Le package <em>spatstat</em> permet d’effectuer des analyses de patrons de point dans R. La première étape consiste à transformer notre tableau de données en objet <code>ppp</code> (patron de points) avec la fonction du même nom. Dans cette fonction, nous spécifions quelles colonnes contiennent les coordonnées <em>x</em> et <em>y</em> ainsi que les marques (<code>marks</code>), qui seront ici les codes d’espèce. Il faut aussi spécifier une fenêtre d’observation (<code>window</code>) à l’aide de la fonction <code>owin</code>, à laquelle nous indiquons les limites de la placette en <em>x</em> et <em>y</em>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://spatstat.org/'>spatstat</a></span><span class='op'>)</span>
+
+<span class='va'>semis</span> <span class='op'>&lt;-</span> <span class='fu'>ppp</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>semis</span><span class='op'>$</span><span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>semis</span><span class='op'>$</span><span class='va'>y</span>, marks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>semis</span><span class='op'>$</span><span class='va'>sp</span><span class='op'>)</span>,
+             window <span class='op'>=</span> <span class='fu'>owin</span><span class='op'>(</span>xrange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>15</span><span class='op'>)</span>, yrange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>15</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>semis</span>
+</code></pre>
+</div>
+<pre><code>Marked planar point pattern: 281 points
+Multitype, with levels = B, P 
+window: rectangle = [0, 15] x [0, 15] units</code></pre>
+</div>
+<p>Les marques peuvent être numériques ou catégorielles. Notez que pour des marques catégorielles comme c’est le cas ici, il faut convertir explicitement la variable en facteur.</p>
+<p>La fonction <code>plot</code> appliquée à un patron de points montre un diagramme du patron.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>semis</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+</div>
+<p>La fonction <code>intensity</code> calcule la densité des points de chaque espèce par unité de surface, ici en <span class="math inline">\(m^2\)</span>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>intensity</span><span class='op'>(</span><span class='va'>semis</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>        B         P 
+0.6666667 0.5822222 </code></pre>
+</div>
+<p>Pour analyser d’abord séparément la distribution de chaque espèce, nous séparons le patron avec <code>split</code>. Puisque le patron contient des marques catégorielles, la séparation se fait automatiquement en fonction de la valeur des marques. Le résultat est une liste de deux patrons de points.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>semis_split</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/split.html'>split</a></span><span class='op'>(</span><span class='va'>semis</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>semis_split</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+</div>
+<p>La fonction <code>Kest</code> calcule le <span class="math inline">\(K\)</span> de Ripley pour une série de distances allant (par défaut) jusqu’à 1/4 de la largeur de la fenêtre. Ici, nous l’appliquons au premier patron (bouleau) en choisissant <code>semis_split[[1]]</code>. Notez que les doubles crochets sont nécessaires pour choisir un élément d’une liste dans R.</p>
+<p>L’argument <code>correction = "iso"</code> indique d’appliquer la méthode de Ripley pour corriger les effets de bordure.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fu'>Kest</span><span class='op'>(</span><span class='va'>semis_split</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>k</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
+</div>
+<p>Selon ce graphique, il semble y avoir une excès de voisins à partir d’un rayon de 1 m. Pour vérifier s’il s’agit d’un écart significatif, nous produisons une enveloppe de simulation avec la fonction <code>envelope</code>. Le permier argument d’<code>envelope</code> est un patron de point auquel les simulations seront comparées, le deuxième une fonction à calculer (ici, <code>Kest</code>) pour chaque patron simulé, puis on y ajoute les arguments de la fonction <code>Kest</code> (ici, seulement <code>correction</code>).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>envelope</span><span class='op'>(</span><span class='va'>semis_split</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span>, <span class='va'>Kest</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 99 simulations of CSR  ...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
+36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98,  99.
+
+Done.</code></pre>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
+</div>
+<p>Tel qu’indiqué par le message, cette fonction effectue par défaut 99 simulations de l’hypothèse nulle correspondant à une structure spatiale totalement aléatoire (CSR, pour <em>complete spatial randomness</em>).</p>
+<p>La courbe observée sort de l’enveloppe des 99 simulations près de <span class="math inline">\(r = 2\)</span>. Il faut être prudent de ne pas interpréter trop rapidement un résultat sortant de l’enveloppe. Même s’il y a environ une probabilité de 1% d’obtenir un résultat plus extrême selon l’hypothèse nulle à une distance donnée, l’enveloppe est calculée pour un grand nombre de valeurs de la distance et nous n’effectuons pas de correction pour les comparaisons multiples. Ainsi, un écart significatif pour une très petite plage de valeurs de <span class="math inline">\(r\)</span> peut être simplement dû au hasard.</p>
+<h3 id="exercice-1">Exercice 1</h3>
+<p>En regardant le graphique du deuxième patron de points (semis de peuplier), pouvez-vous prédire où se situera le <span class="math inline">\(K\)</span> de Ripley par rapport à l’hypothèse nulle d’une structure spatiale totalement aléatoire? Vérifiez votre prédiction en calculant le <span class="math inline">\(K\)</span> de Ripley pour ce patron de points dans R.</p>
+<h2 id="effet-de-lhétérogénéité">Effet de l’hétérogénéité</h2>
+<p>Le graphique ci-dessous illustre un patron de points <em>hétérogène</em>, c’est-à-dire qu’il présente un gradient d’intensité (plus de points à gauche qu’à droite).</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+</div>
+<p>Un gradient de densité peut être confondu avec une agrégation des points, comme on peut voir sur le graphique du <span class="math inline">\(K\)</span> de Ripley correspondant. En théorie, il s’agit de deux processus différents:</p>
+<ul>
+<li><p>Hétérogénéité: La densité de points varie dans la région d’étude, par exemple dû au fait que certaines conditions locales sont plus propices à la présence de l’espèce étudiée.</p></li>
+<li><p>Agrégation: La densité moyenne des points est homogène, mais la présence d’un point augmente la présence d’autre points dans son voisinage, par exemple en raison d’interactions positives entre les individus.</p></li>
+</ul>
+<p>Cependant, il peut être difficile de différencier les deux en pratique, surtout que certains patrons peuvent être à la fois hétérogènes et agrégés.</p>
+<p>Prenons l’exemple des semis de peuplier de l’exercice précédent. La fonction <code>density</code> appliquée à un patron de points effectue une estimation par noyau (<em>kernel density estimation</em>) de la densité des semis à travers la placette. Par défaut, cette fonction utilise un noyau gaussien avec un écart-type <code>sigma</code> spécifié dans la fonction, qui détermine l’échelle à laquelle les fluctuations de densité sont “lissées”. Ici, nous utilisons une valeur de 2 m pour <code>sigma</code> et nous représentons d’abord la densité estimée avec <code>plot</code>, avant d’y superposer les points (<code>add = TRUE</code> signifie que les points sont ajoutés au graphique existant plutôt que de créer un nouveau graphique).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dens_p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>semis_split</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>, sigma <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>dens_p</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>semis_split</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
+</div>
+<p>Pour mesurer l’agrégation ou la répulsion des points d’un patron hétérogène, nous devons utilisé la version non-homogène de la statistique <span class="math inline">\(K\)</span> (<code>Kinhom</code> dans <em>spatstat</em>). Cette statistique est toujours égale au nombre moyen de voisins dans un rayon <span class="math inline">\(r\)</span> d’un point du patron, mais plutôt que de normaliser ce nombre par l’intensité globale du patron, il est normalisé par l’estimation locale de la densité de points. Comme ci-dessus, nous spécifions <code>sigma = 2</code> pour contrôler le niveau de lissage de l’estimation de la densité variable.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>Kinhom</span><span class='op'>(</span><span class='va'>semis_split</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>, sigma <span class='op'>=</span> <span class='fl'>2</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
+</div>
+<p>En tenant compte de l’hétérogénéité du patron à une échelle <code>sigma</code> de 2 m, il semble donc y avoir un déficit de voisins à partir d’environ 1.5 m des points du patron. Il reste à voir si cette déviation est significative.</p>
+<p>Comme précédemment, nous utilisons <code>envelope</code> pour simuler la statistique <code>Kinhom</code> sous le modèle nul. Cependant, ici le modèle nul n’est pas un processus de Poisson homogène (structure spatiale totalement aléatoire). Il s’agit plutôt d’un processus de Poisson hétérogène simulé par la fonction <code>rpoispp(dens_p)</code>, c’est-à-dire que les points sont indépendants les uns des autres, mais leur densité est hétérogène et donnée par <code>dens_p</code>. L’argument <code>simulate</code> de la fonction <code>envelope</code> permet de spécifier une fonction utilisée pour les simulations sous le modèle nul; cette fonction doit avoir un argument, ici <code>x</code>, même s’il n’est pas utilisé.</p>
+<p>Finalement, en plus des arguments nécessaires pour <code>Kinhom</code>, soit <code>sigma</code> et <code>correction</code>, nous spécifions aussi <code>nsim = 199</code> pour réaliser 199 simulations et <code>nrank = 5</code> pour éliminer les 5 résultats les plus extrêmes de chaque côté de l’enveloppe, donc les 10 plus extrêmes sur 199, pour réaliser un intervalle contenant environ 95% de la probabilité sous l’hypothèse nulle.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>khet_p</span> <span class='op'>&lt;-</span> <span class='fu'>envelope</span><span class='op'>(</span><span class='va'>semis_split</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>, <span class='va'>Kinhom</span>, sigma <span class='op'>=</span> <span class='fl'>2</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span>,
+                   nsim <span class='op'>=</span> <span class='fl'>199</span>, nrank <span class='op'>=</span> <span class='fl'>5</span>, simulate <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'>rpoispp</span><span class='op'>(</span><span class='va'>dens_p</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 199 simulations by evaluating function  ...
+1, 2, 3, 4.6.8.10.12.14.16.18.20.22.24.26.28.30.32.34.36
+.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72
+.74.76.78.80.82.84.86.88.90.92.94.96.98.100.102.104.106.108
+.110.112.114.116.118.120.122.124.126.128.130.132.134.136.138.140.142.144
+.146.148.150.152.154.156.158.160.162.164.166.168.170.172.174.176.178.180
+.182.184.186.188.190.192.194.196.198 199.
+
+Done.</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>khet_p</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
+</div>
+<p><em>Note</em>: Pour un test d’hypothèse basé sur des simulations d’une hypothèse nulle, la valeur <span class="math inline">\(p\)</span> est estimée par <span class="math inline">\((m + 1)/(n + 1)\)</span>, où <span class="math inline">\(n\)</span> est le nombre de simulations et <span class="math inline">\(m\)</span> est le nombre de simulations où la valeur de la statistique est plus extrême que celle des données observées. C’est pour cette raison qu’on choisit un nombre de simulations comme 99, 199, etc.</p>
+<h3 id="exercice-2">Exercice 2</h3>
+<p>Répétez l’estimation de la densité hétérogène et le calcul de <code>Kinhom</code> avec un écart-type <code>sigma</code> de 5 plutôt que 2. Comment le niveau de lissage pour la densité influence-t-il les conclusions?</p>
+<p>Pour différencier une variation de densité des points et d’une interaction (agrégation ou répulsion) entre ces points avec ce type d’analyse, il faut généralement supposer que les deux processus opèrent à différentes échelles. Typiquement, nous pouvons tester si les points sont agrégés à petite échelle après avoir tenu compte d’une variation de la densité à une échelle plus grande.</p>
+<h2 id="relation-entre-deux-patrons-de-points">Relation entre deux patrons de points</h2>
+<p>Considérons un cas où nous avons deux patrons de points, par exemple la position des arbres de deux espèces dans une parcelle (points oranges et verts dans le graphique ci-dessous). Chacun des deux patrons peut présenter ou non des agrégations de points.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
+</div>
+<p>Sans égard à cette agrégation au niveau de l’espèce, nous voulons déterminer si les deux espèces sont disposées indépendamment. Autrement dit, la probabilité d’observer un arbre d’une espèce dépend-elle de la présence d’un arbre de l’autre espèce à une distance donnée?</p>
+<p>La version bivariée du <span class="math inline">\(K\)</span> de Ripley permet de répondre à cette question. Pour deux patrons désignés 1 et 2, l’indice <span class="math inline">\(K_{12}(r)\)</span> calcule le nombre moyen de points du patron 2 dans un rayon <span class="math inline">\(r\)</span> autour d’un point du patron 1, normalisé par la densité du patron 2.</p>
+<p>En théorie, cet indice est symétrique, donc <span class="math inline">\(K_{12}(r) = K_{21}(r)\)</span> et le résultat serait le même si on choisit les points du patron 1 ou 2 comme points “focaux” pour l’analyse. Cependant, l’estimation des deux quantités pour un patron observé peut différer, notamment en raison des effets de bord. La variabilité peut aussi être différente pour <span class="math inline">\(K_{12}\)</span> et <span class="math inline">\(K_{21}\)</span> entre les simulations d’un modèle nul, donc le test de l’hypothèse nulle peut avoir une puissance différente selon le choix de l’espèce focale.</p>
+<p>Le choix d’un modèle nul approprié est important ici. Afin de déterminer s’il existe une attraction ou une répulsion significative entre les deux patrons, il faut déplacer aléatoirement la position d’un des patrons relative à celle de l’autre patron, tout en conservant la structure spatiale de chaque patron pris isolément.</p>
+<p>Une des façons d’effectuer cette randomisation consiste à décaler l’un des deux patrons horizontalement et/ou verticalement d’une distance aléatoire. La partie du patron qui “sort” d’un côté de la fenêtre est rattachée de l’autre côté. Cette méthode s’appelle une translation toroïdale (<em>toroidal shift</em>), car en connectant le haut et le bas ainsi que la gauche et la droite d’une surface rectangulaire, on obtient la forme d’un tore (un “beigne” en trois dimensions).</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-18-1.png" width="624" /></p>
+</div>
+<p>Le graphique ci-dessus illustre une translation du patron vert vers la droite, tandis que le patron orange reste au même endroit. Les points verts dans la zone ombragée sont ramenés de l’autre côté. Notez que si cette méthode préserve de façon générale la structure de chaque patron tout en randomisant leur position relative, elle peut comporter certains inconvénients, comme de diviser des amas de points qui se trouvent près du point de coupure.</p>
+<p>Vérifions maintenant s’il y a une dépendance entre la position des deux espèces (bouleau et peuplier) dans notre placette. La fonction <code>Kcross</code> calcule l’indice bivarié <span class="math inline">\(K_{ij}\)</span>, il faut spécifier quel type de point est considéré comme l’espèce focale <span class="math inline">\(i\)</span> et l’espèce voisine <span class="math inline">\(j\)</span>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>Kcross</span><span class='op'>(</span><span class='va'>semis</span>, i <span class='op'>=</span> <span class='st'>"P"</span>, j <span class='op'>=</span> <span class='st'>"B"</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-19-1.png" width="624" /></p>
+</div>
+<p>Ici, le <span class="math inline">\(K\)</span> observé est inférieur à la valeur théorique, indiquant une répulsion possible des deux patrons.</p>
+<p>Pour déterminer l’enveloppe du <span class="math inline">\(K\)</span> selon l’hypothèse nulle d’indépendance des deux patrons, nous devons spécifier que les simulations doivent être basées sur une translation des patrons. Nous indiquons que les simulations doivent utiliser la fonction <code>rshift</code> (translation aléatoire) avec l’argument <code>simulate = function(x) rshift(x, which = "B")</code>; ici, l’argument <code>x</code> de <code>simulate</code> correspond au patron de points original et l’argument <code>which</code> indique quel type de points subit la translation. Comme pour le cas précédent, il faut répéter dans la fonction <code>envelope</code> les arguments nécessaires pour <code>Kcross</code>, soit <code>i</code>, <code>j</code> et <code>correction</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>envelope</span><span class='op'>(</span><span class='va'>semis</span>, <span class='va'>Kcross</span>, i <span class='op'>=</span> <span class='st'>"P"</span>, j <span class='op'>=</span> <span class='st'>"B"</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span>, 
+              nsim <span class='op'>=</span> <span class='fl'>199</span>, nrank <span class='op'>=</span> <span class='fl'>5</span>, simulate <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'>rshift</span><span class='op'>(</span><span class='va'>x</span>, which <span class='op'>=</span> <span class='st'>"B"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 199 simulations by evaluating function  ...
+1, 2, 3, 4.6.8.10.12.14.16.18.20.22.24.26.28.30.32.34.36
+.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72
+.74.76.78.80.82.84.86.88.90.92.94.96.98.100.102.104.106.108
+.110.112.114.116.118.120.122.124.126.128.130.132.134.136.138.140.142.144
+.146.148.150.152.154.156.158.160.162.164.166.168.170.172.174.176.178.180
+.182.184.186.188.190.192.194.196.198 199.
+
+Done.</code></pre>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-20-1.png" width="624" /></p>
+</div>
+<p>Ici, la courbe observée se situe totalement dans l’enveloppe, donc nous ne rejetons pas l’hypothèse nulle d’indépendance des deux patrons.</p>
+<h3 id="questions">Questions</h3>
+<ol type="1">
+<li><p>Quelle raison pourrait justifier ici notre choix d’effectuer la translation des points du bouleau plutôt que du peuplier?</p></li>
+<li><p>Est-ce que les simulations générées par translation aléatoire constitueraient un bon modèle nul si les deux patrons étaient hétérogènes?</p></li>
+</ol>
+<h2 id="patrons-de-points-marqués">Patrons de points marqués</h2>
+<p>Le jeu de données <a href="data/fir.csv">fir.csv</a> contient les coordonnées <span class="math inline">\((x, y)\)</span> de 822 sapins dans une placette d’un hectare et leur statut (A = vivant, D = mort) suivant une épidémie de tordeuse des bourgeons de l’épinette.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fir</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.csv</a></span><span class='op'>(</span><span class='st'>"data/fir.csv"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>fir</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>      x     y status
+1 31.50  1.00      A
+2 85.25 30.75      D
+3 83.50 38.50      A
+4 84.00 37.75      A
+5 83.00 33.25      A
+6 33.25  0.25      A</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fir</span> <span class='op'>&lt;-</span> <span class='fu'>ppp</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fir</span><span class='op'>$</span><span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>fir</span><span class='op'>$</span><span class='va'>y</span>, marks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>fir</span><span class='op'>$</span><span class='va'>status</span><span class='op'>)</span>,
+           window <span class='op'>=</span> <span class='fu'>owin</span><span class='op'>(</span>xrange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>100</span><span class='op'>)</span>, yrange <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>100</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>fir</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-22-1.png" width="624" /></p>
+</div>
+<p>Supposons que nous voulons vérifier si la mortalité des sapins est indépendante ou corrélée entre arbres rapprochés. En quoi cette question diffère-t-elle de l’exemple précédent où nous voulions savoir si la position des points de deux espèces était indépendante?</p>
+<p>Dans l’exemple précédent, l’indépendance ou l’interaction entre les espèces référait à la formation du patron lui-même (que des semis d’une espèce s’établissent ou non à proximité de ceux de l’autre espèce). Ici, la caractéristique qui nous intéresse (survie des sapins) est postérieure à l’établissement du patron, en supposant que tous ces arbres étaient vivants d’abord et que certains sont morts suite à l’épidémie. Donc nous prenons la position des arbres comme fixe et nous voulons savoir si la distribution des statuts (mort, vivant) entre ces arbres est aléatoire ou présente un patron spatial.</p>
+<p>Dans le manuel de Wiegand et Moloney, la première situation (établissement de semis de deux espèces) est appelé patron bivarié, donc il s’agit vraiment de deux patrons qui interagissent, tandis que la deuxième est un seul patron avec une <em>marque</em> qualitative. Le package <em>spatstat</em> dans R ne fait pas de différences entre les deux au niveau de la définition du patron (les types de points sont toujours représentés par l’argument <code>marks</code>), mais les méthodes d’analyse appliquées aux deux questions diffèrent.</p>
+<p>Dans le cas d’un patron avec une marque qualitative, nous pouvons définir une fonction de connexion de marques (<em>mark connection function</em>) <span class="math inline">\(p_{ij}(r)\)</span>. Pour deux points séparés par une distance <span class="math inline">\(r\)</span>, cette fonction donne la probabilité que le premier point porte la marque <span class="math inline">\(i\)</span> et le deuxième la marque <span class="math inline">\(j\)</span>. Selon l’hypothèse nulle où les marques sont indépendantes, cette probabilité est égale au produit des proportions de chaque marque dans le patron entier, <span class="math inline">\(p_{ij}(r) = p_i p_j\)</span> indépendamment de <span class="math inline">\(r\)</span>.</p>
+<p>Dans <em>spatstat</em>, la fonction de connexion de marques est calculée avec la fonction <code>markconnect</code>, où il faut spécifier les marques <span class="math inline">\(i\)</span> et <span class="math inline">\(j\)</span> ainsi que le type de correction des effets de bord. Dans notre exemple, nous voyons que deux points rapprochés ont moins de chance d’avoir une statut différent (A et D) que prévu selon l’hypothèse de distribution aléatoire et indépendante des marques (ligne rouge pointillée).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>markconnect</span><span class='op'>(</span><span class='va'>fir</span>, i <span class='op'>=</span> <span class='st'>"A"</span>, j <span class='op'>=</span> <span class='st'>"D"</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-23-1.png" width="624" /></p>
+</div>
+<p>Dans ce graphique, les ondulations dans la fonction sont dues à l’erreur d’estimation d’une fonction continue de <span class="math inline">\(r\)</span> à partir d’un nombre limité de paires de points discrètes.</p>
+<p>Pour simuler le modèle nul dans ce cas-ci, nous utilisons la fonction <code>rlabel</code> qui réassigne aléatoirement les marques parmi les points du patron, en maintenant la position des points.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>envelope</span><span class='op'>(</span><span class='va'>fir</span>, <span class='va'>markconnect</span>, i <span class='op'>=</span> <span class='st'>"A"</span>, j <span class='op'>=</span> <span class='st'>"D"</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span>, 
+              nsim <span class='op'>=</span> <span class='fl'>199</span>, nrank <span class='op'>=</span> <span class='fl'>5</span>, simulate <span class='op'>=</span> <span class='va'>rlabel</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 199 simulations by evaluating function  ...
+1, 2, 3, 4.6.8.10.12.14.16.18.20.22.24.26.28.30.32.34.36
+.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72
+.74.76.78.80.82.84.86.88.90.92.94.96.98.100.102.104.106.108
+.110.112.114.116.118.120.122.124.126.128.130.132.134.136.138.140.142.144
+.146.148.150.152.154.156.158.160.162.164.166.168.170.172.174.176.178.180
+.182.184.186.188.190.192.194.196.198 199.
+
+Done.</code></pre>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-24-1.png" width="624" /></p>
+</div>
+<p>Notez que puisque la fonction <code>rlabel</code> a un seul argument obligatoire correspondant au patron de points original, il n’était pas nécessaire de spécifier au long: <code>simulate = function(x) rlabel(x)</code>.</p>
+<p>Voici les résultats pour les paires d’arbres du même statut A ou D:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mfrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>envelope</span><span class='op'>(</span><span class='va'>fir</span>, <span class='va'>markconnect</span>, i <span class='op'>=</span> <span class='st'>"A"</span>, j <span class='op'>=</span> <span class='st'>"A"</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span>, 
+              nsim <span class='op'>=</span> <span class='fl'>199</span>, nrank <span class='op'>=</span> <span class='fl'>5</span>, simulate <span class='op'>=</span> <span class='va'>rlabel</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 199 simulations by evaluating function  ...
+1, 2, 3, 4.6.8.10.12.14.16.18.20.22.24.26.28.30.32.34.36
+.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72
+.74.76.78.80.82.84.86.88.90.92.94.96.98.100.102.104.106.108
+.110.112.114.116.118.120.122.124.126.128.130.132.134.136.138.140.142.144
+.146.148.150.152.154.156.158.160.162.164.166.168.170.172.174.176.178.180
+.182.184.186.188.190.192.194.196.198 199.
+
+Done.</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>envelope</span><span class='op'>(</span><span class='va'>fir</span>, <span class='va'>markconnect</span>, i <span class='op'>=</span> <span class='st'>"D"</span>, j <span class='op'>=</span> <span class='st'>"D"</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span>, 
+              nsim <span class='op'>=</span> <span class='fl'>199</span>, nrank <span class='op'>=</span> <span class='fl'>5</span>, simulate <span class='op'>=</span> <span class='va'>rlabel</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 199 simulations by evaluating function  ...
+1, 2, 3, 4.6.8.10.12.14.16.18.20.22.24.26.28.30.32.34.36
+.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72
+.74.76.78.80.82.84.86.88.90.92.94.96.98.100.102.104.106.108
+.110.112.114.116.118.120.122.124.126.128.130.132.134.136.138.140.142.144
+.146.148.150.152.154.156.158.160.162.164.166.168.170.172.174.176.178.180
+.182.184.186.188.190.192.194.196.198 199.
+
+Done.</code></pre>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-25-1.png" width="960" /></p>
+</div>
+<p>Il semble donc que la mortalité des sapins due à cette épidémie est agrégée spatialement, puisque les arbres situés à proximité l’un de l’autre ont une plus grande probabilité de partager le même statut que prévu par l’hypothèse nulle.</p>
+<h2 id="références">Références</h2>
+<p>Fortin, M.-J. et Dale, M.R.T. (2005) <em>Spatial Analysis: A Guide for Ecologists</em>. Cambridge University Press: Cambridge, UK.</p>
+<p>Wiegand, T. et Moloney, K.A. (2013) <em>Handbook of Spatial Point-Pattern Analysis in Ecology</em>, CRC Press.</p>
+<p>Le jeu de données du dernier exemple est tiré des données de la Forêt d’enseignement et de recherche du Lac Duparquet (FERLD), disponibles sur Dryad en suivant <a href="https://doi.org/10.5061/dryad.tqjq2bvwz">ce lien</a>.</p>
+<h1 id="solutions">Solutions</h1>
+<h3 id="exercice-1-1">Exercice 1</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'>envelope</span><span class='op'>(</span><span class='va'>semis_split</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>, <span class='va'>Kest</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 99 simulations of CSR  ...
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35,
+36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70,
+71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98,  99.
+
+Done.</code></pre>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-26-1.png" width="624" /></p>
+</div>
+<p>Les semis de peuplier semblent significativement agrégés selon la valeur du <span class="math inline">\(K\)</span>.</p>
+<h3 id="exercice-2-1">Exercice 2</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>dens_p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/density.html'>density</a></span><span class='op'>(</span><span class='va'>semis_split</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>, sigma <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>dens_p</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>semis_split</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>, add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-27-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>khet_p</span> <span class='op'>&lt;-</span> <span class='fu'>envelope</span><span class='op'>(</span><span class='va'>semis_split</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span>, <span class='va'>Kinhom</span>, sigma <span class='op'>=</span> <span class='fl'>5</span>, correction <span class='op'>=</span> <span class='st'>"iso"</span>,
+                   nsim <span class='op'>=</span> <span class='fl'>199</span>, nrank <span class='op'>=</span> <span class='fl'>5</span>, simulate <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'>rpoispp</span><span class='op'>(</span><span class='va'>dens_p</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Generating 199 simulations by evaluating function  ...
+1, 2, 3, 4.6.8.10.12.14.16.18.20.22.24.26.28.30.32.34.36
+.38.40.42.44.46.48.50.52.54.56.58.60.62.64.66.68.70.72
+.74.76.78.80.82.84.86.88.90.92.94.96.98.100.102.104.106.108
+.110.112.114.116.118.120.122.124.126.128.130.132.134.136.138.140.142.144
+.146.148.150.152.154.156.158.160.162.164.166.168.170.172.174.176.178.180
+.182.184.186.188.190.192.194.196.198 199.
+
+Done.</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>khet_p</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="statistiques-spatiales-en-cologie-partie-1_files/figure-html5/unnamed-chunk-27-2.png" width="624" /></p>
+</div>
+<p>Ici, puisque nous estimons la variation de densité à une plus grande échelle, même après avoir tenu compte de cette variation, les semis de peuplier semblent agrégés à petite échelle.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
