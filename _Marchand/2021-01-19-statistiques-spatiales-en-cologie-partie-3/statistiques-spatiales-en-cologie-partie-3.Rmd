@@ -1,0 +1,219 @@
+---
+title: "Statistiques spatiales en écologie, Partie 3"
+description: |
+  Troisième partie de l'introduction aux statistiques spatiales offerte par Philippe Marchand aux boursiers BIOS2 en janvier 2021, axée sur l'analyse de données aréales en R.
+author:
+  - name: "Philippe Marchand"
+    affiliation: Université du Québec en Abitibi-Témiscamingue
+categories: 
+  - Technical
+  - Français
+date: 01-19-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(cowplot)
+theme_set(theme_cowplot())
+```
+
+# Données aréales
+
+Les données aréales sont des variables mesurées pour des régions de l'espace; ces régions sont définies par des polygones. Ce type de données est plus courant en sciences sociales, en géographie humaine et en épidémiologie, où les données sont souvent disponibles à l'échelle de divisions administratives du territoire. 
+
+Ce type de données apparaît aussi fréquemment dans la gestion des ressources naturelles. Par exemple, la carte suivante montre les unités d'aménagement forestier du Ministère de la Forêts, de la Faune et des Parcs du Québec.
+
+![](images/cartes_unites.png)
+
+Supposons qu'une certaine variable soit disponible au niveau de ces divisions du territoire. Comment pouvons-nous modéliser la corrélation spatiale entre les unités qui sont spatialement rapprochées?
+
+Une option serait d'appliquer les méthodes géostatistiques vues précédemment, en calculant par exemple la distance entre les centres des polygones.
+
+Une autre option, qui est davantage privilégiée pour les données aréales, consiste à définir un réseau où chaque région est connectée aux régions voisines par un lien. On suppose ensuite que les variables sont directement corrélées entre régions voisines seulement. (Notons toutefois que les corrélations directes entre voisins immédiats génèrent aussi des corrélations indirectes pour une chaîne de voisins.)
+
+Dans ce type de modèle, la corrélation n'est pas nécessairement la même d'un lien à un autre. Dans ce cas, chaque lien du réseau peut être associé à un *poids* représentant son importance pour la corrélation spatiale. Nous représentons ces poids par une matrice $W$ où $w_{ij}$ est le poids du lien entre les régions $i$ et $j$. Une région n'a pas de lien avec elle-même, donc $w_{ii} = 0$.
+
+Un choix simple pour $W$ consiste à assigner un poids égal à 1 si les régions sont voisines, sinon 0 (poids binaires).
+
+Outre les divisions du territoire en polygones, un autre exemple de données aréales consiste en une grille où la variable est compilée pour chaque cellule de la grille. Dans ce cas, une cellule a généralement 4 ou 8 cellules voisines, selon que les diagonales soient incluses ou non.
+
+# Indice de Moran
+
+Avant de discuter des modèles d'autocorrélation spatiale, nous présentons l'indice $I$ de Moran, qui permet de tester si une corrélation significative est présente entre régions voisines. 
+
+L'indice de Moran est un coefficient d'autocorrélation spatiale des $z$, pondéré par les poids $w_{ij}$. Il prend donc des valeurs entre -1 et 1.
+
+$$I = \frac{N}{\sum_i \sum_j w_{ij}} \frac{\sum_i \sum_j w_{ij} (z_i - \bar{z}) (z_j - \bar{z})}{\sum_i (z_i - \bar{z})^2}$$
+
+Dans cette équation, nous reconnaissons l'expression d'une corrélation, soit le produit des écarts à la moyenne de deux variables $z_i$ et $z_j$, divisé par le produit de leurs écarts-types (qui est le même, donc on obtient la variance). La contribution de chaque paire $(i, j)$ est multipliée par son poids $w_{ij}$ et le terme à gauche (le nombre de régions $N$ divisé par la somme des poids) assure que le résultat soit borné entre -1 et 1.
+
+Puisque la distribution de $I$ est connue en l'absence d'autocorrélation spatiale, cette statistique permet de tester l'hypothèse nulle selon laquelle il n'y a pas de corrélation spatiale entre régions voisines.
+
+Bien que nous ne verrons pas d'exemple dans ce cours-ci, l'indice de Moran peut aussi être appliqué aux données ponctuelles. Dans ce cas, on divise les paires de points en classes de distance et on calcule $I$ pour chaque classe de distance; le poids $w_{ij} = 1$ si la distance entre $i$ et $j$ se trouve dans la classe de distance voulue, 0 autrement.
+
+# Modèles d'autorégression spatiale
+
+Rappelons-nous la formule pour une régression linéaire avec dépendance spatiale:
+
+$$v = \beta_0 + \sum_i \beta_i u_i + z + \epsilon$$
+
+où $z$ est la portion de la variance résiduelle qui est spatialement corrélée.
+
+Il existe deux principaux types de modèles autorégressifs pour représenter la dépendance spatiale de $z$: l'autorégression conditionnelle (CAR) et l'autorégression simultanée (SAR).
+
+## Autorégression conditionnelle (CAR)
+
+Dans le modèle d'autorégression conditionnelle, la valeur de $z_i$ pour la région $i$ suit une distribution normale: sa moyenne dépend de la valeur $z_j$ des régions voisines, multipliée par le poids $w_{ij}$ et un coefficient de corrélation $\rho$; son écart-type $\sigma_{z_i}$ peut varier d'une région à l'autre.
+
+$$z_i \sim \text{N}\left(\sum_j \rho w_{ij} z_j,\sigma_{z_i} \right)$$
+
+Dans ce modèle, si $w_{ij}$ est une matrice binaire (0 pour les non-voisins, 1 pour les voisins), alors $\rho$ est le coefficient de corrélation partielle entre régions voisines. Cela est semblable à un modèle autorégressif d'ordre 1 dans le contexte de séries temporelles, où le coefficient d'autorégression indique la corrélation partielle.
+
+## Autorégression simultanée (SAR)
+
+Dans le modèle d'autorégression simultanée, la valeur de $z_i$ est donnée directement par la somme de contributions des valeurs voisines $z_j$, multipliées par $\rho w_{ij}$, avec un résidu indépendant $\nu_i$ d'écart-type $\sigma_z$.
+
+$$z_i = \sum_j \rho w_{ij} z_j + \nu_i$$
+
+À première vue, cela ressemble à un modèle autorégressif temporel. Il existe cependant une différence conceptuelle importante. Pour les modèles temporels, l'influence causale est dirigée dans une seule direction: $v(t-2)$ affecte $v(t-1)$ qui affecte ensuite $v(t)$. Pour un modèle spatial, chaque $z_j$ qui affecte $z_i$ dépend à son tour de $z_i$. Ainsi, pour déterminer la distribution conjointe des $z$, il faut résoudre simultanément (d'où le nom du modèle) un système d'équations. 
+
+Pour cette raison, même si ce modèle ressemble à la formule du modèle conditionnel (CAR), les solutions des deux modèles diffèrent et dans le cas du SAR, le coefficient $\rho$ n'est pas directement égal à la corrélation partielle due à chaque région voisine.
+
+Pour plus de détails sur les aspects mathématiques de ces modèles, vous pouvez consulter l'article de Ver Hoef et al. (2018) suggéré en référence. 
+
+Pour l'instant, nous considérerons les SAR et les CAR comme deux types de modèles possibles pour représenter une corrélation spatiale sur un réseau. Nous pouvons toujours ajuster plusieurs modèles et les comparer avec l'AIC pour choisir la meilleure forme de la corrélation ou la meilleure matrice de poids.
+
+Les modèles CAR et SAR partagent un avantage sur les modèles géostatistiques au niveau de l'efficacité. Dans un modèle géostatistique, les corrélations spatiales sont définies entre chaque paire de points, même si elles deviennent négligeables lorsque la distance augmente. Pour un modèle CAR ou SAR, seules les régions voisines contribuent et la plupart des poids sont égaux à 0, ce qui rend ces modèles plus rapides à ajuster qu'un modèle géostatistique lorsque les données sont massives.
+
+# Analyse des données aréales dans R
+
+Pour illustrer l'analyse de données aréales dans R, nous chargeons les packages *sf* (pour lire des données géospatiales), *spdep* (pour définir des réseaux spatiaux et calculer l'indice de Moran) et *spatialreg* (pour les modèles SAR et CAR).
+
+```{r, message = FALSE, warning = FALSE}
+library(sf)
+library(spdep)
+library(spatialreg)
+```
+
+Nous utiliserons comme exemple un jeu de données qui présente une partie des résultats de l'élection provinciale de 2018 au Québec, avec des caractéristiques de la population de chaque circonscription. Ces données sont inclues dans un fichier de type *shapefile* (.shp), que nous pouvons lire avec la fonction `read_sf` du package *sf*.
+
+```{r}
+elect2018 <- read_sf("data/elect2018.shp")
+head(elect2018)
+```
+
+*Note*: Le jeu de données est en fait composé de 4 fichiers avec les extensions .dbf, .prj, .shp et .shx, mais il suffit d'inscrire le nom du fichier .shp dans `read_sf`.
+
+Les colonnes du jeu de données sont dans l'ordre:
+
+- le nom de la circonscription électorale;
+- quatre caractéristiques de la population (âge moyen, fraction de la population qui parle principalement français à la maison, fraction des ménages qui sont propriétaires de leur logement, revenu médian);
+- quatre colonnes montrant la fraction des votes obtenues par les principaux partis (CAQ, PQ, PLQ, QS);
+- une colonne `geometry` qui contient l'objet géométrique (multipolygone) correspondant à la circonscription.
+
+Pour illustrer une des variables sur une carte, nous appelons la fonction `plot` avec le nom de la colonne entre crochets et guillemets. 
+
+```{r}
+plot(elect2018["rev_med"])
+```
+
+Dans cet exemple, nous voulons modéliser la fraction des votes obtenue par la CAQ en fonction des caractéristiques de la population dans chaque circonscription et en tenant compte des corrélations spatiales entre circonscriptions voisines.
+
+## Définition du réseau de voisinage
+
+La fonction `poly2nb` du package *spdep* définit un réseau de voisinage à partir de polygones. Le résultat `vois` est une liste de 125 éléments où chaque élément contient les indices des polygones voisins (limitrophes) d'un polygone donné.
+
+```{r}
+vois <- poly2nb(elect2018)
+vois[[1]]
+```
+
+Ainsi, la première circonscription (Abitibi-Est) a 6 circonscriptions voisines, dont on peut trouver les noms ainsi:
+
+```{r}
+elect2018$circ[vois[[1]]]
+```
+
+Nous pouvons illustrer ce réseau en faisant l'extraction des coordonnées du centre de chaque circonscription, en créant une carte muette avec `plot(elect2018["geometry"])`, puis en ajoutant le réseau comme couche additionnelle avec `plot(vois, add = TRUE, coords = coords)`.
+
+```{r, message = FALSE, warning = FALSE}
+coords <- st_centroid(elect2018) %>%
+    st_coordinates()
+plot(elect2018["geometry"])
+plot(vois, add = TRUE, col = "red", coords = coords)
+```
+
+On peut faire un "zoom" sur le sud du Québec en choisissant les limites `xlim` et `ylim` appropriées.
+
+```{r}
+plot(elect2018["geometry"], 
+     xlim = c(400000, 800000), ylim = c(100000, 500000))
+plot(vois, add = TRUE, col = "red", coords = coords)
+```
+
+Il nous reste à ajouter des poids à chaque lien du réseau avec la fonction `nb2listw`. Le style de poids "B" correspond aux poids binaires, soit 1 pour la présence de lien et 0 pour l'absence de lien entre deux circonscriptions.
+
+Une fois ces poids définis, nous pouvons vérifier avec le test de Moran s'il y a une autocorrélation significative des votes obtenus par la CAQ entre circonscriptions voisines.
+
+```{r}
+poids <- nb2listw(vois, style = "B")
+
+moran.test(elect2018$propCAQ, poids)
+```
+
+La valeur de $I = 0.68$ est très significative à en juger par la valeur $p$ du test.
+
+Vérifions si la corrélation spatiale persiste après avoir tenu compte des quatre caractéristiques de la population, donc en inspectant les résidus d'un modèle linéaire incluant ces quatre prédicteurs.
+
+```{r}
+elect_lm <- lm(propCAQ ~ age_moy + pct_frn + pct_prp + rev_med, data = elect2018)
+summary(elect_lm)
+moran.test(residuals(elect_lm), poids)
+```
+
+L'indice de Moran a diminué mais demeure significatif, donc une partie de la corrélation précédente était induite par ces prédicteurs, mais il reste une corrélation spatiale due à d'autres facteurs. 
+
+## Modèles d'autorégression spatiale
+
+Finalement, nous ajustons des modèles SAR et CAR à ces données avec la fonction `spautolm` (*spatial autoregressive linear model*) de *spatialreg*. Voici le code pour un modèle SAR incluant l'effet des même quatre prédicteurs. 
+
+```{r}
+elect_sar <- spautolm(propCAQ ~ age_moy + pct_frn + pct_prp + rev_med, 
+                      data = elect2018, listw = poids)
+summary(elect_sar)
+```
+
+La valeur donnée par `Lambda` dans le sommaire correspond au coefficient $\rho$ dans notre description du modèle. Le test du rapport de vraisemblance (`LR test`) confirme que cette corrélation spatiale résiduelle (après avoir tenu compte de l'effet des prédicteurs) est significative.
+
+Les effets estimés pour les prédicteurs sont semblables à ceux du modèle linéaire sans corrélation spatiale. Les effets de l'âge moyen, de la fraction de francophones et la fraction de propriétaires demeurent significatifs, bien que leur magnitude ait un peu diminué.
+
+Pour évaluer un modèle CAR plutôt que SAR, nous devons spécifier `family = "CAR"`.
+
+```{r}
+elect_car <- spautolm(propCAQ ~ age_moy + pct_frn + pct_prp + rev_med, 
+                      data = elect2018, listw = poids, family = "CAR")
+summary(elect_car)
+```
+
+Pour un modèle CAR avec des poids binaires, la valeur de `Lambda` (que nous avions appelé $\rho$) donne directement le coefficient de corrélation partielle entre circonscriptions voisines. Notez que l'AIC ici est légèrement supérieur au modèle SAR, donc ce dernier donnait un meilleur ajustement.
+
+## Exercice
+
+Le jeu de données `rls_covid`, en format *shapefile*, contient des données sur les cas de COVID-19 détectés, le nombre de cas par 1000 personnes (`taux_1k`) et la densité de population (`dens_pop`) dans chacun des réseaux locaux de service de santé (RLS) du Québec. (Source: Données téléchargées de l'Institut national de santé publique du Québec en date du 17 janvier 2021.)
+
+```{r}
+rls_covid <- read_sf("data/rls_covid.shp")
+head(rls_covid)
+```
+
+Ajustez un modèle linéaire du nombre de cas par 1000 en fonction de la densité de population (il est suggéré d'appliquer une transformation logarithmique à cette dernière). Vérifiez si les résidus du modèle sont corrélés entre RLS limitrophes avec un test de Moran, puis modélisez les mêmes données avec un modèle autorégressif conditionnel.
+
+# Référence
+
+Ver Hoef, J.M., Peterson, E.E., Hooten, M.B., Hanks, E.M. et Fortin, M.-J. (2018) Spatial autoregressive models for statistical inference from ecological data. *Ecological Monographs* 88: 36-59.
