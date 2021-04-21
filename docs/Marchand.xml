@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>BIOS2 Education resources</title>
+    <link>https://bios2.github.io/bios2_trainings</link>
+    <atom:link href="https://bios2.github.io/bios2_trainings/Marchand.xml" rel="self" type="application/rss+xml"/>
+    <description>Educational materials, incluing links to pdfs, videos, and code to reproduce all of our trainings.
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Thu, 21 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Spatial Statistics in Ecology, Part 4</title>
+      <dc:creator>Philippe Marchand</dc:creator>
+      <link>https://bios2.github.io/bios2_trainings/Marchand/2021-01-21-spatial-statistics-in-ecology-part-4</link>
+      <description>Introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021. In the previous parts, we saw how to account for spatial dependence in linear regression models with either geostatistical models (also called Gaussian processes) or spatial autocorrelation models (CAR/SAR). In this last part, we will see how to combine these features with more complex regression models, in particular generalized linear mixed models (GLMM).</description>
+      <category>Technical</category>
+      <category>English</category>
+      <guid>https://bios2.github.io/bios2_trainings/Marchand/2021-01-21-spatial-statistics-in-ecology-part-4</guid>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/bios2_trainings/Marchand/2021-01-21-spatial-statistics-in-ecology-part-4/spatial-statistics-in-ecology-part-4_files/figure-html5/unnamed-chunk-3-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
+      <title>Spatial Statistics in Ecology, Part 3</title>
+      <dc:creator>Philippe Marchand</dc:creator>
+      <link>https://bios2.github.io/bios2_trainings/Marchand/2021-01-19-spatial-statistics-in-ecology</link>
+      <description>Third part of the introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021, focused on aerial data analysis in R.</description>
+      <guid>https://bios2.github.io/bios2_trainings/Marchand/2021-01-19-spatial-statistics-in-ecology</guid>
+      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/bios2_trainings/Marchand/2021-01-19-spatial-statistics-in-ecology/spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-3-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
+      <title>Spatial Statistics in Ecology, Part 2</title>
+      <dc:creator>Philippe Marchand</dc:creator>
+      <link>https://bios2.github.io/bios2_trainings/Marchand/2021-01-13-spatial-statistics-in-ecology</link>
+      <description>Introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021. This second part is focused on spatial correlations and geostatistical models.</description>
+      <category>Technical</category>
+      <category>English</category>
+      <guid>https://bios2.github.io/bios2_trainings/Marchand/2021-01-13-spatial-statistics-in-ecology</guid>
+      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/bios2_trainings/Marchand/2021-01-13-spatial-statistics-in-ecology/spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-1-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
+      <title>Spatial Statistics in Ecology, Part 1</title>
+      <dc:creator>Philippe Marchand</dc:creator>
+      <link>https://bios2.github.io/bios2_trainings/Marchand/2021-01-12-spatial-statistics-in-ecology</link>
+      <description>Introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021. This first part focuses on concepts and initial analyses.</description>
+      <category>Technical</category>
+      <category>English</category>
+      <guid>https://bios2.github.io/bios2_trainings/Marchand/2021-01-12-spatial-statistics-in-ecology</guid>
+      <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/bios2_trainings/Marchand/2021-01-12-spatial-statistics-in-ecology/spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-2-1.png" medium="image" type="image/png" width="1728" height="576"/>
+    </item>
+  </channel>
+</rss>

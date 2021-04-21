@@ -20,48 +20,6 @@
       <media:content url="https://bios2.github.io/bios2_trainings/posts/2021-03-25-point-count-data-analysis/thumb.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
-      <title>Spatial Statistics in Ecology, Part 4</title>
-      <dc:creator>Philippe Marchand</dc:creator>
-      <link>https://bios2.github.io/bios2_trainings/posts/2021-01-21-spatial-statistics-in-ecology-part-4</link>
-      <description>Introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021. In the previous parts, we saw how to account for spatial dependence in linear regression models with either geostatistical models (also called Gaussian processes) or spatial autocorrelation models (CAR/SAR). In this last part, we will see how to combine these features with more complex regression models, in particular generalized linear mixed models (GLMM).</description>
-      <category>Technical</category>
-      <category>English</category>
-      <guid>https://bios2.github.io/bios2_trainings/posts/2021-01-21-spatial-statistics-in-ecology-part-4</guid>
-      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://bios2.github.io/bios2_trainings/posts/2021-01-21-spatial-statistics-in-ecology-part-4/spatial-statistics-in-ecology-part-4_files/figure-html5/unnamed-chunk-3-1.png" medium="image" type="image/png" width="1248" height="768"/>
-    </item>
-    <item>
-      <title>Spatial Statistics in Ecology, Part 3</title>
-      <dc:creator>Philippe Marchand</dc:creator>
-      <link>https://bios2.github.io/bios2_trainings/posts/2021-01-19-spatial-statistics-in-ecology</link>
-      <description>Third part of the introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021, focused on aerial data analysis in R.</description>
-      <guid>https://bios2.github.io/bios2_trainings/posts/2021-01-19-spatial-statistics-in-ecology</guid>
-      <pubDate>Tue, 19 Jan 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://bios2.github.io/bios2_trainings/posts/2021-01-19-spatial-statistics-in-ecology/spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-3-1.png" medium="image" type="image/png" width="1248" height="768"/>
-    </item>
-    <item>
-      <title>Spatial Statistics in Ecology, Part 2</title>
-      <dc:creator>Philippe Marchand</dc:creator>
-      <link>https://bios2.github.io/bios2_trainings/posts/2021-01-13-spatial-statistics-in-ecology</link>
-      <description>Introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021. This second part is focused on spatial correlations and geostatistical models.</description>
-      <category>Technical</category>
-      <category>English</category>
-      <guid>https://bios2.github.io/bios2_trainings/posts/2021-01-13-spatial-statistics-in-ecology</guid>
-      <pubDate>Thu, 14 Jan 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://bios2.github.io/bios2_trainings/posts/2021-01-13-spatial-statistics-in-ecology/spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-1-1.png" medium="image" type="image/png" width="1248" height="768"/>
-    </item>
-    <item>
-      <title>Spatial Statistics in Ecology, Part 1</title>
-      <dc:creator>Philippe Marchand</dc:creator>
-      <link>https://bios2.github.io/bios2_trainings/posts/2021-01-12-spatial-statistics-in-ecology</link>
-      <description>Introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021. This first part focuses on concepts and initial analyses.</description>
-      <category>Technical</category>
-      <category>English</category>
-      <guid>https://bios2.github.io/bios2_trainings/posts/2021-01-12-spatial-statistics-in-ecology</guid>
-      <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://bios2.github.io/bios2_trainings/posts/2021-01-12-spatial-statistics-in-ecology/spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-2-1.png" medium="image" type="image/png" width="1728" height="576"/>
-    </item>
-    <item>
       <title>Science Communication</title>
       <dc:creator>Gracielle Higino</dc:creator>
       <dc:creator>Katherine Hébert</dc:creator>

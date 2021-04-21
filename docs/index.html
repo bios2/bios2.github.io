@@ -24,7 +24,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -2065,7 +2064,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <div class="nav-right">
 <a href="index.html">Home</a>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Longer Trainings
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="Marchand.html">Spatial Statistics</a>
+</div>
+</div>
 <a href="about.html">About</a>
+<a href="https://github.com/bios2/bios2.github.io">
+<i class="fab fa-github" aria-hidden="true"></i>
+</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2130,6 +2142,7 @@ function init_posts_list() {
 
       // mark posts that match the category visible
       var page_category = window.location.hash.replace(/^#category:/, "");
+      page_category = decodeURIComponent(page_category)
       var posts = $('.post-metadata').map(function(idx, script) {
         var metadata = $.parseJSON($(script).html());
         var post = null;
@@ -2145,7 +2158,7 @@ function init_posts_list() {
       set_posts_visible(posts, true);
 
       // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
+      $('.categories li>a[href="' + decodeURIComponent(window.location.hash) + '"]').addClass('active');
 
       // update the list_caption
       var list_caption = $('.posts-list-caption');
@@ -2228,83 +2241,6 @@ function init_posts_list() {
 <p>Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Peter Solymos to BIOS2 Fellows in March 2021.</p>
 </div>
 </a>
-<a href="posts/2021-01-21-spatial-statistics-in-ecology-part-4/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Technical","English"]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 21, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Philippe Marchand</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-01-21-spatial-statistics-in-ecology-part-4/spatial-statistics-in-ecology-part-4_files/figure-html5/unnamed-chunk-3-1.png"/>
-</div>
-<div class="description">
-<h2>Spatial Statistics in Ecology, Part 4</h2>
-<div class="dt-tags">
-<div class="dt-tag">Technical</div>
-<div class="dt-tag">English</div>
-</div>
-<p>Introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021. In the previous parts, we saw how to account for spatial dependence in linear regression models with either geostatistical models (also called Gaussian processes) or spatial autocorrelation models (CAR/SAR). In this last part, we will see how to combine these features with more complex regression models, in particular generalized linear mixed models (GLMM).</p>
-</div>
-</a>
-<a href="posts/2021-01-19-spatial-statistics-in-ecology/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 19, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Philippe Marchand</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-01-19-spatial-statistics-in-ecology/spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-3-1.png"/>
-</div>
-<div class="description">
-<h2>Spatial Statistics in Ecology, Part 3</h2>
-<div class="dt-tags"></div>
-<p>Third part of the introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021, focused on aerial data analysis in R.</p>
-</div>
-</a>
-<a href="posts/2021-01-13-spatial-statistics-in-ecology/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Technical","English"]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 14, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Philippe Marchand</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-01-13-spatial-statistics-in-ecology/spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-1-1.png"/>
-</div>
-<div class="description">
-<h2>Spatial Statistics in Ecology, Part 2</h2>
-<div class="dt-tags">
-<div class="dt-tag">Technical</div>
-<div class="dt-tag">English</div>
-</div>
-<p>Introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021. This second part is focused on spatial correlations and geostatistical models.</p>
-</div>
-</a>
-<a href="posts/2021-01-12-spatial-statistics-in-ecology/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Technical","English"]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 12, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Philippe Marchand</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-01-12-spatial-statistics-in-ecology/spatial-statistics-in-ecology_files/figure-html5/unnamed-chunk-2-1.png"/>
-</div>
-<div class="description">
-<h2>Spatial Statistics in Ecology, Part 1</h2>
-<div class="dt-tags">
-<div class="dt-tag">Technical</div>
-<div class="dt-tag">English</div>
-</div>
-<p>Introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021. This first part focuses on concepts and initial analyses.</p>
-</div>
-</a>
 <a href="posts/2020-06-15-science-communication/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["Training","Fellow contributed","Six hour"]}</script>
 <div class="metadata">
@@ -2315,7 +2251,7 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img data-src="posts/2020-06-15-science-communication/scicomm_training.png"/>
+<img src="posts/2020-06-15-science-communication/scicomm_training.png"/>
 </div>
 <div class="description">
 <h2>Science Communication</h2>
@@ -2355,15 +2291,11 @@ function init_posts_list() {
 <ul>
 <li>
 <a href="#category:Articles">Articles</a>
-<span class="category-count">(7)</span>
+<span class="category-count">(3)</span>
 </li>
 <li>
 <a href="#category:co-PI_contributed">co-PI contributed</a>
 <span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:English">English</a>
-<span class="category-count">(3)</span>
 </li>
 <li>
 <a href="#category:Fellow_contributed">Fellow contributed</a>
@@ -2372,10 +2304,6 @@ function init_posts_list() {
 <li>
 <a href="#category:Six_hour">Six hour</a>
 <span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:Technical">Technical</a>
-<span class="category-count">(3)</span>
 </li>
 <li>
 <a href="#category:Training">Training</a>
