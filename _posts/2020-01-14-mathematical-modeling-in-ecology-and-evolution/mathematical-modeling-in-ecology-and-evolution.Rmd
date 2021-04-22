@@ -1,22 +1,68 @@
 ---
 title: "Mathematical Modeling in Ecology and Evolution"
 description: |
-  This workshop will introduce participants to the logic behind modeling in biology, focusing on developing equations, finding equilibria, analyzing stability , and running simulations.  Techniques will be illustrated with the software tools, Mathematica and Maxima.  This workshop was held in two parts : January 14 and January 16, 2020.
+  This workshop will introduce participants to the logic behind modeling in biology, focusing on developing equations, finding equilibria, analyzing stability, and running simulations.Techniques will be illustrated with the software tools, Mathematica and Maxima. This workshop was held in two parts: January 14 and January 16, 2020.
 categories:
-  - Training
-  - co-PI contributed
-  - Six hour
-author: Dr Sarah P. Otto
+  - Technical
+  - EN
+author:
+  - name: "Dr Sarah P. Otto"
+    affiliation: University of British Columbia
 date: 2020-01-14
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
 ---
 
+In this workshop, I introduce various modelling techniques, using mostly ecological and evolutionary examples, with a focus on how computer software programs can help biologists analyze such models.  
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+### Content
+**Part 1:**  Classic one-variable models in ecology and evolution  
+**Part 2:**  Equilibria and their stability  
+**Part 3:**  Beyond equilibria  
+**Part 4:**  Example of building a model from scratch  
+**Part 5:**  Extending to models with more than one variable  
+**Part 6:**  Another example of building a model from scratch  
 
+### Material
+We’ll be mainly working though [this notebook](files/BIOS2_WorkshopMathematica.nb) in Mathematica (see hints and solutions [here](files/BIOS2_WorkshopMathematicaSOLUTIONS.nb)) or [this notebook](files/Bios2_WorkshopMaxima.wxmx) in Maxima (hints and solutions [here](files/Bios2_WorkshopMaximaSOLUTIONS.wxmx)).
 
+<object data="files/otto1.nb.pdf" type="application/pdf" style="min-height:100vh;width:100%">
+</object>
+<br>
+<br>
 
+[Stability analysis of a recursion equation in a discrete-time model.](files/StabilityPictures.pdf)
+
+#### Homework
+To help you get practice, there is a homework problem set to work on.  
+
+- [Homework](files/Homework1.pdf)  
+
+- Homework answers: [.nb](files/HomeworkAnswers.nb) and [.PDF](files/HomeworkAnswers.pdf)  
+
+### Software
+In my research, I primarily use Mathematica, which is a powerful software package to organize and conduct analytical modelling, but it is not free (at UBC, we have some licenses available). I will also show some example code and provide translation of most of what I present in a free software package called Maxima.  
+
+#### Mathematica installation
+There is a free trial version that you can use for 15 days, if you don't have a copy (click [here](http://www.wolfram.com/mathematica/trial/) to access), or you can buy a [student version](https://www.wolfram.com/mathematica/pricing/students/) online. If you want to make sure that all is working, open [this](files/WorkshopTestingMathematica.nb) file and enter each line (instructions can be found in [this quick guide](files/MathematicaGuide.nb)).  
+
+#### Maxima installation:
+See the download links in [this](files/WorkshopTestingMaxima.txt) file, which gives some test functions to run (also available in [this](files/WorkshopTestingMaxima.wxm) file, which you can run once you have Maxima and wxMaxima working). A quick reference guide can be found [here](files/MaximaQuickReference.wxm).
+
+Let me know if there are any errors, as this will help trouble shoot issues with different versions.
+
+### Reading
+For those of you who want a better sense of what models can do and what are the first steps in model construction before coming to the workshop, please find [here](files/WorkshopReading.pdf) some early sections of my book with Troy Day.
+
+### Other resources
+
+* An Introduction to Mathematical Modeling in Ecology and Evolution (2007) by Otto and Day.  
+
+* [Biomathematical modeling lecture notes](http://www.zoology.ubc.ca/~bio301/Bio301/Lectures.html).  
+
+* [Mathematica labs UBC](http://www.zoology.ubc.ca/biomath/labs.htm).
+
+### Thanks
+Niki Love and Gil Henriques did a great job of translating the code into wxMaxima, with limited help from me. Thanks, Niki and Gil!!

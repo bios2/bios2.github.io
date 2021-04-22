@@ -49,7 +49,7 @@
   {
     "path": "posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/",
     "title": "Mathematical Modeling in Ecology and Evolution",
-    "description": "This workshop will introduce participants to the logic behind modeling in biology, focusing on developing equations, finding equilibria, analyzing stability , and running simulations.  Techniques will be illustrated with the software tools, Mathematica and Maxima.  This workshop was held in two parts : January 14 and January 16, 2020.",
+    "description": "This workshop will introduce participants to the logic behind modeling in biology, focusing on developing equations, finding equilibria, analyzing stability, and running simulations.Techniques will be illustrated with the software tools, Mathematica and Maxima. This workshop was held in two parts: January 14 and January 16, 2020.",
     "author": [
       {
         "name": "Dr Sarah P. Otto",
@@ -58,13 +58,12 @@
     ],
     "date": "2020-01-14",
     "categories": [
-      "Training",
-      "co-PI contributed",
-      "Six hour"
+      "Technical",
+      "EN"
     ],
-    "contents": "\n\n\n\n",
+    "contents": "\n\nContents\nContent\nMaterial\nSoftware\nReading\nOther resources\nThanks\n\nIn this workshop, I introduce various modelling techniques, using mostly ecological and evolutionary examples, with a focus on how computer software programs can help biologists analyze such models.\nContent\nPart 1: Classic one-variable models in ecology and evolutionPart 2: Equilibria and their stabilityPart 3: Beyond equilibriaPart 4: Example of building a model from scratchPart 5: Extending to models with more than one variablePart 6: Another example of building a model from scratch\nMaterial\nWe’ll be mainly working though this notebook in Mathematica (see hints and solutions here) or this notebook in Maxima (hints and solutions here).\n\n\n\nStability analysis of a recursion equation in a discrete-time model.\nHomework\nTo help you get practice, there is a homework problem set to work on.\nHomework\nHomework answers: .nb and .PDF\nSoftware\nIn my research, I primarily use Mathematica, which is a powerful software package to organize and conduct analytical modelling, but it is not free (at UBC, we have some licenses available). I will also show some example code and provide translation of most of what I present in a free software package called Maxima.\nMathematica installation\nThere is a free trial version that you can use for 15 days, if you don’t have a copy (click here to access), or you can buy a student version online. If you want to make sure that all is working, open this file and enter each line (instructions can be found in this quick guide).\nMaxima installation:\nSee the download links in this file, which gives some test functions to run (also available in this file, which you can run once you have Maxima and wxMaxima working). A quick reference guide can be found here.\nLet me know if there are any errors, as this will help trouble shoot issues with different versions.\nReading\nFor those of you who want a better sense of what models can do and what are the first steps in model construction before coming to the workshop, please find here some early sections of my book with Troy Day.\nOther resources\nAn Introduction to Mathematical Modeling in Ecology and Evolution (2007) by Otto and Day.\nBiomathematical modeling lecture notes.\nMathematica labs UBC.\nThanks\nNiki Love and Gil Henriques did a great job of translating the code into wxMaxima, with limited help from me. Thanks, Niki and Gil!!\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-04-15T21:20:32+00:00",
+    "last_modified": "2021-04-22T20:54:59+00:00",
     "input_file": {}
   }
 ]
