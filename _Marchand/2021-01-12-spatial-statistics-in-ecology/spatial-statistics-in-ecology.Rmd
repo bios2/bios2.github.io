@@ -7,7 +7,7 @@ author:
     affiliation: Université du Québec en Abitibi-Témiscamingue
 categories: 
   - Technical
-  - English
+  - EN
 date: 2021-01-12
 output:
   distill::distill_article:

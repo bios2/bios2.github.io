@@ -111,7 +111,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Spatial Statistics in Ecology, Part 3"]},{"type":"character","attributes":{},"value":["Third part of the introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021, focused on aerial data analysis in R.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Philippe Marchand"]},{"type":"character","attributes":{},"value":["Université du Québec en Abitibi-Témiscamingue"]}]}]},{"type":"character","attributes":{},"value":["01-19-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","categories","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Spatial Statistics in Ecology, Part 3"]},{"type":"character","attributes":{},"value":["Third part of the introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021, focused on aerial data analysis in R.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Philippe Marchand"]},{"type":"character","attributes":{},"value":["Université du Québec en Abitibi-Témiscamingue"]}]}]},{"type":"character","attributes":{},"value":["Technical","EN"]},{"type":"character","attributes":{},"value":["2021-01-19"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc","toc_float"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1467,6 +1467,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-title">
 <h1>Spatial Statistics in Ecology, Part 3</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">Technical</div>
+<div class="dt=tag">EN</div>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>Third part of the introduction to spatial statistics offered by Philippe Marchand to BIOS2 Fellows in January 2021, focused on aerial data analysis in R.</p></p>
 </div>
@@ -1474,10 +1478,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="d-byline">
   Philippe Marchand  (Université du Québec en Abitibi-Témiscamingue)
   
-<br/>01-19-2021
+<br/>2021-01-19
 </div>
 
 <div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#areal-data">Areal data</a></li>
+<li><a href="#morans-i">Moran’s I</a></li>
+<li><a href="#spatial-autoregression-models">Spatial autoregression models</a>
+<ul>
+<li><a href="#conditional-autoregressive-car-model">Conditional autoregressive (CAR) model</a></li>
+<li><a href="#simultaneous-autoregressive-sar-model">Simultaneous autoregressive (SAR) model</a></li>
+</ul></li>
+<li><a href="#analysis-of-areal-data-in-r">Analysis of areal data in R</a>
+<ul>
+<li><a href="#definition-of-the-neighbourhood-network">Definition of the neighbourhood network</a></li>
+<li><a href="#spatial-autoregression-models-1">Spatial autoregression models</a></li>
+<li><a href="#exercise">Exercise</a></li>
+</ul></li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</nav>
+</div>
 <h1 id="areal-data">Areal data</h1>
 <p>Areal data are variables measured for regions of space, defined by polygons. This type of data is more common in the social sciences, human geography and epidemiology, where data is often available at the scale of administrative divisions.</p>
 <p>This type of data also appears frequently in natural resource management. For example, the following map shows the forest management units of the Ministère de la Forêt, de la Faune et des Parcs du Québec.</p>
