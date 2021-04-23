@@ -51,6 +51,31 @@ There is a free trial version that you can use for 15 days, if you don't have a 
 #### Maxima installation:
 See the download links in [this](files/WorkshopTestingMaxima.txt) file, which gives some test functions to run (also available in [this](files/WorkshopTestingMaxima.wxm) file, which you can run once you have Maxima and wxMaxima working). A quick reference guide can be found [here](files/MaximaQuickReference.wxm).
 
+#### MAxima testing
+When you first open Maxima, it will give you a choice of GUIs, chose wxMaxima.  Once wxMaxima is launched type this command and hit return to see if it answers 4:
+
+```maxima
+2+2;
+```
+If it doesn't, then scan the installation document for the error that you run into.
+
+If it does return 4, then type in and enter these commands:
+
+```maxima
+diff(x^3, x);
+
+wxplot2d (3*x, [x, 0, 2*%pi]);
+
+load("solve_rec")$
+solve_rec(x[t+1] = A*x[t], x[t], x[0]=x0);
+
+load("distrib")$
+pdf_normal(x,0,1);
+```
+
+
+You should see these answers: (a) `3 x^2`, (b) a plot of a line, (c) `x[t]=A^t*x0`, and (d) `%e^(-x^2/2)/(sqrt(2)*sqrt(%pi))`. 
+ 
 Let me know if there are any errors, as this will help trouble shoot issues with different versions.
 
 ### Reading

@@ -23,7 +23,6 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -2074,7 +2073,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Mathematical Modeling in Ecology and Evolution","description":"This workshop will introduce participants to the logic behind modeling in biology, focusing on developing equations, finding equilibria, analyzing stability, and running simulations.Techniques will be illustrated with the software tools, Mathematica and Maxima. This workshop was held in two parts: January 14 and January 16, 2020.","authors":[{"author":"Dr Sarah P. Otto","authorURL":"#","affiliation":"University of British Columbia","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-01-14T00:00:00.000+00:00","citationText":"Otto, 2020"}
+{"title":"Mathematical Modeling in Ecology and Evolution","description":"This workshop will introduce participants to the logic behind modeling in biology, focusing on developing equations, finding equilibria, analyzing stability, and running simulations.Techniques will be illustrated with the software tools, Mathematica and Maxima. This workshop was held in two parts: January 14 and January 16, 2020.","authors":[{"author":"Dr Sarah P. Otto","authorURL":"#","affiliation":"University of British Columbia","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-01-14T00:00:00.000-05:00","citationText":"Otto, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2166,6 +2165,21 @@ Longer Trainings
 <p>There is a free trial version that you can use for 15 days, if you don’t have a copy (click <a href="http://www.wolfram.com/mathematica/trial/">here</a> to access), or you can buy a <a href="https://www.wolfram.com/mathematica/pricing/students/">student version</a> online. If you want to make sure that all is working, open <a href="files/WorkshopTestingMathematica.nb">this</a> file and enter each line (instructions can be found in <a href="files/MathematicaGuide.nb">this quick guide</a>).</p>
 <h4 id="maxima-installation">Maxima installation:</h4>
 <p>See the download links in <a href="files/WorkshopTestingMaxima.txt">this</a> file, which gives some test functions to run (also available in <a href="files/WorkshopTestingMaxima.wxm">this</a> file, which you can run once you have Maxima and wxMaxima working). A quick reference guide can be found <a href="files/MaximaQuickReference.wxm">here</a>.</p>
+<h4 id="maxima-testing">MAxima testing</h4>
+<p>When you first open Maxima, it will give you a choice of GUIs, chose wxMaxima. Once wxMaxima is launched type this command and hit return to see if it answers 4:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode maxima"><code class="sourceCode maxima"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2+2</span>;</span></code></pre></div>
+<p>If it doesn’t, then scan the installation document for the error that you run into.</p>
+<p>If it does return 4, then type in and enter these commands:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode maxima"><code class="sourceCode maxima"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="cn">x</span>^<span class="dv">3</span>, <span class="cn">x</span>);</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cn">wxplot2d</span> (<span class="dv">3</span>*<span class="cn">x</span>, [<span class="cn">x</span>, <span class="dv">0</span>, <span class="dv">2</span>*<span class="va">%pi</span>]);</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;solve_rec&quot;</span>)$</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">solve_rec</span>(<span class="cn">x</span>[<span class="cn">t</span><span class="dv">+1</span>] = <span class="cn">A</span>*<span class="cn">x</span>[<span class="cn">t</span>], <span class="cn">x</span>[<span class="cn">t</span>], <span class="cn">x</span>[<span class="dv">0</span>]=<span class="cn">x0</span>);</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;distrib&quot;</span>)$</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_normal</span>(<span class="cn">x</span>,<span class="dv">0</span>,<span class="dv">1</span>);</span></code></pre></div>
+<p>You should see these answers: (a) <code>3 x^2</code>, (b) a plot of a line, (c) <code>x[t]=A^t*x0</code>, and (d) <code>%e^(-x^2/2)/(sqrt(2)*sqrt(%pi))</code>.</p>
 <p>Let me know if there are any errors, as this will help trouble shoot issues with different versions.</p>
 <h3 id="reading">Reading</h3>
 <p>For those of you who want a better sense of what models can do and what are the first steps in model construction before coming to the workshop, please find <a href="files/WorkshopReading.pdf">here</a> some early sections of my book with Troy Day.</p>
@@ -2177,7 +2191,7 @@ Longer Trainings
 </ul>
 <h3 id="thanks">Thanks</h3>
 <p>Niki Love and Gil Henriques did a great job of translating the code into wxMaxima, with limited help from me. Thanks, Niki and Gil!!</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
