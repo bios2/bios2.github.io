@@ -9,6 +9,9 @@ collections:
   Marchand:
     categories: true
 navbar:
+  logo:
+    image: cropped-Bios2_ENG_court.png
+    href: https://bios2.usherbrooke.ca/
   right:
     - text: "Home"
       href: index.html
