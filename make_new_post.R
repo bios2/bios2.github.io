@@ -1,5 +1,5 @@
-distill::create_post(title = "Statistiques spatiales en écologie, Partie 4",
-                     author = "Philippe Marchand",
-                     collection = "Marchand",
-                     date = lubridate::ymd("2021-01-21")
+distill::create_post(title = "Making websites with HUGO, Part 1",
+                     author = c("Dominique Gravel, Guillaume Larocque"),
+                     collection = "posts",
+                     date = lubridate::ymd("2020-12-07")
 )

@@ -20,6 +20,17 @@
       <media:content url="https://bios2.github.io/bios2_trainings/posts/2021-03-25-point-count-data-analysis/thumb.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
+      <title>Making websites with HUGO, Part 1</title>
+      <dc:creator>Dominique Gravel</dc:creator>
+      <dc:creator>Guillaume Larocque</dc:creator>
+      <link>https://bios2.github.io/bios2_trainings/posts/2020-12-07-making-websites-with-hugo-part-1</link>
+      <description>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming. HUGO is especially convenient for developing websites for laboratories and researchers, for personal pages or to showcase a particular project. Workshop's content include general concepts behind HUGO, demonstration of the most important features, customization of the website and adapting the template for particular situations.</description>
+      <category>Technical</category>
+      <category>EN</category>
+      <guid>https://bios2.github.io/bios2_trainings/posts/2020-12-07-making-websites-with-hugo-part-1</guid>
+      <pubDate>Mon, 07 Dec 2020 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>Science Communication</title>
       <dc:creator>Gracielle Higino</dc:creator>
       <dc:creator>Katherine Hébert</dc:creator>

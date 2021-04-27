@@ -8,6 +8,8 @@ categories:
 author:
   - name: "Dr Sarah P. Otto"
     affiliation: University of British Columbia
+base_url: https://bios2.github.io/
+preview: StabilityPictures.jpg
 date: 2020-01-14
 output:
   distill::distill_article:
@@ -41,8 +43,6 @@ You should see (a) $3x^2$, (b) a plot of a line, (c) ${{x[t]->A^t x0}}$, and (d)
 
 #### Maxima installation:
 On a Mac, install using the instructions [here](https://themaximalist.org/about/my-mac-os-installation/). For other file systems, download [here](https://sourceforge.net/projects/maxima/files/).
-
-A quick reference guide can be found [here]().
 
 #### Maxima testing
 When you first open Maxima, it will give you a choice of GUIs, chose wxMaxima.  Once wxMaxima is launched type this command and hit return to see if it answers 4:
@@ -91,7 +91,7 @@ This PDF was generated from the Mathematica notebook linked above. It doesn't in
 <br>
 <br>
 
-![Stability analysis of a recursion equation in a discrete-time model.](files/StabilityPictures.png)
+![Stability analysis of a recursion equation in a discrete-time model.](StabilityPictures.png)
 
 
 ### Other resources

@@ -5,7 +5,7 @@ description: |
 author:
   - name: Gracielle Higino
   - name: Katherine Hébert
-base_url: https://bios2.github.io/bios2_trainings
+base_url: https://bios2.github.io/
 preview: scicomm_training.png
 categories: 
   - Training
@@ -39,11 +39,9 @@ This training was given on June 1 and 2, 2020. You can view recordings of each s
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Xo7bbJpj4PQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-Training materials can be downloaded as "Supporting Data Files" at the top of the page.
+### Session 1: The basics of science communication
 
-Session 1: The basics of science communication
-
-## Objectives:
+#### Objectives:
 
 1. Discuss what science communication (or SciComm) can be, and its potential role in boosting the signal of your research
 2. Make an overview of basic concepts and tools that you can use in any medium (blog posts, presentations, conversations, twitter, etc.) to do effective science communication
@@ -54,9 +52,14 @@ During this session, we:
 2. Cover the basic concepts of science communication, including the Golden Circle method, the creation of personas, and storytelling techniques.
 3. Have short activities where participants can try to use some of the techniques we will be covering, such as filling in their own Golden Circle and explaining a blog post as a storyboard.
 
-Session 2: Social media as a science communication tool
+![Presentation slides for day 01](SciComm_Material/material/Presentation/Slides_Basics.pdf){ width=100% height=200% }  
 
-Objectives:
+<br>
+<br>
+
+### Session 2: Social media as a science communication tool
+
+#### Objectives:
 
 1. Rethink the way we write about science by exploring the world of blog posts
 2. Clarify the mechanics of Twitter and how it can be used effectively for science communication
@@ -67,3 +70,4 @@ During this session, we:
 2. Cover the basics of how Twitter works (retweets, threads, replies, hashtags, photo captions, etc.) and how to find helpful connections
 3. Have short activities where participants will be invited to write their own Twitter biographies and to create a Twitter thread explaining a project of their choice.
 
+![Presentation slides for day 02](SciComm_Material/material/Presentation/Slides_SocialMedia.pdf){ width=100% height=200% }  
