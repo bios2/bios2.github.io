@@ -6,8 +6,8 @@ author: Peter Solymos
 preview: thumb.jpg
 date: 2021-03-25
 categories:
-  - Training
-  - Twelve hour
+  - Technical
+  - EN
 output:
   distill::distill_article:
     self_contained: false

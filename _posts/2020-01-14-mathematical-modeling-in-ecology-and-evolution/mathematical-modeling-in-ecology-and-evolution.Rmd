@@ -26,7 +26,16 @@ In this workshop, I introduce various modelling techniques, using mostly ecologi
 **Part 6:**  Another example of building a model from scratch  
 
 ### Material
-We’ll be mainly working though [this notebook](files/BIOS2_WorkshopMathematica.nb) in Mathematica (see hints and solutions [here](files/BIOS2_WorkshopMathematicaSOLUTIONS.nb)) or [this notebook](files/Bios2_WorkshopMaxima.wxmx) in Maxima (hints and solutions [here](files/Bios2_WorkshopMaximaSOLUTIONS.wxmx)).
+
+| Mathematica | Maxima | PDF |
+| :---: | :---: | :---: |
+| [Notebook](files/BIOS2_WorkshopMathematica.nb) | [Notebook](files/Bios2_WorkshopMaxima.wxmx) |  Embeded below |
+| [Hints and solutions](files/BIOS2_WorkshopMathematicaSOLUTIONS.nb) | [Hints and solutions](files/Bios2_WorkshopMaximaSOLUTIONS.wxmx) | |
+| | | [Homework](files/Homework1.pdf) |
+| [Homework answers](files/HomeworkAnswers.nb) | | [Homework answers](files/HomeworkAnswers.pdf) |
+| [Guide](files/MathematicaGuide.nb) | [Helpful Tips](files/HelpfulTips.wxmx) | |
+
+
 
 <object data="files/otto1.nb.pdf" type="application/pdf" style="min-height:100vh;width:100%">
 </object>
@@ -35,18 +44,20 @@ We’ll be mainly working though [this notebook](files/BIOS2_WorkshopMathematica
 
 [Stability analysis of a recursion equation in a discrete-time model.](files/StabilityPictures.pdf)
 
-#### Homework
-To help you get practice, there is a homework problem set to work on.  
-
-- [Homework](files/Homework1.pdf)  
-
-- Homework answers: [.nb](files/HomeworkAnswers.nb) and [.PDF](files/HomeworkAnswers.pdf)  
 
 ### Software
 In my research, I primarily use Mathematica, which is a powerful software package to organize and conduct analytical modelling, but it is not free (at UBC, we have some licenses available). I will also show some example code and provide translation of most of what I present in a free software package called Maxima.  
 
 #### Mathematica installation
-There is a free trial version that you can use for 15 days, if you don't have a copy (click [here](http://www.wolfram.com/mathematica/trial/) to access), or you can buy a [student version](https://www.wolfram.com/mathematica/pricing/students/) online. If you want to make sure that all is working, open [this](files/WorkshopTestingMathematica.nb) file and enter each line (instructions can be found in [this quick guide](files/MathematicaGuide.nb)).  
+There is a free trial version that you can use for 15 days, if you don't have a copy (click [here](http://www.wolfram.com/mathematica/trial/) to access), or you can buy a [student version](https://www.wolfram.com/mathematica/pricing/students/) online. If you want to make sure that all is working, copy the code below, put your cursor over each of the following lines and press enter (on some computers, "enter" is a separate button, on others, press "shift" and "return" at the same time):
+
+```mathematica
+D[x^3,x]
+ListPlot[Table[x, {x,1,10}],Joined->True]
+RSolve[{x[t+1]\[Equal]A x[t],x[0]\[Equal]x0},x[t],t]
+PDF[NormalDistribution[0,1],x]
+```
+You should see (a) $3x^2$, (b) a plot of a line, (c) ${{x[t]->A^t x0}}$, and (d) $\frac{e^\frac{-x^2}{2}}{\sqrt{2\pi }}$.
 
 #### Maxima installation:
 See the download links in [this](files/WorkshopTestingMaxima.txt) file, which gives some test functions to run (also available in [this](files/WorkshopTestingMaxima.wxm) file, which you can run once you have Maxima and wxMaxima working). A quick reference guide can be found [here](files/MaximaQuickReference.wxm).
