@@ -25,26 +25,6 @@ In this workshop, I introduce various modelling techniques, using mostly ecologi
 **Part 5:**  Extending to models with more than one variable  
 **Part 6:**  Another example of building a model from scratch  
 
-### Material
-
-| Mathematica | Maxima | PDF |
-| :---: | :---: | :---: |
-| [Notebook](files/BIOS2_WorkshopMathematica.nb) | [Notebook](files/Bios2_WorkshopMaxima.wxmx) |  Embeded below |
-| [Hints and solutions](files/BIOS2_WorkshopMathematicaSOLUTIONS.nb) | [Hints and solutions](files/Bios2_WorkshopMaximaSOLUTIONS.wxmx) | |
-| | | [Homework](files/Homework1.pdf) |
-| [Homework answers](files/HomeworkAnswers.nb) | | [Homework answers](files/HomeworkAnswers.pdf) |
-| [Guide](files/MathematicaGuide.nb) | [Helpful Tips](files/HelpfulTips.wxmx) | |
-
-
-
-<object data="files/otto1.nb.pdf" type="application/pdf" style="min-height:100vh;width:100%">
-</object>
-<br>
-<br>
-
-[Stability analysis of a recursion equation in a discrete-time model.](files/StabilityPictures.pdf)
-
-
 ### Software
 In my research, I primarily use Mathematica, which is a powerful software package to organize and conduct analytical modelling, but it is not free (at UBC, we have some licenses available). I will also show some example code and provide translation of most of what I present in a free software package called Maxima.  
 
@@ -60,12 +40,59 @@ PDF[NormalDistribution[0,1],x]
 You should see (a) $3x^2$, (b) a plot of a line, (c) ${{x[t]->A^t x0}}$, and (d) $\frac{e^\frac{-x^2}{2}}{\sqrt{2\pi }}$.
 
 #### Maxima installation:
-See the download links in [this](files/WorkshopTestingMaxima.txt) file, which gives some test functions to run (also available in [this](files/WorkshopTestingMaxima.wxm) file, which you can run once you have Maxima and wxMaxima working). A quick reference guide can be found [here](files/MaximaQuickReference.wxm).
+On a Mac, install using the instructions [here](https://themaximalist.org/about/my-mac-os-installation/). For other file systems, download [here](https://sourceforge.net/projects/maxima/files/).
 
-Let me know if there are any errors, as this will help trouble shoot issues with different versions.
+A quick reference guide can be found [here]().
 
-### Reading
-For those of you who want a better sense of what models can do and what are the first steps in model construction before coming to the workshop, please find [here](files/WorkshopReading.pdf) some early sections of my book with Troy Day.
+#### Maxima testing
+When you first open Maxima, it will give you a choice of GUIs, chose wxMaxima.  Once wxMaxima is launched type this command and hit return to see if it answers 4:
+
+```maxima
+2+2;
+```
+If it doesn't, then scan the installation document for the error that you run into.
+
+If it does return 4, then type in and enter these commands:
+
+```maxima
+diff(x^3, x);
+
+wxplot2d (3*x, [x, 0, 2*%pi]);
+
+load("solve_rec")$
+solve_rec(x[t+1] = A*x[t], x[t], x[0]=x0);
+
+load("distrib")$
+pdf_normal(x,0,1);
+```
+
+
+You should see (a) $3x^2$, (b) a plot of a line, (c) ${{x[t]->A^t x0}}$, and (d) $\frac{e^\frac{-x^2}{2}}{\sqrt{2\pi }}$.
+
+
+
+### Material
+
+| Mathematica | Maxima | PDF |
+| :---: | :---: | :---: |
+| [Notebook](files/BIOS2_WorkshopMathematica.nb) | [Notebook](files/Bios2_WorkshopMaxima.wxmx) |  Embeded below |
+| [Hints and solutions](files/BIOS2_WorkshopMathematicaSOLUTIONS.nb) | [Hints and solutions](files/Bios2_WorkshopMaximaSOLUTIONS.wxmx) | |
+| | | [Homework](files/Homework1.pdf) |
+| [Homework answers](files/HomeworkAnswers.nb) | | [Homework answers](files/HomeworkAnswers.pdf) |
+| [Guide](files/MathematicaGuide.nb) | [Guide](files/MaximaQuickReference.wxm) | |
+
+
+#### Follow along PDF
+
+This PDF was generated from the Mathematica notebook linked above. It doesn't include dynamic plots, but it's a good alternative if you want to print out or have a quick reference at hand.  
+
+<object data="files/otto1.nb.pdf" type="application/pdf" style="min-height:100vh;width:100%">
+</object>
+<br>
+<br>
+
+![Stability analysis of a recursion equation in a discrete-time model.](files/StabilityPictures.png)
+
 
 ### Other resources
 

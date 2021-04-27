@@ -129,7 +129,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["files/BIOS2_WorkshopMathematica.nb","files/BIOS2_WorkshopMathematicaSOLUTIONS.nb","files/Bios2_WorkshopMaxima.wxmx","files/Bios2_WorkshopMaximaSOLUTIONS.wxmx","files/HelpfulTips.wxmx","files/Homework1.pdf","files/HomeworkAnswers.nb","files/HomeworkAnswers.pdf","files/MathematicaGuide.nb","files/MaximaQuickReference.wxm","files/otto1.nb.pdf","files/StabilityPictures.pdf","files/WorkshopReading.pdf","files/WorkshopTestingMathematica.nb","files/WorkshopTestingMaxima.nb","files/WorkshopTestingMaxima.txt","files/WorkshopTestingMaxima.wxm","mathematical-modeling-in-ecology-and-evolution_files/anchor-4.2.2/anchor.min.js","mathematical-modeling-in-ecology-and-evolution_files/bowser-1.9.3/bowser.min.js","mathematical-modeling-in-ecology-and-evolution_files/distill-2.2.21/template.v2.js","mathematical-modeling-in-ecology-and-evolution_files/header-attrs-2.7.3/header-attrs.js","mathematical-modeling-in-ecology-and-evolution_files/header-attrs-2.7/header-attrs.js","mathematical-modeling-in-ecology-and-evolution_files/jquery-1.11.3/jquery.min.js","mathematical-modeling-in-ecology-and-evolution_files/popper-2.6.0/popper.min.js","mathematical-modeling-in-ecology-and-evolution_files/tippy-6.2.7/tippy-bundle.umd.min.js","mathematical-modeling-in-ecology-and-evolution_files/tippy-6.2.7/tippy-light-border.css","mathematical-modeling-in-ecology-and-evolution_files/tippy-6.2.7/tippy.css","mathematical-modeling-in-ecology-and-evolution_files/tippy-6.2.7/tippy.umd.min.js","mathematical-modeling-in-ecology-and-evolution_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["files/BIOS2_WorkshopMathematica.nb","files/BIOS2_WorkshopMathematicaSOLUTIONS.nb","files/Bios2_WorkshopMaxima.wxmx","files/Bios2_WorkshopMaximaSOLUTIONS.wxmx","files/HelpfulTips.wxmx","files/Homework1.pdf","files/HomeworkAnswers.nb","files/HomeworkAnswers.pdf","files/MathematicaGuide.nb","files/MaximaQuickReference.wxm","files/otto1.nb.pdf","files/StabilityPictures.pdf","files/StabilityPictures.png","files/WorkshopReading.pdf","files/WorkshopTestingMathematica.nb","files/WorkshopTestingMaxima.nb","files/WorkshopTestingMaxima.txt","files/WorkshopTestingMaxima.wxm","mathematical-modeling-in-ecology-and-evolution_files/anchor-4.2.2/anchor.min.js","mathematical-modeling-in-ecology-and-evolution_files/bowser-1.9.3/bowser.min.js","mathematical-modeling-in-ecology-and-evolution_files/distill-2.2.21/template.v2.js","mathematical-modeling-in-ecology-and-evolution_files/header-attrs-2.7.3/header-attrs.js","mathematical-modeling-in-ecology-and-evolution_files/header-attrs-2.7/header-attrs.js","mathematical-modeling-in-ecology-and-evolution_files/jquery-1.11.3/jquery.min.js","mathematical-modeling-in-ecology-and-evolution_files/popper-2.6.0/popper.min.js","mathematical-modeling-in-ecology-and-evolution_files/tippy-6.2.7/tippy-bundle.umd.min.js","mathematical-modeling-in-ecology-and-evolution_files/tippy-6.2.7/tippy-light-border.css","mathematical-modeling-in-ecology-and-evolution_files/tippy-6.2.7/tippy.css","mathematical-modeling-in-ecology-and-evolution_files/tippy-6.2.7/tippy.umd.min.js","mathematical-modeling-in-ecology-and-evolution_files/webcomponents-2.0.0/webcomponents.js","StabilityPictures.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2132,9 +2132,8 @@ Longer Trainings
 <h3>Contents</h3>
 <ul>
 <li><a href="#content">Content</a></li>
-<li><a href="#material">Material</a></li>
 <li><a href="#software">Software</a></li>
-<li><a href="#reading">Reading</a></li>
+<li><a href="#material">Material</a></li>
 <li><a href="#other-resources">Other resources</a></li>
 <li><a href="#thanks">Thanks</a></li>
 </ul>
@@ -2148,6 +2147,33 @@ Longer Trainings
 <strong>Part 4:</strong> Example of building a model from scratch<br />
 <strong>Part 5:</strong> Extending to models with more than one variable<br />
 <strong>Part 6:</strong> Another example of building a model from scratch</p>
+<h3 id="software">Software</h3>
+<p>In my research, I primarily use Mathematica, which is a powerful software package to organize and conduct analytical modelling, but it is not free (at UBC, we have some licenses available). I will also show some example code and provide translation of most of what I present in a free software package called Maxima.</p>
+<h4 id="mathematica-installation">Mathematica installation</h4>
+<p>There is a free trial version that you can use for 15 days, if you don’t have a copy (click <a href="http://www.wolfram.com/mathematica/trial/">here</a> to access), or you can buy a <a href="https://www.wolfram.com/mathematica/pricing/students/">student version</a> online. If you want to make sure that all is working, copy the code below, put your cursor over each of the following lines and press enter (on some computers, “enter” is a separate button, on others, press “shift” and “return” at the same time):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode mathematica"><code class="sourceCode mathematica"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">D</span><span class="op">[</span><span class="fu">x</span><span class="sc">^</span><span class="dv">3</span><span class="op">,</span><span class="fu">x</span><span class="op">]</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ListPlot</span><span class="op">[</span><span class="fu">Table</span><span class="op">[</span><span class="fu">x</span><span class="op">,</span> <span class="op">{</span><span class="fu">x</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">10</span><span class="op">}],</span><span class="fu">Joined</span><span class="ot">-&gt;</span><span class="cn">True</span><span class="op">]</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">RSolve</span><span class="op">[{</span><span class="fu">x</span><span class="op">[</span><span class="fu">t</span><span class="sc">+</span><span class="dv">1</span><span class="op">]</span><span class="sc">\</span><span class="op">[</span><span class="fu">Equal</span><span class="op">]</span><span class="fu">A</span> <span class="fu">x</span><span class="op">[</span><span class="fu">t</span><span class="op">],</span><span class="fu">x</span><span class="op">[</span><span class="dv">0</span><span class="op">]</span><span class="sc">\</span><span class="op">[</span><span class="fu">Equal</span><span class="op">]</span>x0<span class="op">},</span><span class="fu">x</span><span class="op">[</span><span class="fu">t</span><span class="op">],</span><span class="fu">t</span><span class="op">]</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">PDF</span><span class="op">[</span><span class="fu">NormalDistribution</span><span class="op">[</span><span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">],</span><span class="fu">x</span><span class="op">]</span></span></code></pre></div>
+<p>You should see (a) <span class="math inline">\(3x^2\)</span>, (b) a plot of a line, (c) <span class="math inline">\({{x[t]-&gt;A^t x0}}\)</span>, and (d) <span class="math inline">\(\frac{e^\frac{-x^2}{2}}{\sqrt{2\pi }}\)</span>.</p>
+<h4 id="maxima-installation">Maxima installation:</h4>
+<p>On a Mac, install using the instructions <a href="https://themaximalist.org/about/my-mac-os-installation/">here</a>. For other file systems, download <a href="https://sourceforge.net/projects/maxima/files/">here</a>.</p>
+<p>A quick reference guide can be found <a href="">here</a>.</p>
+<h4 id="maxima-testing">Maxima testing</h4>
+<p>When you first open Maxima, it will give you a choice of GUIs, chose wxMaxima. Once wxMaxima is launched type this command and hit return to see if it answers 4:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode maxima"><code class="sourceCode maxima"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2+2</span>;</span></code></pre></div>
+<p>If it doesn’t, then scan the installation document for the error that you run into.</p>
+<p>If it does return 4, then type in and enter these commands:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode maxima"><code class="sourceCode maxima"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="cn">x</span>^<span class="dv">3</span>, <span class="cn">x</span>);</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cn">wxplot2d</span> (<span class="dv">3</span>*<span class="cn">x</span>, [<span class="cn">x</span>, <span class="dv">0</span>, <span class="dv">2</span>*<span class="va">%pi</span>]);</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;solve_rec&quot;</span>)$</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">solve_rec</span>(<span class="cn">x</span>[<span class="cn">t</span><span class="dv">+1</span>] = <span class="cn">A</span>*<span class="cn">x</span>[<span class="cn">t</span>], <span class="cn">x</span>[<span class="cn">t</span>], <span class="cn">x</span>[<span class="dv">0</span>]=<span class="cn">x0</span>);</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;distrib&quot;</span>)$</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pdf_normal</span>(<span class="cn">x</span>,<span class="dv">0</span>,<span class="dv">1</span>);</span></code></pre></div>
+<p>You should see (a) <span class="math inline">\(3x^2\)</span>, (b) a plot of a line, (c) <span class="math inline">\({{x[t]-&gt;A^t x0}}\)</span>, and (d) <span class="math inline">\(\frac{e^\frac{-x^2}{2}}{\sqrt{2\pi }}\)</span>.</p>
 <h3 id="material">Material</h3>
 <table>
 <thead>
@@ -2180,29 +2206,19 @@ Longer Trainings
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><a href="files/MathematicaGuide.nb">Guide</a></td>
-<td style="text-align: center;"><a href="files/HelpfulTips.wxmx">Helpful Tips</a></td>
+<td style="text-align: center;"><a href="files/MaximaQuickReference.wxm">Guide</a></td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
+<h4 id="follow-along-pdf">Follow along PDF</h4>
+<p>This PDF was generated from the Mathematica notebook linked above. It doesn’t include dynamic plots, but it’s a good alternative if you want to print out or have a quick reference at hand.</p>
 <object data="files/otto1.nb.pdf" type="application/pdf" style="min-height:100vh;width:100%">
 </object>
 <p><br> <br></p>
-<p><a href="files/StabilityPictures.pdf">Stability analysis of a recursion equation in a discrete-time model.</a></p>
-<h3 id="software">Software</h3>
-<p>In my research, I primarily use Mathematica, which is a powerful software package to organize and conduct analytical modelling, but it is not free (at UBC, we have some licenses available). I will also show some example code and provide translation of most of what I present in a free software package called Maxima.</p>
-<h4 id="mathematica-installation">Mathematica installation</h4>
-<p>There is a free trial version that you can use for 15 days, if you don’t have a copy (click <a href="http://www.wolfram.com/mathematica/trial/">here</a> to access), or you can buy a <a href="https://www.wolfram.com/mathematica/pricing/students/">student version</a> online. If you want to make sure that all is working, copy the code below, put your cursor over each of the following lines and press enter (on some computers, “enter” is a separate button, on others, press “shift” and “return” at the same time):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode mathematica"><code class="sourceCode mathematica"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">D</span><span class="op">[</span><span class="fu">x</span><span class="sc">^</span><span class="dv">3</span><span class="op">,</span><span class="fu">x</span><span class="op">]</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ListPlot</span><span class="op">[</span><span class="fu">Table</span><span class="op">[</span><span class="fu">x</span><span class="op">,</span> <span class="op">{</span><span class="fu">x</span><span class="op">,</span><span class="dv">1</span><span class="op">,</span><span class="dv">10</span><span class="op">}],</span><span class="fu">Joined</span><span class="ot">-&gt;</span><span class="cn">True</span><span class="op">]</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">RSolve</span><span class="op">[{</span><span class="fu">x</span><span class="op">[</span><span class="fu">t</span><span class="sc">+</span><span class="dv">1</span><span class="op">]</span><span class="sc">\</span><span class="op">[</span><span class="fu">Equal</span><span class="op">]</span><span class="fu">A</span> <span class="fu">x</span><span class="op">[</span><span class="fu">t</span><span class="op">],</span><span class="fu">x</span><span class="op">[</span><span class="dv">0</span><span class="op">]</span><span class="sc">\</span><span class="op">[</span><span class="fu">Equal</span><span class="op">]</span>x0<span class="op">},</span><span class="fu">x</span><span class="op">[</span><span class="fu">t</span><span class="op">],</span><span class="fu">t</span><span class="op">]</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">PDF</span><span class="op">[</span><span class="fu">NormalDistribution</span><span class="op">[</span><span class="dv">0</span><span class="op">,</span><span class="dv">1</span><span class="op">],</span><span class="fu">x</span><span class="op">]</span></span></code></pre></div>
-<p>You should see (a) <span class="math inline">\(3x^2\)</span>, (b) a plot of a line, (c) <span class="math inline">\({{x[t]-&gt;A^t x0}}\)</span>, and (d) <span class="math inline">\(\frac{e^\frac{-x^2}{2}}{\sqrt{2\pi }}\)</span>.</p>
-<h4 id="maxima-installation">Maxima installation:</h4>
-<p>See the download links in <a href="files/WorkshopTestingMaxima.txt">this</a> file, which gives some test functions to run (also available in <a href="files/WorkshopTestingMaxima.wxm">this</a> file, which you can run once you have Maxima and wxMaxima working). A quick reference guide can be found <a href="files/MaximaQuickReference.wxm">here</a>.</p>
-<p>Let me know if there are any errors, as this will help trouble shoot issues with different versions.</p>
-<h3 id="reading">Reading</h3>
-<p>For those of you who want a better sense of what models can do and what are the first steps in model construction before coming to the workshop, please find <a href="files/WorkshopReading.pdf">here</a> some early sections of my book with Troy Day.</p>
+<figure>
+<img src="files/StabilityPictures.png" alt="Stability analysis of a recursion equation in a discrete-time model." /><figcaption aria-hidden="true">Stability analysis of a recursion equation in a discrete-time model.</figcaption>
+</figure>
 <h3 id="other-resources">Other resources</h3>
 <ul>
 <li><p>An Introduction to Mathematical Modeling in Ecology and Evolution (2007) by Otto and Day.</p></li>
@@ -2211,7 +2227,7 @@ Longer Trainings
 </ul>
 <h3 id="thanks">Thanks</h3>
 <p>Niki Love and Gil Henriques did a great job of translating the code into wxMaxima, with limited help from me. Thanks, Niki and Gil!!</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
