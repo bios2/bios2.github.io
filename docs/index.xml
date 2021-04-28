@@ -29,6 +29,7 @@
       <category>EN</category>
       <guid>https://bios2.github.io/bios2_trainings/posts/2020-12-07-making-websites-with-hugo-part-1</guid>
       <pubDate>Mon, 07 Dec 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/bios2_trainings/posts/2020-12-07-making-websites-with-hugo-part-1/thumb.png" medium="image" type="image/png" width="3887" height="1018"/>
     </item>
     <item>
       <title>Science Communication</title>
@@ -52,6 +53,7 @@
       <category>EN</category>
       <guid>https://bios2.github.io/bios2_trainings/posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution</guid>
       <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/bios2_trainings/posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/StabilityPictures.jpg" medium="image" type="image/jpeg"/>
     </item>
   </channel>
 </rss>
