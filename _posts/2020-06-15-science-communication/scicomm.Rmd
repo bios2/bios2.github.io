@@ -8,13 +8,14 @@ author:
 base_url: https://bios2.github.io/
 preview: scicomm_training.png
 categories: 
-  - Training
+  - Career
   - Fellow contributed
-  - Six hour
+  - EN
 date: 2020-06-15
 output:
   distill::distill_article:
     self_contained: false
+    toc: true
 ---
 
 
@@ -39,7 +40,7 @@ This training was given on June 1 and 2, 2020. You can view recordings of each s
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Xo7bbJpj4PQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
-### Session 1: The basics of science communication
+## Session 1: The basics of science communication
 
 #### Objectives:
 
@@ -52,12 +53,16 @@ During this session, we:
 2. Cover the basic concepts of science communication, including the Golden Circle method, the creation of personas, and storytelling techniques.
 3. Have short activities where participants can try to use some of the techniques we will be covering, such as filling in their own Golden Circle and explaining a blog post as a storyboard.
 
-![Presentation slides for day 01](SciComm_Material/material/Presentation/Slides_Basics.pdf){ width=100% height=200% }  
-
+<object data="SciComm_Material/material/Presentation/Slides_Basics.pdf" type="application/pdf" style="height:200%;width:100%">
+</object>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 
-### Session 2: Social media as a science communication tool
+## Session 2: Social media as a science communication tool
 
 #### Objectives:
 
@@ -70,4 +75,9 @@ During this session, we:
 2. Cover the basics of how Twitter works (retweets, threads, replies, hashtags, photo captions, etc.) and how to find helpful connections
 3. Have short activities where participants will be invited to write their own Twitter biographies and to create a Twitter thread explaining a project of their choice.
 
-![Presentation slides for day 02](SciComm_Material/material/Presentation/Slides_SocialMedia.pdf){ width=100% height=200% }  
+<object data="SciComm_Material/material/Presentation/Slides_SocialMedia.pdf" type="application/pdf" style="height:200%;width:100%">
+</object>
+<br>
+<br>
+<br>
+<br>
