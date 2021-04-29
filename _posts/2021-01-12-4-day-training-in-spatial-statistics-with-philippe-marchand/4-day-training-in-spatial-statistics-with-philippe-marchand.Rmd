@@ -1,0 +1,19 @@
+---
+title: "4-Day Training in Spatial Statistics with Philippe Marchand"
+description: |
+  A short description of the post.
+author: Philippe Marchand
+date: 2021-01-12
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+See all of [Philippe's lesson materials](../../Marchand.html)
+
+

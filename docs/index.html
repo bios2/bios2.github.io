@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
   <meta name="generator" content="distill" />
-  <link rel="alternate" type="application/rss+xml" href="https://bios2.github.io/bios2_trainings/index.xml" />
+  <link rel="alternate" type="application/rss+xml" href="https://bios2.github.io/index.xml" />
 
   <style type="text/css">
   /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
@@ -2145,6 +2145,7 @@ function init_posts_list() {
 
       // mark posts that match the category visible
       var page_category = window.location.hash.replace(/^#category:/, "");
+      page_category = decodeURIComponent(page_category)
       var posts = $('.post-metadata').map(function(idx, script) {
         var metadata = $.parseJSON($(script).html());
         var post = null;
@@ -2160,7 +2161,7 @@ function init_posts_list() {
       set_posts_visible(posts, true);
 
       // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
+      $('.categories li>a[href="' + decodeURIComponent(window.location.hash) + '"]').addClass('active');
 
       // update the list_caption
       var list_caption = $('.posts-list-caption');
@@ -2243,6 +2244,44 @@ function init_posts_list() {
 <p>Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Peter Solymos to BIOS2 Fellows in March 2021.</p>
 </div>
 </a>
+<a href="posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<div class="metadata">
+<div class="publishedDate">Jan. 12, 2021</div>
+<div class="dt-authors">
+<div class="dt-author">Philippe Marchand</div>
+</div>
+</div>
+<div class="thumbnail">
+<img/>
+</div>
+<div class="description">
+<h2>4-Day Training in Spatial Statistics with Philippe Marchand</h2>
+<div class="dt-tags"></div>
+<p>A short description of the post.</p>
+</div>
+</a>
+<a href="posts/2020-12-08-making-websites-with-hugo-part-2/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["Technical","EN"]}</script>
+<div class="metadata">
+<div class="publishedDate">Dec. 8, 2020</div>
+<div class="dt-authors">
+<div class="dt-author">Dominique Gravel</div>
+<div class="dt-author">Guillaume Larocque</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="posts/2020-12-08-making-websites-with-hugo-part-2/thumb.png"/>
+</div>
+<div class="description">
+<h2>Making websites with HUGO, Part 2</h2>
+<div class="dt-tags">
+<div class="dt-tag">Technical</div>
+<div class="dt-tag">EN</div>
+</div>
+<p>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming. HUGO is especially convenient for developing websites for laboratories and researchers, for personal pages or to showcase a particular project. Workshop's content include general concepts behind HUGO, demonstration of the most important features, customization of the website and adapting the template for particular situations.</p>
+</div>
+</a>
 <a href="posts/2020-12-07-making-websites-with-hugo-part-1/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["Technical","EN"]}</script>
 <div class="metadata">
@@ -2295,7 +2334,7 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img src="posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/thumb.jpg"/>
+<img data-src="posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/thumb.jpg"/>
 </div>
 <div class="description">
 <h2>Sensibilisation aux réalités autochtones et recherche collaborative</h2>
@@ -2315,7 +2354,7 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img src="posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/StabilityPictures.jpg"/>
+<img data-src="posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/StabilityPictures.jpg"/>
 </div>
 <div class="description">
 <h2>Mathematical Modeling in Ecology and Evolution</h2>
@@ -2333,7 +2372,7 @@ function init_posts_list() {
 <ul>
 <li>
 <a href="#category:Articles">Articles</a>
-<span class="category-count">(5)</span>
+<span class="category-count">(7)</span>
 </li>
 <li>
 <a href="#category:Career">Career</a>
@@ -2341,7 +2380,7 @@ function init_posts_list() {
 </li>
 <li>
 <a href="#category:EN">EN</a>
-<span class="category-count">(3)</span>
+<span class="category-count">(4)</span>
 </li>
 <li>
 <a href="#category:Fellow_contributed">Fellow contributed</a>
@@ -2353,7 +2392,7 @@ function init_posts_list() {
 </li>
 <li>
 <a href="#category:Technical">Technical</a>
-<span class="category-count">(2)</span>
+<span class="category-count">(3)</span>
 </li>
 <li>
 <a href="#category:Training">Training</a>
@@ -2395,9 +2434,9 @@ function init_posts_list() {
 <!--radix_placeholder_appendices-->
 <div class="appendix-bottom">
 <h3 id="updates-and-corrections">Corrections</h3>
-<p>If you see mistakes or want to suggest changes, please <a href="https://github.com/bios2/bios2_trainings/issues/new">create an issue</a> on the source repository.</p>
+<p>If you see mistakes or want to suggest changes, please <a href="https://github.com/bios2/bios2.github.io/issues/new">create an issue</a> on the source repository.</p>
 <h3 id="reuse">Reuse</h3>
-<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source code is available at <a href="https://github.com/bios2/bios2_trainings">https://github.com/bios2/bios2_trainings</a>, unless otherwise noted. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source code is available at <a href="https://github.com/bios2/bios2.github.io">https://github.com/bios2/bios2.github.io</a>, unless otherwise noted. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
 </div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
