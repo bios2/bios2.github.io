@@ -1,5 +1,6 @@
-distill::create_post(title = "Making websites with HUGO, Part 2",
-                     author = c("Dominique Gravel, Guillaume Larocque"),
+distill::create_post(title = "Introduction to EDI concepts in a scientific context",
+                     author = "Agathe Riallan",
                      collection = "posts",
-                     date = lubridate::ymd("2020-12-08")
+                     date = lubridate::ymd("2021-01-22"),
+                     edit = FALSE
 )

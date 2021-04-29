@@ -1,5 +1,5 @@
 ---
-title: "Sensibilisation aux réalités autochtones et recherche collaborative"
+title: "Sensibilisation aux réalités autochtones et recherche collaborative, partie 2"
 description: |
   Série de deux webinaires sur la sensibilisation aux réalités autochtones et la recherche en collaboration avec les Autochtones, offert du 28 au 30 avril 2020 par Catherine-Alexandra Gagnon, PhD.
 categories:
@@ -10,30 +10,27 @@ author:
 bibliography: citations.bib
 base_url: https://bios2.github.io/
 preview: thumb.jpg
-date: 2020-04-28
+date: 2020-04-30
 output:
   distill::distill_article:
     self_contained: false
     toc: true
 ---
 
-# Partie 1 - Sensibilisation aux réalités autochtones
+# Partie 2 - Recherche en collaboration avec les communautés autochtones
 
-### Objectifs de la formation :
+## Objectifs de la formation :
 
-* Améliorer notre compréhension du passé et de ses impacts sur nos relations entre le avec les Peuples Autochtones.  
+* Entamer une réflexion collective envers nos pratiques de recherche et comment s’engager de manière significative avec les communautés autochtones.
 
-* Développer des notions et compétences afin d’agir contre les préjugés et le racisme.  
+* Développer une meilleure compréhension des perceptions et attentes des communautés envers la recherche et les chercheurs.
 
-### Durant ce webminaire, nous allons: 
+## Durant ce webminaire, nous allons: 
 
-* Faire un survol des événements historiques importants et de leurs impacts à ce jour (Loi sur les Indiens, politiques d’assimilation, les pensionnats, etc.).  
+* Mieux comprendre la nécessité de prendre en compte les connaissances autochtones dans divers aspects de la gestion environnementale au Canada; 
+* Discuter du désir des communauté d’avoir une présence accrue dans le milieu de la recherche : comment faire?
 
-* Acquérir des connaissances sur la terminologie autochtone.  
-
-* Faire un survol de certains procès et contextes légaux et voir comment ils affectent notre travail en territoire autochtone.  
-
-* Dans une optique de réconciliation, faire une prise de conscience des préjugés persistants et discuter de stratégies pour améliorer nos relations avec les communautés.  
+* Aborder et débattre des différentes approches méthodologiques pour établir des ponts en les connaissances autochtones et scientifiques.
 
 ## Ressources
 
@@ -110,6 +107,8 @@ output:
 
 [@reid_bridging_2006]: *Bridging scales and knowledge systems: concepts and applications in ecosystem assessment.*  
 
+
 ## Formatrice :
 
 Catherine-Alexandra Gagnon possède une expertise dans le travail collaboratif en milieux autochtones. Elle s’intéresse particulièrement à la mise en commun des savoirs locaux, autochtones et scientifiques. Elle détient un doctorat en Sciences de l’environnement et une maîtrise en Gestion de la faune de l’Université du Québec à Rimouski, un baccalauréat en biologie faunique de l’université McGill ainsi qu’un certificat en Études autochtones de l’université de Montréal. Durant ses études, elle a travaillé sur les connaissances locales et ancestrales des Aîné(e)s et chasseurs Inuit, Inuvialuit et Gwich’in du Nunavut, des Territoires du Nord-Ouest et du Yukon.
+

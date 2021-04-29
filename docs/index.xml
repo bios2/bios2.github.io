@@ -20,6 +20,16 @@
       <media:content url="https://bios2.github.io/posts/2021-03-25-point-count-data-analysis/thumb.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
+      <title>Introduction to EDI concepts in a scientific context</title>
+      <dc:creator>Agathe Riallan</dc:creator>
+      <link>https://bios2.github.io/posts/2021-01-22-introduction-to-edi-concepts-in-a-scientific-context</link>
+      <description>A short introduction to EDI concepts in a scientific context.</description>
+      <category>Career</category>
+      <category>EN</category>
+      <guid>https://bios2.github.io/posts/2021-01-22-introduction-to-edi-concepts-in-a-scientific-context</guid>
+      <pubDate>Fri, 22 Jan 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>4-Day Training in Spatial Statistics with Philippe Marchand</title>
       <dc:creator>Philippe Marchand</dc:creator>
       <link>https://bios2.github.io/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand</link>
@@ -32,7 +42,7 @@
       <dc:creator>Dominique Gravel</dc:creator>
       <dc:creator>Guillaume Larocque</dc:creator>
       <link>https://bios2.github.io/posts/2020-12-08-making-websites-with-hugo-part-2</link>
-      <description>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming. HUGO is especially convenient for developing websites for laboratories and researchers, for personal pages or to showcase a particular project. Workshop's content include general concepts behind HUGO, demonstration of the most important features, customization of the website and adapting the template for particular situations.</description>
+      <description>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.</description>
       <category>Technical</category>
       <category>EN</category>
       <guid>https://bios2.github.io/posts/2020-12-08-making-websites-with-hugo-part-2</guid>
@@ -44,7 +54,7 @@
       <dc:creator>Dominique Gravel</dc:creator>
       <dc:creator>Guillaume Larocque</dc:creator>
       <link>https://bios2.github.io/posts/2020-12-07-making-websites-with-hugo-part-1</link>
-      <description>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming. HUGO is especially convenient for developing websites for laboratories and researchers, for personal pages or to showcase a particular project. Workshop's content include general concepts behind HUGO, demonstration of the most important features, customization of the website and adapting the template for particular situations.</description>
+      <description>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.</description>
       <category>Technical</category>
       <category>EN</category>
       <guid>https://bios2.github.io/posts/2020-12-07-making-websites-with-hugo-part-1</guid>
@@ -65,15 +75,26 @@
       <media:content url="https://bios2.github.io/posts/2020-06-15-science-communication/scicomm_training.png" medium="image" type="image/png" width="1548" height="800"/>
     </item>
     <item>
-      <title>Sensibilisation aux réalités autochtones et recherche collaborative</title>
+      <title>Sensibilisation aux réalités autochtones et recherche collaborative, partie 2</title>
       <dc:creator>Dr Catherine-Alexandra Gagnon</dc:creator>
-      <link>https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative</link>
+      <link>https://bios2.github.io/posts/2020-04-30-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-2</link>
       <description>Série de deux webinaires sur la sensibilisation aux réalités autochtones et la recherche en collaboration avec les Autochtones, offert du 28 au 30 avril 2020 par Catherine-Alexandra Gagnon, PhD.</description>
       <category>Career</category>
       <category>FR</category>
-      <guid>https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative</guid>
+      <guid>https://bios2.github.io/posts/2020-04-30-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-2</guid>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/posts/2020-04-30-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-2/thumb.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>Sensibilisation aux réalités autochtones et recherche collaborative, partie 1</title>
+      <dc:creator>Dr Catherine-Alexandra Gagnon</dc:creator>
+      <link>https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-1</link>
+      <description>Série de deux webinaires sur la sensibilisation aux réalités autochtones et la recherche en collaboration avec les Autochtones, offert du 28 au 30 avril 2020 par Catherine-Alexandra Gagnon, PhD.</description>
+      <category>Career</category>
+      <category>FR</category>
+      <guid>https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-1</guid>
       <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
-      <media:content url="https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/thumb.jpg" medium="image" type="image/jpeg"/>
+      <media:content url="https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-1/thumb.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
       <title>Mathematical Modeling in Ecology and Evolution</title>
