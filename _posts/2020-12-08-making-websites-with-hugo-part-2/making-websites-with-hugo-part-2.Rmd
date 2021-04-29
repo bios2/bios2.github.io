@@ -1,7 +1,7 @@
 ---
 title: "Making websites with HUGO, Part 2"
 description: |
-  This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming. HUGO is especially convenient for developing websites for laboratories and researchers, for personal pages or to showcase a particular project. Workshop's content include general concepts behind HUGO, demonstration of the most important features, customization of the website and adapting the template for particular situations.
+  This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.
 authors:
   - Dominique Gravel
   - Guillaume Larocque
@@ -156,7 +156,6 @@ display | should item be on the same line, or in a separate block? | inline, blo
 .this-class {
     font-size:28px;
 }
-
 ```
 
 ## Partials
@@ -214,7 +213,6 @@ An important point to remember is that Hugo will look for files first in the sit
     padding:20px;
     font-size:2em;
 }
-
 ```
 
 Modify this as you see fit!
@@ -274,7 +272,6 @@ allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; pic
 allowfullscreen>
 </iframe>
 </div>
-
 ```
 
 Edit the custom.css file and add this section
@@ -285,5 +282,4 @@ Edit the custom.css file and add this section
     background-color:black;
     text-align:center;
 }
-
 ```

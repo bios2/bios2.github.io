@@ -9,6 +9,7 @@ author:
   - name: "Dr Sarah P. Otto"
     affiliation: University of British Columbia
 base_url: https://bios2.github.io/
+bibliography: citations.bib
 preview: StabilityPictures.jpg
 date: 2020-01-14
 output:
@@ -96,7 +97,7 @@ This PDF was generated from the Mathematica notebook linked above. It doesn't in
 
 ### Other resources
 
-* An Introduction to Mathematical Modeling in Ecology and Evolution (2007) by Otto and Day.  
+* *An Introduction to Mathematical Modeling in Ecology and Evolution* [@otto2007biologist].  
 
 * [Biomathematical modeling lecture notes](http://www.zoology.ubc.ca/~bio301/Bio301/Lectures.html).  
 

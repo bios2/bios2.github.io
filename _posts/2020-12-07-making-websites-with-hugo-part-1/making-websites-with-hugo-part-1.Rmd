@@ -1,7 +1,7 @@
 ---
 title: "Making websites with HUGO, Part 1"
 description: |
-  This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming. HUGO is especially convenient for developing websites for laboratories and researchers, for personal pages or to showcase a particular project. Workshop's content include general concepts behind HUGO, demonstration of the most important features, customization of the website and adapting the template for particular situations.
+  This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.
 authors:
   - Dominique Gravel
   - Guillaume Larocque
