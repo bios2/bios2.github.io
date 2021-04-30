@@ -1,0 +1,36 @@
+---
+title: "Introduction aux concepts EDI en contexte scientifique"
+description: |
+  Une courte introduction aux concepts de l'EDI dans un contexte scientifique.
+author:
+  - name: Marie-José Naud
+    affiliation: Centre d’études nordiques (CEN)
+  - name: Agathe Riallan
+    affiliation: Faculté des Sciences à Université de Sherbrooke
+categories: 
+  - Career
+  - FR
+date: 01-22-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+En 2021, nous aurons une série de formations et d’activités de réflexion sur les questions d’équité, diversité et d’inclusion. Notre objectif est de mettre en place un plan d’action EDI pour le programme afin de consolider un environnement plus inclusif, respectueux et ouvert.
+
+Les objectifs de cet ateliers sont:
+
+* Définir les concepts d’équité, de diversité et d’inclusion
+* Identifier les avantages et les défis de l’ÉDI en contexte universitaire
+* Identifier comment être porteuse ou porteur de l’ÉDI lors de son parcours universitaire 
+* Se sensibiliser à la communication interculturelle (compétence professionnelle de demain)
+
+L’atelier est développé par Agathe Riallan, Coordinatrice facultaire de l’Équité, de la Diversité et de l’Inclusion (ÉDI) de la Faculté des Sciences à Université de Sherbrooke, en collaboration avec Marie-José Naud, Conseillère en équité, diversité et inclusion et coordonnatrice au Centre d’études nordiques (CEN).
+
+<object data="L'equite la Diversite et l'Inclusion_Sciences (BIOS2+_2e cycle - 1h30)_Francais.pdf" type="application/pdf" style="height:200%;width:100%">
+</object>
+<br>
+<br>
+<br>
+<br>
+
