@@ -14,6 +14,6 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-See all of [Philippe's lesson materials](../../Marchand.html)
+See all of [Philippe's lesson materials](https://bios2.github.io/Marchand.html)
 
 
