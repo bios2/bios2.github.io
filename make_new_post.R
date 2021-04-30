@@ -1,6 +1,6 @@
-distill::create_post(title = "Data Visualization",
-                     author = c("Alex Arkilanian", "Katherine Hébert"),
+distill::create_post(title = "Introduction aux concepts EDI en contexte scientifique",
+                     author = c("Agathe Riallan", "Marie-José Naud"),
                      collection = "posts",
-                     date = lubridate::ymd("2020-09-21"),
+                     date = lubridate::ymd("2021-01-22"),
                      edit = FALSE
 )

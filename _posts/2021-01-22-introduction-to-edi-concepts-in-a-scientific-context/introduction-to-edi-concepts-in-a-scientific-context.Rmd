@@ -3,7 +3,10 @@ title: "Introduction to EDI concepts in a scientific context"
 description: |
   A short introduction to EDI concepts in a scientific context.
 author:
+  - name: Marie-José Naud
+    affiliation: Centre d’études nordiques (CEN)
   - name: Agathe Riallan
+    affiliation: Faculté des Sciences à Université de Sherbrooke
 categories: 
   - Career
   - EN
@@ -24,7 +27,7 @@ The objectives of this workshop are:
 
 The workshop is developed by Agathe Riallan, Faculty Coordinator for Equity, Diversity and Inclusion (EDI) at the Faculty of Science, Université de Sherbrooke, in collaboration with Marie-José Naud, Equity, Diversity and Inclusion Advisor and Coordinator at the Centre d’études nordiques (CEN).
 
-<object data="files/L'equite la Diversite et l'Inclusion_Sciences (BIOS2+_2e cycle - 1h30)_English.pdf" type="application/pdf" style="height:200%;width:100%">
+<object data="L'equite la Diversite et l'Inclusion_Sciences (BIOS2+_2e cycle - 1h30)_English.pdf" type="application/pdf" style="height:200%;width:100%">
 </object>
 <br>
 <br>
