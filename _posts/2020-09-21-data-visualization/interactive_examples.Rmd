@@ -1,0 +1,45 @@
+---
+title: "BIOS² Data Visualization Training"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE, warning=FALSE)
+## run this to knit html when ready ##
+#rmarkdown::render('docs/index.Rmd', output_file = 'index.html')
+
+# load packages
+library(ggplot2) # for plots, built layer by layer
+library(dplyr) # for data manipulation
+library(magrittr) # for piping
+library(plotly) # interactive plots
+
+# set ggplot theme
+theme_set(theme_classic() +
+            theme(axis.title = element_text(size = 11, face = "bold"),
+                  axis.text = element_text(size = 11),
+                  plot.title = element_text(size = 13, face = "bold"),
+                  legend.title = element_text(size = 11, face = "bold"),
+                  legend.text = element_text(size = 10)))
+```
+
+## Welcome!
+
+<br>
+This page contains materials for the BIOS² Data Visualization Training developed and delivered by Alex Arkilanian and Katherine Hébert.
+
+## Streamgraph
+
+```{r streamgraph-plot}
+source('scripts/dogs_streamgraph.R')
+pp
+```
+
+----
+
+## Interactive plot
+
+```{r interactive-plot}
+source('scripts/penguins_dimensions_examples.R')
+p
+```

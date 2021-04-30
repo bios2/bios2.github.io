@@ -66,6 +66,18 @@ Session de formation sur l’analyse statistique des données spatiales en écol
       <media:content url="https://bios2.github.io/posts/2020-12-07-making-websites-with-hugo-part-1/thumb.png" medium="image" type="image/png" width="3887" height="1018"/>
     </item>
     <item>
+      <title>Data Visualization</title>
+      <dc:creator>Alex Arkilanian</dc:creator>
+      <dc:creator>Katherine Hébert</dc:creator>
+      <link>https://bios2.github.io/posts/2020-09-21-data-visualization</link>
+      <description>General principles of visualization and graphic design, and techniques of tailored visualization. This training was developed and delivered by Alex Arkilanian and Katherine Hébert on September 21st and 22nd, 2020.</description>
+      <category>Technical</category>
+      <category>EN</category>
+      <guid>https://bios2.github.io/posts/2020-09-21-data-visualization</guid>
+      <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/posts/2020-09-21-data-visualization/thumb.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
       <title>Science Communication</title>
       <dc:creator>Gracielle Higino</dc:creator>
       <dc:creator>Katherine Hébert</dc:creator>
