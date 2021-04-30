@@ -42,7 +42,7 @@
   {
     "path": "posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/",
     "title": "4-Day Training in Spatial Statistics with Philippe Marchand",
-    "description": "A short description of the post.",
+    "description": "Training session about statistical analysis of spatial data in ecology, hosted by Philippe Marchand (UQAT). | \nSession de formation sur l’analyse statistique des données spatiales en écologie, animée par Pr. Philippe Marchand (UQAT).",
     "author": [
       {
         "name": "Philippe Marchand",
@@ -50,11 +50,14 @@
       }
     ],
     "date": "2021-01-12",
-    "categories": [],
-    "contents": "\nSee all of Philippe’s lesson materials\n\n\n\n",
-    "preview": {},
-    "last_modified": "2021-04-30T10:46:01-04:00",
-    "input_file": {}
+    "categories": [
+      "FR",
+      "EN"
+    ],
+    "contents": "\n\n\nTexte en français à la suite.\nSpatial statistics in ecology\nBIOS² hosted an online training session about statistical analysis of spatial data in ecology, led by Pr. Philippe Marchand (UQAT). This 12-hour training was conducted in 4 sessions: January 12, 14, 19 & 21 (2021) from 1:00 to 4:00 pm EST.\nThe content included three types of spatial statistical analyses and their applications to ecology: (1) point pattern analysis to study the distribution of individuals or events in space; (2) geostatistical models to represent the spatial correlation of variables sampled at geolocated points; and (3) areal data models, which apply to measurements taken on areas in space and model spatial relationships as networks of neighbouring regions.\nThe training also included practical exercises using the R statistical programming environment.\nPhilippe Marchand is a professor in ecology and biostatistics at Institut de recherche sur les forêts, Université du Québec en Abitibi-Témiscamingue (UQAT) and BIOS² academic member. His research focuses on modeling processes that influence the spatial distribution of populations, including: seed dispersal and seedling establishment, animal movement, and the spread of forest diseases.\nIf you wish to consult the lesson materials and follow the exercises at your own pace, you can access them through this link. Basic knowledge of linear regression models and experience fitting them in R is recommended. Original repository can be found here.\nStatistiques spatiales en écologie\nBIOS² a organisé une session de formation en ligne sur l’analyse statistique des données spatiales en écologie, animée par le Pr. Philippe Marchand (UQAT). Cette formation de 12 heures s’est déroulée en 4 sessions : 12, 14, 19 & 21 janvier (2021) de 13h00 à 16h00 HNE.\nLe contenu comprenait trois types d’analyses statistiques spatiales et leurs applications en écologie : (1) l’analyse des patrons de points qui permet d’étudier la distribution d’individus ou d’événements dans l’espace; (2) les modèles géostatistiques qui représentent la corrélation spatiale de variables échantillonnées à des points géoréférencés; et (3) les modèles de données aréales, qui s’appliquent aux mesures prises sur des régions de l’espace et qui représentent les liens spatiaux par le biais de réseaux de voisinage.\nLa formation comprenait également des exercices pratiques utilisant l’environnement de programmation statistique R.\nPhilippe Marchand est professeur d’écologie et de biostatistique à l’Institut de recherche sur les forêts, Université du Québec en Abitibi-Témiscamingue (UQAT) et membre académique de BIOS². Ses travaux de recherche portent sur la modélisation de processus qui influencent la distribution spatiale des populations, incluant: la dispersion des graines et l’établissement des semis, le mouvement des animaux, et la propagation des épidémies forestières.\nSi vous souhaitez consulter le matériel pédagogique et suivre les exercices à votre propre rythme, vous pouvez y accéder par ce lien. Une connaissance de base des modèles de régression linéaire et une expérience de l’ajustement de ces modèles dans R sont recommandées. Le repositoire original se trouve ici.\n\n\n\n",
+    "preview": "https://bios2.usherbrooke.ca/wp-content/uploads/2020/12/bernard-hermant-XyzPOIMqWfc-unsplash-2-1-768x512.jpg",
+    "last_modified": "2021-04-30T15:21:52-04:00",
+    "input_file": "4-day-training-in-spatial-statistics-with-philippe-marchand.utf8.md"
   },
   {
     "path": "posts/2020-12-08-making-websites-with-hugo-part-2/",

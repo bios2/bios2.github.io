@@ -2145,7 +2145,6 @@ function init_posts_list() {
 
       // mark posts that match the category visible
       var page_category = window.location.hash.replace(/^#category:/, "");
-      page_category = decodeURIComponent(page_category)
       var posts = $('.post-metadata').map(function(idx, script) {
         var metadata = $.parseJSON($(script).html());
         var post = null;
@@ -2161,7 +2160,7 @@ function init_posts_list() {
       set_posts_visible(posts, true);
 
       // mark the hash active
-      $('.categories li>a[href="' + decodeURIComponent(window.location.hash) + '"]').addClass('active');
+      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
 
       // update the list_caption
       var list_caption = $('.posts-list-caption');
@@ -2265,7 +2264,7 @@ function init_posts_list() {
 </div>
 </a>
 <a href="posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<script class="post-metadata" type="text/json">{"categories":["FR","EN"]}</script>
 <div class="metadata">
 <div class="publishedDate">Jan. 12, 2021</div>
 <div class="dt-authors">
@@ -2273,12 +2272,16 @@ function init_posts_list() {
 </div>
 </div>
 <div class="thumbnail">
-<img/>
+<img src="https://bios2.usherbrooke.ca/wp-content/uploads/2020/12/bernard-hermant-XyzPOIMqWfc-unsplash-2-1-768x512.jpg"/>
 </div>
 <div class="description">
 <h2>4-Day Training in Spatial Statistics with Philippe Marchand</h2>
-<div class="dt-tags"></div>
-<p>A short description of the post.</p>
+<div class="dt-tags">
+<div class="dt-tag">FR</div>
+<div class="dt-tag">EN</div>
+</div>
+<p>Training session about statistical analysis of spatial data in ecology, hosted by Philippe Marchand (UQAT). | 
+Session de formation sur l’analyse statistique des données spatiales en écologie, animée par Pr. Philippe Marchand (UQAT).</p>
 </div>
 </a>
 <a href="posts/2020-12-08-making-websites-with-hugo-part-2/" class="post-preview">
@@ -2420,7 +2423,7 @@ function init_posts_list() {
 </li>
 <li>
 <a href="#category:EN">EN</a>
-<span class="category-count">(5)</span>
+<span class="category-count">(6)</span>
 </li>
 <li>
 <a href="#category:Fellow_contributed">Fellow contributed</a>
@@ -2428,7 +2431,7 @@ function init_posts_list() {
 </li>
 <li>
 <a href="#category:FR">FR</a>
-<span class="category-count">(2)</span>
+<span class="category-count">(3)</span>
 </li>
 <li>
 <a href="#category:Technical">Technical</a>

@@ -33,9 +33,13 @@
       <title>4-Day Training in Spatial Statistics with Philippe Marchand</title>
       <dc:creator>Philippe Marchand</dc:creator>
       <link>https://bios2.github.io/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand</link>
-      <description>A short description of the post.</description>
+      <description>Training session about statistical analysis of spatial data in ecology, hosted by Philippe Marchand (UQAT). | 
+Session de formation sur l’analyse statistique des données spatiales en écologie, animée par Pr. Philippe Marchand (UQAT).</description>
+      <category>FR</category>
+      <category>EN</category>
       <guid>https://bios2.github.io/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand</guid>
       <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.usherbrooke.ca/wp-content/uploads/2020/12/bernard-hermant-XyzPOIMqWfc-unsplash-2-1-768x512.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
       <title>Making websites with HUGO, Part 2</title>
