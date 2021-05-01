@@ -21,13 +21,8 @@
     </item>
     <item>
       <title>Introduction aux concepts EDI en contexte scientifique</title>
-<<<<<<< HEAD
-      <dc:creator>Marie-José Naud</dc:creator>
-      <dc:creator>Agathe Riallan</dc:creator>
-=======
       <dc:creator>Agathe Riallan</dc:creator>
       <dc:creator>Marie-José Naud</dc:creator>
->>>>>>> a32c8eefbf6f6003a55ac4861d8e9f8ffd91d44e
       <link>https://bios2.github.io/posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique</link>
       <description>Une courte introduction aux concepts de l'EDI dans un contexte scientifique.</description>
       <category>Career</category>
