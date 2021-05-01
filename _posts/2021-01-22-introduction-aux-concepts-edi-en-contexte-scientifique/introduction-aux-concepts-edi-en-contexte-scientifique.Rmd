@@ -3,10 +3,10 @@ title: "Introduction aux concepts EDI en contexte scientifique"
 description: |
   Une courte introduction aux concepts de l'EDI dans un contexte scientifique.
 author:
-  - name: Marie-José Naud
-    affiliation: Centre d’études nordiques (CEN)
   - name: Agathe Riallan
     affiliation: Faculté des Sciences à Université de Sherbrooke
+  - name: Marie-José Naud
+    affiliation: Centre d’études nordiques (CEN)  
 categories: 
   - Career
   - FR
