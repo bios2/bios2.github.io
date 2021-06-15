@@ -22,28 +22,45 @@ output:
 
 Texte en français [à la suite](#statistiques-spatiales-en-écologie).
 
-#### Spatial statistics in ecology
+### Spatial statistics in ecology
 
 BIOS² hosted an online training session about statistical analysis of spatial data in ecology, led by Pr. Philippe Marchand (UQAT). This 12-hour training was conducted in 4 sessions: January 12, 14, 19 & 21 (2021) from 1:00 to 4:00 pm EST.
 
-The content included three types of spatial statistical analyses and their applications to ecology: (1) point pattern analysis to study the distribution of individuals or events in space; (2) geostatistical models to represent the spatial correlation of variables sampled at geolocated points; and (3) areal data models, which apply to measurements taken on areas in space and model spatial relationships as networks of neighbouring regions.  
-
-The training also included practical exercises using the R statistical programming environment. 
+The content included three types of spatial statistical analyses and their applications to ecology: (1) point pattern analysis to study the distribution of individuals or events in space; (2) geostatistical models to represent the spatial correlation of variables sampled at geolocated points; and (3) areal data models, which apply to measurements taken on areas in space and model spatial relationships as networks of neighbouring regions. The training also included practical exercises using the R statistical programming environment. 
 
 [Philippe Marchand](https://github.com/pmarchand1) is a professor in ecology and biostatistics at Institut de recherche sur les forêts, Université du Québec en Abitibi-Témiscamingue (UQAT) and BIOS² academic member. His research focuses on modeling processes that influence the spatial distribution of populations, including: seed dispersal and seedling establishment, animal movement, and the spread of forest diseases. 
 
 **If you wish to consult the lesson materials and follow the exercises at your own pace, you can access them through [this link](https://bios2.github.io/Marchand.html#category:EN). Basic knowledge of linear regression models and experience fitting them in R is recommended. Original repository can be found [here](https://github.com/pmarchand1/BIOS2-spatial-stats).**
 
+#### Course outline
+
+| Day | Topics | Links |
+|-|:---|:---|
+|1| &bull; Introduction to spatial statistics <br> &bull; Point pattern analysis<br>| [Spatial Statistics in Ecology, Part 1](https://bios2.github.io/Marchand/2021-01-12-spatial-statistics-in-ecology/) |
+|2| &bull; Spatial correlation <br> &bull; Geoestatistical models | [Spatial Statistics in Ecology, Part 2](https://bios2.github.io/Marchand/2021-01-14-spatial-statistics-in-ecology/) |
+|3| &bull; Areal data <br> &bull; Moran’s I <br> &bull; Spatial autoregression models <br> &bull; Analysis of areal data in R  | [Spatial Statistics in Ecology, Part 3](https://bios2.github.io/Marchand/2021-01-19-spatial-statistics-in-ecology/) |
+|4| &bull; GLMM with spatial Gaussian process <br> &bull; GLMM with spatial autoregression | [Spatial Statistics in Ecology, Part 4](https://bios2.github.io/Marchand/2021-01-21-spatial-statistics-in-ecology/) |
+
+
+
 ---
 
-#### Statistiques spatiales en écologie
+### Statistiques spatiales en écologie
 
 BIOS² a organisé une session de formation en ligne sur l'analyse statistique des données spatiales en écologie, animée par le Pr. Philippe Marchand (UQAT). Cette formation de 12 heures s'est déroulée en 4 sessions : 12, 14, 19 & 21 janvier (2021) de 13h00 à 16h00 HNE.
 
-Le contenu comprenait trois types d'analyses statistiques spatiales et leurs applications en écologie : (1) l’analyse des patrons de points qui permet d’étudier la distribution d’individus ou d’événements dans l’espace; (2) les modèles géostatistiques qui représentent la corrélation spatiale de variables échantillonnées à des points géoréférencés; et (3) les modèles de données aréales, qui s’appliquent aux mesures prises sur des régions de l’espace et qui représentent les liens spatiaux par le biais de réseaux de voisinage.   
-
-La formation comprenait également des exercices pratiques utilisant l'environnement de programmation statistique R. 
+Le contenu comprenait trois types d'analyses statistiques spatiales et leurs applications en écologie : (1) l’analyse des patrons de points qui permet d’étudier la distribution d’individus ou d’événements dans l’espace; (2) les modèles géostatistiques qui représentent la corrélation spatiale de variables échantillonnées à des points géoréférencés; et (3) les modèles de données aréales, qui s’appliquent aux mesures prises sur des régions de l’espace et qui représentent les liens spatiaux par le biais de réseaux de voisinage. La formation comprenait également des exercices pratiques utilisant l'environnement de programmation statistique R. 
 
 [Philippe Marchand](https://github.com/pmarchand1) est professeur d'écologie et de biostatistique à l'Institut de recherche sur les forêts, Université du Québec en Abitibi-Témiscamingue (UQAT) et membre académique de BIOS². Ses travaux de recherche portent sur la modélisation de processus qui influencent la distribution spatiale des populations, incluant: la dispersion des graines et l’établissement des semis, le mouvement des animaux, et la propagation des épidémies forestières.
 
 **Si vous souhaitez consulter le matériel pédagogique et suivre les exercices à votre propre rythme, vous pouvez y accéder par [ce lien](https://bios2.github.io/Marchand.html#category:FR). Une connaissance de base des modèles de régression linéaire et une expérience de l'ajustement de ces modèles dans R sont recommandées. Le repositoire original se trouve [ici](https://github.com/pmarchand1/BIOS2-spatial-stats).**
+
+#### Plan du cours
+
+| Jour | Sujets | Liens |
+|-|:---|:---|
+|1| &bull; Introduction aux statistiques spatiales <br> &bull; Analyse des patrons de points<br>| [Statistiques spatiales en écologie, Partie 1](https://bios2.github.io/Marchand/2021-01-12-statistiques-spatiales-en-cologie-partie-1/) |
+|2| &bull; Corrélation spatiale d’une variable <br> &bull; Modèles géostatistiques | [Spatial Statistics in Ecology, Part 2](https://bios2.github.io/Marchand/2021-01-14-statistiques-spatiales-en-cologie-partie-2/) |
+|3| &bull; Données aréales <br> &bull; Indice de Moran <br> &bull; Modèles d’autorégression spatiale <br> &bull; Analyse des données aréales dans R | [Statistiques spatiales en écologie, Partie 3](https://bios2.github.io/Marchand/2021-01-19-statistiques-spatiales-en-cologie-partie-3/) |
+|4| &bull; GLMM avec processus spatial gaussien <br> &bull; GLMM avec autorégression spatiale | [Statistiques spatiales en écologie, Partie 4](https://bios2.github.io/Marchand/2021-01-21-statistiques-spatiales-en-cologie-partie-4/) |
+
