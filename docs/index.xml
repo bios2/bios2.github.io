@@ -13,32 +13,22 @@
       <dc:creator>Peter Solymos</dc:creator>
       <link>https://bios2.github.io/posts/2021-03-25-point-count-data-analysis</link>
       <description>Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Peter Solymos to BIOS2 Fellows in March 2021.</description>
-      <category>Training</category>
-      <category>Twelve hour</category>
+      <category>Technical</category>
+      <category>EN</category>
       <guid>https://bios2.github.io/posts/2021-03-25-point-count-data-analysis</guid>
       <pubDate>Thu, 25 Mar 2021 00:00:00 +0000</pubDate>
       <media:content url="https://bios2.github.io/posts/2021-03-25-point-count-data-analysis/thumb.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
-      <title>Introduction aux concepts EDI en contexte scientifique</title>
+      <title>Introduction to EDI concepts in a scientific context</title>
       <dc:creator>Agathe Riallan</dc:creator>
       <dc:creator>Marie-José Naud</dc:creator>
       <link>https://bios2.github.io/posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique</link>
-      <description>Une courte introduction aux concepts de l'EDI dans un contexte scientifique.</description>
-      <category>Career</category>
-      <category>FR</category>
-      <guid>https://bios2.github.io/posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique</guid>
-      <pubDate>Fri, 22 Jan 2021 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Introduction to EDI concepts in a scientific context</title>
-      <dc:creator>Marie-José Naud</dc:creator>
-      <dc:creator>Agathe Riallan</dc:creator>
-      <link>https://bios2.github.io/posts/2021-01-22-introduction-to-edi-concepts-in-a-scientific-context</link>
       <description>A short introduction to EDI concepts in a scientific context.</description>
-      <category>Career</category>
+      <category>Transversal competencies</category>
+      <category>FR</category>
       <category>EN</category>
-      <guid>https://bios2.github.io/posts/2021-01-22-introduction-to-edi-concepts-in-a-scientific-context</guid>
+      <guid>https://bios2.github.io/posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique</guid>
       <pubDate>Fri, 22 Jan 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
@@ -54,28 +44,17 @@ Session de formation sur l’analyse statistique des données spatiales en écol
       <media:content url="https://bios2.usherbrooke.ca/wp-content/uploads/2020/12/bernard-hermant-XyzPOIMqWfc-unsplash-2-1-768x512.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
-      <title>Making websites with HUGO, Part 2</title>
+      <title>Making websites with HUGO</title>
       <dc:creator>Dominique Gravel</dc:creator>
       <dc:creator>Guillaume Larocque</dc:creator>
-      <link>https://bios2.github.io/posts/2020-12-08-making-websites-with-hugo-part-2</link>
+      <link>https://bios2.github.io/posts/2020-12-07-making-websites-with-hugo</link>
       <description>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.</description>
       <category>Technical</category>
+      <category>Transversal competencies</category>
       <category>EN</category>
-      <guid>https://bios2.github.io/posts/2020-12-08-making-websites-with-hugo-part-2</guid>
-      <pubDate>Tue, 08 Dec 2020 00:00:00 +0000</pubDate>
-      <media:content url="https://bios2.github.io/posts/2020-12-08-making-websites-with-hugo-part-2/thumb.png" medium="image" type="image/png" width="3887" height="1018"/>
-    </item>
-    <item>
-      <title>Making websites with HUGO, Part 1</title>
-      <dc:creator>Dominique Gravel</dc:creator>
-      <dc:creator>Guillaume Larocque</dc:creator>
-      <link>https://bios2.github.io/posts/2020-12-07-making-websites-with-hugo-part-1</link>
-      <description>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.</description>
-      <category>Technical</category>
-      <category>EN</category>
-      <guid>https://bios2.github.io/posts/2020-12-07-making-websites-with-hugo-part-1</guid>
+      <guid>https://bios2.github.io/posts/2020-12-07-making-websites-with-hugo</guid>
       <pubDate>Mon, 07 Dec 2020 00:00:00 +0000</pubDate>
-      <media:content url="https://bios2.github.io/posts/2020-12-07-making-websites-with-hugo-part-1/thumb.png" medium="image" type="image/png" width="3887" height="1018"/>
+      <media:content url="https://bios2.github.io/posts/2020-12-07-making-websites-with-hugo/thumb.png" medium="image" type="image/png" width="3887" height="1018"/>
     </item>
     <item>
       <title>Data Visualization</title>
@@ -104,26 +83,15 @@ Session de formation sur l’analyse statistique des données spatiales en écol
       <media:content url="https://bios2.github.io/posts/2020-06-15-science-communication/scicomm_training.png" medium="image" type="image/png" width="1548" height="800"/>
     </item>
     <item>
-      <title>Sensibilisation aux réalités autochtones et recherche collaborative, partie 2</title>
+      <title>Sensibilisation aux réalités autochtones et recherche collaborative</title>
       <dc:creator>Dr Catherine-Alexandra Gagnon</dc:creator>
-      <link>https://bios2.github.io/posts/2020-04-30-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-2</link>
+      <link>https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative</link>
       <description>Série de deux webinaires sur la sensibilisation aux réalités autochtones et la recherche en collaboration avec les Autochtones, offert du 28 au 30 avril 2020 par Catherine-Alexandra Gagnon, PhD.</description>
-      <category>Career</category>
+      <category>Transversal competencies</category>
       <category>FR</category>
-      <guid>https://bios2.github.io/posts/2020-04-30-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-2</guid>
-      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
-      <media:content url="https://bios2.github.io/posts/2020-04-30-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-2/thumb.jpg" medium="image" type="image/jpeg"/>
-    </item>
-    <item>
-      <title>Sensibilisation aux réalités autochtones et recherche collaborative, partie 1</title>
-      <dc:creator>Dr Catherine-Alexandra Gagnon</dc:creator>
-      <link>https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-1</link>
-      <description>Série de deux webinaires sur la sensibilisation aux réalités autochtones et la recherche en collaboration avec les Autochtones, offert du 28 au 30 avril 2020 par Catherine-Alexandra Gagnon, PhD.</description>
-      <category>Career</category>
-      <category>FR</category>
-      <guid>https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-1</guid>
+      <guid>https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative</guid>
       <pubDate>Tue, 28 Apr 2020 00:00:00 +0000</pubDate>
-      <media:content url="https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative-partie-1/thumb.jpg" medium="image" type="image/jpeg"/>
+      <media:content url="https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/thumb.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
       <title>Mathematical Modeling in Ecology and Evolution</title>
