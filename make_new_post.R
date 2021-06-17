@@ -1,6 +1,6 @@
-distill::create_post(title = "Introduction aux concepts EDI en contexte scientifique",
-                     author = c("Agathe Riallan", "Marie-José Naud"),
+distill::create_post(title = "(un)Reproducibility Detox",
+                     author = "Gracielle Higino",
                      collection = "posts",
-                     date = lubridate::ymd("2021-01-22"),
+                     date = lubridate::ymd("2021-06-13"),
                      edit = FALSE
 )
