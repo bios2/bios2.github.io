@@ -27,6 +27,7 @@ In this detox week we will reflect and experiment with open science, using our s
 >### **Self-care task of the day**
 >Go to a calm place. No need of silence, just a place where you can just be still. Set a timer for 5min. Take a deep breath in, and a deep breath out. Give your body a scan-through: concentrate in each centimeter of it and try to be aware of how does your body feel there. Everytime you find a contracted muscle, try to relax it. Pay attention to the sounds around you. When the timer is off, take another deep breath.
 
+<!-- pagebreak -->
 
 On the first day of this detox journey, let's reflect on our way to work and how it could be better. Take a moment of your day and think about:
 
@@ -40,7 +41,6 @@ On the first day of this detox journey, let's reflect on our way to work and how
 
 #### Suggested reading
 * [Our path to better science in less time using open data science tools](https://www.nature.com/articles/s41559-017-0160)
-
 
 ---
 
@@ -404,5 +404,52 @@ That's it! There's ***a lot more*** in the git world, but I hope this guide can 
 **Remember**: keep the `main` as untouched as possible, work with branches to test your ideas, and always `push` your modifications before going to bed.
 
 #### Suggested reading
-* This lesson was transleted from a git guide in Portuguese I wrote with Karlo Guidoni in a study group we promoted at Universidade Federal de Goiás, back in 2017, and we used time and again in our reproducibility trainings. You can take a look in our repository [here](https://github.com/kguidonimartins/studygroup-ufg).
+* This lesson was translated from a git guide in Portuguese I wrote with Karlo Guidoni in a study group we promoted at Universidade Federal de Goiás, back in 2017, and we used time and again in our reproducibility trainings. You can take a look in our repository [here](https://github.com/kguidonimartins/studygroup-ufg).
 
+
+# Wednesday - preserve your tools
+>### **Self-care task of the day**
+>
+
+# Thursday - automate your workflows
+>### **Self-care task of the day**
+>
+# Friday - make your code and manuscript reproducible
+>### **Self-care task of the day**
+>
+
+## Reproducible code
+### Style
+! Object names
+
+### Comment
+
+! Documentation day!
+! Make it metadatable (record session info, package versions, dependencies...)
+! Package of packages!
+! Containerize it!
+### Functions and packages
+! Test them!
+## Reproducible manuscripts
+
+
+The logics
+YAML
+
+
+
+Basic syntax - cheat sheet
+
+[R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+<object data="_posts/2021-06-13-unreproducibility-detox/rmarkdown-cheatsheet.pdf" type="application/pdf" style="height:200%;width:100%">
+</object>
+
+#### `rticles`
+
+#### rmdTemplates
+
+#### bookdown
+# Saturday - reproducible challange
+>### **Self-care task of the day**
+>
