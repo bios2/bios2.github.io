@@ -2,78 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://bios2.github.io/about.html</loc>
-    <lastmod>2021-04-14T09:00:46-04:00</lastmod>
+    <lastmod>2021-03-05T18:56:29-05:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/</loc>
-    <lastmod>2021-04-14T09:00:46-04:00</lastmod>
+    <lastmod>2021-03-05T19:04:25-05:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/Marchand.html</loc>
-    <lastmod>2021-04-26T19:09:55-04:00</lastmod>
+    <lastmod>2021-04-29T11:03:25-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2021-05-04-building-r-packages/</loc>
+    <lastmod>2021-06-21T13:17:50-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/posts/2021-03-25-point-count-data-analysis/</loc>
-    <lastmod>2021-06-15T10:28:59-04:00</lastmod>
+    <lastmod>2021-06-21T13:15:07-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/</loc>
-    <lastmod>2021-06-15T10:27:18-04:00</lastmod>
+    <lastmod>2021-06-21T13:15:06-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/</loc>
-    <lastmod>2021-06-15T09:14:20-04:00</lastmod>
+    <lastmod>2021-06-21T13:15:06-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/posts/2020-12-07-making-websites-with-hugo/</loc>
-    <lastmod>2021-06-15T09:27:34-04:00</lastmod>
+    <lastmod>2021-06-21T13:15:06-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/posts/2020-09-21-data-visualization/</loc>
-    <lastmod>2021-04-30T21:20:13-04:00</lastmod>
+    <lastmod>2021-06-21T13:15:04-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/posts/2020-06-15-science-communication/</loc>
-    <lastmod>2021-04-28T11:53:48-04:00</lastmod>
+    <lastmod>2021-04-29T10:20:52-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/</loc>
-    <lastmod>2021-06-15T10:16:11-04:00</lastmod>
+    <lastmod>2021-06-21T13:15:04-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/</loc>
-    <lastmod>2021-04-29T16:12:40-04:00</lastmod>
+    <lastmod>2021-04-30T10:46:01-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/Marchand/2021-01-21-spatial-statistics-in-ecology-part-4/</loc>
-    <lastmod>2021-04-26T19:09:57-04:00</lastmod>
+    <lastmod>2021-04-23T10:35:54-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/Marchand/2021-01-21-statistiques-spatiales-en-cologie-partie-4/</loc>
-    <lastmod>2021-04-26T19:09:58-04:00</lastmod>
+    <lastmod>2021-04-23T10:35:54-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/Marchand/2021-01-19-spatial-statistics-in-ecology/</loc>
-    <lastmod>2021-04-26T19:09:56-04:00</lastmod>
+    <lastmod>2021-04-23T10:35:54-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/Marchand/2021-01-19-statistiques-spatiales-en-cologie-partie-3/</loc>
-    <lastmod>2021-04-26T19:09:57-04:00</lastmod>
+    <lastmod>2021-04-23T10:35:54-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/Marchand/2021-01-14-spatial-statistics-in-ecology/</loc>
-    <lastmod>2021-04-26T19:09:56-04:00</lastmod>
+    <lastmod>2021-04-23T10:35:54-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/Marchand/2021-01-14-statistiques-spatiales-en-cologie-partie-2/</loc>
-    <lastmod>2021-04-26T19:09:56-04:00</lastmod>
+    <lastmod>2021-04-23T10:35:54-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/Marchand/2021-01-12-spatial-statistics-in-ecology/</loc>
-    <lastmod>2021-04-26T19:09:55-04:00</lastmod>
+    <lastmod>2021-04-23T10:35:54-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/Marchand/2021-01-12-statistiques-spatiales-en-cologie-partie-1/</loc>
-    <lastmod>2021-04-26T19:09:56-04:00</lastmod>
+    <lastmod>2021-04-23T10:35:54-04:00</lastmod>
   </url>
 </urlset>

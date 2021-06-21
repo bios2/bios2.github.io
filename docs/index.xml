@@ -7,7 +7,15 @@
     <description>Educational materials, incluing links to pdfs, videos, and code to reproduce all of our trainings.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 04 May 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Building R packages</title>
+      <dc:creator>Andrew MacDonald</dc:creator>
+      <link>https://bios2.github.io/posts/2021-05-04-building-r-packages</link>
+      <description>This practical training will cover the basics of modern package development in R with a focus on the following three aspects: (1) how to turn your code into functions, (2) how to write tests and documentation, and (3) how to share your R package on GitHub..</description>
+      <guid>https://bios2.github.io/posts/2021-05-04-building-r-packages</guid>
+      <pubDate>Tue, 04 May 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Point-count Data Analysis</title>
       <dc:creator>Peter Solymos</dc:creator>

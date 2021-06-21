@@ -1,6 +1,6 @@
-distill::create_post(title = "Introduction aux concepts EDI en contexte scientifique",
-                     author = c("Agathe Riallan", "Marie-José Naud"),
+distill::create_post(title = "Building R packages",
+                     author = "Andrew MacDonald",
                      collection = "posts",
-                     date = lubridate::ymd("2021-01-22"),
-                     edit = FALSE
+                     date = lubridate::ymd("2021-05-04"),
+                     edit = TRUE
 )
