@@ -144,7 +144,7 @@ A combination of your answers will guide you to find the best license for your p
 # Tuesday - control your versions
 
 >### **Self-care task of the day**
->
+>YouTube is full of people making their own version of their favorite songs. The self-care task of the day is to pick one song and look for versions of it on YouTube. Maybe start looking for you favorite song. What are the differences between the versions? Which one did you like the most? Have you discovered a cool artist because of this search? If you couldn't find a cool version of your favorite song, take a moment to imagine how your own version would sound like.
 
 ## What is version control? Why is it cool to use?
 
@@ -407,29 +407,39 @@ That's it! There's ***a lot more*** in the git world, but I hope this guide can 
 * This lesson was translated from a git guide in Portuguese I wrote with Karlo Guidoni in a study group we promoted at Universidade Federal de Goiás, back in 2017, and we used time and again in our reproducibility trainings. You can take a look in our repository [here](https://github.com/kguidonimartins/studygroup-ufg).
 
 
-# Wednesday - preserve your tools
+# Wednesday - make your code and manuscript reproducible
 >### **Self-care task of the day**
->
-
-# Thursday - automate your workflows
->### **Self-care task of the day**
->
-# Friday - make your code and manuscript reproducible
->### **Self-care task of the day**
->
+>What is your favorite food? Do you have a story of a special meal prepared by a loved one? The self-care task of the day is to call someone you love and ask them to explain how to prepare a special meal: one that you really like or one of their favorites. If you're feeling adventurous, try to reproduce it before the next task tomorrow!
 
 ## Reproducible code
+
+Today is the day to make your future-self thank you! We will go through some tips and tricks to make your code more friendly, surviving the test of time and of your own memory.
+
+A reproducible code is an essential part of a reproducible project. Having a code to reproduce your analysis is already a great start, congrats for that! :crown:  
+
+Today we'll try to go a step forward and write a love letter for your future-self by adding comments on your code, rethinking about object names, investigate how we can compile chuncks of code inside functions and, finally, think about reproducible manuscripts.
 ### Style
-! Object names
+There are no right or wrong when it comes to style: there are best-practices and what works better for you or your project.
 
-### Comment
+For example, Google has a series of style guides they use to standardize code writing in the company. There is a [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html) and a [tydiverse style guide](https://style.tidyverse.org/) which can be a good inspiration to find your own. Here's an idea: create a document whre you usually store code. List all conventions you use and have never thought about ***why*** you use them and reflect if they still make sense for you. If they do, keep them. If they don't, try to improve them. Is there any other thing you never thought it was important, but it could be? Do you have a convention for function names, for example? 
 
-! Documentation day!
-! Make it metadatable (record session info, package versions, dependencies...)
-! Package of packages!
-! Containerize it!
+**Object names**  
+Object names are the major source of wasted time for me, especially when the code is already super long with numerous objects. What helps is to know they should be descriptive, yet concise. A good tip is to [name objects as nouns and functions as verbs](https://style.tidyverse.org/syntax.html#object-names).  
+
+>What do you think is important when naming objects in the languages that you use? Take 5 mins to write a list!
+
+### Comment  
+
+Another good practice is to ***always*** comment your code. It will help you understand the decisions you've made throughout this process, that's why a good tip is to write simple comments that state ***why*** you wrote that line of code. What do you think of buying a friend a coffee and ask them to review your code annotation? Maybe you can make some lines clearer while hanging out in a park! 
+
+In a larger scale, it is important to have other kinds of notes: session info, package versions, dependencies and connections between code scripts and data files. A good example of documentation is [this README file](https://github.com/BIO6032/2019_replication_HastingsPowell_1991/blob/master/README.md) written by our colleague Gabriel Dansereau: it contains clear instructions of how to use the code, how the respsitory is organized and even notes on possible warnings and what they mean.
+
+It can be complicated to keep track of everything everyday, so here's a tip: schedule a day in your month (or week) to update the documentation of your project! People call it "documentation day" out there, and you'll find lots of blogposts about it online.
+
 ### Functions and packages
-! Test them!
+
+Functions can help you keep your code cleaner and avoid errors when you repeat actions. 
+
 ## Reproducible manuscripts
 
 
@@ -442,6 +452,7 @@ Basic syntax - cheat sheet
 
 [R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 
+
 <object data="_posts/2021-06-13-unreproducibility-detox/rmarkdown-cheatsheet.pdf" type="application/pdf" style="height:200%;width:100%">
 </object>
 
@@ -450,6 +461,15 @@ Basic syntax - cheat sheet
 #### rmdTemplates
 
 #### bookdown
+
+# Thursday - preserve your tools
+>### **Self-care task of the day**
+>
+# Friday - automate your workflows
+>### **Self-care task of the day**
+>
+
+
 # Saturday - reproducible challange
 >### **Self-care task of the day**
 >
