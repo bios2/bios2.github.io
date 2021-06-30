@@ -17,7 +17,8 @@ knitr::opts_chunk$set(echo = FALSE)
 > First your self care task of the day: Its time to update all those packages (and 
 > maybe even language version) - you deserve to be able to play with the newest 
 > toys on the block. While all this is happening in the background put 
-> your feet up and hit play on your favourite movie.
+> your feet up and hit play on the TV or podcast series you've been meaning to 
+> catch up on.
 
 ## Why do we need a package management system?
 
