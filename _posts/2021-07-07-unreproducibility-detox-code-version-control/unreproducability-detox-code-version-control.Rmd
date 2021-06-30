@@ -60,9 +60,9 @@ these are (somewhat user friendly) and will give you different 'levels' of
 reproducibility. It is of course also possible to mix and match these different 
 platforms.
 
-### {groundhog}
+### `{groundhog}`
 
-[Groundhog](http://groundhogr.com/using/) is a relatively new kid on the block - 
+[`{groundhog}`](http://groundhogr.com/using/) is a relatively new kid on the block - 
 and apparently refers to a film of the same name (no comment on my side as this 
 is a facet of pop culture the eludes me). This is a super easy package to implement 
 (think one function easy) and is a really nice way to 'retrofit' some of your 
@@ -90,20 +90,82 @@ groundhog­.day = "2021-07-07"
 groundhog.library(pkgs, groundhog.day)
 
 ```
-**Limitations:** 
+**Limitations:** Although `{groundhog}` will call the correct/desired packages 
+version there is of course the potential problem that that package version is 
+no longer compatible with the version of `R` that you're running on your 
+machine... This means you might have to have multiple version of `R` on you 
+machine and have to switch between them depending on what project you're using...
 
-### {renv}
+**Pros:** To end on a positive note though - {groundhog} is at least a good 
+starting point for documenting package version _and_ its very easy to implement, 
+especially if you are retrofitting your code.
 
-Backwards compatibility
+### `{renv}`
 
-**How it works:**
+As highlighted above one of the potential issues with {groundhog} id that you 
+might run into language version incompatibility - and by extension still have 
+non-working code (bleak). Enter [`{renv}`](https://rstudio.github.io/renv/articles/renv.html), 
+a handy-dandy, easy to use, dependency management package for your projects. 
+`{renv}` records both `R` and package versions through a series of user called 
+functions. This is very similar to `Julia` where all packages are 'stored' 
+in `Project.toml`. `{renv}` works by crawling through your project 
+directory and recording package version and dependencies in use. This is then 
+saved in the `renv.lock` file and is used to 'load' the project state further 
+down the line.
 
-**Limitations:** 
+**How it works:** The bare bones overview is that you 1) initialise the 
+project-local environment using `renv::init()`, 2) continue tinkering as you 
+go, 3) call `renv::snapshot()` to update `renv.lock` with any new additions, and
+4) if things broke along the way you can call `renv::restore()` to revert back 
+to the previous project state (which hopefully did run)
+
+**Limitations:** One limitation is that `{renv}` relies on you saving a 
+working/functioning state (if you want recall it and have it to work in 
+the future). This makes it a bit tricky to try and quickly 'fix' old code - 
+something that `{groundhog}` is probably more suited for.
+
+**Pros:** `{renv}` saves both package and `R` versions - which is great as it 
+'doubles down' on having things work in harmony. It is also very easy to use - 
+once again you can get away by using a few lines of code. 
 
 ### Docker
 
-OS compatibility
+Docker, a term that can strike trepidation in even some of the most hardened 
+of researchers (although they have the cutest whale as a logo and that 100% 
+drops the scary factor if you as me). Briefly (and slightly facetiously) Docker 
+is  a program that allows you to host different mini computers on your computer.
+This of course means its not just an R-specific tool but one that could probably 
+cover a lot of reproducibility bases for most languages. But there is a reason 
+this is last on the list and that is because it takes a bit more work to implement. 
+So think of this as a long-term project/goal to set yourself up for.
 
-**How it works:**
+**How it works:** As I said earlier with Docker you can run a multiple operating 
+systems (containers) on your machine (the host). This container (your mini 
+computer) is built from an 'image', the catch though - you need to build the 
+image from scratch from OS all the way through to you specific script/code 
+chunk. These build instructions are contained in a `Dockerfile` - which you 
+save in your working directory. Inside this file is the 'recipe' for building 
+your image (and spoiler alert it looks a lot like a series of command line 
+calls). Colin Fay wrote [this](https://colinfay.me/docker-r-reproducibility/) 
+really nice blog about using docker and `R` for beginners. If your interested I 
+suggest starting there! Alternatively `{renv}` also plays well with Docker - 
+have a look at [this vignette](https://rstudio.github.io/renv/articles/docker.html)
 
-**Limitations:** 
+**Limitations:** In the context of what has been discussed in this post Docker is 
+_hard_ yo! In order to write a Docker file you will benefit a lot from being 
+comfortable using and thinking of things in terms of command line. Since you are 
+'creating' you mini computer you need to install a lot of moving parts and 
+components. This means you might be moving from the comfort zone when it comes 
+to programming and could put you off trying the whole reproducibility thing all 
+together. So set realistic expectations here and don't be too hard on yourself!
+
+**Pros:** Docker is very flexible! You can build your mini computer to your 
+specifications and keep your 'normal computer' intact. For example I am 
+running MacOS, `R` 3.5 on my normal computer but can build an image that 
+runs Linux and `R` 3.1. Also because the recipe is contained in the `Dockerfile` 
+anyone can build the image for that project on their machine and have 
+it all just work (avoiding the whole 'but it works on my machine scenario).
+
+## Closing thoughts
+
+TODO
