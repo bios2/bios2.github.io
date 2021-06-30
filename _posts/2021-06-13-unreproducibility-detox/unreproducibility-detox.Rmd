@@ -39,7 +39,7 @@ On the first day of this detox journey, let's reflect on our way to work and how
 
 4. Is reproducibility openness? If a project is reproducible, does that mean it is accessible?
 
-#### Suggested reading
+## Suggested reading
 * [Our path to better science in less time using open data science tools](https://www.nature.com/articles/s41559-017-0160)
 
 ---
@@ -132,8 +132,14 @@ Chosing a license can be a difficult task at first, but if your projects have a 
 
 A combination of your answers will guide you to find the best license for your project which is adequate for your community. There are a couple of online tools that can help you with that! For example, if you are sharing creative work, you can consult the [Creative Commons - Choose a License](https://creativecommons.org/choose/) tool. For other open source software licenses, you can take a look at the [Choose A License](http://choosealicense.com/) website. The cool thing is: you can also **create** your own license! In any case, once you chose the appropriate license for your project, save it in your project root folder with the name "LICENSE" (as a text file). This way, your version control host system will automatically recognize it and display something like "hey, this project has a license!" when someone finds your project.
 
+## Reproducibility task of the day
 
-#### Suggested readings
+Take a moment to evaluate your current project design. How would you make it better? If there is something missing (a license, cool names, a good structure), try to implement what you've learned: one simple thing is enough! Pick one project + one improvement and do it \o/
+You can start even with pen and paper! Scketch what's the flow of information inside your project right now. Is there any redundancies? Could a path between righly connected directories be shorter? Could the names of the folders be shorter if they were arranged some other way?
+
+Need help? Ask a friend to do it with you!
+
+## Suggested readings
 
 * [Mozilla Open Leaders lesson on sharing your work in the open](https://mozilla.github.io/open-leadership-training-series/articles/get-your-project-online/sharing-your-work-in-the-open/)  
 
@@ -403,7 +409,12 @@ That's it! There's ***a lot more*** in the git world, but I hope this guide can 
 
 **Remember**: keep the `main` as untouched as possible, work with branches to test your ideas, and always `push` your modifications before going to bed.
 
-#### Suggested reading
+## Reproducibility task of the day
+Set up the tracking system in your project! Create a remote repository and connect it with your local directory. If you already use a version control system, review your workflow both when working alone and in collaboration: what are the actions most likely to cause a problem? Can you make it simpler?
+
+>hint: make a colorful and friendly sketch of your current workflow!
+
+## Suggested reading
 * This lesson was translated from a git guide in Portuguese I wrote with Karlo Guidoni in a study group we promoted at Universidade Federal de Goiás, back in 2017, and we used time and again in our reproducibility trainings. You can take a look in our repository [here](https://github.com/kguidonimartins/studygroup-ufg).
 
 
@@ -432,35 +443,114 @@ Object names are the major source of wasted time for me, especially when the cod
 
 Another good practice is to ***always*** comment your code. It will help you understand the decisions you've made throughout this process, that's why a good tip is to write simple comments that state ***why*** you wrote that line of code. What do you think of buying a friend a coffee and ask them to review your code annotation? Maybe you can make some lines clearer while hanging out in a park! 
 
-In a larger scale, it is important to have other kinds of notes: session info, package versions, dependencies and connections between code scripts and data files. A good example of documentation is [this README file](https://github.com/BIO6032/2019_replication_HastingsPowell_1991/blob/master/README.md) written by our colleague Gabriel Dansereau: it contains clear instructions of how to use the code, how the respsitory is organized and even notes on possible warnings and what they mean.
+In a larger scale, it is important to have other kinds of notes: session info (e.g., in `R` you can use the command `sessionInfo()`), package versions (e.g., using the `checkpoint` package), dependencies and connections between code scripts and data files. A good example of documentation is [this README file](https://github.com/BIO6032/2019_replication_HastingsPowell_1991/blob/master/README.md) written by our colleague Gabriel Dansereau: it contains clear instructions of how to use the code, how the respsitory is organized and even notes on possible warnings and what they mean.
 
 It can be complicated to keep track of everything everyday, so here's a tip: schedule a day in your month (or week) to update the documentation of your project! People call it "documentation day" out there, and you'll find lots of blogposts about it online.
 
 ### Functions and packages
 
-Functions can help you keep your code cleaner and avoid errors when you repeat actions. 
+Functions can help you keep your code cleaner and avoid errors when you repeat actions. They should replace redundancies in your code. In the same way, when you notice you have to repeat a certain routine in many of your projects, it might be worth writing a package - which is basically a set of functions. When you do that, don't forget to include in your functions some commands that check for errors, like when you try to use a type of variable that is not compatible with the analysis that run inside the function.
+
+>Take a few minutes to have a look at your code now. Can you see something that could be a function? 
 
 ## Reproducible manuscripts
+From reproducible code to reproducible manuscripts is one small leap! It means your manuscript is readable across platforms and systems, and can be compiled locally, and even be automatically updated if your data or analyses change!
+It doesn't mean that the interpretation of the results will be automatically updated aswell - which seems to be a concern for some people, that argue that reproducible manuscripts turn the science activity into a mechanic thing. On the contrary: it allows you to not worry about making figures over and over again, and concentrate in the philosophical part of your science!
 
+There are three basic things we need to understand to produce a reproducible academic manuscript: the [YAML](https://yaml.org/), the [markup language](https://en.wikipedia.org/wiki/Markup_language) (such as Markdown) and the citation/references management.
 
-The logics
-YAML
+**YAML** (YAML Ain't a Markup Language - metalingustics!) is a language that defines the metadata of your document and helps in the compiling process. It tells your computer if the output you need is a `*.pdf` or a `*.doc` file, for example. A YAML block will be the first thing you'll add on your document, and the only tricky thing is to get the indentation right.
 
+For example, the YAML of this very webpage looks like this:
+```yaml
+---
+title: "(un)Reproducibility Detox"
+description: |
+  A seven-day detox routine to improve the reproducibility of your projects!
+author: Gracielle Higino
+preview: thumb.png
+categories: 
+  - Technical
+  - EN
+date: 06-13-2021
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+---
+```
 
+You should add to your manuscript a `bibliography` argument with the path to your `*.bib` file and change the output according to your needs. If you use RStudio, these things are easier to change as it has built-in templates with pre-filled YAML header.
 
-Basic syntax - cheat sheet
+Another cool thing to add in your YAML header is a reference to a template. This will make your computer compile your manuscript in the same format as your template - which helps a lot when you submit the manuscript to a journal.
 
-[R Markdown Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+A couple of packages can help you put together all these pieces. The `rticles` package imports LaTeX templates from scientific journals and implements a dialog box in RStudio. The `rmdTemplates` package has also slides, Word and PDF templates. It helps a lot starting with a template and fill in the blanks![=
 
+### Basic Markdown syntax
 
-<object data="_posts/2021-06-13-unreproducibility-detox/rmarkdown-cheatsheet.pdf" type="application/pdf" style="height:200%;width:100%">
-</object>
+A very complete introduction to R Markdown is provided by RStudio [here](https://rmarkdown.rstudio.com/articles_intro.html) (also make sure to consult the [**R Markdown Cheat Sheet**](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)). This basic syntax is the same used in Markdown and other similar markup languages. For example:
 
-#### `rticles`
+`**this is bold**` -> **this is bold**  
+`*this is italic*` -> *this is italic*  
 
-#### rmdTemplates
+```markdown
+|this|is|a|table|
+|:---|:---:|---:||
+|a|table|this|is|
+```
 
-#### bookdown
+<style type="text/css">
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky">this</th>
+    <th class="tg-c3ow">is</th>
+    <th class="tg-dvpl">a</th>
+    <th class="tg-0pky">table</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0pky">a</td>
+    <td class="tg-c3ow">table</td>
+    <td class="tg-dvpl">this</td>
+    <td class="tg-0pky">is</td>
+  </tr>
+</tbody>
+</table>
+
+### Citation/reference management
+
+A good idea is to keep an up-to-date text file containing all your bibliography that can be referenced in your manuscript. For example, you can ask your reference manager software to generate a `*.bib` file, which usually contains a specific tag for each citation. This tag will then be used in your file as something like `[@TagPaper]`.  
+
+The citation style, on the other hand, is usually defined by a `*.csl` file (https://citationstyles.org/). These files can be found, for example, on the [Zotero Style Repository](https://www.zotero.org/styles), and all you need to do is download the file and keep in in the same directory as your manuscript.
+
+## Reproducibility task of the day
+
+Can you "transform" one of your manuscripts into a reproducible file? What are the steps you neet to take to get there? 
+
+Do you already have all your manuscripts in a reproducible format? Congratulations! Your task will be to help a friend that is learning how to make one!
+
+## Suggested reading
+
+* [Methods in Ecology and Evolution blog post with tips and tricks for reproducible code](https://methodsblog.com/2017/12/06/making-your-code-reproducible/)  
+
+* [BES guide to reproducible code](http://bit.ly/BESGuidesTo)  
+
+* [rOpenSci reproducibility guide](http://ropensci.github.io/reproducibility-guide/sections/writingCode/)  
+
+* [YAML front matter, in the "papaja: Reproducible APA manuscripts with R Markdown"](http://frederikaust.com/papaja_man/r-markdown-components.html#yaml-front-matter)  
+
+* [An R Markdown Template for Academic Manuscripts](http://svmiller.com/blog/2016/02/svm-r-markdown-manuscript/)  
+
+* [Ansible YAML guide](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-basics)
+
+* [Markdown syntax in "R Markdown: The Definitive Guide"](https://bookdown.org/yihui/rmarkdown/markdown-syntax.html)
+
 
 # Thursday - preserve your tools
 >### **Self-care task of the day**
