@@ -35,6 +35,12 @@ e.g. a function name might change or some functionality will be removed in favou
 of another. This means that in a few years that beautifully documented chunk of 
 code that you've written today might not even run. Oh dear...
 
+<center>
+
+![](https://media.giphy.com/media/75nS8yYzKBGQXSHYG3/giphy.gif)
+
+</center>
+
 What this boils down to is that we need to not only think about documenting the 
 code itself but also all the 'backend' features that make it tick i.e. not only 
 what packages we're using but also what version. This can also extend to language 
@@ -177,6 +183,11 @@ some way. That being said asking yourself as to how _paramount_ the longevity
 of your project is a good way to identify and allocate resources to documenting 
 and accommodating for this. For smaller projects you could probably get 
 away with a simple documentation process e.g. `Julia`'s `Project.toml` system or 
-`{renv}` for `R`. But if the project is of high importance it'r recommended to 
-give something like Docker a try...
+`{renv}` for `R`. But if the project is of high importance it's recommended to 
+give something like Docker a try.
 
+<center>
+
+![](https://media.giphy.com/media/aBv5IC7zFOFjVVVs7I/giphy.gif)
+
+</center>
