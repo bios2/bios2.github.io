@@ -184,7 +184,9 @@ of your project is a good way to identify and allocate resources to documenting
 and accommodating for this. For smaller projects you could probably get 
 away with a simple documentation process e.g. `Julia`'s `Project.toml` system or 
 `{renv}` for `R`. But if the project is of high importance it's recommended to 
-give something like Docker a try.
+give something like Docker a try. 
+
+Now lets get out there and give package management a go!
 
 <center>
 
