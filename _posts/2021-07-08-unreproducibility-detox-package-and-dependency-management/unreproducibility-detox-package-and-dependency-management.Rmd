@@ -170,5 +170,13 @@ it all just work (avoiding the whole 'but it works on my machine scenario).
 
 ## Closing thoughts
 
-TODO
+If you want to keep your project pipeline working in the long-term it is 
+important to account for the fact that languages are evolving - which 
+means the scaffold on which your code rests also needs to be documented in 
+some way. That being said asking yourself as to how _paramount_ the longevity 
+of your project is a good way to identify and allocate resources to documenting 
+and accommodating for this. For smaller projects you could probably get 
+away with a simple documentation process e.g. `Julia`'s `Project.toml` system or 
+`{renv}` for `R`. But if the project is of high importance it'r recommended to 
+give something like Docker a try...
 
