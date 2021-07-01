@@ -1,9 +1,9 @@
 ---
-title: "(un)Reproducibility Detox - code version control"
+title: "(un)Reproducibility Detox - Package and Dependency Management"
 description: |
-  How do we keep our work reproducible? A focus on package and language 'version control'.
+  How do we keep our work reproducible? A focus on package, dependency, and language 'version control'.
 Tanya Strydom
-date: 07-07-2021
+date: 07-08-2021
 output:
   distill::distill_article:
     self_contained: false
@@ -12,7 +12,8 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
-# Package management
+
+# Package and Dependency Management
 
 > First your self care task of the day: Its time to update all those packages (and 
 > maybe even language version) - you deserve to be able to play with the newest 
@@ -170,3 +171,4 @@ it all just work (avoiding the whole 'but it works on my machine scenario).
 ## Closing thoughts
 
 TODO
+
