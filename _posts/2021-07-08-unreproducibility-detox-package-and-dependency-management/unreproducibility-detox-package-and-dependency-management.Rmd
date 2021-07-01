@@ -188,6 +188,11 @@ give something like Docker a try.
 
 Now lets get out there and give package management a go!
 
+> Pick and choose the task(s) that you want to take on (or remix one of them)
+>  1. Open one of the older projects on you computer. Does the code run? If no see if you can retrofit it using {groundhog}
+>  2. Open the (or one of) project you are currently working on and run `renv::init()` and see what happens
+>  3. Install Docker and work through [Colin Fay's tutorial](https://colinfay.me/docker-r-reproducibility/)
+
 <center>
 
 ![](https://media.giphy.com/media/aBv5IC7zFOFjVVVs7I/giphy.gif)
