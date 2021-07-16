@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
   <meta name="generator" content="distill" />
-  <link rel="alternate" type="application/rss+xml" href="https://bios2.github.io/index.xml" />
 
   <style type="text/css">
   /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
@@ -86,636 +85,42 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>BIOS2 Education resources: Training materials</title>
+  <title>Introduction to Shiny Apps</title>
+
+  <meta property="description" itemprop="description" content="Shiny is so great."/>
 
 
-  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
-
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-06-22"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-06-22"/>
+  <meta name="article:author" content="Katherine Hébert"/>
+  <meta name="article:author" content="Andrew MacDonald"/>
+  <meta name="article:author" content="Jake Lawlor"/>
+  <meta name="article:author" content="Vincent Bellevance"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="BIOS2 Education resources: Training materials"/>
+  <meta property="og:title" content="Introduction to Shiny Apps"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Shiny is so great."/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="BIOS2 Education resources"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="BIOS2 Education resources: Training materials"/>
+  <meta property="twitter:title" content="Introduction to Shiny Apps"/>
+  <meta property="twitter:description" content="Shiny is so great."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["Training materials"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","draft"]}},"value":[{"type":"character","attributes":{},"value":["Introduction to Shiny Apps"]},{"type":"character","attributes":{},"value":["Shiny is so great.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Katherine Hébert"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Andrew MacDonald"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Jake Lawlor"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Vincent Bellevance"]}]}]},{"type":"character","attributes":{},"value":["06-22-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"logical","attributes":{},"value":[false]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["Capture d’écran, le 2021-06-23 à 05.25.32.png","Capture d’écran, le 2021-06-23 à 05.58.08.png","Capture d’écran, le 2021-06-23 à 06.25.38.png","introduction-to-shiny-apps_files/anchor-4.2.2/anchor.min.js","introduction-to-shiny-apps_files/bowser-1.9.3/bowser.min.js","introduction-to-shiny-apps_files/distill-2.2.21/template.v2.js","introduction-to-shiny-apps_files/header-attrs-2.8/header-attrs.js","introduction-to-shiny-apps_files/jquery-1.11.3/jquery.min.js","introduction-to-shiny-apps_files/popper-2.6.0/popper.min.js","introduction-to-shiny-apps_files/tippy-6.2.7/tippy-bundle.umd.min.js","introduction-to-shiny-apps_files/tippy-6.2.7/tippy-light-border.css","introduction-to-shiny-apps_files/tippy-6.2.7/tippy.css","introduction-to-shiny-apps_files/tippy-6.2.7/tippy.umd.min.js","introduction-to-shiny-apps_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  /* adjust viewport for navbar height */
-  /* helps vertically center bootstrap (non-distill) content */
-  .min-vh-100 {
-    min-height: calc(100vh - 100px) !important;
-  }
-
-  </style>
-
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-                : '';
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description || ''}
-                  </div>
-                  <div class="search-item-preview">
-                    ${img}
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  .nav-search {
-    font-size: x-small;
-  }
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2031,454 +1436,377 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
-  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
-  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="introduction-to-shiny-apps_files/header-attrs-2.8/header-attrs.js"></script>
+  <script src="introduction-to-shiny-apps_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="introduction-to-shiny-apps_files/popper-2.6.0/popper.min.js"></script>
+  <link href="introduction-to-shiny-apps_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="introduction-to-shiny-apps_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="introduction-to-shiny-apps_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="introduction-to-shiny-apps_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="introduction-to-shiny-apps_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="introduction-to-shiny-apps_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="introduction-to-shiny-apps_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Training materials","authors":[]}
+{"title":"Introduction to Shiny Apps","description":"Shiny is so great.","authors":[{"author":"Katherine Hébert","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Andrew MacDonald","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Jake Lawlor","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""},{"author":"Vincent Bellevance","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-06-22T00:00:00.000+00:00","citationText":"Hébert, et al., 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a class="logo" href="https://bios2.usherbrooke.ca/">
-<img src="Bios2_reverse.png" alt="Logo"/>
-</a>
-<a href="index.html" class="title">BIOS2 Education resources</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<div class="nav-dropdown">
-<button class="nav-dropbtn">
-Longer Trainings
- 
-<span class="down-arrow">&#x25BE;</span>
-</button>
-<div class="nav-dropdown-content">
-<a href="Marchand.html">Spatial Statistics</a>
-</div>
-</div>
-<a href="about.html">About</a>
-<a href="https://github.com/bios2/bios2.github.io">
-<i class="fab fa-github" aria-hidden="true"></i>
-</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="Training materials">Training materials</h1>
-<a href="posts/2021-06-22-introduction-to-shiny-apps/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">June 22, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Katherine Hébert</div>
-<div class="dt-author">Andrew MacDonald</div>
-<div class="dt-author">Jake Lawlor</div>
-<div class="dt-author">Vincent Bellevance</div>
-</div>
-</div>
-<div class="thumbnail"></div>
-<div class="description">
-<h2>Introduction to Shiny Apps</h2>
-<div class="dt-tags"></div>
-<p>Shiny is so great.</p>
-</div>
-</a>
-<a href="posts/2021-05-04-building-r-packages/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">May 4, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Andrew MacDonald</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Building R packages</h2>
-<div class="dt-tags"></div>
-<p>This practical training will cover the basics of modern package development in R with a focus on the following three aspects: (1) how to turn your code into functions, (2) how to write tests and documentation, and (3) how to share your R package on GitHub..</p>
-</div>
-</a>
-<a href="posts/2021-03-25-point-count-data-analysis/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Technical","EN"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 25, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Peter Solymos</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-03-25-point-count-data-analysis/thumb.jpg"/>
-</div>
-<div class="description">
-<h2>Point-count Data Analysis</h2>
-<div class="dt-tags">
-<div class="dt-tag">Technical</div>
-<div class="dt-tag">EN</div>
-</div>
-<p>Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Peter Solymos to BIOS2 Fellows in March 2021.</p>
-</div>
-</a>
-<a href="posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Transversal competencies","FR","EN"]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 22, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Agathe Riallan</div>
-<div class="dt-author">Marie-José Naud</div>
-</div>
-</div>
-<div class="thumbnail">
-<img/>
-</div>
-<div class="description">
-<h2>Introduction to EDI concepts in a scientific context</h2>
-<div class="dt-tags">
-<div class="dt-tag">Transversal competencies</div>
-<div class="dt-tag">FR</div>
-<div class="dt-tag">EN</div>
-</div>
-<p>A short introduction to EDI concepts in a scientific context.</p>
-</div>
-</a>
-<a href="posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["FR","EN"]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 12, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Philippe Marchand</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="https://bios2.usherbrooke.ca/wp-content/uploads/2020/12/bernard-hermant-XyzPOIMqWfc-unsplash-2-1-768x512.jpg"/>
-</div>
-<div class="description">
-<h2>4-Day Training in Spatial Statistics with Philippe Marchand</h2>
-<div class="dt-tags">
-<div class="dt-tag">FR</div>
-<div class="dt-tag">EN</div>
-</div>
-<p>Training session about statistical analysis of spatial data in ecology, hosted by Philippe Marchand (UQAT). | 
-Session de formation sur l’analyse statistique des données spatiales en écologie, animée par Pr. Philippe Marchand (UQAT).</p>
-</div>
-</a>
-<a href="posts/2020-12-07-making-websites-with-hugo/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Technical","Transversal competencies","EN"]}</script>
-<div class="metadata">
-<div class="publishedDate">Dec. 7, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Dominique Gravel</div>
-<div class="dt-author">Guillaume Larocque</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2020-12-07-making-websites-with-hugo/thumb.png"/>
-</div>
-<div class="description">
-<h2>Making websites with HUGO</h2>
-<div class="dt-tags">
-<div class="dt-tag">Technical</div>
-<div class="dt-tag">Transversal competencies</div>
-<div class="dt-tag">EN</div>
-</div>
-<p>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.</p>
-</div>
-</a>
-<a href="posts/2020-09-21-data-visualization/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Technical","Fellow contributed","EN"]}</script>
-<div class="metadata">
-<div class="publishedDate">Sept. 21, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Alex Arkilanian</div>
-<div class="dt-author">Katherine Hébert</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2020-09-21-data-visualization/thumb.jpg"/>
-</div>
-<div class="description">
-<h2>Data Visualization</h2>
-<div class="dt-tags">
-<div class="dt-tag">Technical</div>
-<div class="dt-tag">Fellow contributed</div>
-<div class="dt-tag">EN</div>
-</div>
-<p>General principles of visualization and graphic design, and techniques of tailored visualization. This training was developed and delivered by Alex Arkilanian and Katherine Hébert on September 21st and 22nd, 2020.</p>
-</div>
-</a>
-<a href="posts/2020-06-15-science-communication/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Career","Fellow contributed","EN"]}</script>
-<div class="metadata">
-<div class="publishedDate">June 15, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Gracielle Higino</div>
-<div class="dt-author">Katherine Hébert</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2020-06-15-science-communication/scicomm_training.png"/>
-</div>
-<div class="description">
-<h2>Science Communication</h2>
-<div class="dt-tags">
-<div class="dt-tag">Career</div>
-<div class="dt-tag">Fellow contributed</div>
-<div class="dt-tag">EN</div>
-</div>
-<p>Recordings, content and handouts from a 6-hour Science Communication workshop held over two days on 15 and 16 June 2020.</p>
-</div>
-</a>
-<a href="posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Transversal competencies","FR"]}</script>
-<div class="metadata">
-<div class="publishedDate">April 28, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Dr Catherine-Alexandra Gagnon</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/thumb.jpg"/>
-</div>
-<div class="description">
-<h2>Sensibilisation aux réalités autochtones et recherche collaborative</h2>
-<div class="dt-tags">
-<div class="dt-tag">Transversal competencies</div>
-<div class="dt-tag">FR</div>
-</div>
-<p>Série de deux webinaires sur la sensibilisation aux réalités autochtones et la recherche en collaboration avec les Autochtones, offert du 28 au 30 avril 2020 par Catherine-Alexandra Gagnon, PhD.</p>
-</div>
-</a>
-<a href="posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["Technical","EN"]}</script>
-<div class="metadata">
-<div class="publishedDate">Jan. 14, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Dr Sarah P. Otto</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/StabilityPictures.jpg"/>
-</div>
-<div class="description">
-<h2>Mathematical Modeling in Ecology and Evolution</h2>
-<div class="dt-tags">
-<div class="dt-tag">Technical</div>
-<div class="dt-tag">EN</div>
-</div>
-<p>This workshop will introduce participants to the logic behind modeling in biology, focusing on developing equations, finding equilibria, analyzing stability, and running simulations.Techniques will be illustrated with the software tools, Mathematica and Maxima. This workshop was held in two parts: January 14 and January 16, 2020.</p>
-</div>
-</a>
-</div>
-<div class="posts-sidebar">
-<div class="sidebar-section categories">
-<h3>Categories</h3>
-<ul>
-<li>
-<a href="#category:Articles">Articles</a>
-<span class="category-count">(10)</span>
-</li>
-<li>
-<a href="#category:Career">Career</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:EN">EN</a>
-<span class="category-count">(7)</span>
-</li>
-<li>
-<a href="#category:Fellow_contributed">Fellow contributed</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:FR">FR</a>
-<span class="category-count">(3)</span>
-</li>
-<li>
-<a href="#category:Technical">Technical</a>
-<span class="category-count">(4)</span>
-</li>
-<li>
-<a href="#category:Transversal_competencies">Transversal competencies</a>
-<span class="category-count">(3)</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Training materials</h1>
+<h1>Introduction to Shiny Apps</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-
+<p><p>Shiny is so great.</p></p>
 </div>
 
+<div class="d-byline">
+  Katherine Hébert  
+  
+,   Andrew MacDonald  
+  
+,   Jake Lawlor  
+  
+,   Vincent Bellevance  
+  
+<br/>06-22-2021
+</div>
 
 <div class="d-article">
+<p>Jake <em>LOVES</em> Shiny</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h2 id="why-do-you-want-to-use-shiny">Why do you want to use Shiny?</h2>
+<p>There are many reaasons to consider using Shiny for a project:</p>
+<ul>
+<li>sharing results from a paper with your readers</li>
+<li>helping you explore a model, mathematics, simulations</li>
+<li>letting non R users use R.</li>
+</ul>
+<h2 id="hello-shiny">Hello Shiny</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Define UI for app that draws a histogram ----</span>
+<span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+
+  <span class='co'># App title ----</span>
+  <span class='fu'>titlePanel</span><span class='op'>(</span><span class='st'>"Hello Shiny!"</span><span class='op'>)</span>,
+
+  <span class='co'># Sidebar layout with input and output definitions ----</span>
+  <span class='fu'>sidebarLayout</span><span class='op'>(</span>
+
+    <span class='co'># Sidebar panel for inputs ----</span>
+    <span class='fu'>sidebarPanel</span><span class='op'>(</span>
+
+      <span class='co'># Input: Slider for the number of bins ----</span>
+      <span class='fu'>sliderInput</span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"bins"</span>,
+                  label <span class='op'>=</span> <span class='st'>"Number of bins:"</span>,
+                  min <span class='op'>=</span> <span class='fl'>1</span>,
+                  max <span class='op'>=</span> <span class='fl'>50</span>,
+                  value <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>
+
+    <span class='op'>)</span>,
+
+    <span class='co'># Main panel for displaying outputs ----</span>
+    <span class='fu'>mainPanel</span><span class='op'>(</span>
+
+      <span class='co'># Output: Histogram ----</span>
+      <span class='fu'>plotOutput</span><span class='op'>(</span>outputId <span class='op'>=</span> <span class='st'>"distPlot"</span><span class='op'>)</span>
+
+    <span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="golem">Golem</h3>
+<p>First step is creating your own golem project:</p>
+<p><img src="Capture%20d%E2%80%99e%CC%81cran,%20le%202021-06-23%20a%CC%80%2005.25.32.png" /></p>
+<p>golem provides you with some very helpful “workflow” scripts:</p>
+<p>Edit the Description by filling in this function in <code>01_dev.R</code></p>
+<p>Then, add all the dependencies</p>
+<p>Together, this edits the <code>DESCRIPTION</code> of your R package to look something like this:</p>
+<p>Now we can start building the app.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>app_ui</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>request</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>tagList</span><span class='op'>(</span>
+    <span class='co'># Leave this function for adding external resources</span>
+    <span class='fu'>golem_add_external_resources</span><span class='op'>(</span><span class='op'>)</span>,
+    <span class='co'># Your application UI logic </span>
+    <span class='fu'>shinydashboard</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardPage.html'>dashboardPage</a></span><span class='op'>(</span>
+      header <span class='op'>=</span> <span class='fu'>shinydashboard</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardHeader.html'>dashboardHeader</a></span><span class='op'>(</span>
+        title <span class='op'>=</span> <span class='st'>"Exploring Volcanoes of the World"</span>,
+        titleWidth <span class='op'>=</span> <span class='fl'>350</span> <span class='co'># since we have a long title, we need to extend width element in pixels</span>
+      <span class='op'>)</span>,
+      sidebar <span class='op'>=</span> <span class='fu'>shinydashboard</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span>disable <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>, <span class='co'># here, we only have one tab, so we don't need a sidebar</span>
+      body <span class='op'>=</span> <span class='fu'>shinydashboard</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardBody.html'>dashboardBody</a></span><span class='op'>(</span>
+        <span class='co'># make first row of elements (actually, this will be the only row)</span>
+        <span class='fu'>fluidRow</span><span class='op'>(</span>
+          <span class='co'># make first column, 25% of page - width = 3 of 12 colums</span>
+          <span class='fu'>column</span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>3</span>,
+                 <span class='co'># box 1 : input for selecting volcano type</span>
+                 <span class='co'>#-----------------------------------------------</span>
+                 <span class='fu'>shinydashboard</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/box.html'>box</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='cn'>NULL</span>, status <span class='op'>=</span> <span class='st'>"primary"</span>,
+                     title  <span class='op'>=</span> <span class='st'>"Selection Criteria"</span>, solidHeader <span class='op'>=</span> <span class='cn'>T</span>
+                     
+                     <span class='co'>## CHECKBOX HERE</span>
+                     
+                 <span class='op'>)</span>, <span class='co'># end box 1</span>
+                 <span class='co'># box 2: ggplot of selected volcanoes by continent</span>
+                 <span class='co'>#------------------------------------------------</span>
+                 <span class='fu'>shinydashboard</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/box.html'>box</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='cn'>NULL</span>, status <span class='op'>=</span> <span class='st'>"primary"</span>,
+                     solidHeader <span class='op'>=</span> <span class='cn'>TRUE</span>, collapsible <span class='op'>=</span> <span class='cn'>T</span>,
+                     title <span class='op'>=</span> <span class='st'>"Volcanoes by Continent"</span>
+                     
+                     <span class='co'>## PLOT HERE</span>
+
+                 <span class='op'>)</span> <span class='co'># end box 2</span>
+          <span class='op'>)</span>, <span class='co'># end column 1</span>
+          
+          <span class='co'># second column - 75% of page (9 of 12 columns)</span>
+          <span class='fu'>column</span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>9</span>,
+                 
+                 <span class='co'># Box 3: leaflet map</span>
+                 <span class='fu'>shinydashboard</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/box.html'>box</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='cn'>NULL</span>, background <span class='op'>=</span> <span class='st'>"light-blue"</span>
+                                     
+                                     <span class='co'>## MAP HERE </span>
+                                     
+                 <span class='op'>)</span> <span class='co'># end box with map</span>
+          <span class='op'>)</span> <span class='co'># end second column</span>
+        <span class='op'>)</span> <span class='co'># end fluidrow</span>
+      <span class='op'>)</span> <span class='co'># end body</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>This indicates where each of the three components of the app would go.</p>
+<p>At this point we can run the app to get a very empty-looking UI:</p>
+<p><img src="Capture%20d%E2%80%99e%CC%81cran,%20le%202021-06-23%20a%CC%80%2005.58.08.png" /></p>
+<h3 id="golem-modules">Golem modules</h3>
+<p>We could split this app into three different sections, corresponding to each of the three boxes:</p>
+<ol type="1">
+<li>Filter the type of volcano we see</li>
+<li>take the filtered volcanoes and plot a stacked bar chart</li>
+<li>take the filtered volcanoes and plot a map</li>
+</ol>
+<h3 id="selecting-the-volcanoes">Selecting the volcanoes</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#' volcano_select UI Function</span>
+<span class='co'>#'</span>
+<span class='co'>#' @description A shiny Module.</span>
+<span class='co'>#'</span>
+<span class='co'>#' @param id,input,output,session Internal parameters for {shiny}.</span>
+<span class='co'>#'</span>
+<span class='co'>#' @noRd </span>
+<span class='co'>#'</span>
+<span class='co'>#' @importFrom shiny NS tagList </span>
+<span class='va'>mod_volcano_select_ui</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='fu'>NS</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>
+  <span class='fu'>tagList</span><span class='op'>(</span>
+    <span class='co'># Widget specifying the species to be included on the plot</span>
+    <span class='fu'>shinyWidgets</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinyWidgets/man/checkboxGroupButtons.html'>checkboxGroupButtons</a></span><span class='op'>(</span>
+      inputId <span class='op'>=</span> <span class='fu'>ns</span><span class='op'>(</span><span class='st'>"volcano_type"</span><span class='op'>)</span>,
+      label <span class='op'>=</span> <span class='st'>"Volcano Type"</span>,
+      choices <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Stratovolcano"</span> , <span class='st'>"Shield"</span> ,<span class='st'>"Cone"</span> ,   <span class='st'>"Caldera"</span> ,    <span class='st'>"Volcanic Field"</span>,
+                  <span class='st'>"Complex"</span> , <span class='st'>"Other"</span>,   <span class='st'>"Lava Dome"</span>  , <span class='st'>"Submarine"</span>    <span class='op'>)</span>,
+      checkIcon <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+        yes <span class='op'>=</span> <span class='va'>tags</span><span class='op'>$</span><span class='fu'>i</span><span class='op'>(</span>class <span class='op'>=</span> <span class='st'>"fa fa-check-square"</span>, 
+                     style <span class='op'>=</span> <span class='st'>"color: steelblue"</span><span class='op'>)</span>,
+        no <span class='op'>=</span> <span class='va'>tags</span><span class='op'>$</span><span class='fu'>i</span><span class='op'>(</span>class <span class='op'>=</span> <span class='st'>"fa fa-square-o"</span>, 
+                    style <span class='op'>=</span> <span class='st'>"color: steelblue"</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='op'>)</span> <span class='co'># end checkboxGroupButtons</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
+    
+<span class='co'>#' volcano_select Server Functions</span>
+<span class='co'>#'</span>
+<span class='co'>#' @noRd </span>
+<span class='va'>mod_volcano_select_server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>volcano</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'>moduleServer</span><span class='op'>(</span> <span class='va'>id</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span><span class='op'>{</span>
+    <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='va'>session</span><span class='op'>$</span><span class='va'>ns</span>
+    
+    <span class='co'># make reactive dataset</span>
+    <span class='co'># ------------------------------------------------</span>
+    <span class='co'># Make a subset of the data as a reactive value</span>
+    <span class='co'># this subset pulls volcano rows only in the selected types of volcano</span>
+    <span class='va'>selected_volcanoes</span> <span class='op'>&lt;-</span> <span class='fu'>reactive</span><span class='op'>(</span><span class='op'>{</span>
+      
+      <span class='fu'>req</span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>volcano_type</span><span class='op'>)</span>
+      
+      <span class='va'>volcano</span> <span class='op'>%&gt;%</span>
+        
+        <span class='co'># select only volcanoes in the selected volcano type (by checkboxes in the UI)</span>
+        <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>volcano_type_consolidated</span> <span class='op'>%in%</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>volcano_type</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+        <span class='co'># Space to add your suggested filter here!! </span>
+        <span class='co'># --- --- --- --- --- --- --- --- --- --- --- --- ---</span>
+        <span class='co'># filter() %&gt;%</span>
+        <span class='co'># --- --- --- --- --- --- --- --- --- --- --- --- ---</span>
+        <span class='co'># change volcano type into factor (this makes plotting it more consistent)</span>
+        <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>volcano_type_consolidated <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>volcano_type_consolidated</span>,
+                                                  levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Stratovolcano"</span> , <span class='st'>"Shield"</span>,  <span class='st'>"Cone"</span>,   <span class='st'>"Caldera"</span>, <span class='st'>"Volcanic Field"</span>,
+                                                             <span class='st'>"Complex"</span> ,  <span class='st'>"Other"</span> ,  <span class='st'>"Lava Dome"</span> , <span class='st'>"Submarine"</span> <span class='op'>)</span> <span class='op'>)</span> <span class='op'>)</span>
+    <span class='op'>}</span><span class='op'>)</span>
+    
+  <span class='op'>}</span><span class='op'>)</span>
+<span class='op'>}</span>
+    
+<span class='co'>## To be copied in the UI</span>
+<span class='co'># mod_volcano_select_ui("volcano_select_1")</span>
+    
+<span class='co'>## To be copied in the server</span>
+<span class='co'># mod_volcano_select_server("volcano_select_1")</span>
+</code></pre>
+</div>
+</div>
+<p>I also like to test my modules by using them to create a toy Shiny app. The best place to do this is by using a testthat directory. This is another great advantage of using a package workflow. You can set this up easily with <code>usethis::use_test()</code>: just run <code>usethis::use_test</code> from the R console when you have the module open.</p>
+<p>Then write a simple test like this</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>test_that</span><span class='op'>(</span><span class='st'>"volcano selection module works"</span>, <span class='op'>{</span>
+  
+  <span class='fu'>testthat</span><span class='fu'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/skip.html'>skip_if_not</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  
+  
+  <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+  <span class='co'>## To be copied in the UI</span>
+  <span class='fu'>mod_volcano_select_ui</span><span class='op'>(</span><span class='st'>"volcano_select_1"</span><span class='op'>)</span>,
+  <span class='fu'>tableOutput</span><span class='op'>(</span><span class='st'>"table"</span><span class='op'>)</span>
+  <span class='op'>)</span>
+  
+  <span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='co'>## To be copied in the server</span>
+    <span class='va'>volcano_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='st'>"data/volcanoes.rds"</span><span class='op'>)</span>
+    <span class='va'>selected_data</span> <span class='op'>&lt;-</span> <span class='fu'>mod_volcano_select_server</span><span class='op'>(</span><span class='st'>"volcano_select_1"</span>,
+                                               volcano <span class='op'>=</span> <span class='va'>volcano_data</span><span class='op'>)</span>
+    
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>table</span> <span class='op'>&lt;-</span> <span class='fu'>renderTable</span><span class='op'>(</span><span class='fu'>selected_data</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>}</span>
+  
+  <span class='fu'>shinyApp</span><span class='op'>(</span>ui <span class='op'>=</span> <span class='va'>ui</span>, server <span class='op'>=</span> <span class='va'>server</span><span class='op'>)</span>
+  
+<span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Which generates the following simple app:</p>
+<p><img src="Capture%20d%E2%80%99e%CC%81cran,%20le%202021-06-23%20a%CC%80%2006.25.38.png" /></p>
+<h3 id="barplot-of-continents">Barplot of continents</h3>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#' continentplot UI Function</span>
+<span class='co'>#'</span>
+<span class='co'>#' @description A shiny Module.</span>
+<span class='co'>#'</span>
+<span class='co'>#' @param id,input,output,session Internal parameters for {shiny}.</span>
+<span class='co'>#'</span>
+<span class='co'>#' @noRd </span>
+<span class='co'>#'</span>
+<span class='co'>#' @importFrom shiny NS tagList </span>
+<span class='va'>mod_continentplot_ui</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='fu'>NS</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>
+  <span class='fu'>tagList</span><span class='op'>(</span>
+    <span class='fu'>plotOutput</span><span class='op'>(</span><span class='fu'>ns</span><span class='op'>(</span><span class='st'>"barplot"</span><span class='op'>)</span>, <span class='co'># this calls to object continentplot that is made in the server page</span>
+               height <span class='op'>=</span> <span class='fl'>350</span><span class='op'>)</span>
+  <span class='op'>)</span>
+<span class='op'>}</span>
+    
+<span class='co'>#' continentplot Server Functions</span>
+<span class='co'>#'</span>
+<span class='co'>#' @noRd </span>
+<span class='va'>mod_continentplot_server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>volcano</span>, <span class='va'>selected_volcanoes</span><span class='op'>)</span><span class='op'>{</span>
+  
+  <span class='co'># kind of helpful</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span><span class='op'>(</span><span class='fu'>is.reactive</span><span class='op'>(</span><span class='va'>selected_volcanoes</span><span class='op'>)</span><span class='op'>)</span>
+  
+  <span class='fu'>moduleServer</span><span class='op'>(</span> <span class='va'>id</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span><span class='op'>{</span>
+    <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='va'>session</span><span class='op'>$</span><span class='va'>ns</span>
+ 
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>barplot</span> <span class='op'>&lt;-</span> <span class='fu'>renderPlot</span><span class='op'>(</span><span class='op'>{</span>
+      
+      <span class='co'># create basic barplot</span>
+      <span class='va'>barplot</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>volcano</span>,
+                                 <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>continent</span>,
+                            fill <span class='op'>=</span> <span class='va'>volcano_type_consolidated</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+        <span class='co'># update theme and axis labels:</span>
+        <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span>
+        <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.background  <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>"transparent"</span>,fill <span class='op'>=</span> <span class='st'>"transparent"</span><span class='op'>)</span>,
+                       panel.background <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>"transparent"</span>,fill<span class='op'>=</span><span class='st'>"transparent"</span><span class='op'>)</span>,
+                       panel.border     <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>"transparent"</span>,fill<span class='op'>=</span><span class='st'>"transparent"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span>
+        <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='cn'>NULL</span>, y<span class='op'>=</span><span class='cn'>NULL</span>, title <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span> <span class='op'>+</span>
+        <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.text.x <span class='op'>=</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>angle<span class='op'>=</span><span class='fl'>45</span>,hjust<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+      
+      
+      <span class='co'># IF a selected_volcanoes() object exists, update the blank ggplot. </span>
+      <span class='co'># basically this makes it not mess up when nothing is selected</span>
+      
+      <span class='va'>barplot</span> <span class='op'>&lt;-</span> <span class='va'>barplot</span> <span class='op'>+</span>
+        <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>selected_volcanoes</span><span class='op'>(</span><span class='op'>)</span>, show.legend <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span> <span class='op'>+</span>
+        <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'>RColorBrewer</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html'>brewer.pal</a></span><span class='op'>(</span><span class='fl'>9</span>,<span class='st'>"Set1"</span><span class='op'>)</span>, drop<span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span> <span class='op'>+</span>
+        <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_discrete.html'>scale_x_discrete</a></span><span class='op'>(</span>drop<span class='op'>=</span><span class='cn'>F</span><span class='op'>)</span>
+      
+      
+      <span class='co'># print the plot</span>
+      <span class='va'>barplot</span>
+      
+    <span class='op'>}</span><span class='op'>)</span> <span class='co'># end renderplot command</span>
+    
+    
+  <span class='op'>}</span><span class='op'>)</span>
+<span class='op'>}</span>
+    
+<span class='co'>## To be copied in the UI</span>
+<span class='co'># mod_continentplot_ui("continentplot_1")</span>
+    
+<span class='co'>## To be copied in the server</span>
+<span class='co'># mod_continentplot_server("continentplot_1")</span>
+</code></pre>
+</div>
+</div>
+<p>the test</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>test_that</span><span class='op'>(</span><span class='st'>"volano barplot works"</span>, <span class='op'>{</span>
+  
+  <span class='fu'>testthat</span><span class='fu'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/skip.html'>skip_if_not</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  
+  
+  <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+    <span class='co'>## To be copied in the UI</span>
+    <span class='fu'>mod_continentplot_ui</span><span class='op'>(</span><span class='st'>"continentplot_1"</span><span class='op'>)</span>,
+    <span class='fu'>tableOutput</span><span class='op'>(</span><span class='st'>"table"</span><span class='op'>)</span>
+  <span class='op'>)</span>
+  
+  <span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='co'>## To be copied in the server</span>
+    <span class='va'>volcano_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='st'>"data/volcanoes.rds"</span><span class='op'>)</span>
+    <span class='va'>volcano_recent</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>volcano_data</span>, <span class='va'>last_eruption_year</span> <span class='op'>&gt;</span> <span class='fl'>2000</span><span class='op'>)</span>
+    <span class='fu'>mod_continentplot_server</span><span class='op'>(</span><span class='st'>"continentplot_1"</span>,
+                                              volcano <span class='op'>=</span> <span class='va'>volcano_data</span>,
+                                              selected_volcanoes <span class='op'>=</span> <span class='fu'>reactive</span><span class='op'>(</span><span class='va'>volcano_recent</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>}</span>
+  
+  <span class='fu'>shinyApp</span><span class='op'>(</span>ui <span class='op'>=</span> <span class='va'>ui</span>, server <span class='op'>=</span> <span class='va'>server</span><span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2490,12 +1818,7 @@ Session de formation sur l’analyse statistique des données spatiales en écol
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom">
-<h3 id="updates-and-corrections">Corrections</h3>
-<p>If you see mistakes or want to suggest changes, please <a href="https://github.com/bios2/bios2.github.io/issues/new">create an issue</a> on the source repository.</p>
-<h3 id="reuse">Reuse</h3>
-<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source code is available at <a href="https://github.com/bios2/bios2.github.io">https://github.com/bios2/bios2.github.io</a>, unless otherwise noted. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
-</div>
+<div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->

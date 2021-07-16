@@ -7,7 +7,18 @@
     <description>Educational materials, incluing links to pdfs, videos, and code to reproduce all of our trainings.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 04 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Introduction to Shiny Apps</title>
+      <dc:creator>Katherine Hébert</dc:creator>
+      <dc:creator>Andrew MacDonald</dc:creator>
+      <dc:creator>Jake Lawlor</dc:creator>
+      <dc:creator>Vincent Bellevance</dc:creator>
+      <link>https://bios2.github.io/posts/2021-06-22-introduction-to-shiny-apps</link>
+      <description>Shiny is so great.</description>
+      <guid>https://bios2.github.io/posts/2021-06-22-introduction-to-shiny-apps</guid>
+      <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Building R packages</title>
       <dc:creator>Andrew MacDonald</dc:creator>
