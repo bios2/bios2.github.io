@@ -23,6 +23,7 @@
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -118,7 +119,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["Capture d’écran, le 2021-06-23 à 05.25.32.png","Capture d’écran, le 2021-06-23 à 05.58.08.png","Capture d’écran, le 2021-06-23 à 06.25.38.png","introduction-to-shiny-apps_files/anchor-4.2.2/anchor.min.js","introduction-to-shiny-apps_files/bowser-1.9.3/bowser.min.js","introduction-to-shiny-apps_files/distill-2.2.21/template.v2.js","introduction-to-shiny-apps_files/header-attrs-2.8/header-attrs.js","introduction-to-shiny-apps_files/jquery-1.11.3/jquery.min.js","introduction-to-shiny-apps_files/popper-2.6.0/popper.min.js","introduction-to-shiny-apps_files/tippy-6.2.7/tippy-bundle.umd.min.js","introduction-to-shiny-apps_files/tippy-6.2.7/tippy-light-border.css","introduction-to-shiny-apps_files/tippy-6.2.7/tippy.css","introduction-to-shiny-apps_files/tippy-6.2.7/tippy.umd.min.js","introduction-to-shiny-apps_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["Capture d’écran, le 2021-06-23 à 05.25.32.png","Capture d’écran, le 2021-06-23 à 05.58.08.png","Capture d’écran, le 2021-06-23 à 06.25.38.png","images/app-ids.png","images/app-in1.png","images/app-in2.png","images/app-output.png","images/app-reactiveid.png","images/darklytheme.png","images/plotOutput.png","images/thematic_plot.png","images/thematic.png","introduction-to-shiny-apps_files/anchor-4.2.2/anchor.min.js","introduction-to-shiny-apps_files/bowser-1.9.3/bowser.min.js","introduction-to-shiny-apps_files/distill-2.2.21/template.v2.js","introduction-to-shiny-apps_files/header-attrs-2.8/header-attrs.js","introduction-to-shiny-apps_files/jquery-1.11.3/jquery.min.js","introduction-to-shiny-apps_files/popper-2.6.0/popper.min.js","introduction-to-shiny-apps_files/tippy-6.2.7/tippy-bundle.umd.min.js","introduction-to-shiny-apps_files/tippy-6.2.7/tippy-light-border.css","introduction-to-shiny-apps_files/tippy-6.2.7/tippy.css","introduction-to-shiny-apps_files/tippy-6.2.7/tippy.umd.min.js","introduction-to-shiny-apps_files/webcomponents-2.0.0/webcomponents.js","katherine.html"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1436,7 +1437,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="introduction-to-shiny-apps_files/header-attrs-2.8/header-attrs.js"></script>
+  <script src="introduction-to-shiny-apps_files/header-attrs-2.7/header-attrs.js"></script>
   <script src="introduction-to-shiny-apps_files/jquery-1.11.3/jquery.min.js"></script>
   <script src="introduction-to-shiny-apps_files/popper-2.6.0/popper.min.js"></script>
   <link href="introduction-to-shiny-apps_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
@@ -1486,10 +1487,342 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<p>Jake <em>LOVES</em> Shiny</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># default to not evaluate chunks</span>
+<span class='fu'>knitr</span><span class='fu'>::</span><span class='va'><a href='https://rdrr.io/pkg/knitr/man/opts_chunk.html'>opts_chunk</a></span><span class='op'>$</span><span class='fu'>set</span><span class='op'>(</span>eval <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="plots">Plots</h2>
+<p>Shiny is an excellent tool for visual exploration - it is at its most useful when a user can <em>see</em> something change before their eyes according to some selections. This is a great way to allow users to explore a dataset, explore the results of some analyses according to different parameters, and so on!</p>
+<p>Let’s now add a plot to our Shiny app, to visualize the distribution of a variable depending on user input. We’ll be adding the <code>ggplot2</code> and <code>ggridges</code> packages in the set-up step at the top of our <code>app.R</code> to allow us to make a plot.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># load packages</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://shiny.rstudio.com/'>shiny</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://wilkelab.org/ggridges/'>ggridges</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://here.r-lib.org/'>here</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://readr.tidyverse.org'>readr</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="user-interface">User interface</h3>
+<p>To add a plot in our Shiny, we need to indicate where the plot should appear in the app. We can do this with <code>plotOutput()</code>, a similar function to <code>tableOutput()</code> in the previous section that is meant for plot outputs, as the name suggests.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Define UI for application that makes a table andplots the Volcano Explosivity </span>
+<span class='co'># Index for the most eruptive volcanoes within a selected range of years</span>
+
+<span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
+  
+  <span class='co'># Application title ----</span>
+  
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/titlePanel.html'>titlePanel</a></span><span class='op'>(</span><span class='st'>"Exploring volcano explosivity"</span><span class='op'>)</span>,
+  
+  <span class='co'># Input interface ----</span>
+  
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarLayout</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarPanel</a></span><span class='op'>(</span>
+      
+      <span class='co'># Sidebar with a slider range input</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span><span class='op'>(</span><span class='st'>"years"</span>, <span class='co'># the id your server needs to use the selected value</span>
+                  label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h3</a></span><span class='op'>(</span><span class='st'>"Years"</span><span class='op'>)</span>,
+                  min <span class='op'>=</span> <span class='fl'>1900</span>, max <span class='op'>=</span> <span class='fl'>2020</span>, <span class='co'># maximum range that can be selected</span>
+                  value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2010</span>, <span class='fl'>2020</span><span class='op'>)</span> <span class='co'># this is the default slider position</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>,
+  
+  <span class='co'># Show the outputs from the server ---------------</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>mainPanel</a></span><span class='op'>(</span>
+    
+    <span class='co'># Show a ridgeplot of explosivity index for selected volcanoes</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span><span class='op'>(</span><span class='st'>"ridgePlot"</span><span class='op'>)</span>,
+    
+    <span class='co'># then, show the table we made in the previous step</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"erupt_table"</span><span class='op'>)</span>
+    
+  <span class='op'>)</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Now our Shiny app knows where we want to place our plot.</p>
+<h3 id="server">Server</h3>
+<p>We now need to create the plot we want to show in our app. This plot will change depending on one or several reactive values that the user can input or select in our UI.</p>
+<p>We link the UI and server together with IDs that are assigned to each object. Above, we told the UI to expect a plot output with the ID <code>"ridgePlot"</code>. In the server, we will create a plot and render it as a plot object using <code>renderPlot()</code>, and we will assign this plot output to the ID we call in the UI (as <code>output$ridgePlot</code>).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Define server logic required to make your output(s)</span>
+<span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+
+  
+  <span class='co'># prepare the data</span>
+  <span class='co'># ----------------------------------------------------------</span>
+  
+  <span class='co'># read the dataset</span>
+  <span class='va'>eruptions</span> <span class='op'>&lt;-</span> <span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a href='https://readr.tidyverse.org/reference/read_rds.html'>read_rds</a></span><span class='op'>(</span><span class='fu'>here</span><span class='fu'>::</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>"data"</span>, <span class='st'>"eruptions.rds"</span><span class='op'>)</span><span class='op'>)</span>
+  
+  <span class='co'># filter the dataset to avoid overloading the plot </span>
+  <span class='va'>eruptions</span> <span class='op'>&lt;-</span> <span class='va'>eruptions</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>eruptions</span><span class='op'>$</span><span class='va'>volcano_name</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>eruptions</span><span class='op'>$</span><span class='va'>volcano_name</span><span class='op'>)</span> <span class='op'>&gt;</span> <span class='fl'>30</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>,<span class='op'>]</span>
+  <span class='co'># this subsets to volcanoes that have erupted more than 30 times</span>
+  
+  
+  <span class='co'># make reactive dataset</span>
+  <span class='co'># ----------------------------------------------------------</span>
+  
+  <span class='co'># subset volcano data with input year range</span>
+  <span class='va'>eruptions_filtered</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>eruptions</span>, <span class='va'>start_year</span> <span class='op'>&gt;=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>years</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&amp;</span> <span class='va'>end_year</span> <span class='op'>&lt;=</span> <span class='va'>input</span><span class='op'>$</span><span class='va'>years</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+  
+    
+  <span class='co'># create and render the outputs</span>
+  <span class='co'># ----------------------------------------------------------</span>
+  
+  <span class='co'># create the table of volcanoes</span>
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>erupt_table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span><span class='op'>(</span><span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>eruptions_filtered</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+  
+  <span class='co'># render the plot output</span>
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>ridgePlot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>
+    
+    <span class='co'># create the plot</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>eruptions_filtered</span><span class='op'>(</span><span class='op'>)</span>,
+           <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>vei</span>,
+               y <span class='op'>=</span> <span class='va'>volcano_name</span>,
+               fill <span class='op'>=</span> <span class='va'>volcano_name</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+      <span class='co'># we are using a ridgeplot geom here, from the ggridges package</span>
+      <span class='fu'><a href='https://wilkelab.org/ggridges/reference/geom_density_ridges.html'>geom_density_ridges</a></span><span class='op'>(</span> size <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># line width</span>
+      
+      <span class='co'># label the axes</span>
+      <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Volcano Explosivity Index"</span>, y <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> <span class='op'>+</span>
+      
+      <span class='co'># adjust the ggplot theme to make the plot "prettier"</span>
+      <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_classic</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+      <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='st'>"none"</span>,
+            axis.text <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span>, face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+            axis.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>14</span>, face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>}</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<h3 id="the-shiny-app">The Shiny app</h3>
+<p>Now, if we run the Shiny app, we have a plot above the table we made previously. They are positioned in this way because the <code>plotOutput()</code> comes before the <code>tableOutput()</code> in the UI.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Run the application</span>
+<span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>ui <span class='op'>=</span> <span class='va'>ui</span>, server <span class='op'>=</span> <span class='va'>server</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p><img src="images/plotOutput.png" /></p>
+<h2 id="review-how-a-shiny-app-works">Review: How a Shiny app works</h2>
+<h3 id="building-blocks">Building blocks</h3>
+<p>We’ve now seen the basic building blocks of a Shiny app:</p>
+<ul>
+<li>The <strong>user interface</strong>, which determines how the app “looks”. This is how we tell Shiny where to ask for user inputs, and where to put any outputs we create.</li>
+<li><strong>Reactive values</strong>, which are values that change according to user inputs. These are values that affect the outputs we create in the Shiny app, such as tables or plots.</li>
+<li>The <strong>server</strong>, where we use reactive values to generate some outputs.</li>
+</ul>
+<h3 id="ids">IDs</h3>
+<p>The <strong>user interface</strong> and <strong>server</strong> communicate through IDs that we assign to inputs from the user and outputs from the server.</p>
+<p><img src="images/app-ids.png" /></p>
+<p>We use an ID (<em>in orange</em>) to link the user input in the UI to the reactive values used in the server:</p>
+<p><img src="images/app-reactiveid.png" /></p>
+<p>We use another ID (<em>in blue</em>) to link the output created in the server to the output shown in the user interface:</p>
+<p><img src="images/app-output.png" /></p>
+<h3 id="organisation">Organisation</h3>
+<p>These elements can all be placed in one script named <code>app.R</code> or separately in scripts named <code>ui.R</code> and <code>server.R</code>. The choice is up to you, although it becomes easier to work in separate <code>ui.R</code> and <code>server.R</code> scripts when the Shiny app becomes more complex.</p>
+<h4 id="example-1-everything-in-app.r">Example 1: Everything in <code>app.R</code></h4>
+<p><img src="images/app-in1.png" /> #### Example 2: Split things into <code>ui.R</code> and <code>server.R</code></p>
+<p><img src="images/app-in2.png" /></p>
+<h2 id="customising-the-theme">Customising the theme</h2>
+<p>If you’d like to go one step further, you can also customize the appearance of your Shiny app using built-in themes, or creating your own themes.</p>
+<h3 id="using-built-in-themes">Using built-in themes</h3>
+<p>There are several built-in themes in Shiny, which allow you to quickly change the appearance of your app. You can browse a gallery of available themes here <a href="https://rstudio.github.io/shinythemes/">here</a>, or test themes out interactively <a href="https://shiny.rstudio.com/gallery/shiny-theme-selector.html">here</a>.</p>
+<p>Let’s try the <em>darkly</em> theme on our Shiny app. To do this, we will need the <code>shinythemes</code> package.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rstudio.github.io/shinythemes/'>shinythemes</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>We can change the theme of our previous app with one line of code:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Define UI for application that makes a table andplots the Volcano Explosivity </span>
+<span class='co'># Index for the most eruptive volcanoes within a selected range of years</span>
+
+<span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
+  
+  <span class='co'># Application title ----</span>
+  
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/titlePanel.html'>titlePanel</a></span><span class='op'>(</span><span class='st'>"Exploring volcano explosivity"</span><span class='op'>)</span>,
+  
+  <span class='co'># Input interface ----</span>
+  
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarLayout</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarPanel</a></span><span class='op'>(</span>
+      
+      <span class='co'># Sidebar with a slider range input</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span><span class='op'>(</span><span class='st'>"years"</span>, <span class='co'># the id your server needs to use the selected value</span>
+                  label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h3</a></span><span class='op'>(</span><span class='st'>"Years"</span><span class='op'>)</span>,
+                  min <span class='op'>=</span> <span class='fl'>1900</span>, max <span class='op'>=</span> <span class='fl'>2020</span>, <span class='co'># maximum range that can be selected</span>
+                  value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2010</span>, <span class='fl'>2020</span><span class='op'>)</span> <span class='co'># this is the default slider position</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>,
+  
+  <span class='co'># Show the outputs from the server ---------------</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>mainPanel</a></span><span class='op'>(</span>
+    
+    <span class='co'># Show a ridgeplot of explosivity index for selected volcanoes</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span><span class='op'>(</span><span class='st'>"ridgePlot"</span><span class='op'>)</span>,
+    
+    <span class='co'># then, show the table we made in the previous step</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"erupt_table"</span><span class='op'>)</span>
+    
+  <span class='op'>)</span>,
+  
+  <span class='co'># Customize the theme ----------------------</span>
+  
+  <span class='co'># Use the darkly theme</span>
+  theme <span class='op'>=</span> <span class='fu'>shinythemes</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinythemes/man/shinytheme.html'>shinytheme</a></span><span class='op'>(</span><span class='st'>"darkly"</span><span class='op'>)</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Now, if we run the app, it looks a little different:</p>
+<p><img src="images/darklytheme.png" /></p>
+<h3 id="using-a-custom-theme">Using a custom theme</h3>
+<p>You can also go beyond the built-in themes, and create your own custom theme with the fonts and colours of your choice. You can also apply this theme to the outputs rendered in the app, to bring all the visuals together for a more cohesive look.</p>
+<h4 id="customizing-a-theme">Customizing a theme</h4>
+<p>To create a custom theme, we will be using the <code>bs_theme()</code> function from the <code>bslib</code> package.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rstudio.github.io/bslib/'>bslib</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Create a custom theme </span>
+<span class='va'>cute_theme</span> <span class='op'>&lt;-</span> <span class='fu'>bslib</span><span class='fu'>::</span><span class='fu'><a href='https://rstudio.github.io/bslib/reference/bs_theme.html'>bs_theme</a></span><span class='op'>(</span>
+  
+  bg <span class='op'>=</span> <span class='st'>"#36393B"</span>, <span class='co'># background colour</span>
+  fg <span class='op'>=</span> <span class='st'>"#FFD166"</span>, <span class='co'># most of the text on your app</span>
+  primary <span class='op'>=</span> <span class='st'>"#F26430"</span>, <span class='co'># buttons, ...</span>
+  
+  <span class='co'># you can also choose fonts</span>
+  base_font <span class='op'>=</span> <span class='fu'><a href='https://rstudio.github.io/bslib/reference/font_face.html'>font_google</a></span><span class='op'>(</span><span class='st'>"Open Sans"</span><span class='op'>)</span>,
+  heading_font <span class='op'>=</span> <span class='fu'><a href='https://rstudio.github.io/bslib/reference/font_face.html'>font_google</a></span><span class='op'>(</span><span class='st'>"Open Sans"</span><span class='op'>)</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>To apply this theme to our Shiny app (and the outputs), we will be using the <code>thematic</code> package.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rstudio.github.io/thematic/'>thematic</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>There are two essential elements to apply a custom theme to a Shiny app: activating thematic, and setting the user interface’s theme to the custom theme (<code>cute_theme</code>) we created above.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Activate thematic</span>
+<span class='co'># so your R outputs will be changed to match up with your chosen styling</span>
+<span class='fu'>thematic</span><span class='fu'>::</span><span class='fu'><a href='https://rstudio.github.io/thematic/reference/thematic_on.html'>thematic_shiny</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='co'># Define UI for application that makes a table andplots the Volcano Explosivity </span>
+<span class='co'># Index for the most eruptive volcanoes within a selected range of years</span>
+
+<span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
+  
+  <span class='co'># Application title ----</span>
+  
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/titlePanel.html'>titlePanel</a></span><span class='op'>(</span><span class='st'>"Exploring volcano explosivity"</span><span class='op'>)</span>,
+  
+  <span class='co'># Input interface ----</span>
+  
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarLayout</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarPanel</a></span><span class='op'>(</span>
+      
+      <span class='co'># Sidebar with a slider range input</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span><span class='op'>(</span><span class='st'>"years"</span>, <span class='co'># the id your server needs to use the selected value</span>
+                  label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/builder.html'>h3</a></span><span class='op'>(</span><span class='st'>"Years"</span><span class='op'>)</span>,
+                  min <span class='op'>=</span> <span class='fl'>1900</span>, max <span class='op'>=</span> <span class='fl'>2020</span>, <span class='co'># maximum range that can be selected</span>
+                  value <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2010</span>, <span class='fl'>2020</span><span class='op'>)</span> <span class='co'># this is the default slider position</span>
+      <span class='op'>)</span>
+    <span class='op'>)</span>
+  <span class='op'>)</span>,
+  
+  <span class='co'># Show the outputs from the server ---------------</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>mainPanel</a></span><span class='op'>(</span>
+    
+    <span class='co'># Show a ridgeplot of explosivity index for selected volcanoes</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span><span class='op'>(</span><span class='st'>"ridgePlot"</span><span class='op'>)</span>,
+    
+    <span class='co'># then, show the table we made in the previous step</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"erupt_table"</span><span class='op'>)</span>
+    
+  <span class='op'>)</span>,
+  
+  <span class='co'># Customize the theme ----------------------</span>
+  
+  <span class='co'># Use our custom theme</span>
+  theme <span class='op'>=</span> <span class='va'>cute_theme</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Now, if we run the app, the user interface and plot theme is set to the colours and fonts we set in <code>cute_theme</code>:</p>
+<p><img src="images/thematic.png" /></p>
+<p>Here, <code>thematic</code> is not changing the colours used to represent a variable in our plot, because this is an informative colour scale (unlike the colour of axis labels, lines, and the plot background). However, if we remove this colour variable in our ridgeplot in the server, thematic will change the plot colours as well. Here is a simplified example of our server to see what these changes would look like:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Define server logic required to make your output(s)</span>
+<span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
+  
+  <span class='co'>#... (all the good stuff we wrote above)</span>
+  
+  <span class='co'># render the plot output</span>
+  <span class='va'>output</span><span class='op'>$</span><span class='va'>ridgePlot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>
+    
+    <span class='co'># create the plot</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'>eruptions_filtered</span><span class='op'>(</span><span class='op'>)</span>,
+           <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>vei</span>,
+               y <span class='op'>=</span> <span class='va'>volcano_name</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='co'># we are no longer setting </span>
+             <span class='co'># the fill argument to a variable</span>
+             
+             <span class='co'># we are using a ridgeplot geom here, from the ggridges package</span>
+             <span class='fu'><a href='https://wilkelab.org/ggridges/reference/geom_density_ridges.html'>geom_density_ridges</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>.5</span><span class='op'>)</span> <span class='op'>+</span> 
+             
+             <span class='co'># label the axes</span>
+             <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Volcano Explosivity Index"</span>, y <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> <span class='op'>+</span>
+             
+             <span class='co'># remove the "classic" ggplot2 so it doesn't override thematic's changes</span>
+             <span class='co'># theme_classic() + </span>
+             <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>legend.position <span class='op'>=</span> <span class='st'>"none"</span>,
+                   axis.text <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span>, face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span>,
+                   axis.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>14</span>, face <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span><span class='op'>)</span>
+           <span class='op'>}</span><span class='op'>)</span>
+    <span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Now, our plot’s theme follows the app’s custom theme as well:</p>
+<p><img src="images/thematic_plot.png" /></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Jake <em>LOVES</em> Shiny</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <h2 id="why-do-you-want-to-use-shiny">Why do you want to use Shiny?</h2>
-<p>There are many reaasons to consider using Shiny for a project:</p>
+<p>There are many reasons to consider using Shiny for a project:</p>
 <ul>
 <li>sharing results from a paper with your readers</li>
 <li>helping you explore a model, mathematics, simulations</li>
@@ -1499,19 +1832,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Define UI for app that draws a histogram ----</span>
-<span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+<span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
 
   <span class='co'># App title ----</span>
-  <span class='fu'>titlePanel</span><span class='op'>(</span><span class='st'>"Hello Shiny!"</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/titlePanel.html'>titlePanel</a></span><span class='op'>(</span><span class='st'>"Hello Shiny!"</span><span class='op'>)</span>,
 
   <span class='co'># Sidebar layout with input and output definitions ----</span>
-  <span class='fu'>sidebarLayout</span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarLayout</a></span><span class='op'>(</span>
 
     <span class='co'># Sidebar panel for inputs ----</span>
-    <span class='fu'>sidebarPanel</span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>sidebarPanel</a></span><span class='op'>(</span>
 
       <span class='co'># Input: Slider for the number of bins ----</span>
-      <span class='fu'>sliderInput</span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"bins"</span>,
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sliderInput.html'>sliderInput</a></span><span class='op'>(</span>inputId <span class='op'>=</span> <span class='st'>"bins"</span>,
                   label <span class='op'>=</span> <span class='st'>"Number of bins:"</span>,
                   min <span class='op'>=</span> <span class='fl'>1</span>,
                   max <span class='op'>=</span> <span class='fl'>50</span>,
@@ -1520,10 +1853,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     <span class='op'>)</span>,
 
     <span class='co'># Main panel for displaying outputs ----</span>
-    <span class='fu'>mainPanel</span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/sidebarLayout.html'>mainPanel</a></span><span class='op'>(</span>
 
       <span class='co'># Output: Histogram ----</span>
-      <span class='fu'>plotOutput</span><span class='op'>(</span>outputId <span class='op'>=</span> <span class='st'>"distPlot"</span><span class='op'>)</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span><span class='op'>(</span>outputId <span class='op'>=</span> <span class='st'>"distPlot"</span><span class='op'>)</span>
 
     <span class='op'>)</span>
   <span class='op'>)</span>
@@ -1533,7 +1866,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <h3 id="golem">Golem</h3>
 <p>First step is creating your own golem project:</p>
-<p><img src="Capture%20d%E2%80%99e%CC%81cran,%20le%202021-06-23%20a%CC%80%2005.25.32.png" /></p>
+<p><img src="Capture%20d%E2%80%99%C3%A9cran,%20le%202021-06-23%20%C3%A0%2005.25.32.png" /></p>
 <p>golem provides you with some very helpful “workflow” scripts:</p>
 <p>Edit the Description by filling in this function in <code>01_dev.R</code></p>
 <p>Then, add all the dependencies</p>
@@ -1542,7 +1875,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>app_ui</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>request</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'>tagList</span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tag.html'>tagList</a></span><span class='op'>(</span>
     <span class='co'># Leave this function for adding external resources</span>
     <span class='fu'>golem_add_external_resources</span><span class='op'>(</span><span class='op'>)</span>,
     <span class='co'># Your application UI logic </span>
@@ -1554,9 +1887,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       sidebar <span class='op'>=</span> <span class='fu'>shinydashboard</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardSidebar.html'>dashboardSidebar</a></span><span class='op'>(</span>disable <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>, <span class='co'># here, we only have one tab, so we don't need a sidebar</span>
       body <span class='op'>=</span> <span class='fu'>shinydashboard</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/dashboardBody.html'>dashboardBody</a></span><span class='op'>(</span>
         <span class='co'># make first row of elements (actually, this will be the only row)</span>
-        <span class='fu'>fluidRow</span><span class='op'>(</span>
+        <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidRow</a></span><span class='op'>(</span>
           <span class='co'># make first column, 25% of page - width = 3 of 12 colums</span>
-          <span class='fu'>column</span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>3</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>3</span>,
                  <span class='co'># box 1 : input for selecting volcano type</span>
                  <span class='co'>#-----------------------------------------------</span>
                  <span class='fu'>shinydashboard</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/box.html'>box</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='cn'>NULL</span>, status <span class='op'>=</span> <span class='st'>"primary"</span>,
@@ -1577,7 +1910,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           <span class='op'>)</span>, <span class='co'># end column 1</span>
           
           <span class='co'># second column - 75% of page (9 of 12 columns)</span>
-          <span class='fu'>column</span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>9</span>,
+          <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/column.html'>column</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>9</span>,
                  
                  <span class='co'># Box 3: leaflet map</span>
                  <span class='fu'>shinydashboard</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinydashboard/man/box.html'>box</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='cn'>NULL</span>, background <span class='op'>=</span> <span class='st'>"light-blue"</span>
@@ -1596,7 +1929,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p>This indicates where each of the three components of the app would go.</p>
 <p>At this point we can run the app to get a very empty-looking UI:</p>
-<p><img src="Capture%20d%E2%80%99e%CC%81cran,%20le%202021-06-23%20a%CC%80%2005.58.08.png" /></p>
+<p><img src="Capture%20d%E2%80%99%C3%A9cran,%20le%202021-06-23%20%C3%A0%2005.58.08.png" /></p>
 <h3 id="golem-modules">Golem modules</h3>
 <p>We could split this app into three different sections, corresponding to each of the three boxes:</p>
 <ol type="1">
@@ -1617,8 +1950,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='co'>#'</span>
 <span class='co'>#' @importFrom shiny NS tagList </span>
 <span class='va'>mod_volcano_select_ui</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='fu'>NS</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>
-  <span class='fu'>tagList</span><span class='op'>(</span>
+  <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/NS.html'>NS</a></span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tag.html'>tagList</a></span><span class='op'>(</span>
     <span class='co'># Widget specifying the species to be included on the plot</span>
     <span class='fu'>shinyWidgets</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/shinyWidgets/man/checkboxGroupButtons.html'>checkboxGroupButtons</a></span><span class='op'>(</span>
       inputId <span class='op'>=</span> <span class='fu'>ns</span><span class='op'>(</span><span class='st'>"volcano_type"</span><span class='op'>)</span>,
@@ -1638,16 +1971,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='co'>#'</span>
 <span class='co'>#' @noRd </span>
 <span class='va'>mod_volcano_select_server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>volcano</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='fu'>moduleServer</span><span class='op'>(</span> <span class='va'>id</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/moduleServer.html'>moduleServer</a></span><span class='op'>(</span> <span class='va'>id</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span><span class='op'>{</span>
     <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='va'>session</span><span class='op'>$</span><span class='va'>ns</span>
     
     <span class='co'># make reactive dataset</span>
     <span class='co'># ------------------------------------------------</span>
     <span class='co'># Make a subset of the data as a reactive value</span>
     <span class='co'># this subset pulls volcano rows only in the selected types of volcano</span>
-    <span class='va'>selected_volcanoes</span> <span class='op'>&lt;-</span> <span class='fu'>reactive</span><span class='op'>(</span><span class='op'>{</span>
+    <span class='va'>selected_volcanoes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span><span class='op'>(</span><span class='op'>{</span>
       
-      <span class='fu'>req</span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>volcano_type</span><span class='op'>)</span>
+      <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/req.html'>req</a></span><span class='op'>(</span><span class='va'>input</span><span class='op'>$</span><span class='va'>volcano_type</span><span class='op'>)</span>
       
       <span class='va'>volcano</span> <span class='op'>%&gt;%</span>
         
@@ -1683,10 +2016,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <span class='fu'>testthat</span><span class='fu'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/skip.html'>skip_if_not</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
   
   
-  <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+  <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
   <span class='co'>## To be copied in the UI</span>
   <span class='fu'>mod_volcano_select_ui</span><span class='op'>(</span><span class='st'>"volcano_select_1"</span><span class='op'>)</span>,
-  <span class='fu'>tableOutput</span><span class='op'>(</span><span class='st'>"table"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"table"</span><span class='op'>)</span>
   <span class='op'>)</span>
   
   <span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
@@ -1695,17 +2028,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     <span class='va'>selected_data</span> <span class='op'>&lt;-</span> <span class='fu'>mod_volcano_select_server</span><span class='op'>(</span><span class='st'>"volcano_select_1"</span>,
                                                volcano <span class='op'>=</span> <span class='va'>volcano_data</span><span class='op'>)</span>
     
-    <span class='va'>output</span><span class='op'>$</span><span class='va'>table</span> <span class='op'>&lt;-</span> <span class='fu'>renderTable</span><span class='op'>(</span><span class='fu'>selected_data</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>table</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderTable.html'>renderTable</a></span><span class='op'>(</span><span class='fu'>selected_data</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
   <span class='op'>}</span>
   
-  <span class='fu'>shinyApp</span><span class='op'>(</span>ui <span class='op'>=</span> <span class='va'>ui</span>, server <span class='op'>=</span> <span class='va'>server</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>ui <span class='op'>=</span> <span class='va'>ui</span>, server <span class='op'>=</span> <span class='va'>server</span><span class='op'>)</span>
   
 <span class='op'>}</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
 <p>Which generates the following simple app:</p>
-<p><img src="Capture%20d%E2%80%99e%CC%81cran,%20le%202021-06-23%20a%CC%80%2006.25.38.png" /></p>
+<p><img src="Capture%20d%E2%80%99%C3%A9cran,%20le%202021-06-23%20%C3%A0%2006.25.38.png" /></p>
 <h3 id="barplot-of-continents">Barplot of continents</h3>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -1719,9 +2052,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='co'>#'</span>
 <span class='co'>#' @importFrom shiny NS tagList </span>
 <span class='va'>mod_continentplot_ui</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='fu'>NS</span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>
-  <span class='fu'>tagList</span><span class='op'>(</span>
-    <span class='fu'>plotOutput</span><span class='op'>(</span><span class='fu'>ns</span><span class='op'>(</span><span class='st'>"barplot"</span><span class='op'>)</span>, <span class='co'># this calls to object continentplot that is made in the server page</span>
+  <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/NS.html'>NS</a></span><span class='op'>(</span><span class='va'>id</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/htmltools/man/tag.html'>tagList</a></span><span class='op'>(</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/plotOutput.html'>plotOutput</a></span><span class='op'>(</span><span class='fu'>ns</span><span class='op'>(</span><span class='st'>"barplot"</span><span class='op'>)</span>, <span class='co'># this calls to object continentplot that is made in the server page</span>
                height <span class='op'>=</span> <span class='fl'>350</span><span class='op'>)</span>
   <span class='op'>)</span>
 <span class='op'>}</span>
@@ -1732,12 +2065,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='va'>mod_continentplot_server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>volcano</span>, <span class='va'>selected_volcanoes</span><span class='op'>)</span><span class='op'>{</span>
   
   <span class='co'># kind of helpful</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span><span class='op'>(</span><span class='fu'>is.reactive</span><span class='op'>(</span><span class='va'>selected_volcanoes</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/stopifnot.html'>stopifnot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>is.reactive</a></span><span class='op'>(</span><span class='va'>selected_volcanoes</span><span class='op'>)</span><span class='op'>)</span>
   
-  <span class='fu'>moduleServer</span><span class='op'>(</span> <span class='va'>id</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/moduleServer.html'>moduleServer</a></span><span class='op'>(</span> <span class='va'>id</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span>, <span class='va'>session</span><span class='op'>)</span><span class='op'>{</span>
     <span class='va'>ns</span> <span class='op'>&lt;-</span> <span class='va'>session</span><span class='op'>$</span><span class='va'>ns</span>
  
-    <span class='va'>output</span><span class='op'>$</span><span class='va'>barplot</span> <span class='op'>&lt;-</span> <span class='fu'>renderPlot</span><span class='op'>(</span><span class='op'>{</span>
+    <span class='va'>output</span><span class='op'>$</span><span class='va'>barplot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/renderPlot.html'>renderPlot</a></span><span class='op'>(</span><span class='op'>{</span>
       
       <span class='co'># create basic barplot</span>
       <span class='va'>barplot</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot2</span><span class='fu'>::</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>volcano</span>,
@@ -1786,10 +2119,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <span class='fu'>testthat</span><span class='fu'>::</span><span class='fu'><a href='https://testthat.r-lib.org/reference/skip.html'>skip_if_not</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
   
   
-  <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'>fluidPage</span><span class='op'>(</span>
+  <span class='va'>ui</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/fluidPage.html'>fluidPage</a></span><span class='op'>(</span>
     <span class='co'>## To be copied in the UI</span>
     <span class='fu'>mod_continentplot_ui</span><span class='op'>(</span><span class='st'>"continentplot_1"</span><span class='op'>)</span>,
-    <span class='fu'>tableOutput</span><span class='op'>(</span><span class='st'>"table"</span><span class='op'>)</span>
+    <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/tableOutput.html'>tableOutput</a></span><span class='op'>(</span><span class='st'>"table"</span><span class='op'>)</span>
   <span class='op'>)</span>
   
   <span class='va'>server</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>output</span><span class='op'>)</span> <span class='op'>{</span>
@@ -1798,15 +2131,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     <span class='va'>volcano_recent</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>volcano_data</span>, <span class='va'>last_eruption_year</span> <span class='op'>&gt;</span> <span class='fl'>2000</span><span class='op'>)</span>
     <span class='fu'>mod_continentplot_server</span><span class='op'>(</span><span class='st'>"continentplot_1"</span>,
                                               volcano <span class='op'>=</span> <span class='va'>volcano_data</span>,
-                                              selected_volcanoes <span class='op'>=</span> <span class='fu'>reactive</span><span class='op'>(</span><span class='va'>volcano_recent</span><span class='op'>)</span><span class='op'>)</span>
+                                              selected_volcanoes <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/reactive.html'>reactive</a></span><span class='op'>(</span><span class='va'>volcano_recent</span><span class='op'>)</span><span class='op'>)</span>
   <span class='op'>}</span>
   
-  <span class='fu'>shinyApp</span><span class='op'>(</span>ui <span class='op'>=</span> <span class='va'>ui</span>, server <span class='op'>=</span> <span class='va'>server</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/shiny/man/shinyApp.html'>shinyApp</a></span><span class='op'>(</span>ui <span class='op'>=</span> <span class='va'>ui</span>, server <span class='op'>=</span> <span class='va'>server</span><span class='op'>)</span>
 <span class='op'>}</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

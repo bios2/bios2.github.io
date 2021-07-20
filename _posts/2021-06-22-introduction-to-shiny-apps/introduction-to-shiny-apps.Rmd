@@ -19,6 +19,9 @@ draft: false
 knitr::opts_chunk$set(eval = FALSE)
 ```
 
+```{r katherine-content, child="katherine.Rmd", eval = TRUE}
+```
+
 
 ```{r jake-content, child="jake.Rmd", eval = TRUE}
 ```
@@ -26,7 +29,7 @@ knitr::opts_chunk$set(eval = FALSE)
 
 ## Why do you want to use Shiny? 
 
-There are many reaasons to consider using Shiny for a project:
+There are many reasons to consider using Shiny for a project:
 
 * sharing results from a paper with your readers
 * helping you explore a model, mathematics, simulations 
