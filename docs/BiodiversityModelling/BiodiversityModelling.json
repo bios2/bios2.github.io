@@ -1,26 +1,5 @@
 [
   {
-    "path": "BiodiversityModelling/2021-08-16-day-1/",
-    "title": "Day 1",
-    "description": "Material covered on Day 1.",
-    "author": [
-      {
-        "name": "Dominique Gravel",
-        "url": {}
-      },
-      {
-        "name": "Andrew MacDonald",
-        "url": {}
-      }
-    ],
-    "date": "2021-08-16",
-    "categories": [],
-    "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\nthat was a test\n\n\n\n\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\n\n\n\n",
-    "preview": {},
-    "last_modified": "2021-08-15T21:22:00-04:00",
-    "input_file": "day-1.knit.md"
-  },
-  {
     "path": "BiodiversityModelling/01_probabilities/",
     "title": "Probability for Ecologists",
     "description": "Material covered on Day 1.",
@@ -38,7 +17,7 @@
     "categories": [],
     "contents": "\n\nContents\nIntroduction to probability\n\nIntroduction to probability\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-08-16T08:07:32-04:00",
-    "input_file": "day-1.knit.md"
+    "last_modified": "2021-08-16T08:07:33-04:00",
+    "input_file": {}
   }
 ]
