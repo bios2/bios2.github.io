@@ -1,0 +1,28 @@
+---
+title: "Probability for Ecologists"
+description: |
+  Material covered on Day 1.
+author: 
+  - name: Dominique Gravel
+  - name: Andrew MacDonald
+date: 2021-08-16
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_float: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r}
+xaringanExtra::embed_xaringan("https://bios2.github.io/BiodiversityModelling/01_probabilities/01-introduction/#1")
+```
+
+
+```{r}
+xaringanExtra::embed_xaringan("https://bios2.github.io/BiodiversityModelling/01_probabilities/02-definitions/#1")
+```

@@ -19,5 +19,26 @@
     "preview": {},
     "last_modified": "2021-08-15T21:22:00-04:00",
     "input_file": "day-1.knit.md"
+  },
+  {
+    "path": "BiodiversityModelling/01_probabilities/",
+    "title": "Probability for Ecologists",
+    "description": "Material covered on Day 1.",
+    "author": [
+      {
+        "name": "Dominique Gravel",
+        "url": {}
+      },
+      {
+        "name": "Andrew MacDonald",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-16",
+    "categories": [],
+    "contents": "\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-08-16T08:04:49-04:00",
+    "input_file": "day-1.knit.md"
   }
 ]

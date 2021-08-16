@@ -1,0 +1,148 @@
+---
+title: "Probabilities. Definitions"
+author: "Dominique Gravel"
+date: "August 16th, 2021"
+output:
+  xaringan::moon_reader:
+    css: [default, ../assets/ecl707.css, "hygge"]
+    lib_dir: assets
+    seal: false
+    nature:
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "../macros.js"
+---
+
+class: title-slide, middle
+
+<style type="text/css">
+  .title-slide {
+    background-image: url('../assets/img/bg.jpg');
+    background-color: #23373B;
+    background-size: contain;
+    border: 0px;
+    background-position: 600px 0;
+    line-height: 1;
+  }
+</style>
+
+# Day 1. Probabilities
+
+<hr width="65%" align="left" size="0.3" color="orange"></hr>
+
+## Definitions
+
+<hr width="65%" align="left" size="0.3" color="orange" style="margin-bottom:40px;" alt="@Martin Sanchez"></hr>
+
+.instructors[
+  **ECL707/807** - Dominique Gravel
+]
+
+<img src="../assets/img/logo.png" width="25%" style="margin-top:20px;"></img>
+
+---
+
+# Resources
+
+MacKay, David J.C. 2003. Information thoery, Inference, and learning algorithms. Chapter 2. Cambridge University Press. Cambridge. 
+
+Bolker, Benjamin M. 2009. Ecological Models and Data in R. Chapter 4. Princeton University Press. Princeton. 
+
+---
+
+# Probability 
+
+*Frequencies of outcomes in random experiments*
+
+e.g. the probability of getting a 2 on a dice, the probability of a mortality event over a time period, the probability a species is present at a location, the probability that a tree as a radial growth of 1.2mm under certain conditions
+
+---
+
+# Probability 
+
+*Degrees of belief in propositions* (the bayesian view point)
+
+e.g. the probability of making the proper interpretation of my results given the data
+
+---
+
+# Ensemble 
+
+*An ensemble $X$ is a triple $(X, A_X, P_X)$, where the outcome $x$ is the value of a random variable, which takes on one of a set of possible values, $A_X = \{a_1, a_2, ....a_i...., a_I\}$, having probabilities $P_X = \{p_1,p_2,..., p_I\}$, with $P(x=a_i) = p_i$, $p_i ­\geq 0$ and $\sum_{a \epsilon A_X} P(x=a_i) = 1$.* 
+
+---
+
+# Ensemble 
+
+Example : the composition of a community on an island with a regional species pool of two species could take the following values with associated probabilities : 
+
+$A_{00} = \{0,0\}$ with $P(A_{00}) = 0.60$
+
+$A_{01} = \{0,1\}$ with $P(A_{01}) = 0.20$
+
+$A_{10} = \{1,0\}$ with $P(A_{10}) = 0.15$
+
+$A_{11} = \{1,1\}$ with $P(A_{11}) = 0.05$
+
+---
+
+# Notation 
+
+Briefer notation will sometimes be used. For example, $P(x=a_i)$ may be written as $P(a_i)$ or even $[a_i]$ 
+
+---
+
+# Joint ensemble
+
+$XY$ *is an ensemble in which each outcome is an ordered pair, $x,y$ with $x \epsilon A_X=\{a_1, ...., a_I$\}$ and $y \epsilon A_Y = \{b_1,....,b_I\}$.*
+
+We call $P(x,y)$ the joint probability of $x$ and $y$. 
+
+**Example** : the probability of observing species A present and species B absent is $P(A=1, B = 0)$
+
+---
+
+# Marginal probability
+
+We obtain the marginal probability of $P(x)$ from the joint probability $P(x,y)$ by summation : 
+
+$P(x) = \sum_{y \epsilon A_Y} P(x, y)$
+
+**Example**: the probability of observing species $A$ across all possible compositions, $P(A=1)$
+
+---
+
+# Conditional probability
+
+We can decompose the joint probability as 
+
+$P(x,y) = P(x|y)P(y)$
+
+where $P(x|y)$ is pronounced as 'the probability of $x$ given condition $y$'
+
+**Example** : the probability of observing species $A$ when species $B$ is absent, $P(A=1|B=0)$
+
+---
+
+# Exercise 1.1.
+
+We'll just take the numbers of the previous example. Consider again the ensemble 
+
+$A_{00} = \{0,0\}$ with $P(A_{00}) = 0.60$
+
+$A_{01} = \{0,1\}$ with $P(A_{01}) = 0.20$
+
+$A_{10} = \{1,0\}$ with $P(A_{10}) = 0.15$
+
+$A_{11} = \{1,1\}$ with $P(A_{11}) = 0.05$
+
+What is the marginal probability of observing species $A$ ? What is the conditional probability of observing species $A$ given species $B$ is absent ?  
+
+---
+
+# A more conceptual exercise 
+
+Hutchinson (1957) defines the niche as the set of environmental variables where a species could maintain a viable population. We will broadly refer to this environment as $E$ and report the occurrence probability of a species A as $P(A = 1|E)$. Hutchinson also proposes to distinguish the fundamental niche, the space occupied by the species in absence of interactions with any other one, and the realized niche, the one in presence of other species. The realized niche is contracted in presence of competitors while it could expand in presence of facilitators. 
+
+Describe the fundamental niches of species $A$ and $B$, their realized niches and their co-occurrence in terms of the different types of probabilities we just defined. Represent your conceptualization on a figure with an hypothetical environmental gradient. 
