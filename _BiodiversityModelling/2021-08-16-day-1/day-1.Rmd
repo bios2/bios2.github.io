@@ -6,7 +6,6 @@ author:
   - name: Dominique Gravel
   - name: Andrew MacDonald
 date: 2021-08-16
-include: `r here::here("theme1_probabilities", "01-introduction")`
 output:
   distill::distill_article:
     self_contained: false
@@ -23,4 +22,12 @@ Distill is a publication format for scientific and technical writing, native to 
 
 Learn more about using Distill at <https://rstudio.github.io/distill>.
 
+```{r}
+knitr::include_url("https://bios2.github.io/BiodiversityModelling/2021-08-16-day-1/theme1_probabilities/01-introduction/index.html")
+```
+
+
+```{r}
+xaringanExtra::embed_xaringan("https://bios2.github.io/BiodiversityModelling/2021-08-16-day-1/theme1_probabilities/01-introduction/index.html")
+```
 
