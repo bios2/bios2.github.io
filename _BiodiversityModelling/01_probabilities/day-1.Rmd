@@ -18,6 +18,8 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Introduction to probability 
+
 ```{r}
 xaringanExtra::embed_xaringan("https://bios2.github.io/BiodiversityModelling/01_probabilities/01-introduction/#1")
 ```
