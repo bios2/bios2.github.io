@@ -67,12 +67,6 @@ embed_slides("03-rules")
 ```
 
 
-## Solutions
-
-```{r}
-embed_slides("05-solutions")
-```
-
 
 ## Problem
 
