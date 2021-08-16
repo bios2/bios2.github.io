@@ -15,9 +15,9 @@
     ],
     "date": "2021-08-16",
     "categories": [],
-    "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\n\n\n\n",
+    "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\nthat was a test\n\n\n\n\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-08-15T21:17:01-04:00",
+    "last_modified": "2021-08-15T21:22:00-04:00",
     "input_file": "day-1.knit.md"
   }
 ]

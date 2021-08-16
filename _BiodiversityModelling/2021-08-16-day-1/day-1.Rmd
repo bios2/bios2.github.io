@@ -31,3 +31,15 @@ knitr::include_url("https://bios2.github.io/BiodiversityModelling/2021-08-16-day
 xaringanExtra::embed_xaringan("https://bios2.github.io/BiodiversityModelling/2021-08-16-day-1/theme1_probabilities/01-introduction/index.html")
 ```
 
+
+ that was a test
+ 
+ 
+```{r}
+knitr::include_url("https://bios2.github.io/BiodiversityModelling/2021-08-16-day-1/theme1_probabilities/01-introduction/#1")
+```
+
+
+```{r}
+xaringanExtra::embed_xaringan("https://bios2.github.io/BiodiversityModelling/2021-08-16-day-1/theme1_probabilities/01-introduction/#1")
+```
