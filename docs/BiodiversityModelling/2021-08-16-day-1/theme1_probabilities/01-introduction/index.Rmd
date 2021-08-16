@@ -1,0 +1,242 @@
+---
+title: "Introduction"
+author: "Dominique Gravel"
+date: "August 16th, 2021"
+output:
+  xaringan::moon_reader:
+    css: [default, ../assets/ecl707.css, "hygge"]
+    lib_dir: assets
+    seal: false
+    nature:
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "../macros.js"
+---
+
+class: title-slide, middle
+
+<style type="text/css">
+  .title-slide {
+    background-image: url('../assets/img/bg.jpg');
+    background-color: #23373B;
+    background-size: contain;
+    border: 0px;
+    background-position: 600px 0;
+    line-height: 1;
+  }
+</style>
+
+# Model evaluation with ecological data
+
+<hr width="65%" align="left" size="0.3" color="orange"></hr>
+
+## Introduction
+
+<hr width="65%" align="left" size="0.3" color="orange" style="margin-bottom:40px;" alt="@Martin Sanchez"></hr>
+
+.instructors[
+  **ECL707/807** - Dominique Gravel
+]
+
+<img src="../assets/img/logo.png" width="25%" style="margin-top:20px;"></img>
+
+---
+
+# Let's start with a simple problem  
+
+<div style='text-align:center;'>
+  <img src="assets/img/coates.png" width="300px"></img>
+</div>
+
+Coates and Burton (1999) studied the effect of light availability on the annual height increment as a function of an index of light availability, 5 years after they were planted. 
+
+---
+
+# Let's start with a simple problem  
+
+<div style='text-align:center;'>
+  <img src="assets/img/coates.png" width="300px"></img>
+</div>
+
+What could you tell from the data ? 
+
+---
+
+# Let's start with a simple problem  
+
+<div style='text-align:center;'>
+  <img src="assets/img/coates.png" width="300px"></img>
+</div>
+
+How would you fit a curve into this ? 
+
+---
+
+# Let's start with a simple problem  
+
+<div style='text-align:center;'>
+  <img src="assets/img/coates.png" width="300px"></img>
+</div>
+
+What equation to pick ?
+
+---
+class: inverse, middle, center
+
+# Now try it !
+<hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"></hr>
+
+---
+
+# Let's start with a simple problem  
+
+<div style='text-align:center;'>
+  <img src="assets/img/coates.png" width="300px"></img>
+</div>
+
+What are the uncertainties in your model ?
+
+---
+
+# Let's start with a simple problem  
+
+<div style='text-align:center;'>
+  <img src="assets/img/coates.png" width="300px"></img>
+</div>
+
+What will happen if we sample more ?
+
+---
+
+# Let's start with a simple problem  
+
+<div style='text-align:center;'>
+  <img src="assets/img/coates.png" width="300px"></img>
+</div>
+
+Can we reduce this uncertainty ? 
+
+---
+
+class: inverse, middle, center
+
+# Why to develop modelling skills ?
+
+<hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"></hr>
+
+---
+
+# Develop innovative methods
+
+Objective : detect events of suppression and release of understory saplings using time series
+
+<div style='text-align:center;'>
+  <img src="assets/img/canham.png" width="600px"></img>
+</div>
+
+*Gravel et al. 2010. Large-scale synchrony of gap dynamics and the distribution of understory tree species in maple-beech forests. Oecologia 162 : 153-161.*
+
+---
+
+# Complex probabilistic problems 
+
+Objective : evaluate a logistic model with presence only-data
+
+<div style='text-align:center;'>
+  <img src="assets/img/bartomeus.png" width="850px"></img>
+</div>
+
+*Bartomeus et al. 2016. A common framework for identifying linkage rules across different types of interactions. Functional Ecology 30: 1894-1903*
+
+---
+
+# Complex probabilistic problems 
+
+Objective : evaluate non-stationary auto-regressive multivariate models
+
+<div style='text-align:center;'>
+  <img src="assets/img/autoregression.png" width="800px"></img>
+</div>
+
+*Gravel et al. Evidence of critical slowing down of interaction networks before physiological meltdown. In prep.*
+
+---
+
+# Transfer of information across scales
+
+Objective : make sure that a species distribution model evaluated at continental scale is coherent with experiments done at the micro scale
+
+<div style='text-align:center;'>
+  <img src="assets/img/talluto.png" width="800px"></img>
+</div>
+
+*Talluto et al. 2016. Cross-scale integration of knowledge for predicting species ranges : a metamodelling framework. Global Ecology and Biogeography 25 : 238-249.* 
+
+---
+
+# Use all information available 
+
+Objective : how to evaluate mortality rate of rare tropical trees with very few observations ?
+
+<div style='text-align:center;'>
+  <img src="assets/img/soberania.jpg" width="250px"></img>
+</div>
+
+*Condit et al. 2006. The importance of dempraphic niches to tree diversity. Science 313: 98-101.*
+
+---
+
+# Other motivations
+
+- Philosophical motivation
+- Representation of uncertainty
+- Adaptive modelling
+- Better understand statistics
+
+---
+class: inverse, middle, center
+
+# What about you ?
+
+<hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"></hr>
+
+---
+
+# Logistics
+
+- On site and remote teaching
+- Lectures are recorded
+- Priority to exercises and problems
+- Minimal interactive lectures
+- Participation 
+
+Any other suggestion ?
+
+---
+
+# Content
+
+1. Probabilities
+2. Maximum likelihood estimation
+3. Algorithms for optimization
+4. Bayesian models
+5. Algorithms for posterior distributions
+
+---
+
+# Expectations
+
+- Write down an equation for likelihood and code it in R
+- Develop an algorithm to find the maximum likelihood estimates
+- Have some notions of the philosophies of satistical inferrence
+- Develop the full equation for the posterior distribution 
+- Estimate posterior distribution by MCMC for a simple regression problem
+
+---
+
+# Evaluation
+
+- Pass or fail based on participation and progress
+- Auto-evaluation form at the end of the course
+- Possibility of doing a supervised project as a side

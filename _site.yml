@@ -19,6 +19,8 @@ navbar:
       menu:
         - text: "Spatial Statistics"
           href: Marchand.html
+        - text: "Biodiversity Modelling Summer School"
+          href: biodivmodelling.html
     - text: "About"
       href: about.html
     - icon: fab fa-github

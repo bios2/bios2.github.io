@@ -1,0 +1,23 @@
+[
+  {
+    "path": "BiodiversityModelling/2021-08-16-day-1/",
+    "title": "Day 1",
+    "description": "Material covered on Day 1.",
+    "author": [
+      {
+        "name": "Dominique Gravel",
+        "url": {}
+      },
+      {
+        "name": "Andrew MacDonald",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-16",
+    "categories": [],
+    "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-08-15T18:33:18-04:00",
+    "input_file": {}
+  }
+]
