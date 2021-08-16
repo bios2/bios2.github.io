@@ -7,6 +7,15 @@
     <description>Educational materials, incluing links to pdfs, videos, and code to reproduce all of our trainings.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 11 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Day 1</title>
+      <dc:creator>Dominique Gravel</dc:creator>
+      <dc:creator>Andrew MacDonald</dc:creator>
+      <link>https://bios2.github.io/BiodiversityModelling/2021-08-16-day-1</link>
+      <description>Material covered on Day 1.</description>
+      <guid>https://bios2.github.io/BiodiversityModelling/2021-08-16-day-1</guid>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+    </item>
   </channel>
 </rss>
