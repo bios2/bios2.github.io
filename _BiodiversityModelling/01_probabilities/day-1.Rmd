@@ -16,15 +16,51 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+
+embed_slides <- function(pres_name){
+  
+  url <- paste0("https://bios2.github.io/BiodiversityModelling/01_probabilities/",
+                pres_name,
+                "/#1")
+  
+  iframe <- xaringanExtra::embed_xaringan(url)
+  
+  lnk <- paste0("[Click to view full screen](", url, ")")
+
+knitr::asis_output(paste0(iframe,"<br>", lnk))
+
+}
 ```
 
 ## Introduction to probability 
 
 ```{r}
-xaringanExtra::embed_xaringan("https://bios2.github.io/BiodiversityModelling/01_probabilities/01-introduction/#1")
+embed_slides("01-introduction")
+```
+
+## Definitions
+```{r}
+embed_slides("02-definitions")
 ```
 
 
+
+## Rules of probability
+
 ```{r}
-xaringanExtra::embed_xaringan("https://bios2.github.io/BiodiversityModelling/01_probabilities/02-definitions/#1")
+embed_slides("03-rules")
+```
+
+
+## Solutions
+
+```{r}
+embed_slides("05-solutions")
+```
+
+
+## Problem
+
+```{r}
+embed_slides("06-problem")
 ```
