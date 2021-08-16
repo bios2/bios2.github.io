@@ -2137,7 +2137,12 @@ Longer Trainings
 <li><a href="#introduction-to-probability">Introduction to probability</a></li>
 <li><a href="#definitions">Definitions</a></li>
 <li><a href="#rules-of-probability">Rules of probability</a></li>
-<li><a href="#problem">Problem</a></li>
+<li><a href="#problems">Problems</a></li>
+<li><a href="#statistical-field-work-collecting-a-wild-distribution">Statistical field work – collecting a wild distribution!</a>
+<ul>
+<li><a href="#continuous-distributions">Continuous distributions</a></li>
+<li><a href="#discrete-distributions">Discrete distributions</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -2165,7 +2170,7 @@ Longer Trainings
 </div>
 <p><a href="https://bios2.github.io/BiodiversityModelling/01_probabilities/03-rules/#1">Click to view full screen</a></p>
 </div>
-<h2 id="problem">Problem</h2>
+<h2 id="problems">Problems</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="shareagain" style="min-width:300px;margin:1em auto;">
 <iframe src="https://bios2.github.io/BiodiversityModelling/01_probabilities/06-problem/#1" width="1600" height="900" style="border:2px solid currentColor;" loading="lazy" allowfullscreen></iframe>
@@ -2173,6 +2178,85 @@ Longer Trainings
 </div>
 <p><a href="https://bios2.github.io/BiodiversityModelling/01_probabilities/06-problem/#1">Click to view full screen</a></p>
 </div>
+<h2 id="statistical-field-work-collecting-a-wild-distribution">Statistical field work – collecting a wild distribution!</h2>
+<p><strong>Step 1.</strong> Think of a way you can collect some numbers. These should be numbers that can collect yourself – no simulation, and no data from the internet! Things like the weights of shoes in your house, people on a train car, time between shots on goal in a hockey game. Choose something you like, and which you can measure in a relatively brief period of time.</p>
+<p><strong>Step 2.</strong> Think about the kind of statistical distribution that might represent this phenomenon! Write it down. Why does this distribution seem to match your data? is it constrained in some way?</p>
+<p><strong>Step 3.</strong> Collect some observations – aim for a good number, at least 15 or so.</p>
+<p><strong>Step 4.</strong> Type in these data and visualize them. Do they match your hypothesized distribution? How do you know?</p>
+<h3 id="continuous-distributions">Continuous distributions</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 27%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>distribution</th>
+<th>positive or negative?</th>
+<th>Quick description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Normal</td>
+<td>positive or negative values</td>
+<td>Can result from many small effects added together</td>
+</tr>
+<tr class="even">
+<td>Lornormal</td>
+<td>positive values only</td>
+<td>results from many things multiplied together</td>
+</tr>
+<tr class="odd">
+<td>Gamma</td>
+<td>positive values only</td>
+<td>can be the time to wait for a given number of things to happen</td>
+</tr>
+<tr class="even">
+<td>Exponential</td>
+<td>Positive only</td>
+<td>Lengths of time between random events</td>
+</tr>
+<tr class="odd">
+<td>Beta</td>
+<td>Positive only</td>
+<td>Between 0 and 1. Can be any proportion.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="discrete-distributions">Discrete distributions</h3>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 14%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>distribution</th>
+<th>positive or negative?</th>
+<th>Quick description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Poisson</td>
+<td>Positive</td>
+<td>Counting things that occur randomly over time</td>
+</tr>
+<tr class="even">
+<td>Negative Binomial</td>
+<td>Positive</td>
+<td>Counts of things as in the Poisson, but more variable. Also: the number of trials till a certain number of successes.</td>
+</tr>
+<tr class="odd">
+<td>Binomial</td>
+<td>Positive</td>
+<td>Number of “successes” out of a number of trials, when probability of success is always the same</td>
+</tr>
+</tbody>
+</table>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
