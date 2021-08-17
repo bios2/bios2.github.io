@@ -137,3 +137,6 @@ Use the [Default Shiny Widgets](https://shiny.rstudio.com/gallery/widget-gallery
 
 
 ![](images/add_elements_diagram.png)
+
+
+## See our completed app [HERE](https://jakelawlor.shinyapps.io/Volcanoes_of_the_World/)
