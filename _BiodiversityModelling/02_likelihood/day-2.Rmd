@@ -52,6 +52,14 @@ xaringanExtra::embed_xaringan(make_url("01-likelihood"))
 slide_link("01-likelihood")
 ```
 
+## Sutton trees
+
+```{r}
+maple <- readr::read_csv2("https://raw.githubusercontent.com/bios2/bios2.github.io/master/_BiodiversityModelling/02_likelihood/01-likelihood/data/sutton.csv")
+
+```
+
+
 ## Statistical field work -- exploring your dataset
 
 **Step 1.** Return to your hypothesized distribution. Find its random number generation function (e.g. `rbinom()` for the Binomial Distribution). Experiment with different parameters values to create data that looks close to your own data.
