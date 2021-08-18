@@ -72,6 +72,16 @@ embed_slides("03-rules")
 embed_slides("06-problem")
 ```
 
+## Solutions
+```{r}
+embed_slides("05-solutions")
+```
+
+## Univariate Distributions
+
+```{r}
+embed_slides("07-distribution")
+```
 
 ## Statistical field work -- collecting a wild distribution! 
 
