@@ -1,0 +1,196 @@
+---
+title: "Maximum likelihood"
+author: "Dominique Gravel"
+date: "August 18th, 2021"
+output:
+  xaringan::moon_reader:
+    css: [default, ../assets/ecl707.css, "hygge"]
+    lib_dir: assets
+    seal: false
+    nature:
+      highlightStyle: monokai
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "../macros.js"
+---
+
+class: title-slide, middle
+
+<style type="text/css">
+  .title-slide {
+    background-image: url('../assets/img/bg.jpg');
+    background-color: #23373B;
+    background-size: contain;
+    border: 0px;
+    background-position: 600px 0;
+    line-height: 1;
+  }
+</style>
+
+# Maximum likelihood
+
+<hr width="65%" align="left" size="0.3" color="orange"></hr>
+
+## Solutions to exercises
+
+<hr width="65%" align="left" size="0.3" color="orange" style="margin-bottom:40px;" alt="@Martin Sanchez"></hr>
+
+.instructors[
+  **ECL707/807** - Dominique Gravel & Andrew MacDonald
+]
+
+<img src="../assets/img/logo.png" width="25%" style="margin-top:20px;"></img>
+
+---
+
+# Exercise 2.2. 
+## Time to practice : maple distribution at Sutton
+
+```{r echo=FALSE}
+### Extract species, elevation and coordinates
+sutton <- read.csv("data/sutton.csv", sep=";")
+acsa <- as.matrix(ifelse(sutton$acsa>0,1,0))
+xy <- sutton[,2:1]
+elev<-as.matrix(xy[,1])
+
+### Draw map
+par(mar=c(5,0,0,0))
+plot(xy,type="n",asp=1,axes=FALSE,xlab="",ylab="",las=1)
+points(xy[which(acsa==1),],pch=15,cex=1.25)
+points(xy[which(acsa==0),],pch=0,cex=1.25)
+
+```
+---
+
+# Exercise 2.2.
+## A species distribution problem
+
+**The model**
+
+$$y \thicksim f(E, \theta)$$
+
+- f is a probability density function
+- [$y$] is the abundance (in stems per quadrat) of sugar maple
+- [$E$] is elevation
+- [$\theta$] is a set of parameters
+
+**Things to think about :** 
+- What are the characteristics of the data ? 
+- What is the form of the function ? 
+- What is the probability density function ?
+
+---
+
+# Solution 2.2.
+## Linear regression
+
+```{r eval=TRUE}
+### Likelihood function
+ll_fn <- function(a,b,sig,E,obs) {
+
+    # Function for the mean
+    mu <- a + b*E
+
+    # PDF 
+    lik <- dnorm(x=obs, mean = mu, sd = sig)
+    loglik <- log(lik)
+
+    # Return loglikelihood
+    sum(loglik)
+}
+```
+
+---
+
+# Solution 2.2.
+## Linear regression
+
+```{r echo=TRUE}
+### Try different values 
+ll_fn(a=25,b=-0.075,sig=10,E=sutton$y,obs=sutton$acsa)
+ll_fn(a=25,b=-0.05,sig=10,E=sutton$y,obs=sutton$acsa)
+ll_fn(a=30,b=-0.075,sig=10,E=sutton$y,obs=sutton$acsa)
+```
+
+---
+
+# Solution 2.2.
+## Linear regression
+
+```{r eval=FALSE}
+### Run a grid search 
+a_vec <- seq(15,45,length.out = 100)
+b_vec <- seq(-0.1,-0.01,length.out = 100)
+res <- matrix(nr=100,nc=100)
+for(i in 1:100) {
+    for(j in 1:100) {
+        res[i,j] <- ll_fn(a=a_vec[i],b=b_vec[j],sig=10,E=sutton$y,obs=sutton$acsa)
+    }
+}
+```
+---
+
+# Solution 2.2.
+## Linear regression
+
+```{r echo=FALSE}
+### Run a grid search 
+a_vec <- seq(15,45,length.out = 100)
+b_vec <- seq(-0.1,-0.01,length.out = 100)
+res <- matrix(nr=100,nc=100)
+for(i in 1:100) {
+    for(j in 1:100) {
+        res[i,j] <- ll_fn(a=a_vec[i],b=b_vec[j],sig=10,E=sutton$y,obs=sutton$acsa)
+    }
+}
+image(x=a_vec,y=b_vec,z=res)
+```
+
+---
+
+# Solution 2.2.
+## Logistic regression
+
+```{r eval=FALSE}
+### Likelihood function
+ll_fn <- function(a,b,sig,E,obs) {
+
+    # Function for the mean
+    mu <- a + b*E
+
+    # logit transformation 
+    p = exp(mu)/(1+exp(mu))
+
+    # no PDF for logistic regression
+    # use the output of the model directly 
+    lik <- numeric(length(obs))
+    lik[obs==1] = log(p[obs==1])
+    lik[obs==0] = log(1-p[obs==0])
+
+    # Return loglikelihood
+    sum(log(lik))
+}
+
+```
+
+---
+
+# Solution 2.2.
+## Poisson regression
+
+```{r eval=FALSE}
+### Likelihood function
+ll_fn <- function(a,b,sig,E,obs) {
+
+    # Function for the mean
+    mu <- a + b*E
+
+    # PDF 
+    lik <- dpois(x=obs, lambda = mu)
+    loglik <- log(lik)
+
+    # Return loglikelihood
+    sum(loglik)
+}
+```
+
