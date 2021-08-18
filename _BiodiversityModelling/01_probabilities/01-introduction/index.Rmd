@@ -4,14 +4,14 @@ author: "Dominique Gravel"
 date: "August 16th, 2021"
 output:
   xaringan::moon_reader:
-    css: [default, /BiodiversityModelling/assets/ecl707.css, "hygge"]
+    css: [default, /BiodiversityModelling/01_probabilities/assets/ecl707.css, "hygge"]
     lib_dir: "assets"
     seal: false
     nature:
       highlightStyle: monokai
       highlightLines: true
       countIncrementalSlides: false
-      beforeInit: "../../assets/macros.js"
+      beforeInit: "../macros.js"
 ---
 
 class: title-slide, middle
