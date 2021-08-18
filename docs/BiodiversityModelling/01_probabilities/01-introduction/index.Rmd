@@ -4,21 +4,21 @@ author: "Dominique Gravel"
 date: "August 16th, 2021"
 output:
   xaringan::moon_reader:
-    css: [default, /BiodiversityModelling/01_probabilities/assets/ecl707.css, "hygge"]
+    css: [default, /BiodiversityModelling/assets/ecl707.css, "hygge"]
     lib_dir: "assets"
     seal: false
     nature:
       highlightStyle: monokai
       highlightLines: true
       countIncrementalSlides: false
-      beforeInit: "../macros.js"
+      beforeInit: "../../assets/macros.js"
 ---
 
 class: title-slide, middle
 
 <style type="text/css">
   .title-slide {
-    background-image: url('../assets/img/bg.jpg');
+    background-image: url('../../assets/img/bg.jpg');
     background-color: #23373B;
     background-size: contain;
     border: 0px;
