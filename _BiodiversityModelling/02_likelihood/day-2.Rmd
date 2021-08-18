@@ -45,17 +45,25 @@ slide_link <- function(pres_name){
 }
 ```
 
-## Introduction to probability 
+## Introduction to likeihood 
 
 ```{r}
 xaringanExtra::embed_xaringan(make_url("01-likelihood"))
 slide_link("01-likelihood")
 ```
 
+```{r}
+embed_slides("03-problem")
+
+```
+
+
 ## Sutton trees
 
-```{r}
+```{r, echo=TRUE}
 maple <- readr::read_csv2("https://raw.githubusercontent.com/bios2/bios2.github.io/master/_BiodiversityModelling/02_likelihood/01-likelihood/data/sutton.csv")
+
+knitr::kable(head(maple))
 
 ```
 
