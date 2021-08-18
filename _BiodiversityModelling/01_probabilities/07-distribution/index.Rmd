@@ -145,7 +145,7 @@ $$
 
 .pull-left[
 ```{r binom2, fig.show = 'hide'}
-curve(dbinom(x,
+curve(extraDistr::dbbinom(x,
              size = 20,
              p  = 0.2),
       n = 21,

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Univariate Probability Distributions</title>
+    <title>Maximum likelihood</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Andrew MacDonald" />
-    <script src="assets/header-attrs-2.8/header-attrs.js"></script>
+    <meta name="author" content="Dominique Gravel" />
     <link href="assets/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="assets/remark-css-0.0.1/hygge.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/BiodiversityModelling/01_probabilities/assets/ecl707.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ecl707.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -26,163 +25,174 @@ class: title-slide, middle
   }
 &lt;/style&gt;
 
-# A Field Guide to the Univariate Distributions
+# Maximum likelihood
 
 &lt;hr width="65%" align="left" size="0.3" color="orange"&gt;&lt;/hr&gt;
 
-## Introduction
+## Solutions to exercises
 
 &lt;hr width="65%" align="left" size="0.3" color="orange" style="margin-bottom:40px;" alt="@Martin Sanchez"&gt;&lt;/hr&gt;
 
 .instructors[
-  **Biodiversity Modelling** - Andrew MacDonald
+  **ECL707/807** - Dominique Gravel &amp; Andrew MacDonald
 ]
 
-&lt;img src="../assets/img/bg.jpg" width="25%" style="margin-top:20px;"&gt;&lt;/img&gt;
+&lt;img src="../assets/img/logo.png" width="25%" style="margin-top:20px;"&gt;&lt;/img&gt;
 
 ---
 
-&lt;div style='text-align:center;'&gt;
-  &lt;img src="assets/img/meme.jpg" width="400px"&gt;&lt;/img&gt;
-&lt;/div&gt;
- 
----
-# Two flavours
+# Exercise 2.2. 
+## Time to practice : maple distribution at Sutton
 
---
-
-### Discrete Distributions (integers, counts of things)
-
-Described with a **probability mass function**
---
-
-### Continuous distributions (not integers!)
-
-Described with a **probability density function**
-
----
-## Discrete distributions
-
-
-$$
-0 \leq [z] \leq 1
-$$
-
---
-
-$$
-\sum [z] = 1
-$$
----
-## Continuous Distributions
-
-
-$$
-0 \leq [z]
-$$
-
---
-
-$$
-\int_-^+[z]d[z] = 1
-$$
-
----
-## Moments
-
-$$
-\mu = \text{E}(z) = \sum z[z]
-$$
-
----
-$$
-\sigma^2 = \text{E}((z-\mu)^2) = \sum (z - \mu)^2[z]
-$$
-
-class: inverse, middle, center
-
----
-
----
-
-# The Binomial Distribution
-
-&lt;hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"&gt;&lt;/hr&gt;
-
----
-class: inverse, middle, center
-
-# The Binomial Distribution
-
-&lt;hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"&gt;&lt;/hr&gt;
----
-
-.pull-left[
-
-```r
-curve(dbinom(x,
-             size = 20,
-             p  = 0.2),
-      n = 21,
-      type = "p",
-      xlim = c(0,20))
-```
-
-Probability Mass Function is
-
-$$
-\text{Pr}(y = k) = {n \choose k} p^k(1-p)^{n-k}
-$$
-
-
-]
-.pull-right[
 ![](index_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
-]
+---
+
+# Exercise 2.2.
+## A species distribution problem
+
+**The model**
+
+`$$y \thicksim f(E, \theta)$$`
+
+- f is a probability density function
+- [$y$] is the abundance (in stems per quadrat) of sugar maple
+- [$E$] is elevation
+- [$\theta$] is a set of parameters
+
+**Things to think about :** 
+- What are the characteristics of the data ? 
+- What is the form of the function ? 
+- What is the probability density function ?
 
 ---
 
-.pull-left[
+# Solution 2.2.
+## Linear regression
+
 
 ```r
-curve(dbinom(x,
-             size = 20,
-             p  = 0.2),
-      n = 21,
-      type = "p",
-      xlim = c(0,20))
+### Likelihood function
+ll_fn &lt;- function(a,b,sig,E,obs) {
 
-curve(dbinom(x,
-             size = 20,
-             p  = 0.8),
-      n = 21,
-      type = "p",
-      col = "red", add = TRUE, pch = 16)
+    # Function for the mean
+    mu &lt;- a + b*E
 
+    # PDF 
+    lik &lt;- dnorm(x=obs, mean = mu, sd = sig)
+    loglik &lt;- log(lik)
 
-curve(dbinom(x,
-             size = 20,
-             p  = 0.1),
-      n = 21,
-      type = "p",
-      col = "blue", add = TRUE, pch = 16)
+    # Return loglikelihood
+    sum(loglik)
+}
 ```
 
-Probability Mass Function is
+---
 
-$$
-\text{Pr}(y = k) = {n \choose k} p^k(1-p)^{n-k}
-$$
+# Solution 2.2.
+## Linear regression
 
 
-]
-.pull-right[
-![](index_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
-]
+```r
+### Try different values 
+ll_fn(a=25,b=-0.075,sig=10,E=sutton$y,obs=sutton$acsa)
+```
+
+```
+## [1] -3275.689
+```
+
+```r
+ll_fn(a=25,b=-0.05,sig=10,E=sutton$y,obs=sutton$acsa)
+```
+
+```
+## [1] -2046.312
+```
+
+```r
+ll_fn(a=30,b=-0.075,sig=10,E=sutton$y,obs=sutton$acsa)
+```
+
+```
+## [1] -2878.139
+```
+
+---
+
+# Solution 2.2.
+## Linear regression
+
+
+```r
+### Run a grid search 
+a_vec &lt;- seq(15,45,length.out = 100)
+b_vec &lt;- seq(-0.1,-0.01,length.out = 100)
+res &lt;- matrix(nr=100,nc=100)
+for(i in 1:100) {
+    for(j in 1:100) {
+        res[i,j] &lt;- ll_fn(a=a_vec[i],b=b_vec[j],sig=10,E=sutton$y,obs=sutton$acsa)
+    }
+}
+```
+---
+
+# Solution 2.2.
+## Linear regression
+
+![](index_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+
+# Solution 2.2.
+## Logistic regression
+
+
+```r
+### Likelihood function
+ll_fn &lt;- function(a,b,sig,E,obs) {
+
+    # Function for the mean
+    mu &lt;- a + b*E
+
+    # logit transformation 
+    p = exp(mu)/(1+exp(mu))
+
+    # no PDF for logistic regression
+    # use the output of the model directly 
+    lik &lt;- numeric(length(obs))
+    lik[obs==1] = log(p[obs==1])
+    lik[obs==0] = log(1-p[obs==0])
+
+    # Return loglikelihood
+    sum(log(lik))
+}
+```
+
+---
+
+# Solution 2.2.
+## Poisson regression
+
+
+```r
+### Likelihood function
+ll_fn &lt;- function(a,b,sig,E,obs) {
+
+    # Function for the mean
+    mu &lt;- a + b*E
+
+    # PDF 
+    lik &lt;- dpois(x=obs, lambda = mu)
+    loglik &lt;- log(lik)
+
+    # Return loglikelihood
+    sum(loglik)
+}
+```
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script src="../../assets/macros.js"></script>
+<script src="../macros.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "monokai",
 "highlightLines": true,

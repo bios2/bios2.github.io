@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Univariate Probability Distributions</title>
+    <title>Introduction</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Andrew MacDonald" />
-    <script src="assets/header-attrs-2.8/header-attrs.js"></script>
+    <meta name="author" content="Dominique Gravel" />
     <link href="assets/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="assets/remark-css-0.0.1/hygge.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/BiodiversityModelling/01_probabilities/assets/ecl707.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/ecl707.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -26,7 +25,7 @@ class: title-slide, middle
   }
 &lt;/style&gt;
 
-# A Field Guide to the Univariate Distributions
+# Model evaluation with ecological data
 
 &lt;hr width="65%" align="left" size="0.3" color="orange"&gt;&lt;/hr&gt;
 
@@ -35,154 +34,214 @@ class: title-slide, middle
 &lt;hr width="65%" align="left" size="0.3" color="orange" style="margin-bottom:40px;" alt="@Martin Sanchez"&gt;&lt;/hr&gt;
 
 .instructors[
-  **Biodiversity Modelling** - Andrew MacDonald
+  **ECL707/807** - Dominique Gravel
 ]
 
-&lt;img src="../assets/img/bg.jpg" width="25%" style="margin-top:20px;"&gt;&lt;/img&gt;
+&lt;img src="../assets/img/logo.png" width="25%" style="margin-top:20px;"&gt;&lt;/img&gt;
 
 ---
+
+# Let's start with a simple problem  
 
 &lt;div style='text-align:center;'&gt;
-  &lt;img src="assets/img/meme.jpg" width="400px"&gt;&lt;/img&gt;
+  &lt;img src="assets/img/coates.png" width="300px"&gt;&lt;/img&gt;
 &lt;/div&gt;
- 
----
-# Two flavours
 
---
-
-### Discrete Distributions (integers, counts of things)
-
-Described with a **probability mass function**
---
-
-### Continuous distributions (not integers!)
-
-Described with a **probability density function**
-
----
-## Discrete distributions
-
-
-$$
-0 \leq [z] \leq 1
-$$
-
---
-
-$$
-\sum [z] = 1
-$$
----
-## Continuous Distributions
-
-
-$$
-0 \leq [z]
-$$
-
---
-
-$$
-\int_-^+[z]d[z] = 1
-$$
-
----
-## Moments
-
-$$
-\mu = \text{E}(z) = \sum z[z]
-$$
-
----
-$$
-\sigma^2 = \text{E}((z-\mu)^2) = \sum (z - \mu)^2[z]
-$$
-
-class: inverse, middle, center
+Coates and Burton (1999) studied the effect of light availability on the annual height increment as a function of an index of light availability, 5 years after they were planted. 
 
 ---
 
+# Let's start with a simple problem  
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/coates.png" width="300px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+What could you tell from the data ? 
+
 ---
 
-# The Binomial Distribution
+# Let's start with a simple problem  
 
-&lt;hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"&gt;&lt;/hr&gt;
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/coates.png" width="300px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+How would you fit a curve into this ? 
+
+---
+
+# Let's start with a simple problem  
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/coates.png" width="300px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+What equation to pick ?
 
 ---
 class: inverse, middle, center
 
-# The Binomial Distribution
+# Now try it !
+&lt;hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"&gt;&lt;/hr&gt;
+
+---
+
+# Let's start with a simple problem  
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/coates.png" width="300px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+What are the uncertainties in your model ?
+
+---
+
+# Let's start with a simple problem  
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/coates.png" width="300px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+What will happen if we sample more ?
+
+---
+
+# Let's start with a simple problem  
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/coates.png" width="300px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+Can we reduce this uncertainty ? 
+
+---
+
+class: inverse, middle, center
+
+# Why to develop modelling skills ?
 
 &lt;hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"&gt;&lt;/hr&gt;
----
-
-.pull-left[
-
-```r
-curve(dbinom(x,
-             size = 20,
-             p  = 0.2),
-      n = 21,
-      type = "p",
-      xlim = c(0,20))
-```
-
-Probability Mass Function is
-
-$$
-\text{Pr}(y = k) = {n \choose k} p^k(1-p)^{n-k}
-$$
-
-
-]
-.pull-right[
-![](index_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
-]
 
 ---
 
-.pull-left[
+# Develop innovative methods
 
-```r
-curve(dbinom(x,
-             size = 20,
-             p  = 0.2),
-      n = 21,
-      type = "p",
-      xlim = c(0,20))
+Objective : detect events of suppression and release of understory saplings using time series
 
-curve(dbinom(x,
-             size = 20,
-             p  = 0.8),
-      n = 21,
-      type = "p",
-      col = "red", add = TRUE, pch = 16)
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/canham.png" width="600px"&gt;&lt;/img&gt;
+&lt;/div&gt;
 
+*Gravel et al. 2010. Large-scale synchrony of gap dynamics and the distribution of understory tree species in maple-beech forests. Oecologia 162 : 153-161.*
 
-curve(dbinom(x,
-             size = 20,
-             p  = 0.1),
-      n = 21,
-      type = "p",
-      col = "blue", add = TRUE, pch = 16)
-```
+---
 
-Probability Mass Function is
+# Complex probabilistic problems 
 
-$$
-\text{Pr}(y = k) = {n \choose k} p^k(1-p)^{n-k}
-$$
+Objective : evaluate a logistic model with presence only-data
 
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/bartomeus.png" width="850px"&gt;&lt;/img&gt;
+&lt;/div&gt;
 
-]
-.pull-right[
-![](index_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
-]
+*Bartomeus et al. 2016. A common framework for identifying linkage rules across different types of interactions. Functional Ecology 30: 1894-1903*
+
+---
+
+# Complex probabilistic problems 
+
+Objective : evaluate non-stationary auto-regressive multivariate models
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/autoregression.png" width="800px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+*Gravel et al. Evidence of critical slowing down of interaction networks before physiological meltdown. In prep.*
+
+---
+
+# Transfer of information across scales
+
+Objective : make sure that a species distribution model evaluated at continental scale is coherent with experiments done at the micro scale
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/talluto.png" width="800px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+*Talluto et al. 2016. Cross-scale integration of knowledge for predicting species ranges : a metamodelling framework. Global Ecology and Biogeography 25 : 238-249.* 
+
+---
+
+# Use all information available 
+
+Objective : how to evaluate mortality rate of rare tropical trees with very few observations ?
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/soberania.jpg" width="250px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+*Condit et al. 2006. The importance of dempraphic niches to tree diversity. Science 313: 98-101.*
+
+---
+
+# Other motivations
+
+- Philosophical motivation
+- Representation of uncertainty
+- Adaptive modelling
+- Better understand statistics
+
+---
+class: inverse, middle, center
+
+# What about you ?
+
+&lt;hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"&gt;&lt;/hr&gt;
+
+---
+
+# Logistics
+
+- On site and remote teaching
+- Lectures are recorded
+- Priority to exercises and problems
+- Minimal interactive lectures
+- Participation 
+
+Any other suggestion ?
+
+---
+
+# Content
+
+1. Probabilities
+2. Maximum likelihood estimation
+3. Algorithms for optimization
+4. Bayesian models
+5. Algorithms for posterior distributions
+
+---
+
+# Expectations
+
+- Write down an equation for likelihood and code it in R
+- Develop an algorithm to find the maximum likelihood estimates
+- Have some notions of the philosophies of satistical inferrence
+- Develop the full equation for the posterior distribution 
+- Estimate posterior distribution by MCMC for a simple regression problem
+
+---
+
+# Evaluation
+
+- Pass or fail based on participation and progress
+- Auto-evaluation form at the end of the course
+- Possibility of doing a supervised project as a side
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script src="../../assets/macros.js"></script>
+<script src="../macros.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "monokai",
 "highlightLines": true,

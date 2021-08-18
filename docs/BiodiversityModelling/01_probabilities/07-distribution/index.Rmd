@@ -104,6 +104,8 @@ class: inverse, middle, center
 
 ---
 
+---
+
 # The Binomial Distribution
 
 <hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"></hr>
@@ -143,7 +145,7 @@ $$
 
 .pull-left[
 ```{r binom2, fig.show = 'hide'}
-curve(dbinom(x,
+curve(extraDistr::dbbinom(x,
              size = 20,
              p  = 0.2),
       n = 21,
