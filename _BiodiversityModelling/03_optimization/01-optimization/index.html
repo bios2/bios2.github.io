@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Optimization</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dominique Gravel" />
+    <link href="assets/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="assets/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/ecl707.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+class: title-slide, middle
+
+&lt;style type="text/css"&gt;
+  .title-slide {
+    background-image: url('../assets/img/bg.jpg');
+    background-color: #23373B;
+    background-size: contain;
+    border: 0px;
+    background-position: 600px 0;
+    line-height: 1;
+  }
+&lt;/style&gt;
+
+# Model evaluation with ecological data
+
+&lt;hr width="65%" align="left" size="0.3" color="orange"&gt;&lt;/hr&gt;
+
+## Optimization algorithms
+
+&lt;hr width="65%" align="left" size="0.3" color="orange" style="margin-bottom:40px;" alt="@Martin Sanchez"&gt;&lt;/hr&gt;
+
+.instructors[
+  **ECL707/807** - Dominique Gravel
+]
+
+&lt;img src="../assets/img/logo.png" width="25%" style="margin-top:20px;"&gt;&lt;/img&gt;
+
+---
+
+# Objective
+
+The objective of an optimization algorithm is to find the best solution that either maximize or minimize a complex function. 
+
+---
+
+# Differential equations
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/RM.png" width="650px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+Objective : find the abundances that make differential equations equal to 0.
+
+---
+
+# Spatial arrangement of protected areas 
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/PA.jpg" width="650px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+Objective : protect the largest area, the largest biodiversity and minimize the economical consequences
+
+---
+
+# Modules in an ecological network 
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/modules.png" width="450px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+Objective : maximize the number of intra module interactions and minimize the number of inter modules interactions
+
+---
+
+# Parameters of a statistical model 
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/regression.png" width="650px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+Objective : maximize the likelihood
+
+---
+
+# Many algorithms 
+
+- Brute force/direct search
+- Derivative-based methods
+- Nelder-mean (simplex)
+- Genetic algorithm
+- Simulated annealing$^*$
+- Monte Carlo Markov Chain+$^*$
+
+`\(^*\)` These are not optimization procedures per se as they are meant to return a distribution of solutions, amont which you may want to pick the best one.
+
+---
+
+# Derivative
+## A binomial model
+
+We previously discussed a seed predation experiment. A total of `\(k = 941\)` seeds were sown, with `\(n = 51\)` that were predated. What is the maximum likelihood estimate of the predation rate ?
+
+**Step 1**: the likelihood of observing `\(n\)` seeds predated our of `\(k\)` seeds planted dependts on the parameter `\(\theta\)` as follows :
+
+$$ \zeta(n, \theta) \propto \theta^n (1-\theta)^{k - n}$$
+
+**Step 2**: differentiate this function with respect to the parameter `\(\theta\)`
+
+`$$\frac{\partial \zeta}{\partial \theta} = \frac{n}{\theta} - \frac{k-n}{1-\theta}$$`
+
+---
+
+# Derivative
+## A binomial model
+
+**Step 3**: solve the equation and isolate `\(\theta\)`
+
+`$$\theta = \frac{n}{k}$$`
+
+---
+
+# Derivative
+## A binomial model
+
+**Which gives**
+
+![](index_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+
+---
+
+# But ....
+
+![](index_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
+
+class: inverse, middle, center
+
+# What do we do when there are multiple peaks ? When solutions are not continuous ? When we don't have a function to derivate ?
+
+&lt;hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"&gt;&lt;/hr&gt;
+
+---
+
+# Brute force
+## Grid search
+
+
+```r
+X &lt;- runif(n = 10, min = 0, max = 10)
+Y &lt;- rnorm(n = 10, mean = 0.5 + 1.2*X, sd = 1.5)
+ll &lt;- function(X,Y,a,b, sd) {
+	pred &lt;- a + b*X
+	sum(dnorm(Y, pred, sd, log = TRUE))
+}
+a_seq &lt;- seq(-5,5,length.out = 1000)
+b_seq &lt;- seq(0,5,length.out = 1000)
+grid &lt;- expand.grid(a_seq,b_seq)
+res &lt;- numeric(1000*1000)
+for(i in 1:nrow(grid)) 
+	res[i] &lt;- ll(X,Y,grid[i,1],grid[i,2],sd=2)
+z &lt;- matrix(res, nr = 1000, nc = 1000)
+contour(a_seq,b_seq,z, xlab = "Intercept", 
+	ylab = "Slope",nlevels=50)
+```
+
+---
+
+# The brute force approach: grid search
+
+![](index_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+
+# Exercise 3.1. 
+
+1. Implement the following function :
+
+
+```r
+h = function(x,y) {(x*sin(20*y)+y*sin(20*x))^2*cosh(sin(10*x)*x)+(x*cos(10*y)-y*sin(10*x))^2*cosh(cos(20*y)*y)}
+```
+
+2. Run a grid search to find the best `\((x,y)\)` coordinates maximizing this function
+
+---
+
+class: inverse, middle, center
+
+# What to do when there are many parameters to evaluate ? When solutions are not "parameters" ?
+
+&lt;hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"&gt;&lt;/hr&gt;
+
+---
+
+# Simulated annealing
+
+The name of the method is coming from metallurgy, by analogy to the movement of atoms in a hot piece of metal as it cools down. Simulated annealing interprets cooling as a slow decrease in the probability of accepting a bad proposition of parameter values as it explores the solution space. Accepting worse solutions is a fundamental property of the method which allows an extensive search of the solution space and avoid getting stuck on local optima. The method is an adaptation of the Metropolis–Hastings algorithm.
+
+---
+
+# Simulated annealing
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/SA.jpeg" width="800px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+---
+
+# Simulated annealing
+
+Accept the candidate solution :
+
+`$$\theta_{t+1} = \theta_t + \delta$$`
+
+with probability:
+		
+`$$\rho = exp(\Delta h/T_t)$$`
+
+---
+
+# Simulated annealing 
+
+&lt;div style='text-align:center;'&gt;
+  &lt;img src="assets/img/SA_series.png" width="800px"&gt;&lt;/img&gt;
+&lt;/div&gt;
+
+---
+
+# Simulated annealing
+## Pseudo-code
+
+```
+	DEFINE function to optimize h(X)
+	DEFINE the sampling function c(X)
+	DEFINE temperature sequence
+```
+
+---
+
+# Simulated annealing
+## Pseudo-code
+
+```
+	REPEAT
+		DRAW sample X from c(x)
+		COMPUTE difference diff = h(X) - h(X_0)
+		IF diff &gt; 0 ACCEPT X
+		ELSE 
+			COMPUTE acceptance probability p = exp(diff/T)
+			DRAW value P from random uniform on (0,1)
+			IF P &lt; p
+				ACCEPT X
+			ELSE
+			    REJECT X
+		UPDATE temperature
+	UNTIL nsteps is reached
+```
+
+---
+
+# Exercise 2.2. 
+
+1. Write your own simulated annealing function  from the pseudo code
+2. Make sure it works running it on a set of numbers and calculating the mean
+3. Then take the previous function and find the maximum using simulated annealing
+
+For advanced users, compare the performance of the two methods in the precision of the solution and the time to solve it. 
+
+For advanced advanced users, compute the derivative and solve it analytically!
+
+---
+
+# Function to optimize
+
+
+
+---
+
+# Initiating the algorithm
+
+
+
+---
+
+# Main loop
+
+
+
+---
+
+# Simulated annealing
+
+As you see with this example, simulated annealing is an optimization method meant to solve all kinds of problems, not only maximum likelihood. 
+
+But now it's time to get back at the hemlock dataset and find the MLE.
+
+---
+
+# Exercise 3.3. 
+
+1. Load the hemlock data
+2. Write your likelihood function to maximize
+3. Adapt your simulated annealing algorithm to the problem 
+4. Find the best parameters. Check if they compare to Coates and Burton (1999)
+
+---
+
+# Debugging
+
+- Temperature sequence : too low ? too high ?
+- Search space 
+- Jumps between parameter sets 
+- Different scales
+- Computational errors (e.g. division by 0, log negative numbers)
+- Too many parameters
+- Parameter tradeoffs (a null cline in the parameter space)
+- Dependence on initial conditions (mostly for rough surfaces with several peaks)
+- Inefficient code (use vectorization when possible and avoid loops)
+
+---
+
+# Many algorithms : Which one to pick ?
+
+- The equation to optimize
+- The size of the dataset
+- Number of parameters
+- Likelihood surface
+- Area for the optimal solution or precise value ?
+- Confidence interval ?
+- Combining methods ?
+
+---
+
+# Available algorithms on R
+
+**optim {stats}**
+
+General-purpose optimization based on Nelder-Mead, quasi-Newton and conjugate-gradient algorithms. It includes an option for box-constrained optimization and simulated annealing. 
+
+- Accessible
+- Can return the Hessian matrix if required
+- Very rapid
+- Very precise
+- Local optimization only, performs badly for rough surfaces
+- May be hard to constrain parameter search
+
+---
+
+# Available algorithms on R
+
+**GenSA {GenSA}**
+
+This function searches for global minimum of a very complex non-linear objective function with a very large number of optima. 
+
+- Very good with rough surfaces
+- Fairly rapid and easy to implement
+- Possible to constrain parameter search with minimal and maximal boundaries
+- Makes multiple runs
+- Hard to control cooling sequence, number of iterations and the random seed generator
+
+---
+
+# Advantages of using your own SA
+## A lot of control and customization
+
+- Random number generator
+- Cooling sequence
+- Search space 
+- Even possible to include prior information
+- Possible to adapt to any optimization problem 
+
+---
+
+# Best practices
+## Simulated datasets
+
+Before applying your optimization algorithm to a full dataset, which may be very long to run (ie from hours to days), make sure the algorithm works properly and will converge to the good solution. 
+
+An easy to get there is to use the scientific model, propose a parameter set and the relevance random number generator (will correspond to your PDF) and generate a fake dataset. Run the SA algorithm on this fake dataset first to make sure it converges before trying it on a real dataset. 
+
+You may try with an increasing amount of noise.
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="../macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "monokai",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
