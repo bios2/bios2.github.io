@@ -186,7 +186,7 @@ $$
 1. Now what values should you use for $x$ ? 
 1. Are your answers from the two methods the same?
 
-#### Difference between two normal distributions (part I)
+### Difference between two normal distributions (part I)
 
 You add some fertilizer to plants, because experiments. 
 This makes the plants grow more on average, because physiology.
@@ -220,7 +220,7 @@ par(mfrow = c(1,1))
 
 
 
-#### Difference between two normal distributions part (II) 
+### Difference between two normal distributions part (II) 
 
 The fertilizer makes plants grow, but affects different plants differently, because genetics.
 
