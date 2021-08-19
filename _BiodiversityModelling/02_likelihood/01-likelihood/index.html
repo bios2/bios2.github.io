@@ -4,9 +4,10 @@
     <title>Maximum likelihood</title>
     <meta charset="utf-8" />
     <meta name="author" content="Dominique Gravel" />
+    <script src="assets/header-attrs-2.8/header-attrs.js"></script>
     <link href="assets/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="assets/remark-css-0.0.1/hygge.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/ecl707.css" type="text/css" />
+    <link rel="stylesheet" href="/Users/amacdonald/Documents/Projects/bios2_education_distill/_BiodiversityModelling/02_likelihood/assets/ecl707.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -112,7 +113,7 @@ Fisher's exact test yields the probability `\(p=5.26x10^{-6}\)`. This number rep
 
 # Likelihood
 
-The maximum likelihood approach finds the set of parameters (here the seed predation rates) that makes the observed data the most likely to have occurred. The challeng is to find the model and associated parameters that are the most likely given the observations. 
+The maximum likelihood approach finds the set of parameters (here the seed predation rates) that makes the observed data the most likely to have occurred. The challenge is to find the model and associated parameters that are the most likely given the observations. 
 
 Note that it is possible to add a *frequentist* interpretation to a maximum likelihood analysis. For instance, one could compute confidence intervals around parameters and test for a null hypothesis. Another approach is to compare the likelihood of an alternative hypothesis to the likelihood of a null hypothesis and set up a cutoff criteria to take a decision. 
 ---
@@ -292,7 +293,7 @@ Burnham and Anderson 2002, p. 20
 # Exercise 2.1. 
 ## Time to sharpen your pen...
 
-I want to estimate the probability that the bee *Bembix oculata* visit the flower *Mentha pulegium* over a sampling time of 5 minutes. I do 10 transects, in which I record for each of them if an individual visits a flower and obtain the following sequence of events `\(X = \{0, 1, 1, 0, 1, 1, 0, 0, 0, 0\}\)` representing if an interaction occurred ($X_i = 1$). What is the maximum likelihood estimate for this dataset ?
+I want to estimate the probability that the bee *Bembix oculata* visits the flower *Mentha pulegium* over a sampling time of 5 minutes. I do 10 transects, in which I record for each of them if an individual visits a flower and obtain the following sequence of events `\(X = \{0, 1, 1, 0, 1, 1, 0, 0, 0, 0\}\)` representing if an interaction occurred ($X_i = 1$). What is the maximum likelihood estimate for this dataset ?
 
 ---
 
@@ -418,13 +419,13 @@ Do we have the appropriate PDF ?
 
 # Finding the optimal solution 
 
-Next lecture !
+Next lecture ! 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script src="../macros.js"></script>
 <script>var slideshow = remark.create({
-"highlightStyle": "monokai",
+"highlightStyle": "solarized-light",
 "highlightLines": true,
 "countIncrementalSlides": false
 });

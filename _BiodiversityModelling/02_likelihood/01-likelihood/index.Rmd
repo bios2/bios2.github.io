@@ -8,7 +8,7 @@ output:
     lib_dir: assets
     seal: false
     nature:
-      highlightStyle: monokai
+      highlightStyle: solarized-light
       highlightLines: true
       countIncrementalSlides: false
       beforeInit: "../macros.js"
