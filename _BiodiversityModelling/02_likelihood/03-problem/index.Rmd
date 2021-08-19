@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
 author: "Dominique Gravel"
-date: "August 16th, 2021"
+date: "August 19th, 2021"
 output:
   xaringan::moon_reader:
     css: [default, ../assets/ecl707.css, "hygge"]
@@ -27,11 +27,12 @@ class: title-slide, middle
   }
 </style>
 
-# Model evaluation with ecological data
+
+# Maximum likelihood
 
 <hr width="65%" align="left" size="0.3" color="orange"></hr>
 
-## Introduction
+## Technical problem
 
 <hr width="65%" align="left" size="0.3" color="orange" style="margin-bottom:40px;" alt="@Martin Sanchez"></hr>
 
@@ -43,200 +44,106 @@ class: title-slide, middle
 
 ---
 
-# Let's start with a simple problem  
+# Distribution of biomes in Québec
 
 <div style='text-align:center;'>
-  <img src="assets/img/coates.png" width="300px"></img>
+<img src="assets/img/bioclim.png" height="500px"></img>
 </div>
 
-Coates and Burton (1999) studied the effect of light availability on the annual height increment as a function of an index of light availability, 5 years after they were planted. 
-
 ---
-
-# Let's start with a simple problem  
-
+# A metacommunity model of forest dynamics
 <div style='text-align:center;'>
-  <img src="assets/img/coates.png" width="300px"></img>
+<img src="assets/img/modele_vissault.png" height="500px"></img>
 </div>
 
-What could you tell from the data ? 
+---
+# States
+
+- 'B' if there are only boreal tree species
+- 'T' if there are only temperate tree species
+- 'M' for mixtures
+- 'R' if there are no trees (regeneration)
+
+
+---
+# Transition matrix between states
+
+$$
+\begin{bmatrix}
+P(B_{t+1}|B_t) & P(B_{t+1}|T_t) & P(B_{t+1}|M_t) & P(B_{t+1}|R_t) \\
+P(T_{t+1}|B_t) & P(T_{t+1}|T_t) & P(T_{t+1}|M_t) & P(T_{t+1}|R_t) \\
+P(M_{t+1}|B_t) & P(M_{t+1}|T_t) & P(M_{t+1}|M_t) & P(M_{t+1}|R_t) \\  
+P(R_{t+1}|B_t) & P(R_{t+1}|T_t) & P(R_{t+1}|M_t) & P(R_{t+1}|R_t) \\
+\end{bmatrix}
+$$
+
+Where rows are states at time $t+1$ and columns states at time $t$. A column is therefore a vector of probabilities corresponding to a multinomial distribution. Each column must therefore sum to 1. 
+
+---
+# Transition matrix between states
+
+$$
+\begin{bmatrix}
+P(B_{t+1}|B_t) & P(B_{t+1}|T_t) & P(B_{t+1}|M_t) & P(B_{t+1}|R_t) \\
+P(T_{t+1}|B_t) & P(T_{t+1}|T_t) & P(T_{t+1}|M_t) & P(T_{t+1}|R_t) \\
+P(M_{t+1}|B_t) & P(M_{t+1}|T_t) & P(M_{t+1}|M_t) & P(M_{t+1}|R_t) \\  
+P(R_{t+1}|B_t) & P(R_{t+1}|T_t) & P(R_{t+1}|M_t) & P(R_{t+1}|R_t) \\
+\end{bmatrix}
+$$
+
+A single entry reads as follows : $P(M_{t+1} | T_t)$ is the probability that a cell that was in state $T$ at time $t$ becomes a cell in state $M$ at time $t+1$. Ecologically speaking, this would indicate a colonization by a $B$ tree. 
 
 ---
 
-# Let's start with a simple problem  
+# What we will do
 
-<div style='text-align:center;'>
-  <img src="assets/img/coates.png" width="300px"></img>
-</div>
+- Evaluate the transition matrix (each row is a multinomial model) 
 
-How would you fit a curve into this ? 
+- Use a grid search to evaluate paramaters 
 
----
-
-# Let's start with a simple problem  
-
-<div style='text-align:center;'>
-  <img src="assets/img/coates.png" width="300px"></img>
-</div>
-
-What equation to pick ?
-
----
-class: inverse, middle, center
-
-# Now try it !
-<hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"></hr>
+- Putting some constraints on parameters to answer ecological questions 
 
 ---
 
-# Let's start with a simple problem  
+# The problem 
 
-<div style='text-align:center;'>
-  <img src="assets/img/coates.png" width="300px"></img>
-</div>
+The multinomial distribution is a generalization of the binomial to $n$ discrete states. 
 
-What are the uncertainties in your model ?
+It is therefore more complicated to evaluate the different probabilities because the sum for the different states must equal to 1. You can't throw as many values as there are states when you try candidate parameters, you need to find a way that the sum is always 1. 
 
 ---
 
-# Let's start with a simple problem  
+# Steps
 
-<div style='text-align:center;'>
-  <img src="assets/img/coates.png" width="300px"></img>
-</div>
+1. Try first the transition from the state $B$ (you will have to subset the data)
 
-What will happen if we sample more ?
+2. Write a likelihood function that has 4 parameters (the transition probabilities)
 
----
+3. Test your function with candidate parameter values 
 
-# Let's start with a simple problem  
+4. Propose alternative candidate parameter values and compare
 
-<div style='text-align:center;'>
-  <img src="assets/img/coates.png" width="300px"></img>
-</div>
-
-Can we reduce this uncertainty ? 
+5. Redo the whole thing with a grid search to find your maximum likelihood estimates
 
 ---
 
-class: inverse, middle, center
+# Scientific questions
 
-# Why to develop modelling skills ?
+1. Are all transition probabilities $ > 0$ ? 
 
-<hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"></hr>
+2. Compare a model where transitions $P(R_{t+1}|B_t)$, $P(R_{t+1}|M_t)$ and $P(R_{t+1}|T_t)$ are the same. Is the likelihood lower or higher ?
 
----
-
-# Develop innovative methods
-
-Objective : detect events of suppression and release of understory saplings using time series
-
-<div style='text-align:center;'>
-  <img src="assets/img/canham.png" width="600px"></img>
-</div>
-
-*Gravel et al. 2010. Large-scale synchrony of gap dynamics and the distribution of understory tree species in maple-beech forests. Oecologia 162 : 153-161.*
+3. Divide the data in three categories according to annual average temperature and recompute the transition matrices for each section. Then after, compute the likelihood for the entire dataset, with specific models for the different subsections. Is the model better ? 
 
 ---
 
-# Complex probabilistic problems 
+# Playing with the models 
 
-Objective : evaluate a logistic model with presence only-data
+Markov chains are commonly used in forest ecology to simulate dynamics over the long term. You can run the model to get at the equilibrium distribution with a simple R code, where $\mathbf{T}$
+is a transition matrix and $\mathbf{X_t}$ is a vector of initial conditions (relative abundance of the different states). You run the following : 
 
-<div style='text-align:center;'>
-  <img src="assets/img/bartomeus.png" width="850px"></img>
-</div>
+```{r eval=FALSE}
+Xt1 <- T %*% Xt
+```
 
-*Bartomeus et al. 2016. A common framework for identifying linkage rules across different types of interactions. Functional Ecology 30: 1894-1903*
-
----
-
-# Complex probabilistic problems 
-
-Objective : evaluate non-stationary auto-regressive multivariate models
-
-<div style='text-align:center;'>
-  <img src="assets/img/autoregression.png" width="800px"></img>
-</div>
-
-*Gravel et al. Evidence of critical slowing down of interaction networks before physiological meltdown. In prep.*
-
----
-
-# Transfer of information across scales
-
-Objective : make sure that a species distribution model evaluated at continental scale is coherent with experiments done at the micro scale
-
-<div style='text-align:center;'>
-  <img src="assets/img/talluto.png" width="800px"></img>
-</div>
-
-*Talluto et al. 2016. Cross-scale integration of knowledge for predicting species ranges : a metamodelling framework. Global Ecology and Biogeography 25 : 238-249.* 
-
----
-
-# Use all information available 
-
-Objective : how to evaluate mortality rate of rare tropical trees with very few observations ?
-
-<div style='text-align:center;'>
-  <img src="assets/img/soberania.jpg" width="250px"></img>
-</div>
-
-*Condit et al. 2006. The importance of dempraphic niches to tree diversity. Science 313: 98-101.*
-
----
-
-# Other motivations
-
-- Philosophical motivation
-- Representation of uncertainty
-- Adaptive modelling
-- Better understand statistics
-
----
-class: inverse, middle, center
-
-# What about you ?
-
-<hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"></hr>
-
----
-
-# Logistics
-
-- On site and remote teaching
-- Lectures are recorded
-- Priority to exercises and problems
-- Minimal interactive lectures
-- Participation 
-
-Any other suggestion ?
-
----
-
-# Content
-
-1. Probabilities
-2. Maximum likelihood estimation
-3. Algorithms for optimization
-4. Bayesian models
-5. Algorithms for posterior distributions
-
----
-
-# Expectations
-
-- Write down an equation for likelihood and code it in R
-- Develop an algorithm to find the maximum likelihood estimates
-- Have some notions of the philosophies of satistical inferrence
-- Develop the full equation for the posterior distribution 
-- Estimate posterior distribution by MCMC for a simple regression problem
-
----
-
-# Evaluation
-
-- Pass or fail based on participation and progress
-- Auto-evaluation form at the end of the course
-- Possibility of doing a supervised project as a side
+Once you are done with evaluation of the global and the local transition matrices, you can run the model for a few time steps (you can use pretty much any initial condition you want, as long as the vector sums to 1) and compare the solutions. 
