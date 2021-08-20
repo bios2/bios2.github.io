@@ -46,7 +46,7 @@ slide_link <- function(pres_name){
 }
 ```
 
-## Introduction to likeihood 
+## Introduction to optimization
 
 ```{r}
 xaringanExtra::embed_xaringan(make_url("01-optimization"))

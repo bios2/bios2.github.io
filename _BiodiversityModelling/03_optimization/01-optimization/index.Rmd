@@ -4,7 +4,7 @@ author: "Dominique Gravel"
 date: "August 23th, 2021"
 output:
   xaringan::moon_reader:
-    css: [default, ../assets/ecl707.css, "hygge"]
+    css: [default, /BiodiversityModelling/03_optimization/ecl707.css, "hygge"]
     lib_dir: assets
     seal: false
     nature:
