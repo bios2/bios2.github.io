@@ -129,13 +129,13 @@ $$ \zeta(n, \theta) \propto \theta^n (1-\theta)^{k - n}$$
 
 **Which gives**
 
-![](index_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # But ....
 
-![](index_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -173,7 +173,7 @@ contour(a_seq,b_seq,z, xlab = "Intercept",
 
 # The brute force approach: grid search
 
-![](index_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -183,7 +183,8 @@ contour(a_seq,b_seq,z, xlab = "Intercept",
 
 
 ```r
-h = function(x,y) {(x*sin(20*y)+y*sin(20*x))^2*cosh(sin(10*x)*x)+(x*cos(10*y)-y*sin(10*x))^2*cosh(cos(20*y)*y)}
+h = function(x,y) {(x*sin(20*y)+y*sin(20*x))^2*
+cosh(sin(10*x)*x)+(x*cos(10*y)-y*sin(10*x))^2*cosh(cos(20*y)*y)}
 ```
 
 2. Run a grid search to find the best `\((x,y)\)` coordinates maximizing this function
