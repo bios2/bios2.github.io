@@ -131,7 +131,7 @@ $$\theta = \frac{n}{k}$$
 
 **Which gives**
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.align="center"}
 theta <- seq(0,1,0.001)
 lik = dbinom(51, 951, prob = theta)
 plot(theta, lik, type = "l", xlab = "theta", ylab ="Likelihood", cex.axis = 1.5, cex.lab = 1.25)
@@ -141,7 +141,7 @@ plot(theta, lik, type = "l", xlab = "theta", ylab ="Likelihood", cex.axis = 1.5,
 
 # But ....
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.align="center"}
 h = function(x,y) {(x*sin(20*y)+y*sin(20*x))^2*cosh(sin(10*x)*x)+(x*cos(10*y)-y*sin(10*x))^2*cosh(cos(20*y)*y)}
 x = y = seq(-3,3,le=435)
 z = outer(x,y,h)
@@ -162,7 +162,7 @@ class: inverse, middle, center
 # Brute force
 ## Grid search
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, fig.align="center"}
 X <- runif(n = 10, min = 0, max = 10)
 Y <- rnorm(n = 10, mean = 0.5 + 1.2*X, sd = 1.5)
 ll <- function(X,Y,a,b, sd) {
@@ -184,7 +184,7 @@ contour(a_seq,b_seq,z, xlab = "Intercept",
 
 # The brute force approach: grid search
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.align="center"}
 X <- runif(n = 10, min = 0, max = 10)
 Y <- rnorm(n = 10, mean = 0.5 + 1.2*X, sd = 1.5)
 ll <- function(X,Y,a,b, sd) {
@@ -207,7 +207,8 @@ contour(a_seq,b_seq,z, xlab = "Intercept", ylab = "Slope",nlevels=50)
 1. Implement the following function :
 
 ```{r, echo = TRUE, eval = FALSE}
-h = function(x,y) {(x*sin(20*y)+y*sin(20*x))^2*cosh(sin(10*x)*x)+(x*cos(10*y)-y*sin(10*x))^2*cosh(cos(20*y)*y)}
+h = function(x,y) {(x*sin(20*y)+y*sin(20*x))^2*
+cosh(sin(10*x)*x)+(x*cos(10*y)-y*sin(10*x))^2*cosh(cos(20*y)*y)}
 ```
 
 2. Run a grid search to find the best $(x,y)$ coordinates maximizing this function
