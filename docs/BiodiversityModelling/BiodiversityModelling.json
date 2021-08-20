@@ -46,7 +46,7 @@
   {
     "path": "BiodiversityModelling/03_optimization/",
     "title": "Optimization",
-    "description": "Material covered on Day 2.",
+    "description": "Material covered on Day 3 of lectures.",
     "author": [
       {
         "name": "Dominique Gravel",
@@ -59,9 +59,9 @@
     ],
     "date": "2021-08-16",
     "categories": [],
-    "contents": "\n\nContents\nIntroduction to likeihood\n\nIntroduction to likeihood\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\nClick to view full screen\n\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\nClick to view full screen\n\n\n\n\n",
+    "contents": "\n\nContents\nIntroduction to optimization\n\nIntroduction to optimization\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\nClick to view full screen\n\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\nClick to view full screen\n\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-08-20T13:16:31-04:00",
-    "input_file": {}
+    "last_modified": "2021-08-20T13:37:54-04:00",
+    "input_file": "day-3.knit.md"
   }
 ]

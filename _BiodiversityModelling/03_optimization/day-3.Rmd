@@ -1,7 +1,7 @@
 ---
 title: "Optimization"
 description: |
-  Material covered on Day 2.
+  Material covered on Day 3 of lectures.
 author: 
   - name: Dominique Gravel
   - name: Andrew MacDonald
