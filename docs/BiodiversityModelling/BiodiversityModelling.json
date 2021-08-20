@@ -42,5 +42,26 @@
     "input_file": {},
     "preview_width": 1248,
     "preview_height": 768
+  },
+  {
+    "path": "BiodiversityModelling/03_optimization/",
+    "title": "Optimization",
+    "description": "Material covered on Day 2.",
+    "author": [
+      {
+        "name": "Dominique Gravel",
+        "url": {}
+      },
+      {
+        "name": "Andrew MacDonald",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-16",
+    "categories": [],
+    "contents": "\n\nContents\nIntroduction to likeihood\n\nIntroduction to likeihood\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\nClick to view full screen\n\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\nClick to view full screen\n\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-08-20T13:00:20-04:00",
+    "input_file": {}
   }
 ]
