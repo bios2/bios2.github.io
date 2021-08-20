@@ -8,7 +8,7 @@ output:
     lib_dir: assets
     seal: false
     nature:
-      highlightStyle: monokai
+      highlightStyle: solarized-light
       highlightLines: true
       countIncrementalSlides: false
       beforeInit: "../macros.js"
@@ -175,7 +175,7 @@ class: inverse, middle, center
 
 $$\zeta (\theta|data) \propto P(data|\theta)$$
 
-In words: The likelihood ($\zeta$) of the set of parameters ($\theta$) (in the scientific model), given an observation ($data$), is proportional to the probability of observing the data  given the parameters...
+In words: The likelihood ( $\zeta$ ) of the set of parameters ( $\theta$ ) (in the scientific model), given an observation ( $data$ ), is proportional to the probability of observing the data  given the parameters...
 
 The likelihood approach flips the interpretation of a statistical model : the data is the reality, and we look at the "likelihood" of an explanation. Among several things, this formulation facilitates the comparison of candidate models (and sets of parameters).
 
@@ -183,7 +183,7 @@ The likelihood approach flips the interpretation of a statistical model : the da
 
 # Likelihood for a set of observations
 
-The likelihood of a set of observation is the joint probability of the different data points given the model. Using product rule, for $i = 1...n$ independent observations, and a vector of $\mathbf{X}$ observations ($x_i$), we obtain :
+The likelihood of a set of observation is the joint probability of the different data points given the model. Using product rule, for $i = 1...n$ independent observations, and a vector of $\mathbf{X}$ observations ( $x_i$ ), we obtain :
 
 $$\zeta (\theta|\mathbf{X}) \propto \prod g(x_i|\theta)$$
 
@@ -202,7 +202,7 @@ Let consider the following set of numbers $X = \{4, 2, 10, 5, 8, 4\}$. It's very
 ---
 
 
-# A very basic example
+# Routine for finding best parameters
 
 ```
 DEFINE probability distribution
@@ -281,7 +281,7 @@ Burnham and Anderson 2002, p. 20
 # Exercise 2.1. 
 ## Time to sharpen your pen...
 
-I want to estimate the probability that the bee *Bembix oculata* visits the flower *Mentha pulegium* over a sampling time of 5 minutes. I do 10 transects, in which I record for each of them if an individual visits a flower and obtain the following sequence of events $X = \{0, 1, 1, 0, 1, 1, 0, 0, 0, 0\}$ representing if an interaction occurred ($X_i = 1$). What is the maximum likelihood estimate for this dataset ?
+I want to estimate the probability that the bee *Bembix oculata* visits the flower *Mentha pulegium* over a sampling time of 5 minutes. I do 10 transects, in which I record for each of them if an individual visits a flower and obtain the following sequence of events $X = \{0, 1, 1, 0, 1, 1, 0, 0, 0, 0\}$ representing if an interaction occurred ( $X_i = 1$ ). What is the maximum likelihood estimate for this dataset ?
 
 ---
 
@@ -315,15 +315,91 @@ abline(v = 0.4)
 ```
 
 ---
+class: inverse, middle, center
 
-# Pseudo-code of a likelihood function
+# Step by step guide to compute the likelihood of your data given your model
+
+<hr width="65%" size="0.3" color="orange" style="margin-top:-20px;"></hr>
+
+---
+
+# Recall : Another way of formulating a statistical model 
+
+Data (your observations) are distributed according to a *probability function*
+
+$$y \backsim \eta(\mu, \sigma^2)$$
+
+where the *scientific model* is 
+
+$$\mu_i = \alpha + \beta x_i$$
+
+And accordingly, your objective is to compute : 
+
+$$P(y = data_i|x_i, \alpha, \beta, \sigma)$$
+
+The *likelihood function* that you have to code is the function for $P(data|covariates, parameters)$
+
+---
+
+# Step 0 (an old C++ habit ...)
+
+Conceptual part. By far the most important, often the one that we neglect. Impossible to go forward with the R code if this part is not clear. This should all be done with paper and pen.
+
+- What is the data you want to predict. Name it (e.g. **obs** or **Y**)
+- Are there covariates ? Name them (e.g. **X** or **elevation**)
+- Identify the proability function (PDF or PMF)
+- Identify parameters of the probability function 
+- Propose an equation for your scientific model 
+- Make sure that you understand how to plug the result of your scientific model into the probability functions (e.g. how is the mean changing with the covariates)
+- Write all of this on paper
+
+---
+
+# Step 1
+
+Propose candidate values for all parameters
+
+---
+
+# Step 2
+
+Write the equation to compute the model prediction for each observation of covariates (ie sampling unit) given the proposed parameters and the equation you wrote before. Call these numbers **pred**.
+
+---
+
+# Step 3
+
+Use a probability function (e.g. dnorm) to compute the probability of each observation (data point).
+
+This is straightforward with **dnorm** because the mean argument is your **pred**. But it may be more complicated for other PDFs because the parameters are not necessarily corresponding to the mean, e.g. beta or gamma. In some instances you don't even have a PDF (e.g. the logistic regression where the scientific model is the PDF at the same time).
+
+---
+
+# Step 4
+
+Take the log of all probabilities and sum it. This is your log likelihood !
+
+---
+
+# Step 5
+
+Repeat steps 1-5 until you believe you found the paramaters that maximize your likelihood. 
+
+**Note:** You may want to wrap steps 2-4 into a function because you will have to repeat these steps often.
+
+
+---
+
+# Summary : pseudo-code of a likelihood function
 
 ```
-DEFINE FUNCTION f(OBS, COVARIATES, PARAMETERS)
-LOAD OBS, COVARIATES, PARAMETERS
+DRAW parameters
 
-COMPUTE mu <- f(COVARIATES, PARAMETERS) 
-COMPUTE p_obs <- pdf(OBS, mu, parameters)
+DEFINE model(covariates, parameters)
+DEFINE pdf(obs, predict, parameters)
+
+COMPUTE pred <- model(covariate, parameters) 
+COMPUTE p_obs <- pdf(obs, pred, parameters)
 COMPUTE ll <- sum(log(p_obs))
 ```
 ---
