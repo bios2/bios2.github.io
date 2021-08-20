@@ -4,9 +4,10 @@
     <title>Optimization</title>
     <meta charset="utf-8" />
     <meta name="author" content="Dominique Gravel" />
+    <script src="assets/header-attrs-2.8/header-attrs.js"></script>
     <link href="assets/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="assets/remark-css-0.0.1/hygge.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../assets/ecl707.css" type="text/css" />
+    <link rel="stylesheet" href="/Users/amacdonald/Documents/Projects/bios2_education_distill/_BiodiversityModelling/03_optimization/assets/ecl707.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -129,13 +130,13 @@ $$ \zeta(n, \theta) \propto \theta^n (1-\theta)^{k - n}$$
 
 **Which gives**
 
-![](index_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
 # But ....
 
-![](index_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -173,7 +174,7 @@ contour(a_seq,b_seq,z, xlab = "Intercept",
 
 # The brute force approach: grid search
 
-![](index_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+&lt;img src="index_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -183,7 +184,8 @@ contour(a_seq,b_seq,z, xlab = "Intercept",
 
 
 ```r
-h = function(x,y) {(x*sin(20*y)+y*sin(20*x))^2*cosh(sin(10*x)*x)+(x*cos(10*y)-y*sin(10*x))^2*cosh(cos(20*y)*y)}
+h = function(x,y) {(x*sin(20*y)+y*sin(20*x))^2*
+cosh(sin(10*x)*x)+(x*cos(10*y)-y*sin(10*x))^2*cosh(cos(20*y)*y)}
 ```
 
 2. Run a grid search to find the best `\((x,y)\)` coordinates maximizing this function
@@ -384,7 +386,7 @@ Before applying your optimization algorithm to a full dataset, which may be very
 
 An easy to get there is to use the scientific model, propose a parameter set and the relevance random number generator (will correspond to your PDF) and generate a fake dataset. Run the SA algorithm on this fake dataset first to make sure it converges before trying it on a real dataset. 
 
-You may try with an increasing amount of noise.
+You may try with an increasing amount of noise. 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

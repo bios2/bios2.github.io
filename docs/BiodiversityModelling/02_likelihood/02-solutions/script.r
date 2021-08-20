@@ -1,6 +1,6 @@
 ### Extract species, elevation and coordinates
-sutton <- read.csv("data/sutton.csv", sep=";")
-acsa <- as.matrix(ifelse(sutton$acsa>0,1,0))
+sutton <- read.csv("/home/local/USHERBROOKE/grad3002/.local/share/Trash/files/bios2.3.github.io/_BiodiversityModelling/02_likelihood/02-solutions/data/sutton.csv", sep=";")
+acsa <- sutton$acsa
 xy <- sutton[,2:1]
 elev<-as.matrix(xy[,1])
 
@@ -78,12 +78,13 @@ ll_fn <- function(a,b,sig,E,obs) {
 }
 
 # Plot the model 
-logit_fn <- function(a, b, E) {
-    mu <- a + b*E
-    p = exp(mu)/(1+exp(mu))
+logit_fn <- function(x, a, b) {
+    mu <- a + b*x
+    exp(mu)/(1+exp(mu))
 }
 
-plot(data$y, logit_fn(0, 1, data$E))
+curve(logit_fn(x, a=-0.01, b = -0.01),xlim = c(0, 1000))
+
 
 ###########
 # 2.3. Poisson regression
