@@ -6,28 +6,28 @@
       "description": "We train graduate students in Data Science and Organizational/Communication skills",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-20T13:30:58-04:00"
+      "last_modified": "2021-08-20T17:35:32-04:00"
     },
     {
       "path": "biodivmodelling.html",
       "title": "Summer School in Biodiversity Modelling 2021",
       "author": [],
       "contents": "\n\nThe Summer School in Biodiversity Modelling will take place from August 16-25, 2021 under the theme: Evaluating Models from Ecological Data\nLed by Pr. Dominique Gravel and Dr. Andrew MacDonald (Université de Sherbrooke). Training focused on problem solving and guest speakers (Professors Timothée Poisot, Pedro Peres-Neto, Sandra Hamel, Marc Bélisle and others).\nOnline and Hybrid Training. The format of the intensive summer school has been revised to accommodate COVID’s restrictions on travel and large group activities. Activities will be accessible remotely, but local gatherings may be arranged if the situation allows. Content\nThe toolbox for the analysis of ecological data is expanding at unprecedented rates and it is almost impossible to track all of the novel methods available. Their high degree of sophistication is also very restricting, limiting their applicability and our appreciation of some innovative studies. It is out of reach to learn each of them and advanced training in data modelling is by far the best asset to learn about new methods and develop the one’s best suited for an ecological problem. The objective of this course is to train students methods and skills to fit models to ecological data.\nThe course will introduce notions of probabilities, maximum likelihood and Bayesian modelling. Emphasis will be put on algorithms and computational methods in order to develop abilities to solve a wide range of problems. By the end of the course, students will be able to define their modelling problem, arrange their data properly, develop the equations to describe the phenomenon of interest and evaluate parameters using information based and Bayesian approaches.\nTentative Schedule\nAugust 16, 2021 Probabilities and distributions: know your data, define your problem. August 18 Maximum likelihood methods: write down equations for your model. August 20 Optimization algorithms: reveal the capacities of computers to solve complex problems numerically. August 23 Bayesian statistics: how to properly represent uncertainty in ecological models. August 25 Sampling algorithms: evaluating posterior distributions by your own. Format\nThe course will consist of five one-day sessions alternating with a day off, spread over two weeks.\nShort sessions of lectures and exercises will be given in the morning. The emphasis will be on practice under the supervision of the instructors. The afternoon will be organized around one or two higher level problems to be solved. A guest speaker will be offered at the end of the day to provide a perspective on the day’s topic. Students will have the opportunity to continue working on the problem during the break day, and the solution will be provided at the next session.\nInstructors will be available during the exercise period and during breaks throughout the day.\nClasses will be taught in English, with bilingual support.\n\n\n\n",
-      "last_modified": "2021-08-20T13:31:03-04:00"
+      "last_modified": "2021-08-20T17:35:33-04:00"
     },
     {
       "path": "index.html",
       "title": "Training materials",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-20T13:31:10-04:00"
+      "last_modified": "2021-08-20T17:35:35-04:00"
     },
     {
       "path": "Marchand.html",
       "title": "Spatial materials",
       "author": [],
       "contents": "\n[EN] Contents for the “Spatial statistics in ecology” training offered by Philippe Marchand in January 2021 as part of the BIOS2 program. Original repository can be found here.\n[FR] Contenu de la formation “Statistiques spatiales en écologie” offerte par Philippe Marchand en janvier 2021 dans le cadre du programme BIOS2. Le repositoire original se trouve ici.\n\n\n\n",
-      "last_modified": "2021-08-20T13:31:17-04:00"
+      "last_modified": "2021-08-20T17:35:37-04:00"
     }
   ],
   "collections": ["posts/posts.json", "Marchand/Marchand.json", "BiodiversityModelling/BiodiversityModelling.json"]
