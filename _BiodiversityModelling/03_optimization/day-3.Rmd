@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 make_url <- function(pres_name){
-  paste0("https://bios2.github.io/BiodiversityModelling/02_likelihood/",
+  paste0("https://bios2.github.io/BiodiversityModelling/03_optimization/",
          pres_name,
          "/#1")
 }
