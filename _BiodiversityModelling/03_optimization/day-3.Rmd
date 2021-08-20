@@ -1,0 +1,58 @@
+---
+title: "Optimization"
+description: |
+  Material covered on Day 2.
+author: 
+  - name: Dominique Gravel
+  - name: Andrew MacDonald
+date: 2021-08-16
+output:
+  distill::distill_article:
+    self_contained: false
+    toc: true
+    toc_float: true
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+
+make_url <- function(pres_name){
+  paste0("https://bios2.github.io/BiodiversityModelling/02_likelihood/",
+         pres_name,
+         "/#1")
+}
+
+
+embed_slides <- function(pres_name){
+  
+  url <- paste0("https://bios2.github.io/BiodiversityModelling/03_optimization/",
+                pres_name,
+                "/#1")
+  
+  iframe <- xaringanExtra::embed_xaringan(url)
+  
+  lnk <- paste0("[Click to view full screen](", url, ")")
+  
+  knitr::asis_output(paste0(iframe,"\n", lnk))
+
+}
+
+slide_link <- function(pres_name){
+  lnk <- paste0("[Click to view full screen](", make_url(pres_name), ")")
+  knitr::asis_output(lnk)
+}
+```
+
+## Introduction to likeihood 
+
+```{r}
+xaringanExtra::embed_xaringan(make_url("01-optimization"))
+slide_link("01-optimization")
+```
+
+```{r}
+embed_slides("03-problem")
+```

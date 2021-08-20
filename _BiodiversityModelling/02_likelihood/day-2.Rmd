@@ -57,6 +57,14 @@ embed_slides("03-problem")
 
 ```
 
+Get the habitat type data here:
+
+```{r, echo=TRUE}
+states <- readr::read_delim("https://raw.githubusercontent.com/bios2/bios2.github.io/master/_BiodiversityModelling/02_likelihood/03-problem/data/transitions.txt", delim = " ", col_names = c("x","ID", "temp", "state1", "state2", "interval"), skip = 1)
+
+knitr::kable(head(states))
+```
+
 
 ## Sutton trees
 
@@ -97,7 +105,7 @@ knitr::kable(head(maple))
 
 
 
-## Maximum Likelihood Workout 💪💪💪💪
+# Maximum Likelihood Workout 💪💪💪💪
 
 ```{r}
 knitr::opts_chunk$set(echo = TRUE)
@@ -112,11 +120,11 @@ They are divided into three sections: one, two and three parameters.
 
 **To do an exercise: ** copy and paste the R code into an R source file. Run it, then work with the data.frame it creates!
 
-### One parameter
+## One parameter
 
 
 
-#### One-parameter exponential distribution
+### One-parameter exponential distribution
 
 You are watching a female bird visiting her nest, bringing back food for nestlings. 
 Every time she comes back you write down the number of minutes since the last visit. You watch for 20 consecutive visits.
@@ -249,4 +257,52 @@ par(mfrow = c(1,1))
 1. What is the likelihood for the observations? Consider that you know the control mean ($\mu$), the control standard deviation ($\sigma_c$) and the treatment standard deviation ($\sigma_t$). How is this different from the first equation?
 1. Use maximum likelihood to confirm that the difference is really 30g
 1. Is the likelihood profile different from the first exercise? that is, does the plot of likelihood values (y axis) against parameter values (x axis) look the same? 
+
+## Two parameters
+
+_The following two examples are lifted from Bolker , page 182_
+
+Consider some tadpoles, who live a difficult life. They are in an experiment where they are kept at different densities.  The experimenter introduces a predator to the container with the tadpoles, and observes as the predator kills tadpoles. 
+
+The experiment has six treatments: 5, 10, 15, 20, 25, 30 tadpoles per tank, and 5 tanks per treatment.
+
+Predators can feed more when prey density is higher, but sometimes slow down when the prey get to very high densities. In a classic Type II functional response, this is modelled with two numbers. First, a predator species has some constant attack rate $a$ -- they only need to eat so much per unit time. Second, they must "handle" each prey item (kill, digest, etc) before attacking another. This handling time creates the slowdown in attack: no matter how many prey there are, they still take the same effort to catch, kill, and digest.
+
+The Type II functional response is written as:
+
+$$
+f(N) = \frac{a}{a + ahN}
+$$
+
+* $a$ is the attack rate
+* $h$ is handling time
+* $N$ is the number of prey
+
+This equation produces a per capita rate of predation: the *proportion* of prey killed by one predator in a unit of time. 
+
+Play with this equation in R, using `curve()`, and modify values of `a` and `h`.
+
+```{r}
+a <- 0.7
+h <- 1.3
+curve(a/(1 + a*h*x), xlim = c(0,30), ylim = c(0,1))
+```
+
+Convince yourself that the output is always between 0 and 1. Are there any constraints on the parameters? Think about how you will handle that in your Maximum Likelihood search.
+
+At the end of the experiment, the scientist comes back and measures how many tadpoles were killed in each treatment, out of the total number originally placed in that tank. What probability distribution would you use for these data? Where do you place the functional response equation explored above?
+
+#### Part 2
+
+Simulate some data with known parameters for $a = 0.6$ and $h = 0.3$
+
+```{r}
+a <- 0.7
+h <- 1.3
+rbinom(5,prob =  a/(1 + a*h*10), size = 10)
+```
+
+_(to be continued!)_
+
+
 
