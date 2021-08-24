@@ -1,5 +1,26 @@
 [
   {
+    "path": "BiodiversityModelling/2021-08-24-bayes/",
+    "title": "Intro to Bayesian Statistics",
+    "description": "Material covered on Day 4.",
+    "author": [
+      {
+        "name": "Dominique Gravel",
+        "url": {}
+      },
+      {
+        "name": "Andrew MacDonald",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-28",
+    "categories": [],
+    "contents": "\n\nContents\nBayes slides, Tuesday\nField data project\n\nBayes slides, Tuesday\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\n\nField data project\nTry to find a conjugate prior for part of your data. If you have a two-parameter distribution (e.g. the Normal distribution) you may only be able to use a conjugate prior for one parameter.\nEstimate your distribution parameters with this approach. Do you get a similar response to previously?\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-08-24T17:14:51-04:00",
+    "input_file": {}
+  },
+  {
     "path": "BiodiversityModelling/01_probabilities/",
     "title": "Probability for Ecologists",
     "description": "Material covered on Day 1.",
@@ -61,8 +82,8 @@
     "categories": [],
     "contents": "\n\nContents\nIntroduction to optimization\nCode for the Simulated Annealing Algorithm\nDom’s Solution\n\nAndrew’s Approach\n\nIntroduction to optimization\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\nClick to view full screen\n\n\n\n\nfitvids('.shareagain', {players: 'iframe'});\nClick to view full screen\n\nCode for the Simulated Annealing Algorithm\nDom’s Solution\n\n\n# Load the data \ndata <- read.table(\"https://raw.githubusercontent.com/bios2/bios2.github.io/master/_BiodiversityModelling/01_probabilities/01-introduction/data/hemlock.txt\", header = TRUE)\nobs = data[,2]\nL = data[,1]\n\n# Likelihood function\nh <- function(obs, L, pars) {\n    a <- pars[1]\n    s <- pars[2]\n    sigma <- pars[3]\n    mu <- a*L/(a/s + L)\n    sum(log(dnorm(obs, mu, sigma)))\n}\n\n# Candidate function\nc_x <- function(pars_lo, pars_hi) runif(1, pars_lo, pars_hi)\n\n# Set conditions for the simulated annealing sequence\nT_fn <- function(T0, alpha, step) T0*exp(alpha*step)\n\nT0 <- 10\nalpha = -0.001\nnsteps <- 10000\n\n# Prepare an object to store the result\nres <- matrix(nr = nsteps, nc = 5)\n\n# Initiate the algorithm\na0 <- 1\ns0 <- 1000\nsd0 <- 10\npars0 <- c(1, 100, 10)\npars_lo <- c(0, 1, 1)\npars_hi <- c(1000, 1000, 100)\n\n# Main loop\nfor(step in 1:nsteps) {\n\n    for(j in 1:3) {\n\n        # Draw new value for parameter j\n        pars1 <- pars0\n        pars1[j] <- c_x(pars_lo[j], pars_hi[j])\n\n        # Evaluate the function\n        h1 <- h(obs, L, pars1)\n        h0 <- h(obs, L, pars0)\n\n        # Compute the difference\n        diff <- h1 - h0\n\n        # Accept if improvement\n        if(diff > 0) pars0 <- pars1\n\n        # Accept wrong candidates \n        else {  \n            p <- exp(diff/T_fn(T0, alpha, step))\n            if(runif(1)<p) pars0 <- pars1\n        }\n    }\n    \n    # Record values\n    res[step,] <- c(step,pars0,h(obs,L,pars0)) \n}\n\n#Plot the results\nplot(c(1:nsteps), res[,5], type = \"l\", xlab = \"Time step\", ylab = \"h(x)\",cex = 2, log = \"x\")\n\n\n\nplot(L, obs, cex = 2, xlab=\"Light\", ylab = \"Growth\", cex.axis = 2, cex.lab = 2)\n\nadd_model<- function(step) {\n    Lseq = seq(0,100,0.1)\n    a=res[step,2]\n    s=res[step,3]\n    lines(Lseq,a*Lseq/(a/s+Lseq), lwd = 2)\n}\nadd_model(2)\nadd_model(10)\nadd_model(100)\nadd_model(500)\nadd_model(1000)\n\n\n\n\nAndrew’s Approach\nDEFINE function to optimize h(X)\n\n\nfake_xs <- rnorm(42, 19, 4)\n\nloglike_numbers <- function(numbers, mu) sum(dnorm(x = numbers, mean = mu, sd = 4, log = TRUE))\n\n\nloglike_numbers(fake_xs, 7)\n\n\n[1] -310.383\n\nlibrary(tidyverse)\n\ntibble(possible_mus = -3:30) %>% \n  mutate(ll = map_dbl(possible_mus, loglike_numbers, numbers = fake_xs)) %>% \n  ggplot(aes(x = possible_mus, y = ll)) + geom_point() + \n  geom_vline(xintercept = 19)\n\n\n\n\nDEFINE the sampling function c(X)\n\n\nsee_of_x <- function(x, sigma = 1) { x + rnorm(1, sd = sigma) }\n\nxx <- numeric(40)\nxx[1] <- 30\n\n## walk like a drunk: test my see of x function\nfor(i in 2:40){\n  xx[i] <- see_of_x(xx[i-1], sigma = .001)\n}\n\nplot(xx, type = \"l\")\n\n\n\n\nDEFINE temperature sequence\n\n\ntemp_line <- function(runs, tstart, tcool){\n  exp(log(tstart) + log(tcool)*0:(runs-1))\n}\n\ntemp_line_str <- function(runs, tstart) {\n  seq(tstart, 0, length.out = runs)\n}\n\ntibble(time = 1:300,\n       temp = temp_line(300, 8, 0.9)) %>% \n  ggplot(aes(x = time, y = temp)) + \n  geom_point()\n\n\n\ntibble(time = 1:300,\n       prob = exp(-13/temp_line(300, 70, 0.97))) %>% \n  ggplot(aes(x = time, y = prob)) + \n  geom_point()\n\n\n\n\n    REPEAT\n        DRAW sample X from c(x)\n        COMPUTE difference diff = h(X) - h(X_0)\n        IF diff > 0 ACCEPT X\n        ELSE \n            COMPUTE acceptance probability p = exp(diff/T)\n            DRAW value P from random uniform on (0,1)\n            IF P < p\n                ACCEPT X\n            ELSE\n                REJECT X\n        UPDATE temperature\n    UNTIL nsteps is reached\n\n\n# function to take temperature, diff, and give back TRUE or FALSE (will a negative be kept)\n\nkeep_neg_diff <- function(diff, Tmp){\n  stopifnot(diff<0)\n  runif(1, min = 0, max = 1) < exp(diff/Tmp)\n}\n\nkeep_neg_diff(-30, Tmp = 40)\n\n\n[1] FALSE\n\nkeep_neg_diff(10, Tmp = 0)\n\n\nError in keep_neg_diff(10, Tmp = 0): diff < 0 is not TRUE\n\n\n\n## function to take x0 and x1 and a function and temp and return either x0 (reject) or x1 ( accept)\nkeep_or_reject <- function(x0, x1, fun, temp){\n  diff <- fun(x1) - fun(x0)\n  # browser()\n  if (diff > 0) {\n    return(x1)\n  } else if (keep_neg_diff(diff, Tmp = temp)){\n    return(x1)\n  } else {\n    return(x0)\n  }\n}\n\n\n\n\n\n# evaluate for these only\n\nll_fakenums_f_x <- function(x) loglike_numbers(fake_xs, mu = x)\n\n# make temperatures\nruns <- 299\n\ntemps <- temp_line(runs, 3, 0.98)\n\nxx <- numeric(runs + 1)\n\nstartval <- 10\n\n\nxx[1] <- startval\n\n\nfor (i in 2:runs){\n  maybe <- see_of_x(xx[i-1])\n  xx[i] <- keep_or_reject(x0 = xx[i-1], x1 = maybe, fun = ll_fakenums_f_x, temp = temps[i-1])\n}\n\nplot(xx, type = \"l\")\n\n\n\n\n\n\n\n",
     "preview": "BiodiversityModelling/03_optimization/day-3_files/figure-html5/unnamed-chunk-4-1.png",
-    "last_modified": "2021-08-20T17:38:57-04:00",
-    "input_file": "day-3.knit.md",
+    "last_modified": "2021-08-20T17:38:58-04:00",
+    "input_file": {},
     "preview_width": 1248,
     "preview_height": 768
   }
