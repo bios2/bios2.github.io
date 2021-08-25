@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://bios2.github.io/about.html</loc>
-    <lastmod>2021-08-16T14:05:37-04:00</lastmod>
+    <lastmod>2021-03-05T18:56:29-05:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/biodivmodelling.html</loc>
-    <lastmod>2021-08-16T14:05:37-04:00</lastmod>
+    <lastmod>2021-08-16T08:01:09-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/</loc>
-    <lastmod>2021-08-16T14:05:39-04:00</lastmod>
+    <lastmod>2021-03-05T19:04:25-05:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/Marchand.html</loc>
-    <lastmod>2021-08-16T14:05:36-04:00</lastmod>
+    <lastmod>2021-04-29T11:03:25-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/posts/2021-06-22-introduction-to-shiny-apps/</loc>
-    <lastmod>2021-08-17T11:52:12-04:00</lastmod>
+    <lastmod>2021-08-18T09:35:02-04:00</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/posts/2021-05-04-building-r-packages/</loc>
@@ -89,7 +89,19 @@
     <lastmod>2021-04-23T10:35:54-04:00</lastmod>
   </url>
   <url>
+    <loc>https://bios2.github.io/BiodiversityModelling/2021-08-24-bayes/</loc>
+    <lastmod>2021-08-24T17:14:51-04:00</lastmod>
+  </url>
+  <url>
     <loc>https://bios2.github.io/BiodiversityModelling/01_probabilities/</loc>
-    <lastmod>2021-08-16T16:47:08-04:00</lastmod>
+    <lastmod>2021-08-18T12:40:33-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/BiodiversityModelling/02_likelihood/</loc>
+    <lastmod>2021-08-20T13:26:11-04:00</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/BiodiversityModelling/03_optimization/</loc>
+    <lastmod>2021-08-20T17:38:58-04:00</lastmod>
   </url>
 </urlset>

@@ -9,10 +9,10 @@ distill::create_post(title = "Introduction to Shiny Apps",
 
 ## for a longer training:
 #
-distill::create_post(title = "Day 5",
+distill::create_post(title = "Bayes",
                      author = "Dominique Gravel, Andrew MacDonald",
                      collection = "BiodiversityModelling",
-                     date = lubridate::ymd("2021-08-16"),
-                     edit = FALSE,
-                     draft = TRUE
+                     date = lubridate::ymd("2021-08-24"),
+                     edit = TRUE,
+                     draft = FALSE
 )

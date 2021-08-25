@@ -7,7 +7,16 @@
     <description>Educational materials, incluing links to pdfs, videos, and code to reproduce all of our trainings.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 16 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Intro to Bayesian Statistics</title>
+      <dc:creator>Dominique Gravel</dc:creator>
+      <dc:creator>Andrew MacDonald</dc:creator>
+      <link>https://bios2.github.io/BiodiversityModelling/2021-08-24-bayes</link>
+      <description>Material covered on Day 4.</description>
+      <guid>https://bios2.github.io/BiodiversityModelling/2021-08-24-bayes</guid>
+      <pubDate>Sat, 28 Aug 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Probability for Ecologists</title>
       <dc:creator>Dominique Gravel</dc:creator>
@@ -16,6 +25,26 @@
       <description>Material covered on Day 1.</description>
       <guid>https://bios2.github.io/BiodiversityModelling/01_probabilities</guid>
       <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Likelihood</title>
+      <dc:creator>Dominique Gravel</dc:creator>
+      <dc:creator>Andrew MacDonald</dc:creator>
+      <link>https://bios2.github.io/BiodiversityModelling/02_likelihood</link>
+      <description>Material covered on Day 2.</description>
+      <guid>https://bios2.github.io/BiodiversityModelling/02_likelihood</guid>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/BiodiversityModelling/02_likelihood/day-2_files/figure-html5/bird-visits-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
+      <title>Optimization</title>
+      <dc:creator>Dominique Gravel</dc:creator>
+      <dc:creator>Andrew MacDonald</dc:creator>
+      <link>https://bios2.github.io/BiodiversityModelling/03_optimization</link>
+      <description>Material covered on Day 3 of lectures.</description>
+      <guid>https://bios2.github.io/BiodiversityModelling/03_optimization</guid>
+      <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://bios2.github.io/BiodiversityModelling/03_optimization/day-3_files/figure-html5/unnamed-chunk-4-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
   </channel>
 </rss>
