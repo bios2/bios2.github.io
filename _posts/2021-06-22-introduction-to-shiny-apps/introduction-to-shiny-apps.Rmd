@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Shiny Apps"
 description: |
-  Shiny is so great.
+  Introduction to interactive app development with R Shiny. 
 author:
   - name: Katherine Hébert
   - name: Andrew MacDonald

@@ -121,7 +121,7 @@ Below, we show the necessary code to include in both the UI and the Server to cr
 |:--- |:----|:--------|:--------|
 | Box 1  |  **Intro Textbox**      |  Markdown/HTML text  code   |        | 
 | Box 2  |  **Selection Wigets**   |  `checkboxGroupButtons(` `inputID = "volcano_type")` | `selected_volcanoes <- reactive({` `volcano_df %>% filter(type %in% input$volcano_type)})` to create a filtered dataset that will react to user input |
-| Box 3  |  **Bar Graph**          |  `plotOutput("bargraph")` |   `output$continentplot <- renderPlot(...))` which will plot from the `selectied_volcanoes` reactive object |
+| Box 3  |  **Bar Graph**          |  `plotOutput("continentplot")` |   `output$continentplot <- renderPlot(...))` which will plot from the `selectied_volcanoes` reactive object |
 | Box 4  |  **Leaflet Map**        |  `leafletOutput("volcanomap")` | ` output$volcanomap <- renderLeaflet(...)` to map points from the `selectied_volcanoes` reactive object | 
 
 
