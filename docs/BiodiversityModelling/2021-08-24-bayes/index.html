@@ -2135,7 +2135,10 @@ Longer Trainings
 <h3>Contents</h3>
 <ul>
 <li><a href="#bayes-slides-tuesday">Bayes slides, Tuesday</a></li>
+<li><a href="#wednesday-problem">Wednesday Problem</a></li>
+<li><a href="#generative-multilevel-models">Generative (multilevel) models</a></li>
 <li><a href="#field-data-project">Field data project</a></li>
+<li><a href="#mixed-effect-model">Mixed effect model</a></li>
 </ul>
 </nav>
 </div>
@@ -2146,9 +2149,35 @@ Longer Trainings
 <script>fitvids('.shareagain', {players: 'iframe'});</script>
 </div>
 </div>
+<h2 id="wednesday-problem">Wednesday Problem</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="shareagain" style="min-width:300px;margin:1em auto;">
+<iframe src="https://bios2.github.io/biodivmodelling2021/tree_models.html#1" width="1600" height="900" style="border:2px solid currentColor;" loading="lazy" allowfullscreen></iframe>
+<script>fitvids('.shareagain', {players: 'iframe'});</script>
+</div>
+</div>
+<h2 id="generative-multilevel-models">Generative (multilevel) models</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="shareagain" style="min-width:300px;margin:1em auto;">
+<iframe src="https://bios2.github.io/biodivmodelling2021/generative.html#1" width="1600" height="900" style="border:2px solid currentColor;" loading="lazy" allowfullscreen></iframe>
+<script>fitvids('.shareagain', {players: 'iframe'});</script>
+</div>
+</div>
 <h2 id="field-data-project">Field data project</h2>
 <p>Try to find a conjugate prior for part of your data. If you have a two-parameter distribution (e.g. the Normal distribution) you may only be able to use a conjugate prior for one parameter.</p>
 <p>Estimate your distribution parameters with this approach. Do you get a similar response to previously?</p>
+<h2 id="mixed-effect-model">Mixed effect model</h2>
+<p><span class="math display">\[
+\begin{align}
+y &amp;\sim \text{Normal}(\mu, \sigma_y) \\
+\mu &amp;= \beta_0 + \beta_1 x + \alpha_{block} \\
+\alpha_{block} &amp;\sim \text{Normal}(0, \sigma_{block}) \\
+\sigma_y &amp;\sim \text{Exponential}(2) \\
+\sigma_{block} &amp;\sim  \text{Exponential}(4) \\
+\beta_0 &amp;\sim \text{Normal}(7, 0.2) \\
+\beta_1 &amp;\sim \text{Normal}(4, 0.5)
+\end{align}
+\]</span></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2157,6 +2186,15 @@ Longer Trainings
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

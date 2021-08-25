@@ -25,8 +25,38 @@ knitr::opts_chunk$set(echo = FALSE)
 xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/Bayes.html#1")
 ```
 
+## Wednesday Problem
+
+```{r}
+xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/tree_models.html#1")
+```
+
+
+## Generative (multilevel) models 
+
+```{r}
+xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/generative.html#1")
+```
+
+
+
 ## Field data project
 
 Try to find a conjugate prior for part of your data. If you have a two-parameter distribution (e.g. the Normal distribution) you may only be able to use a conjugate prior for one parameter. 
 
 Estimate your distribution parameters with this approach. Do you get a similar response to previously? 
+
+
+## Mixed effect model
+
+$$
+\begin{align}
+y &\sim \text{Normal}(\mu, \sigma_y) \\
+\mu &= \beta_0 + \beta_1 x + \alpha_{block} \\
+\alpha_{block} &\sim \text{Normal}(0, \sigma_{block}) \\
+\sigma_y &\sim \text{Exponential}(2) \\
+\sigma_{block} &\sim  \text{Exponential}(4) \\
+\beta_0 &\sim \text{Normal}(7, 0.2) \\
+\beta_1 &\sim \text{Normal}(4, 0.5)
+\end{align}
+$$
