@@ -39,6 +39,13 @@ xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/gener
 ```
 
 
+## MCMC methods Introduction
+
+```{r}
+xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/mcmc.html#1")
+```
+
+
 
 ## Field data project
 
