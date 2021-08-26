@@ -35,6 +35,7 @@ slide_link <- function(pres_name){
 
 ```{r}
 xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/Bayes.html#1")
+slide_link("Bayes")
 ```
 
 ## Wednesday Problem
