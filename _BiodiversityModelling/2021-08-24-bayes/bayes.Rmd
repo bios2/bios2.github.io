@@ -17,6 +17,18 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
+
+make_url <- function(pres_name){
+  paste0("https://bios2.github.io/biodivmodelling2021/",
+         pres_name,
+         "/#1")
+}
+
+slide_link <- function(pres_name){
+  lnk <- paste0("[Click to view full screen](", make_url(pres_name), ")")
+  knitr::asis_output(lnk)
+}
+
 ```
 
 ## Bayes slides, Tuesday
@@ -29,6 +41,7 @@ xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/Bayes
 
 ```{r}
 xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/tree_models.html#1")
+slide_link("tree_models")
 ```
 
 
@@ -36,13 +49,15 @@ xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/tree_
 
 ```{r}
 xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/generative.html#1")
+slide_link("generative")
 ```
 
 
 ## MCMC methods Introduction
 
 ```{r}
-xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/mcmc.html#1")
+xaringanExtra::embed_xaringan("https://bios2.github.io/biodivmodelling2021/mcmc_dom.html#1")
+slide_link("mcmc_dom")
 ```
 
 
@@ -67,3 +82,31 @@ y &\sim \text{Normal}(\mu, \sigma_y) \\
 \beta_1 &\sim \text{Normal}(4, 0.5)
 \end{align}
 $$
+
+### Answer to the problem exercise
+
+```{r}
+# Step 1. Generate data
+a <- 260.6
+s <- 7.57
+L <- runif(100,0,100)
+mu <- a*L/(a/s+L)
+G <- rlnorm(100, log(mu), 0.3)
+plot(L, G)
+
+# Step 2. Likelihood function
+ll_fn <- function(obs, L, a, s, logsd) {
+  mu <- a*L/(a/s+L)
+  ll <- log(dlnorm(obs,log(mu), logsd))    
+}
+aseq <- seq(200,300,length.out = 100)
+ll <- numeric(100)
+for(i in 1:100) ll[i] <- ll_fn(obs=G, L, aseq[i], s, logsd = 0.3)
+plot(aseq, ll, type = "l")
+
+# Step 3. Define priors
+p_a <- function(a, mean_a, sd_a) dnorm(a, mean = mean_a, sd = sd_a)
+p_s <- function(s, mean_s, sd_s) dnorm(s, mean = mean_s, sd = sd_s)
+p_logsd <- function(logsd, lo, hi) dunif(logsd, lo, hi)
+```
+
