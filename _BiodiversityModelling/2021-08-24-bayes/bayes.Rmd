@@ -21,7 +21,7 @@ knitr::opts_chunk$set(echo = FALSE)
 make_url <- function(pres_name){
   paste0("https://bios2.github.io/biodivmodelling2021/",
          pres_name,
-         "/#1")
+         "#1")
 }
 
 slide_link <- function(pres_name){
