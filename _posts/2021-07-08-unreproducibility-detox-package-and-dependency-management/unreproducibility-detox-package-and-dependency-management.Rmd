@@ -94,15 +94,18 @@ groundhog.library(pkgs, "2018-07-07")
 
 # working with an 'active' script
 library(groundhog)
-groundhog­.day = "2021-07-07"
+groundhog.day = "2021-07-07"
 groundhog.library(pkgs, groundhog.day)
 
 ```
 **Limitations:** Although `{groundhog}` will call the correct/desired packages 
 version there is of course the potential problem that that package version is 
 no longer compatible with the version of `R` that you're running on your 
-machine... This means you might have to have multiple version of `R` on you 
-machine and have to switch between them depending on what project you're using...
+machine --- this means you might have to have multiple version of `R` on you 
+machine and have to switch between them depending on what project you're using.
+Another issue could arise when retrofitting your workflow. Although you might have a
+starting date/groundhog day you might not have been using the most up-to-date version
+available at that date - so you would be retrieving the wrong version.
 
 **Pros:** To end on a positive note though - {groundhog} is at least a good 
 starting point for documenting package version _and_ its very easy to implement, 
