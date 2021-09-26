@@ -113,7 +113,7 @@ especially if you are retrofitting your code.
 
 ### `{renv}`
 
-As highlighted above one of the potential issues with {groundhog} id that you 
+As highlighted above one of the potential issues with {groundhog} is that you 
 might run into language version incompatibility - and by extension still have 
 non-working code (bleak). Enter [`{renv}`](https://rstudio.github.io/renv/articles/renv.html), 
 a handy-dandy, easy to use, dependency management package for your projects. 
@@ -175,7 +175,7 @@ specifications and keep your 'normal computer' intact. For example I am
 running MacOS, `R` 3.5 on my normal computer but can build an image that 
 runs Linux and `R` 3.1. Also because the recipe is contained in the `Dockerfile` 
 anyone can build the image for that project on their machine and have 
-it all just work (avoiding the whole 'but it works on my machine scenario).
+it all 'just' work (avoiding the whole 'but it works on my machine' scenario).
 
 ## Closing thoughts
 
