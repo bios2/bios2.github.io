@@ -20,7 +20,7 @@ navbar:
         - text: "Spatial Statistics"
           href: Marchand.html
         - text: "Biodiversity Modelling Summer School"
-          href: biodivmodelling.html
+          href: https://bios2.github.io/biodiversity_modelling_2021/
     - text: "About"
       href: about.html
     - icon: fab fa-github
