@@ -39,7 +39,7 @@ The content included three types of spatial statistical analyses and their appli
 |1| &bull; Introduction to spatial statistics <br> &bull; Point pattern analysis<br>| [Spatial Statistics in Ecology, Part 1](https://bios2.github.io/Marchand/2021-01-12-spatial-statistics-in-ecology/) |
 |2| &bull; Spatial correlation <br> &bull; Geoestatistical models | [Spatial Statistics in Ecology, Part 2](https://bios2.github.io/Marchand/2021-01-14-spatial-statistics-in-ecology/) |
 |3| &bull; Areal data <br> &bull; Moran’s I <br> &bull; Spatial autoregression models <br> &bull; Analysis of areal data in R  | [Spatial Statistics in Ecology, Part 3](https://bios2.github.io/Marchand/2021-01-19-spatial-statistics-in-ecology/) |
-|4| &bull; GLMM with spatial Gaussian process <br> &bull; GLMM with spatial autoregression | [Spatial Statistics in Ecology, Part 4](https://bios2.github.io/Marchand/2021-01-21-spatial-statistics-in-ecology/) |
+|4| &bull; GLMM with spatial Gaussian process <br> &bull; GLMM with spatial autoregression | [Spatial Statistics in Ecology, Part 4](https://bios2.github.io/Marchand/2021-01-21-spatial-statistics-in-ecology-part-4/) |
 
 
 
