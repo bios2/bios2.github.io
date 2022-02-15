@@ -26,14 +26,14 @@ knitr::opts_chunk$set(echo = FALSE)
 You've commented, documented, shared, and your code meaning that its available 
 to and usable by the rest of the world right? Well maybe for now but you know 
 what they say about time - *all hours wound; the last one kills*. Okay so it 
-might not be that dramatic for but there is of course the problem that as time 
-progresses your code becomes out-dated and (worst case scenario) non-functional. 
+might not be that dramatic but there is of course the problem that as time 
+progresses our code becomes out-dated and (worst case scenario) non-functional. 
 Programming languages (and packages) are continually evolving as developers 
 work at squashing bugs and making performance upgrades. Sometimes these upgrades 
-might result in a fundamental change in how the a language or package function 
-e.g. a function name might change or some functionality will be removed in favour 
+might result in a fundamental change in how the a language or package functions 
+_e.g._ a function name might change or some functionality will be removed in favour 
 of another. This means that in a few years that beautifully documented chunk of 
-code that you've written today might not even run. Oh dear...
+code that we've written today might not even run. Oh dear...
 
 <center>
 
@@ -186,14 +186,14 @@ some way. That being said asking yourself as to how _paramount_ the longevity
 of your project is a good way to identify and allocate resources to documenting 
 and accommodating for this. For smaller projects you could probably get 
 away with a simple documentation process e.g. `Julia`'s `Project.toml` system or 
-`{renv}` for `R`. But if the project is of high importance it's recommended to 
-give something like Docker a try. 
+`{renv}` for `R`. But if the project is of high importance it's probably recommended
+to give something like Docker a try. 
 
 Now lets get out there and give package management a go!
 
 > Pick and choose the task(s) that you want to take on (or remix one of them)
 >  1. Open one of the older projects on you computer. Does the code run? If no see if you can retrofit it using {groundhog}
->  2. Open the (or one of) project you are currently working on and run `renv::init()` and see what happens
+>  2. Open the (or one of many) project you are currently working on and run `renv::init()` and see what happens
 >  3. Install Docker and work through [Colin Fay's tutorial](https://colinfay.me/docker-r-reproducibility/)
 
 <center>
