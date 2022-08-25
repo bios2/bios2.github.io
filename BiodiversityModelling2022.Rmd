@@ -1,0 +1,17 @@
+---
+title: "Biodiversity Modelling 2022"
+authors: Dominique Gravel, Vincent Beauregard
+---
+
+Diapositives des présentations données lors de la modélisation de la biodiversité en 2022
+
+Slides from presentations given in Biodiversity modelling in 2022.
+
+https://bit.ly/dataviz_uds
+
+
+```{r day1pdf, echo = FALSE, message=FALSE, fig.align='center', fig.cap='Some cool caption', out.width='0.75\\linewidth', fig.pos='H'}
+knitr::include_graphics("slides/day1.pdf")
+```
+
+<iframe src="slides/day1.pdf" width="100%" height="500px"></iframe>
