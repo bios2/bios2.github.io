@@ -10,6 +10,10 @@ Slides from presentations given in Biodiversity modelling in 2022.
 
 ## Day 1 
 
+<iframe src="https://widgets.figshare.com/articles/21335004/embed?show_title=1" width="568" height="351" allowfullscreen frameborder="0"></iframe>
+
+versus
+
 <iframe src="slides/day1.pdf" width="100%" height="500px"></iframe>
 
 ## Day 3 
