@@ -6,21 +6,21 @@
       "description": "We train graduate students in Data Science and Organizational/Communication skills",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-04-30T21:21:24-04:00"
+      "last_modified": "2021-06-18T17:03:00-04:00"
     },
     {
       "path": "index.html",
       "title": "Training materials",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-04-30T21:21:28-04:00"
+      "last_modified": "2021-06-18T17:03:13-04:00"
     },
     {
       "path": "Marchand.html",
       "title": "Spatial materials",
       "author": [],
       "contents": "\n[EN] Contents for the “Spatial statistics in ecology” training offered by Philippe Marchand in January 2021 as part of the BIOS2 program. Original repository can be found here.\n[FR] Contenu de la formation “Statistiques spatiales en écologie” offerte par Philippe Marchand en janvier 2021 dans le cadre du programme BIOS2. Le repositoire original se trouve ici.\n\n\n\n",
-      "last_modified": "2021-04-30T21:21:32-04:00"
+      "last_modified": "2021-06-18T17:03:21-04:00"
     }
   ],
   "collections": ["posts/posts.json", "Marchand/Marchand.json"]

@@ -7,7 +7,17 @@
     <description>Educational materials, incluing links to pdfs, videos, and code to reproduce all of our trainings.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 25 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 13 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>(un)Reproducibility Detox</title>
+      <dc:creator>Gracielle Higino</dc:creator>
+      <link>https://bios2.github.io/posts/2021-06-13-unreproducibility-detox</link>
+      <description>A seven-day detox routine to improve the reproducibility of your projects!</description>
+      <category>Technical</category>
+      <category>EN</category>
+      <guid>https://bios2.github.io/posts/2021-06-13-unreproducibility-detox</guid>
+      <pubDate>Sun, 13 Jun 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Point-count Data Analysis</title>
       <dc:creator>Peter Solymos</dc:creator>
