@@ -588,7 +588,7 @@ The three main approaches and packages I will discuss are `{groundhog}`, `{renv}
 
 **How it works:** Essentially `{groundhog}` will install the version of a package that was available on CRAN for a specified date. This is done by 'replacing' the `library("package")` with `groundhog.library("package", date)`. This means its easy to go back and set a more suitable date for your script e.g. maybe the date it was created or last time it was saved.
 
-```{r groundhog, include=TRUE}
+```{r groundhog, include=TRUE, eval=FALSE}
 # a mini example
 install.packages("groundhog")
 library("groundhog")
