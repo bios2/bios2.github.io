@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["git_clone.png","rmarkdown-cheatsheet.pdf","unreproducibility-detox_files/anchor-4.2.2/anchor.min.js","unreproducibility-detox_files/bowser-1.9.3/bowser.min.js","unreproducibility-detox_files/distill-2.2.21/template.v2.js","unreproducibility-detox_files/header-attrs-2.7/header-attrs.js","unreproducibility-detox_files/jquery-1.11.3/jquery.min.js","unreproducibility-detox_files/popper-2.6.0/popper.min.js","unreproducibility-detox_files/tippy-6.2.7/tippy-bundle.umd.min.js","unreproducibility-detox_files/tippy-6.2.7/tippy-light-border.css","unreproducibility-detox_files/tippy-6.2.7/tippy.css","unreproducibility-detox_files/tippy-6.2.7/tippy.umd.min.js","unreproducibility-detox_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["git_clone.png","rmarkdown-cheatsheet.pdf","unreproducibility-detox_files/anchor-4.2.2/anchor.min.js","unreproducibility-detox_files/bowser-1.9.3/bowser.min.js","unreproducibility-detox_files/distill-2.2.21/template.v2.js","unreproducibility-detox_files/header-attrs-2.11/header-attrs.js","unreproducibility-detox_files/header-attrs-2.7/header-attrs.js","unreproducibility-detox_files/jquery-1.11.3/jquery.min.js","unreproducibility-detox_files/jquery-3.6.0/jquery-3.6.0.js","unreproducibility-detox_files/jquery-3.6.0/jquery-3.6.0.min.js","unreproducibility-detox_files/jquery-3.6.0/jquery-3.6.0.min.map","unreproducibility-detox_files/popper-2.6.0/popper.min.js","unreproducibility-detox_files/tippy-6.2.7/tippy-bundle.umd.min.js","unreproducibility-detox_files/tippy-6.2.7/tippy-light-border.css","unreproducibility-detox_files/tippy-6.2.7/tippy.css","unreproducibility-detox_files/tippy-6.2.7/tippy.umd.min.js","unreproducibility-detox_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1586,6 +1586,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#docker" id="toc-docker">Docker</a></li>
 </ul></li>
 <li><a href="#closing-thoughts" id="toc-closing-thoughts">Closing thoughts</a></li>
+<li><a href="#reproducibility-task-of-the-day-3" id="toc-reproducibility-task-of-the-day-3">Reproducibility task of the day</a></li>
+<li><a href="#suggested-reading-3" id="toc-suggested-reading-3">Suggested reading</a></li>
 </ul></li>
 <li><a href="#friday---automate-your-workflows" id="toc-friday---automate-your-workflows">Friday - automate your workflows</a></li>
 <li><a href="#saturday---reproducible-challange" id="toc-saturday---reproducible-challange">Saturday - reproducible challange</a></li>
@@ -1951,7 +1953,7 @@ is
 <p>A good idea is to keep an up-to-date text file containing all your bibliography that can be referenced in your manuscript. For example, you can ask your reference manager software to generate a <code>*.bib</code> file, which usually contains a specific tag for each citation. This tag will then be used in your file as something like <code>[@TagPaper]</code>.</p>
 <p>The citation style, on the other hand, is usually defined by a <code>*.csl</code> file (<a href="https://citationstyles.org/" class="uri">https://citationstyles.org/</a>). These files can be found, for example, on the <a href="https://www.zotero.org/styles">Zotero Style Repository</a>, and all you need to do is download the file and keep in in the same directory as your manuscript.</p>
 <h2 id="reproducibility-task-of-the-day-2">Reproducibility task of the day</h2>
-<p>Can you “transform” one of your manuscripts into a reproducible file? What are the steps you neet to take to get there?</p>
+<p>Can you “transform” one of your manuscripts into a reproducible file? What are the steps you need to take to get there?</p>
 <p>Do you already have all your manuscripts in a reproducible format? Congratulations! Your task will be to help a friend that is learning how to make one!</p>
 <h2 id="suggested-reading-2">Suggested reading</h2>
 <ul>
@@ -2016,16 +2018,23 @@ it one bit<del>e</del> at a time. So don’t be afraid to take a little nibble b
 <p><strong>Pros:</strong> Docker is very flexible! You can build your mini computer to your specifications and keep your ‘normal computer’ intact. For example if I am running MacOS, <code>R</code> 3.5 on my normal computer but can build an image that runs Linux and <code>R</code> 3.1. Also because the recipe is contained in the <code>Dockerfile</code> anyone can build the image for that project on their machine and have it all ‘just’ work (avoiding the whole ‘but it works on my machine’ scenario).</p>
 <h2 id="closing-thoughts">Closing thoughts</h2>
 <p>If you want to keep your project pipeline working in the long-term it is important to account for the fact that languages are evolving - which means the scaffold on which your code rests also needs to be documented in some way. That being said asking yourself as to how <em>paramount</em> the longevity of your project is a good way to identify and allocate resources to documenting and accommodating for this. For smaller projects you could probably get away with a simple documentation process e.g. <code>Julia</code>’s <code>Project.toml</code> system or <code>{renv}</code> for <code>R</code>. But if the longevity of the project is of high importance it’s probably recommended to give something like Docker a try.</p>
-<p>Now lets get out there and give package management a go!</p>
-<blockquote>
-<p>Pick and choose the task(s) that you want to take on (or remix one of them)
-1. Open one of the older projects on you computer. Does the code run? If no see if you can retrofit it using {groundhog}
-2. Open the (or one of many) project you are currently working on and run <code>renv::init()</code> and see what happens
-3. Install Docker and work through <a href="https://colinfay.me/docker-r-reproducibility/">Colin Fay’s tutorial</a></p>
-</blockquote>
+<h2 id="reproducibility-task-of-the-day-3">Reproducibility task of the day</h2>
+<p>First sit down and think about your project and how important longevity is. Do future generations depend on your code being able to run and execute tasks flawlessly? Or it it more important that the workflow is well documented and understood <em>i.e.</em> it could be easily be ‘translated’ to the shiny new programming language people are using?</p>
+<p>Pick and choose the task(s) that you want to take on (or remix one of them)</p>
+<ol type="1">
+<li><p>Open one of the older projects on you computer. Does the code run? If no see if you can retrofit it using {groundhog}</p></li>
+<li><p>Open the (or one of many) project you are currently working on and run <code>renv::init()</code> and see what happens</p></li>
+<li><p>Install Docker and work through <a href="https://colinfay.me/docker-r-reproducibility/">Colin Fay’s tutorial</a></p></li>
+</ol>
 <center>
 <p><img src="https://media.giphy.com/media/aBv5IC7zFOFjVVVs7I/giphy.gif" /></p>
 </center>
+<h2 id="suggested-reading-3">Suggested reading</h2>
+<ul>
+<li><p>Documentation for <a href="http://groundhogr.com/using/"><code>{groundhog}</code></a></p></li>
+<li><p>Documentation for <a href="https://rstudio.github.io/renv/articles/renv.html"><code>{renv}</code></a></p></li>
+<li><p><a href="https://colinfay.me/docker-r-reproducibility/">Docker R Reproducibility</a></p></li>
+</ul>
 <h1 id="friday---automate-your-workflows">Friday - automate your workflows</h1>
 <blockquote>
 <h3 id="self-care-task-of-the-day-5"><strong>Self-care task of the day</strong></h3>
