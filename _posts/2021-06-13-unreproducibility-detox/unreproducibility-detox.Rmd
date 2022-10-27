@@ -531,7 +531,7 @@ The citation style, on the other hand, is usually defined by a `*.csl` file (htt
 
 ## Reproducibility task of the day
 
-Can you "transform" one of your manuscripts into a reproducible file? What are the steps you neet to take to get there? 
+Can you "transform" one of your manuscripts into a reproducible file? What are the steps you need to take to get there? 
 
 Do you already have all your manuscripts in a reproducible format? Congratulations! Your task will be to help a friend that is learning how to make one!
 
