@@ -652,6 +652,12 @@ Pick and choose the task(s) that you want to take on (or remix one of them)
 
 ## Suggested reading
 
+* Documentation for [`{groundhog}`](http://groundhogr.com/using/)
+
+* Documentation for [`{renv}`](https://rstudio.github.io/renv/articles/renv.html)
+
+* [Docker R Reproducibility](https://colinfay.me/docker-r-reproducibility/)
+
 # Friday - automate your workflows
 >### **Self-care task of the day**
 >
