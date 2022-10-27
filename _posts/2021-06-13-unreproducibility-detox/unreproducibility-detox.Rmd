@@ -636,6 +636,8 @@ If you want to keep your project pipeline working in the long-term it is importa
 
 ## Reproducibility task of the day
 
+First sit down and think about your project and how important longevity is. Do future generations depend on your code being able to run and execute tasks flawlessly? Or it it more important that the workflow is well documented and understood _i.e._ it could be easily be 'translated' to the shiny new programming language people are using?
+
 Pick and choose the task(s) that you want to take on (or remix one of them)
 
 1 Open one of the older projects on you computer. Does the code run? If no see if you can retrofit it using {groundhog}
@@ -647,6 +649,8 @@ Pick and choose the task(s) that you want to take on (or remix one of them)
 ![](https://media.giphy.com/media/aBv5IC7zFOFjVVVs7I/giphy.gif)
 
 </center>
+
+## Suggested reading
 
 # Friday - automate your workflows
 >### **Self-care task of the day**
