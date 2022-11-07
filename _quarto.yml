@@ -1,0 +1,30 @@
+project:
+  type: website
+
+website:
+  title: "BIOS2 Education resources"
+  description: "Educational materials, incluing links to PDFs, videos, and code to reproduce all of our trainings."
+  navbar:
+    logo: "Bios2_reverse.png"
+    right:
+    - text: "Home"
+      href: index.html
+    - text: "Biodiversity Modelling Summer Schools"
+      menu:
+        - text: "Biodiversity Modelling Summer School 2021"
+          href: https://bios2.github.io/biodiversity_modelling_2021/
+        - text: "Biodiversity Modelling Summer School 2022"
+          href: summer-schools/BiodiversityModelling2022.html
+    - text: "About"
+      href: https://bios2.usherbrooke.ca/
+    - icon: github
+      href: https://github.com/bios2/bios2.github.io
+    - icon: twitter
+      href: https://twitter.com/_bios2
+    search: false
+format:
+  html:
+    theme: flatly
+    css: styles.css
+
+editor: visual

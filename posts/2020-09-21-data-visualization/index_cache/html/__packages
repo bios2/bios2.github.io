@@ -1,0 +1,11 @@
+ggplot2
+dplyr
+plotly
+lubridate
+streamgraph
+htmlwidgets
+magrittr
+gganimate
+gifski
+ggridges
+patchwork

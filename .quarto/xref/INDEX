@@ -1,0 +1,59 @@
+{
+  "index.qmd": {
+    "index.html": "d5122045"
+  },
+  "posts/post-with-code/index.qmd": {
+    "index.html": "9ad4d93b"
+  },
+  "posts/welcome/index.qmd": {
+    "index.html": "07d9a930"
+  },
+  "about.qmd": {
+    "about.html": "c738fe30"
+  },
+  "posts/2021-03-25-point-count-data-analysis/index.qmd": {
+    "index.html": "1893bfdc"
+  },
+  "posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/sensibilisation-aux-ralits-autochtones-et-recherche-collaborative.qmd": {
+    "sensibilisation-aux-ralits-autochtones-et-recherche-collaborative.html": "6703a123"
+  },
+  "posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.qmd": {
+    "index.html": "b199d1af"
+  },
+  "posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.qmd": {
+    "index.html": "efe04ec8"
+  },
+  "posts/2020-06-15-science-communication/index.qmd": {
+    "index.html": "e7d2c1ac"
+  },
+  "posts/2020-09-21-data-visualization/index.qmd": {
+    "index.html": "e80605ec"
+  },
+  "posts/2020-12-07-making-websites-with-hugo/index.qmd": {
+    "index.html": "edc7e195"
+  },
+  "posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.qmd": {
+    "index.html": "3766ef87"
+  },
+  "posts/2021-05-04-building-r-packages/index.qmd": {
+    "index.html": "1b4954b9"
+  },
+  "posts/2021-06-22-introduction-to-shiny-apps/index.qmd": {
+    "index.html": "a07a8c4b"
+  },
+  "posts/2021-06-22-introduction-to-shiny-apps/katherine.Rmd": {
+    "katherine.html": "e98346dc"
+  },
+  "posts/2021-06-22-introduction-to-shiny-apps/jake.Rmd": {
+    "jake.html": "ebc9260f"
+  },
+  "posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.qmd": {
+    "index.html": "442bc2ed"
+  },
+  "posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.rmarkdown": {
+    "index.html": "17bb927e"
+  },
+  "site_libs/d3-3.5.3/CONTRIBUTING.md": {
+    "CONTRIBUTING.html": "8771c9ad"
+  }
+}
