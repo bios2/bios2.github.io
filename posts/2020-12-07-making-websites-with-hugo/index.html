@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2020-12-07">
+<meta name="description" content="This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.">
+
+<title>BIOS2 Education resources - Making websites with HUGO</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../Bios2_reverse.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">BIOS2 Education resources</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">Home</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-biodiversity-modelling-summer-schools" role="button" data-bs-toggle="dropdown" aria-expanded="false">Biodiversity Modelling Summer Schools</a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-biodiversity-modelling-summer-schools">    
+        <li>
+    <a class="dropdown-item" href="https://bios2.github.io/biodiversity_modelling_2021/">
+ <span class="dropdown-text">Biodiversity Modelling Summer School 2021</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../summer-schools/BiodiversityModelling2022.html">
+ <span class="dropdown-text">Biodiversity Modelling Summer School 2022</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="https://bios2.usherbrooke.ca/">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/bios2/bios2.github.io"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/_bios2"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Making websites with HUGO</h1>
+                  <div>
+        <div class="description">
+          <p>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.</p>
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Technical</div>
+                <div class="quarto-category">Transversal competencies</div>
+                <div class="quarto-category">EN</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Authors</div>
+      <div class="quarto-title-meta-contents">
+               <p>Dominique Gravel </p>
+               <p>Guillaume Larocque </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">December 7, 2020</p>
+      </div>
+    </div>
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#why-this-training-workshop" id="toc-why-this-training-workshop" class="nav-link active" data-scroll-target="#why-this-training-workshop"><span class="toc-section-number">1</span>  Why this training workshop ?</a></li>
+  <li><a href="#make-sure-hugo-is-installed-and-check-version" id="toc-make-sure-hugo-is-installed-and-check-version" class="nav-link" data-scroll-target="#make-sure-hugo-is-installed-and-check-version"><span class="toc-section-number">2</span>  Make sure Hugo is installed and check version</a></li>
+  <li><a href="#be-timothée-poisot-for-fun" id="toc-be-timothée-poisot-for-fun" class="nav-link" data-scroll-target="#be-timothée-poisot-for-fun"><span class="toc-section-number">3</span>  Be Timothée Poisot for fun</a>
+  <ul class="collapse">
+  <li><a href="#exercise-edit-the-toml-file-to-include-your-own-information." id="toc-exercise-edit-the-toml-file-to-include-your-own-information." class="nav-link" data-scroll-target="#exercise-edit-the-toml-file-to-include-your-own-information.">Exercise : Edit the toml file to include your own information.</a></li>
+  </ul></li>
+  <li><a href="#build-the-static-html-files" id="toc-build-the-static-html-files" class="nav-link" data-scroll-target="#build-the-static-html-files"><span class="toc-section-number">4</span>  Build the static html files</a>
+  <ul class="collapse">
+  <li><a href="#build-for-local-development" id="toc-build-for-local-development" class="nav-link" data-scroll-target="#build-for-local-development">Build for local development</a></li>
+  <li><a href="#build-for-publishing-your-website" id="toc-build-for-publishing-your-website" class="nav-link" data-scroll-target="#build-for-publishing-your-website">Build for publishing your website</a></li>
+  </ul></li>
+  <li><a href="#edit-content" id="toc-edit-content" class="nav-link" data-scroll-target="#edit-content"><span class="toc-section-number">5</span>  Edit content</a>
+  <ul class="collapse">
+  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  </ul></li>
+  <li><a href="#hosting-the-website-on-a-server" id="toc-hosting-the-website-on-a-server" class="nav-link" data-scroll-target="#hosting-the-website-on-a-server"><span class="toc-section-number">6</span>  Hosting the website on a server</a>
+  <ul class="collapse">
+  <li><a href="#github-user-or-organization-pages" id="toc-github-user-or-organization-pages" class="nav-link" data-scroll-target="#github-user-or-organization-pages">GitHub User or Organization Pages</a>
+  <ul class="collapse">
+  <li><a href="#step-by-step-instructions" id="toc-step-by-step-instructions" class="nav-link" data-scroll-target="#step-by-step-instructions">Step-by-step Instructions</a></li>
+  <li><a href="#put-it-into-a-script" id="toc-put-it-into-a-script" class="nav-link" data-scroll-target="#put-it-into-a-script">Put it Into a Script</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#push-source-and-build-repos." id="toc-push-source-and-build-repos." class="nav-link" data-scroll-target="#push-source-and-build-repos."><span class="toc-section-number">7</span>  Push source and build repos.</a>
+  <ul class="collapse">
+  <li><a href="#using-a-theme" id="toc-using-a-theme" class="nav-link" data-scroll-target="#using-a-theme">Using a theme</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  </ul></li>
+  <li><a href="#customizing-a-theme" id="toc-customizing-a-theme" class="nav-link" data-scroll-target="#customizing-a-theme">Customizing a theme</a></li>
+  <li><a href="#basics-of-html" id="toc-basics-of-html" class="nav-link" data-scroll-target="#basics-of-html">Basics of HTML</a>
+  <ul class="collapse">
+  <li><a href="#a-divider-used-to-organize-content-into-blocks" id="toc-a-divider-used-to-organize-content-into-blocks" class="nav-link" data-scroll-target="#a-divider-used-to-organize-content-into-blocks">A divider, used to organize content into blocks</a></li>
+  <li><a href="#a-span-used-to-organize-content-or-text-into-sections-with-different-styles.-usually-on-the-same-line." id="toc-a-span-used-to-organize-content-or-text-into-sections-with-different-styles.-usually-on-the-same-line." class="nav-link" data-scroll-target="#a-span-used-to-organize-content-or-text-into-sections-with-different-styles.-usually-on-the-same-line.">A span, used to organize content or text into sections with different styles. Usually on the same line.</a></li>
+  <li><a href="#a-paragraph" id="toc-a-paragraph" class="nav-link" data-scroll-target="#a-paragraph">A paragraph</a></li>
+  <li><a href="#headings-at-different-levels" id="toc-headings-at-different-levels" class="nav-link" data-scroll-target="#headings-at-different-levels">Headings at different levels</a></li>
+  <li><a href="#an-image" id="toc-an-image" class="nav-link" data-scroll-target="#an-image">An image</a></li>
+  <li><a href="#a-link" id="toc-a-link" class="nav-link" data-scroll-target="#a-link">A link</a></li>
+  </ul></li>
+  <li><a href="#link-between-html-and-css" id="toc-link-between-html-and-css" class="nav-link" data-scroll-target="#link-between-html-and-css">Link between HTML and CSS</a>
+  <ul class="collapse">
+  <li><a href="#in-html" id="toc-in-html" class="nav-link" data-scroll-target="#in-html">In html</a></li>
+  <li><a href="#in-css" id="toc-in-css" class="nav-link" data-scroll-target="#in-css">In CSS</a></li>
+  </ul></li>
+  <li><a href="#basics-of-css" id="toc-basics-of-css" class="nav-link" data-scroll-target="#basics-of-css">Basics of CSS</a>
+  <ul class="collapse">
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul></li>
+  <li><a href="#partials" id="toc-partials" class="nav-link" data-scroll-target="#partials">Partials</a>
+  <ul class="collapse">
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  </ul></li>
+  <li><a href="#now-a-bit-of-go-lang-to-make-the-featured-species-different." id="toc-now-a-bit-of-go-lang-to-make-the-featured-species-different." class="nav-link" data-scroll-target="#now-a-bit-of-go-lang-to-make-the-featured-species-different.">Now a bit of GO lang to make the featured species different.</a>
+  <ul class="collapse">
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  </ul></li>
+  <li><a href="#iframes" id="toc-iframes" class="nav-link" data-scroll-target="#iframes">iFrames</a>
+  <ul class="collapse">
+  <li><a href="#exercise-5" id="toc-exercise-5" class="nav-link" data-scroll-target="#exercise-5">Exercise 5</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="why-this-training-workshop" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Why this training workshop ?</h1>
+<p>I am only 10 hours of a crash course in web development ahead of you. As part of a major research project on setting a biodiversity observation network, I had to develop a prototype of a portal for the project, for biodiversity information and bunch of dashboards on biodiversity trends. Never made a website before. I know how to code in a few langages, and I know that I hate playing with boxes, menus, importing images manually, and most of all, dealing with a crash of the system and having to redo the whole thing because I made a mistake somewhere. Not that a bug when I try to compile is better, but at least it is more tractable.</p>
+<p>Hugo made it very easily because of its fundamental feature (which is the same reason I edit papers with LaTeX): the distinction between the view and the content. Once you have set up the rules defining the visual aspects of the pages, then you can focus on the content and let the software automatically constructing the html code for you. It’s fast, accessible, scriptable and could be version-controlled. All qualities for an open and reproducible science.</p>
+<p>Took me a few hours to learn the basics (much harder to get the higher level skills, especially to write your own Go scripts), I took some tricks here and there in different templates and at looking what others do, and that was it I had my website. Realized that it could be a good entry level course to BIOS2 fellows and decided to turn that experience into a training workshop.</p>
+<p>You will find below basic instructions to install and run a template. The following is not a full tutorial, for that I recommend simply to take time looking at the documentation provided on the Hugo page (https://gohugo.io/). I also consulted the online book <strong>Hugo in action</strong> (https://www.manning.com/books/hugo-in-action). There are many other references, all of them with goods and bads. But it’s nice to have multiple ones because sometimes the description of a concept may be obscure in one reference but better in the other and it’s by comparing and switching between them that you can make progress.</p>
+</section>
+<section id="make-sure-hugo-is-installed-and-check-version" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Make sure Hugo is installed and check version</h1>
+<p>First step, you have to make sure that it is properly installed on you computer. Type the following command in terminal to make sure :</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hugo</span> version</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can access to the help menu with the simple command :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hugo</span> help</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="be-timothée-poisot-for-fun" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Be Timothée Poisot for fun</h1>
+<p>We will use Tim’s website, which is a simple but efficient example of what we could achieve with Hugo. The strenght of the website is that it automatically updates with the addition of new content, such as publications, lab members and projects. The only thing you have to do, once the template is properly set up, is to update the content. That way, yo can focus on the material you want to put on, without struggling on how to place the boxes, format the police and all of the complicate stuff that comes with html and css. The content, written in markdown, is human readable and therefore could be easily edited by lab members. Further, since it’s all scripted, it’s easy to maintain and control versions.</p>
+<p>Take few minutes to look at the final webpage at https://poisotlab.io/</p>
+<p>Now you will clone the repository on your own computer so that you could start playing with the content, edit the files, modify list of papers and so on.</p>
+<p>You can either use the clone button on the top of the page or the following command :</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/bios2/Hugo-training-workshop.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We will take a few minutes to look at the content of the different folders. This structure is common to most of the Hugo templates. You will find multiple folders, it’s useful to understand what’s located where because the compiler expects this structure when it looks for specific information.</p>
+<p><strong>archetypes</strong> (not in here, but usually in most templates). These are basic instructions to generate new content with the <em>hugo new</em> command. We won’t use this feature today, but information about this feature is easy to find.</p>
+<p><strong>assets</strong> contains the css files where the controls for visual aspect of the pages are specified. That’s where you’ll search for the different items and how to specify things such as box sizes, font colors and dimensions etc…. Note: assets directory is not created by default.</p>
+<p><strong>content</strong> holds all of the .md files where the main content of the pages is provided. It’s divided in several subfolders, corresponding to the different pages from the menu. Each top-level folder in Hugo is considered a content section (which is described usually in the config file). For instance, you have one folder called <strong>Research</strong> where the projects are described. You’ll find one .md file per projec tin this folder. Note also that the folders contain systematically a _index.md file where the metadata and the top level information of the page are specified. We’ll come back to that later.</p>
+<p><strong>data</strong> stores specific information that will be consulted by the parser during compilation (configurationfiles). There are also data templates, and at the moment, there is one json file where the papers are listed and two toml files with a list of the students, past and present. json files could be edited with a text editor (not so fun), but there are some tools to do it efficiently.</p>
+<p><strong>layouts</strong> contains the core files to compile the website. You will find in them instructions, in a strange blend of html and Go langages. No so easy and pleasant to play with, but looking at them tells you a bit about what the compiler does (a good example is for <em>people</em>). <em>list.html</em> for instance contains a loop that goes through the toml files in order to create the icons, the text and the link to the full markdown page where you have description for each student. You will find layouts for the main pages, as well as for partials (like the header menu).</p>
+<p><strong>resources</strong> also contains css instructions for the template. We won’t work with this one.</p>
+<p><strong>static</strong> contains bunch of little things that are called during compilation. You’ll find the logo for the lab, the pictures for students, pdf files for applications, images for each research project …</p>
+<p>There is also one very important file in the main folder the <strong>config.toml</strong> file. Inside, you will find a lot of the metadata that will control the structure of the main page. This find can be very simple for some templates, much more complicated for other ones. Note that for some templates, the config file may be in a distinct folder. Not all templates have exactly the same folder structure.</p>
+<p><em>toml</em> is a file format for configuration files, it contains key parameters for the webpage. It consists of key = “value” pairs, [section names], and # comments. Let’s open this one to have a closer look.</p>
+<section id="exercise-edit-the-toml-file-to-include-your-own-information." class="level2">
+<h2 class="anchored" data-anchor-id="exercise-edit-the-toml-file-to-include-your-own-information.">Exercise : Edit the toml file to include your own information.</h2>
+<p>You may want to change the section <em>People</em> to <em>Collaborators</em> and also provide a proper reference to your on github page. You can also add or remove sections, this will affect the menu at the top of the page. For instance, you can add a blog section.</p>
+</section>
+</section>
+<section id="build-the-static-html-files" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Build the static html files</h1>
+<section id="build-for-local-development" class="level2">
+<h2 class="anchored" data-anchor-id="build-for-local-development">Build for local development</h2>
+<p>Hugo will use all of the material to generate static html files that will be displayed on your browser. The command is really easy to use to run it on your own computer, you simply have to type the following in the main folder :</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hugo</span> server</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And that’s it, it compiles and you can simply open it in your browser by clicking on the adress indicated in the terminal. Congratulations for your first Hugo webste !</p>
+<p>There are useful information in the terminal about the building process.</p>
+</section>
+<section id="build-for-publishing-your-website" class="level2">
+<h2 class="anchored" data-anchor-id="build-for-publishing-your-website">Build for publishing your website</h2>
+<p>The command <em>hugo server</em> is very fast and useful to test your website while you develop it. But once you’ll be ready to distribute it, you’ll need all of the html files and related material to distribute the website. This is easily done with the even simpler command</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hugo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You will find in the directory that a new folder named <strong>public</strong> appeared, with all of the material needed to deploy the website. If you click on the <em>index.html</em> file, you’ll get to the home page of the website. It is interesting to open this file in your text editor, you’ll get a sense of the html code that hugo generated automatically for you. You can also take a look at other files.</p>
+</section>
+</section>
+<section id="edit-content" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Edit content</h1>
+<p>Editing content is the easier thing to do. First thing to do, is to modify the content of the introduction paragraph on the main page. You’ll find it in the *_index.md* file in the <strong>content</strong> folder. Open it and modify the text. You can after build the main page again to see the update.</p>
+<p>You can also add material, with new md files. We will do so with a new research project (note the following could be done manually):</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">hugo</span> new research/chapter1.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will generate a new markdown file, in which you can start adding material. But those files do have a particular structure, so before editing it, we’ll take a quick look at another one, <em>datascience.md</em>.</p>
+<p>The header section is typical of a markdown file with metadata (in toml or yaml format). You have to specify information to the parser about the title, the image and associated papers. Note that it will work if some of these (e.g.&nbsp;papers) are missing. You can modify the image as well.</p>
+<p>The file here also a particular structure, with the <!--more--> marker between two paragraphs. This command indicates that only the first paragraph is displayed on the main page of the <strong>Research</strong> tab, and the full content follows if you click to know more about the project.</p>
+<p>Note that here you can use the basic features of markdown, with headers, bold, italics and so on. You can also include html code directly into the markdown and it should work. That said, it may conflict with higher level instructions in the layout or in the theme and may cause difficulties at building. While it is feasible to add such command, it is not recommended to do so. People rather suggest to use shortcodes (Tomorrow) or to modify the layout of the website.</p>
+<section id="exercise" class="level2">
+<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
+<p>Take 15 minutes to remove Tim’s material and replace it by the three chapters of your thesis.</p>
+</section>
+</section>
+<section id="hosting-the-website-on-a-server" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Hosting the website on a server</h1>
+<p>There are many options to host your new website on a server. An easy one, free, and that could be coupled with version control is to run it on github. Full instructions are available here :</p>
+<p>https://gohugo.io/hosting-and-deployment/hosting-on-github/</p>
+<p>We will simply follow the instructions copied here for hosting a personal page. Note that you can also develop a page for a project.</p>
+<section id="github-user-or-organization-pages" class="level2">
+<h2 class="anchored" data-anchor-id="github-user-or-organization-pages">GitHub User or Organization Pages</h2>
+<section id="step-by-step-instructions" class="level3">
+<h3 class="anchored" data-anchor-id="step-by-step-instructions">Step-by-step Instructions</h3>
+<ol type="1">
+<li>Create a <your-project> (e.g.&nbsp;blog) repository on GitHub. This repository will contain Hugo’s content and other source files.</your-project></li>
+<li>Create a <username>.github.io GitHub repository. This is the repository that will contain the fully rendered version of your Hugo website.</username></li>
+<li>git clone <your-project-url> &amp;&amp; cd <your-project></your-project></your-project-url></li>
+<li>Paste your existing Hugo project into the new local <your-project> repository. Make sure your website works locally (hugo server or hugo server -t <yourtheme>) and open your browser to http://localhost:1313.</yourtheme></your-project></li>
+<li>Once you are happy with the results: Press Ctrl+C to kill the server Before proceeding run rm -rf public to completely remove the public directory</li>
+<li>git submodule add -b main https://github.com/<username>/<username>.github.io.git public. This creates a git submodule. Now when you run the hugo command to build your site to public, the created public directory will have a different remote origin (i.e.&nbsp;hosted GitHub repository).</username></username></li>
+<li>Make sure the baseURL in your config file is updated with: <username>.github.io</username></li>
+</ol>
+</section>
+<section id="put-it-into-a-script" class="level3">
+<h3 class="anchored" data-anchor-id="put-it-into-a-script">Put it Into a Script</h3>
+<p>You’re almost done. In order to automate next steps create a deploy.sh script. You can also make it executable with chmod +x deploy.sh.</p>
+<p>The following are the contents of the deploy.sh script:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">#!/bin/sh</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If a command fails then the deploy stops</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">set</span> <span class="at">-e</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">printf</span> <span class="st">"\033[0;32mDeploying updates to GitHub...\033[0m\n"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Build the project.</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">hugo</span> <span class="co"># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Go To Public folder</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> public</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add changes to git.</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">git</span> add .</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Commit changes.</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">msg</span><span class="op">=</span><span class="st">"rebuilding site </span><span class="va">$(</span><span class="fu">date</span><span class="va">)</span><span class="st">"</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">[</span> <span class="ot">-n</span> <span class="st">"</span><span class="va">$*</span><span class="st">"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">msg</span><span class="op">=</span><span class="st">"</span><span class="va">$*</span><span class="st">"</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"</span><span class="va">$msg</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+</section>
+<section id="push-source-and-build-repos." class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Push source and build repos.</h1>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can then run <code>./deploy.sh "Your optional commit message"</code> to send changes to <username>.github.io. Note that you likely will want to commit changes to your <your-project> repository as well.</your-project></username></p>
+<p>That’s it! Your personal page should be up and running at https://<username>.github.io within a couple minutes.</username></p>
+<section id="using-a-theme" class="level2">
+<h2 class="anchored" data-anchor-id="using-a-theme">Using a theme</h2>
+<p>It is usually a good idea to not modify a template directly, but to have the template and the site in a separate folder. The basic concept when doing this is that the config.toml file of the site has to link to the proper folder of the theme.</p>
+<p>For example</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">theme</span> <span class="op">=</span> <span class="st">"template-site"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">themesDir</span> <span class="op">=</span> <span class="st">"../.."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This means that the template site is in a folder named template-site which is a parent folder of the site folder. Other options are possible.</p>
+<p>Usually, all the content should go in the site folder, not in the theme folder.</p>
+<section id="exercise-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<ul>
+<li><p>Start modifying the theme to make it look like a website for a Zoo. Choose your preferred color scheme by changing the style= parameter in the config.toml file.</p></li>
+<li><p>Feel free to download some images from <a href="https://unsplash.com">unsplash</a> and save them in the static/img folder. You can then use these images in the carrousel, as “testimonial” photos or as background images for some of the sections. You can add or remove sections from the home page by editing the config.toml file and changing the enable= parameter in the params. segment at the bottom.</p></li>
+<li><p>You can also try to create a new blog entry by adding a new file in the content/blog folder. This file will have a .md extension and will be written in markdown format.</p></li>
+</ul>
+</section>
+</section>
+<section id="customizing-a-theme" class="level2">
+<h2 class="anchored" data-anchor-id="customizing-a-theme">Customizing a theme</h2>
+</section>
+<section id="basics-of-html" class="level2">
+<h2 class="anchored" data-anchor-id="basics-of-html">Basics of HTML</h2>
+<p>Core structure of an HTML page</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;html&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;head&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;title&gt;</span>This is my great website<span class="kw">&lt;/title&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;style&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">.css_goes_here</span>{</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/style&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/head&gt;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;body&gt;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h1&gt;</span>Main title<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div&gt;</span>Main content goes here<span class="kw">&lt;/div&gt;</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/body&gt;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/html&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="a-divider-used-to-organize-content-into-blocks" class="level3">
+<h3 class="anchored" data-anchor-id="a-divider-used-to-organize-content-into-blocks">A divider, used to organize content into blocks</h3>
+<div class="sourceCode" id="cb11"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div&gt;&lt;/div&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="a-span-used-to-organize-content-or-text-into-sections-with-different-styles.-usually-on-the-same-line." class="level3">
+<h3 class="anchored" data-anchor-id="a-span-used-to-organize-content-or-text-into-sections-with-different-styles.-usually-on-the-same-line.">A span, used to organize content or text into sections with different styles. Usually on the same line.</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;span&gt;&lt;/span&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="a-paragraph" class="level3">
+<h3 class="anchored" data-anchor-id="a-paragraph">A paragraph</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;&lt;/p&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="headings-at-different-levels" class="level3">
+<h3 class="anchored" data-anchor-id="headings-at-different-levels">Headings at different levels</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h1&gt;</span>Main title<span class="kw">&lt;/h1&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h2&gt;</span>Second level<span class="kw">&lt;/h2&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h3&gt;</span>Third level<span class="kw">&lt;/h3&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="an-image" class="level3">
+<h3 class="anchored" data-anchor-id="an-image">An image</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;img</span> <span class="er">src</span><span class="ot">=</span><span class="st">'img/image_name.jpg'</span><span class="kw">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="a-link" class="level3">
+<h3 class="anchored" data-anchor-id="a-link">A link</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;a</span> <span class="er">href</span><span class="ot">=</span><span class="st">"https://bios2.github.io"</span><span class="kw">&gt;</span>Great website here!<span class="kw">&lt;/a&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="link-between-html-and-css" class="level2">
+<h2 class="anchored" data-anchor-id="link-between-html-and-css">Link between HTML and CSS</h2>
+<section id="in-html" class="level3">
+<h3 class="anchored" data-anchor-id="in-html">In html</h3>
+<p>id is always unique. Class is not.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">id</span><span class="ot">=</span><span class="st">"this-div-only"</span> <span class="er">class</span><span class="ot">=</span><span class="st">"this-type-of-div"</span><span class="kw">&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>One great div!</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="in-css" class="level3">
+<h3 class="anchored" data-anchor-id="in-css">In CSS</h3>
+<p>“#” is applied to id and “.” is applied to class. When nothing is specified, applies to tag.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#this-div-only</span>{</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span>:<span class="dv">24</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">.this-type-of-div</span>{</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span>: <span class="cn">#bb0000</span><span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>div{</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">display</span>:<span class="dv">block</span><span class="op">;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="basics-of-css" class="level2">
+<h2 class="anchored" data-anchor-id="basics-of-css">Basics of CSS</h2>
+<p><a href="https://www.w3schools.com/cssref/">W3 Schools CSS reference</a></p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>width, height</td>
+<td>width of item</td>
+<td>200px, 200pt, 100%, 100vw/vh</td>
+</tr>
+<tr class="even">
+<td>min-width, min-height</td>
+<td>minimum size of item</td>
+<td>200px, 200pt, 100%, 100vw</td>
+</tr>
+<tr class="odd">
+<td>color</td>
+<td>font color</td>
+<td>#aa0000, red or rgb(255,0,0)</td>
+</tr>
+<tr class="even">
+<td>background-color</td>
+<td>color of background</td>
+<td>#aa0000, red or rgb(255,0,0)</td>
+</tr>
+<tr class="odd">
+<td>border-color</td>
+<td>color of border</td>
+<td>#aa0000, red or rgb(255,0,0)</td>
+</tr>
+<tr class="even">
+<td>border</td>
+<td>size, type and color of border</td>
+<td>1px solid black</td>
+</tr>
+<tr class="odd">
+<td>margin</td>
+<td>margin around item (top right bottom left)</td>
+<td>1px, or 1px 2px 2px 1px</td>
+</tr>
+<tr class="even">
+<td>padding</td>
+<td>padding within item, inside div for example</td>
+<td>10px</td>
+</tr>
+<tr class="odd">
+<td>font-family</td>
+<td>name of font</td>
+<td>Verdana, Arial</td>
+</tr>
+<tr class="even">
+<td>font-size</td>
+<td>size of text</td>
+<td>14px, 2em</td>
+</tr>
+<tr class="odd">
+<td>display</td>
+<td>should item be on the same line, or in a separate block?</td>
+<td>inline, block, inline-block, flex, …</td>
+</tr>
+</tbody>
+</table>
+<section id="exercise-2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<ul>
+<li><p>Create a file named custom.css under template-site/my-site/static/css/.</p></li>
+<li><p>Right-click on elements on the web page that you want to modify, then click on Inspect element and try to find CSS properties that you could modify to improve the look of the page. Then, choosing the proper class, add entries in the custom.css file that start with a dot (.) followed by the proper class names.</p></li>
+</ul>
+<div class="sourceCode" id="cb19"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.this-class</span> {</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span>:<span class="dv">28</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="partials" class="level2">
+<h2 class="anchored" data-anchor-id="partials">Partials</h2>
+<p>Partials are snippets of HTML code that could be reused on different places on the website. For example, you will see that the layouts/index.html file in the template-site folder lists all the partials that create the home page.</p>
+<p>An important point to remember is that Hugo will look for files first in the site’s folders, and if it doesn’t find the files there, it will look for them in the theme’s folder. So site folder layouts and CSS take priority over the theme folder.</p>
+<section id="exercise-3" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
+<ul>
+<li><p>Create a new folder template-site/my-site/layouts. In this folder, create a new file named index.html and copy the content of the template-site/layouts/index.html file into it. Remove the testimonials section from the newly created file.</p></li>
+<li><p>Create a new folder template-site/my-site/layouts/partials. In this folder, create a new file named featured-species.html put the following content into it, replacing the information with the species you selected.</p></li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">"featured-species"</span><span class="kw">&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;img</span> <span class="er">src</span><span class="ot">=</span><span class="st">"img/species/frog.jpg"</span> <span class="er">class</span><span class="ot">=</span><span class="st">"species-image"</span> <span class="er">alt</span><span class="ot">=</span><span class="st">""</span> <span class="kw">&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">"species-description"</span><span class="kw">&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;h3&gt;</span>Red-Eyed Tree Frog<span class="kw">&lt;/h3&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;p&gt;</span>This frog can be found in the tropical rain forests of Costa Rica.<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Then, add this section to the index.html file created above.</li>
+</ul>
+<!-- -->
+<pre><code>{{ partial "featured_species.html" . }}</code></pre>
+<ul>
+<li><p>You will probably need to restart the Hugo server to see the changes appear on the site.</p></li>
+<li><p>Now, you need to edit the CSS! In your custom.css file, add the following lines.</p></li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">.featured-species</span>{</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span>:<span class="dv">300</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>: <span class="cn">#1d1f20</span><span class="op">;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span>:<span class="cn">white</span><span class="op">;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">.species-image</span>{</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">height</span>:<span class="dv">300</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">float</span>:<span class="dv">left</span><span class="op">;</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">.featured-species</span> h3{</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">color</span>:<span class="cn">white</span><span class="op">;</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span>:<span class="dv">1.5</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="fu">.species-description</span>{</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">float</span>:<span class="dv">left</span><span class="op">;</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">padding</span>:<span class="dv">20</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">font-size</span>:<span class="dv">2</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Modify this as you see fit!</p>
+</section>
+</section>
+<section id="now-a-bit-of-go-lang-to-make-the-featured-species-different." class="level2">
+<h2 class="anchored" data-anchor-id="now-a-bit-of-go-lang-to-make-the-featured-species-different.">Now a bit of GO lang to make the featured species different.</h2>
+<p><a href="https://gohugo.io/templates/introduction/">Introduction to Hugo templating</a></p>
+<section id="exercise-4" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4">Exercise 4</h3>
+<ul>
+<li>Replace your partial featured-species.html content with this one</li>
+</ul>
+<div class="sourceCode" id="cb23"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>{{ range .Site.Data.species }}</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    {{ if eq (.enable) true }}</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">"featured-species"</span><span class="kw">&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;img</span> <span class="er">src</span><span class="ot">=</span><span class="st">"img/species/{{ .image }}"</span> <span class="er">class</span><span class="ot">=</span><span class="st">"species-image"</span> <span class="er">alt</span><span class="ot">=</span><span class="st">""</span> <span class="kw">&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">"species-description"</span><span class="kw">&gt;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;h3&gt;</span>{{ .name }}<span class="kw">&lt;/h3&gt;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;p&gt;</span> {{ .description }}<span class="kw">&lt;/p&gt;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>            <span class="kw">&lt;/div&gt;</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    {{end}}</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>{{end}}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Now, create a new folder /template-site/my-site/data/species.</p></li>
+<li><p>In this folder, create new file named frog.yaml with the following content.</p></li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">enable</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Red-eyed tree frog"</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">:</span><span class="at"> </span><span class="st">"This frog can be found in the forests of Costa Rica"</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">image</span><span class="kw">:</span><span class="at"> </span><span class="st">"frog.jpg"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Find other species photos and add them to the img folder. Then you can add new .yaml files in the data/species folder for each species.</li>
+</ul>
+</section>
+</section>
+<section id="iframes" class="level2">
+<h2 class="anchored" data-anchor-id="iframes">iFrames</h2>
+<p>An iFrame is a HTML tag that essentially allows you to embed another web page inside of your site.</p>
+<section id="exercise-5" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-5">Exercise 5</h3>
+<p>Find a Youtube video and click on the share option below the video. Find the Embed option and copy the code that starts with <code>&lt;iframe&gt;</code> to a new partial that will be shown on a new page. Surround the iframe with a div tag with <code>class="video"</code>. For example:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode html code-with-copy"><code class="sourceCode html"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;div</span> <span class="er">class</span><span class="ot">=</span><span class="st">"video"</span><span class="kw">&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;iframe</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="ot">width=</span><span class="st">"560"</span> </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="ot">height=</span><span class="st">"315"</span> </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="ot">src=</span><span class="st">"https://www.youtube.com/embed/42GAn4v5MgE"</span> </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="ot">frameborder=</span><span class="st">"0"</span> </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="ot">allow=</span><span class="st">"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"</span> </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="ot">allowfullscreen</span><span class="kw">&gt;</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/iframe&gt;</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/div&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Edit the custom.css file and add this section</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode css code-with-copy"><code class="sourceCode css"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.video</span>{</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">width</span>:<span class="dv">100</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">background-color</span>:<span class="cn">black</span><span class="op">;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-align</span>:<span class="dv">center</span><span class="op">;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
