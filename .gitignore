@@ -6,3 +6,6 @@
 .DS_Store
 
 _BiodiversityModelling/2021/*
+
+/.quarto/
+/_site/
