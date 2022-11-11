@@ -1,6 +1,6 @@
 # Website for the BIOS² Education Resources
 
-in progress!
+in progress! 
 
 ## Publication status
 
