@@ -1,7 +1,6 @@
 # this from https://quarto.org/docs/publishing/github-pages.html#publish-action
 # and from https://quarto.org/docs/publishing/github-pages.html#example-knitr-with-renv
 on:
-  workflow_dispatch:
   push:
     branches: main
   pull_request:
