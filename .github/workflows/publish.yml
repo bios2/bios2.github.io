@@ -2,9 +2,12 @@
 # and from https://quarto.org/docs/publishing/github-pages.html#example-knitr-with-renv
 on:
   push:
-    branches: main
+    branches: 
+      - main
   pull_request:
-    branches: main
+    branches: 
+      - main
+  workflow_dispatch:
 
 name: Quarto Publish
 
