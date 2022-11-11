@@ -1,0 +1,14 @@
+{
+  "hash": "3d82d8c7494cf49501a3d9e153f4866f",
+  "result": {
+    "markdown": "---\ntitle: \"Biodiversity Modelling 2022\"\nauthors: Dominique Gravel, Vincent Beauregard\n---\n\n\nDiapositives des présentations données lors de la modélisation de la biodiversité en 2022\n\nSlides from presentations given in Biodiversity modelling in 2022.\n\n\n## Day 1 \n\n<iframe src=\"https://widgets.figshare.com/articles/21335004/embed?show_title=1\" width=\"568\" height=\"351\" allowfullscreen frameborder=\"0\"></iframe>\n\n<iframe src=\"https://widgets.figshare.com/articles/21357207/embed?show_title=1\" width=\"591\" height=\"365\" allowfullscreen frameborder=\"0\"></iframe>\n\n## Day 3 \n\n\n\n<iframe src=\"https://widgets.figshare.com/articles/21335049/embed?show_title=1\" width=\"591\" height=\"365\" allowfullscreen frameborder=\"0\"></iframe>\n\n## Day 4\n\nhttps://bit.ly/dataviz_uds\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

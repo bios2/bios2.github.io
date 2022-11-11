@@ -26,5 +26,6 @@ format:
   html:
     theme: flatly
     css: styles.css
-
-editor: visual
+execute:
+  freeze: auto
+editor: source
