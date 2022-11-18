@@ -1,5 +1,14 @@
 ---
-output: html_document
+title: "Generalized Linear Models for Community Ecology"
+description: "In this workshop we will explore, discuss, and apply generalized linear models to combine information on species distributions, traits, phylogenies, environmental and landscape variation. We will also discuss inference under spatial and phylogenetic autocorrelation under fixed and random effects implementations. We will discuss technical elements and cover implementations using R."
+author:
+  - name: Pedro Peres-Neto
+date: "05-17-2021"
+image: image.jpg
+categories: [Technical, EN]
+toc: true
+number-sections: true
+number-depth: 1
 ---
 
 ```{r setup, include=FALSE}
@@ -17,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <span style="color:firebrick">**Tentative schedule**</span>
 
 * Day 1:        
-  Introduction to types of data and approaches using glm in community ecology.            
+  Introduction to types of data and approaches using GLMs in community ecology.            
   Types of patterns in species distributions involving trait and environmental variation.              
   Simulating data as a path to understand GLMs in community ecology.               
   The simplest GLM: widely used bivariate correlations.             
@@ -35,13 +44,13 @@ knitr::opts_chunk$set(echo = TRUE)
   Potential approaches for incorporating intraspecific data on traits.          
   Discussion with participants: your research interests, your questions or your data (or anything really).
 
-<span style="color:firebrick">**Phylosophy:**</span> We can't cover everything with extreme details.  I've chosen a level that should be interesting enough and cover many different important aspects of GLMs applied to community ecology.
+<span style="color:firebrick">**Philosophy:**</span> We can't cover everything with extreme details.  I've chosen a level that should be interesting enough and cover many different important aspects of GLMs applied to community ecology.
 
 <span style="color:firebrick">**Note:**</span> I mostly apply here base functions so that participants without strong knowledge of certain packages (e.g., ggplot, dplyr) can follow the code more easily.  
 
 <span style="color:firebrick">**Questions:**</span> Participants should feel free to ask questions either directly or in the zoom chat. I've also set a good doc where participants can put questions there during the week when we are not connected.  I'll read them and try to provide an answer or cover the question somehow:           
 
-https://docs.google.com/document/d/17GQvGkBFs9MmLv6Yn473_Dr1t1Ps03VdHOHMhbZhBKk/edit
+<a href = "https://docs.google.com/document/d/17GQvGkBFs9MmLv6Yn473_Dr1t1Ps03VdHOHMhbZhBKk/edit">https://docs.google.com/document/d/17GQvGkBFs9MmLv6Yn473_Dr1t1Ps03VdHOHMhbZhBKk/edit</a>
 
 <hr style="border:1px solid gray"> </hr>           
 
@@ -52,6 +61,7 @@ https://docs.google.com/document/d/17GQvGkBFs9MmLv6Yn473_Dr1t1Ps03VdHOHMhbZhBKk/
 One way to develop good intuition underlying quantitative methods is to be able to simulate data according to certain desired characteristics.  We can then apply methods (GLMs here) to see how well they retrieve the data characteristics.     
 
 Let's start with a very simple GLM, the logistic regression for one single species.  Here, for simplicity, we considered one predictor.  In many ecological simulations, this single predictor is considered an "environmental gradient" containing many environmental predictors.  We can consider more gradients and we will discuss that later on in the workshop.
+
 ```{r, fig.width=6, fig.height=4}
 set.seed(100) # so that we all have the same results
 n.sites <- 100
@@ -88,9 +98,8 @@ plot(model$fitted.values ~ Distribution)
 ```
 
 At this point, we won't cover model diagnostics.  Data were simulated according to the model and, as such, assumptions hold well. Plus, this is a single-species model; and this workshop is about community data, i.e., multiple species :).
-This is a good blog explaining how to check for assumptions of logistic regressions:
 
-http://www.sthda.com/english/articles/36-classification-methods-essentials/148-logistic-regression-assumptions-and-diagnostics-in-r/
+<a href = "http://www.sthda.com/english/articles/36-classification-methods-essentials/148-logistic-regression-assumptions-and-diagnostics-in-r/">This is a good blog explaining how to check for assumptions of logistic regressions.</a>
 
 <span style="color:firebrick">Simulating a more realistic single species</span>                           
 
@@ -863,7 +872,7 @@ plot(residuals(model.bilinear.negBinom),log(fitted(model.bilinear.negBinom)),col
 
 As we can see, the plot is pretty bad; and that's a common feature for GLMs.  
 
-Dunn and Smyth (1996) developed a new class of residuals that allows a much better way to diagnose whether the model fits the data well.  The package `DHARMa` implements the approach.   A tutorial for this package and the package features can be found at: https://cran.r-project.org/web/packages/DHARMa/vignettes/DHARMa.html
+Dunn and Smyth (1996) developed a new class of residuals that allows a much better way to diagnose whether the model fits the data well.  The package `DHARMa` implements the approach.   A tutorial for this package and the package features can be found at: <a href = "https://cran.r-project.org/web/packages/DHARMa/vignettes/DHARMa.html"https://cran.r-project.org/web/packages/DHARMa/vignettes/DHARMa.html</a>.
 
 ```{r, fig.width=6, fig.height=4}
 # install.packages("DHARMa")
@@ -886,7 +895,7 @@ The poisson model doesn't fit as well the expected line as the negative binomial
 
 We can use the package `jtools` to create model summaries and visualization for GLMs.  You can find a good introduction to this package here:        
 
-https://cran.r-project.org/web/packages/jtools/vignettes/summ.html
+<a href ="https://cran.r-project.org/web/packages/jtools/vignettes/summ.html">https://cran.r-project.org/web/packages/jtools/vignettes/summ.html</a>
 
 ```{r}
 # install.packages("jtools")
@@ -921,7 +930,7 @@ levelplot(cfInter, xlab="traits",ylab="environment", col.regions=colort(100), at
 
 <div style="text-align:center"><span style="color:firebrick">**Considering main effects of trait and environment, and their interactions - predicting and explaining species distributions**</span></div>  
 
-The bilinear model estimates and test for the interactions between traits and environmental features in a single model.  That allows for partial slopes to be estimated (i.e., in which the effects of one trait-environment interaction is independent of the others as in standard linear regression models and GLMs). Understanding partial slopes is essential for inference and usually covered in Intro statistics for biologists/ecologists under multiple regression.  A standard definition is "The partial slope in multiple regression (or GLM) is the slope of the relationship between a predictor variable that is independent of the other predictor variables and the criterion. It is also the regression coefficient for the predictor variable in question." (https://onlinestatbook.com/2/glossary/partial_slope.html).            
+The bilinear model estimates and test for the interactions between traits and environmental features in a single model.  That allows for partial slopes to be estimated (i.e., in which the effects of one trait-environment interaction is independent of the others as in standard linear regression models and GLMs). Understanding partial slopes is essential for inference and usually covered in Intro statistics for biologists/ecologists under multiple regression.  A standard definition is "The partial slope in multiple regression (or GLM) is the slope of the relationship between a predictor variable that is independent of the other predictor variables and the criterion. It is also the regression coefficient for the predictor variable in question." (<a href = "https://onlinestatbook.com/2/glossary/partial_slope.html">https://onlinestatbook.com/2/glossary/partial_slope.html</a>).            
   
 Now, we may want to consider also the main effects of each environmental feature and traits in addition to their interactions.  This is the model implemented in Jamil et al. (2013) and Brown et al. (2014).  The Brown model et al. model is:
 
@@ -999,7 +1008,7 @@ Species and sites are not likely to differ from one another randomly but rather 
 
 When using linear models and GLMS, researchers often ignore the hierarchical structure of the data (some sites have more similar or differences in total abundances of species, some species have more similar or differences in their total abundances). As such, standard GLMs can generate biased variance estimates and increase the likelihood of committing type I errors (i.e., rejecting the statistical null hypothesis more often than set by alpha, i.e., significance level). 
 
-Although this is very interesting ecologically, it does bring some inferential challenges (parameter estimation and statistical hypothesis testing) when fitting statistical models. GLMM (Generalized Linear Mixed Models) are then used to deal with these issues. This paper by Harrison et al. (2018) provides a great Introduction to GLLMs for ecologists: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5970551/
+Although this is very interesting ecologically, it does bring some inferential challenges (parameter estimation and statistical hypothesis testing) when fitting statistical models. GLMM (Generalized Linear Mixed Models) are then used to deal with these issues. This paper by Harrison et al. (2018) provides a great Introduction to GLLMs for ecologists: <a href = "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5970551/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5970551/</a>.
 
 One common feature here is that species may differ in the way they are structured by environmental and/or trait variation. This can be well described by the Simpson's paradox (Simpson 1951), which is defined "as a phenomenon in probability and statistics in which a trend appears in several groups of data but disappears or reverses when the groups are combined."           
 
@@ -1260,7 +1269,7 @@ Finally, as we discussed during the workshop, one needs to be careful while inte
 Function `glmer.nb` could have been used to fit the model using the negative binomial family instead.
 
 Here is a good and simple introduction to mixed models for poisson regression:     
-https://stats.idre.ucla.edu/r/faq/random-coefficient-poisson-models/         
+<a href = "https://stats.idre.ucla.edu/r/faq/random-coefficient-poisson-models/         ">https://stats.idre.ucla.edu/r/faq/random-coefficient-poisson-models/</a>
 
 <div style="text-align:center"><span style="color:firebrick">**Our second GLMM applied to the fourth corner problem treating species and sites as random effects - the MLML2 model**</span></div>  
 
@@ -1329,7 +1338,7 @@ ter Braak, CJF & Looman, CWN. (1986). Weighted averaging, logistic regression an
 <span style="color:firebrick">**useful sites for GLMs (will also expand on this later on):**</span>
 
 - Beyond Multiple Linear Regression: 
-  https://bookdown.org/roback/bookdown-BeyondMLR/
+  <a href = "https://bookdown.org/roback/bookdown-BeyondMLR/">https://bookdown.org/roback/bookdown-BeyondMLR/</a>
   
 
 
