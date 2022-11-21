@@ -8,3 +8,14 @@
 _BiodiversityModelling/2021/*
 
 /.quarto/
+
+# ignore data for the microbiome training
+# (the raw data can be downloaded from a link in the training)
+posts/2022-05-19-introduction-to-microbiome-analysis/rawdata-Qleaf_BACT/
+posts/2022-05-19-introduction-to-microbiome-analysis/dada2-filtered/
+posts/2022-05-19-introduction-to-microbiome-analysis/SILVA138.1/
+posts/2022-05-19-introduction-to-microbiome-analysis/taxa.sp.rds
+posts/2022-05-19-introduction-to-microbiome-analysis/seqtab.nochim.rds
+posts/2022-05-19-introduction-to-microbiome-analysis/metadata-Qleaf_BACT.csv
+
+
