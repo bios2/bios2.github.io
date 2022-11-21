@@ -2,9 +2,9 @@
 title: "Making websites with HUGO"
 description: |
   This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.
-authors:
-  - Dominique Gravel
-  - Guillaume Larocque
+author:
+  - name: Dominique Gravel
+  - name: Guillaume Larocque
 image: image.jpg
 categories: [Technical, Transversal competencies, EN]
 date: "12-07-2020"
