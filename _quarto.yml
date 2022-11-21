@@ -3,8 +3,8 @@ project:
   output-dir: docs
 
 website:
-  title: "BIOS2 Education resources"
-  description: "Educational materials, incluing links to PDFs, videos, and code to reproduce all of our trainings."
+  title: "BIOS² Education resources"
+  description: "Educational materials, including links to PDFs, videos, and code to reproduce all of our trainings."
   navbar:
     logo: "Bios2_reverse.png"
     right:

@@ -1,5 +1,5 @@
 ---
-title: "BIOS2 Education resources"
+title: "BIOS² Education resources"
 listing:
   contents: posts
   sort: "date desc"
