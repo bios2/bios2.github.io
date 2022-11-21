@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>What are GAMs?</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Eric Pedersen" />
+    <script src="libs/header-attrs-2.8/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https:/stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: inverse, middle, left, my-title-slide, title-slide
+
+# What are GAMs?
+### Eric Pedersen
+### November 2nd, 2021
+
+---
+
+
+
+
+
+## Overview
+
+- A very quick refresher on GLMs
+- What is a GAM?
+- How do GAMs work? (*Roughly*)
+- What is smoothing?
+- Fitting and plotting simple models
+
+---
+# A (very fast) refresher on GLMs
+
+---
+
+##  What is a Generalized Linear model (GLM)?
+
+Models that look like:
+
+`\(y_i \sim Some\ distribution(\mu_i, \sigma_i)\)`
+
+`\(link(\mu_i) = Intercept + \beta_1\cdot x_{1i} + \beta_2\cdot x_{2i} + \ldots\)`
+
+---
+
+##  What is a Generalized Linear model (GLM)?
+
+Models that look like:
+
+`\(y_i \sim Some\ distribution(\mu_i, \sigma_i)\)`
+
+`\(link(\mu_i) = Intercept + \beta_1\cdot x_{1i} + \beta_2\cdot x_{2i} + \ldots\)`
+
+  &lt;br /&gt;
+
+ The average value of the response, `\(\mu_i\)`, assumed to be a linear combination of the covariates, `\(x_{ji}\)`, with an offset
+---
+
+##  What is a Generalized Linear model (GLM)?
+
+Models that look like:
+
+`\(y_i \sim Some\ distribution(\mu_i, \sigma_i)\)`
+
+`\(link(\mu_i) = Intercept + \beta_1\cdot x_{1i} + \beta_2\cdot x_{2i} + \ldots\)`
+
+  &lt;br /&gt;
+
+ The model is fit (not really...) by maximizing the log-likelihood:
+
+
+`\(\text{maximize}  \sum_{i=1}^n logLik (Some\ distribution(y_i|\boldsymbol{\beta})\)`
+
+`\(\text{ with respect to } Intercept \ (\beta_0), \ \beta_1,\ \beta_2, \ ...\)`
+
+---
+##  With normally distributed data (for continuous unbounded data):
+
+
+`\(y_i = Normal(\mu_i , \sigma_i)\)`
+
+`\(Identity(\mu_i) = \beta_0 + \beta_1\cdot x_{1i} + \beta_2\cdot x_{2i} + \ldots\)`
+
+![](01-1D-smoothing_files/figure-html/gaussplot-1.png)&lt;!-- --&gt;
+
+---
+
+##  With Poisson-distributed data (for count data):
+
+`\(y_i = Poisson(\mu_i)\)`
+
+`\(\text{ln}(\mu_i) = \beta_0 + \beta_1\cdot x_{1i} + \beta_2\cdot x_{2i} + \ldots\)`
+
+![](01-1D-smoothing_files/figure-html/poisplot-1.png)&lt;!-- --&gt;
+
+---
+
+# Why bother with anything more complicated?
+
+---
+
+## Is this linear?
+
+
+![](01-1D-smoothing_files/figure-html/islinear-1.png)&lt;!-- --&gt;
+
+---
+
+## Is this linear? Maybe?
+
+
+
+```r
+lm(y ~ x1, data=dat)
+```
+
+
+
+```
+## `geom_smooth()` using formula 'y ~ x'
+```
+
+![](01-1D-smoothing_files/figure-html/maybe-1.png)&lt;!-- --&gt;
+
+
+---
+
+# What is a GAM?
+
+
+The Generalized additive model assumes that `\(link(\mu_i)\)` is the sum of some *nonlinear* functions of the covariates
+
+`\(y_i \sim Some\ distribution(\mu_i, \sigma_i)\)`
+
+`\(link(\mu_i) = Intercept + f_1(x_{1i}) + f_2(x_{2i}) + \ldots\)`
+
+  &lt;br /&gt;
+
+--
+
+But it is much easier to fit *linear* functions than nonlinear functions, so GAMs use a trick: 
+
+1. Transform each predictor variable into several new variables, called basis functions
+2. Create nonlinear functions as linear sums of those basis functions
+
+
+---
+
+
+&lt;img src="figures/basis_breakdown.png" width="1789" /&gt;
+
+![](01-1D-smoothing_files/figure-html/basis-plot-1.png)&lt;!-- --&gt;
+
+---
+
+![](01-1D-smoothing_files/figure-html/basis-animate-1.gif)&lt;!-- --&gt;
+
+---
+
+#This means that writing a GAM in code is as simple as:
+
+
+```r
+mod &lt;- gam(y~s(x,k=10),data=dat)
+```
+
+---
+
+
+
+# You've seen basis functions before:
+
+
+
+```r
+glm(y ~ I(x) + I(x^2) + I(x^3) +...)
+```
+
+--
+
+Polynomials are one type of basis function! 
+
+--
+
+... But not a good one. 
+
+
+![](01-1D-smoothing_files/figure-html/unnamed-chunk-5-1.gif)&lt;!-- --&gt;
+
+---
+
+# One of the most common types of smoother are cubic splines
+
+
+(We won't get into the details about how these are defined)
+
+
+```r
+glm(y ~ ns(x,df = 4))
+```
+
+--
+
+But even cubic splines can overfit:
+
+![](01-1D-smoothing_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+
+---
+
+
+
+
+
+# How do we prevent overfitting?
+
+The second key part of fitting GAMs: penalizing overly wiggly functions
+
+We want functions that fit our data well, but do not overfit: that is, ones that are not too *wiggly*. 
+
+
+--
+
+Remember from before:
+
+
+`\(\text{maximize}  \sum_{i=1}^n logLik (y_i|\mathbf{\beta})\)`
+
+`\(\text{ with respect to } Intercept, \ \beta_1,\ \beta_2, \ ...\)`
+
+---
+
+
+# How do we prevent overfitting?
+
+The second key part of fitting GAMs: penalizing overly wiggly functions
+
+We want functions that fit our data well, but do not overfit: that is, ones that are not too *wiggly*. 
+
+
+We can modify this to add a *penalty* on the size of the model parameters:
+
+
+
+`\(\text{maximize}  \sum_{i=1}^n logLik (y_i|\mathbf{\beta}) - \lambda\cdot \mathbf{\beta}'\mathbf{S}\mathbf{\beta}\)`
+
+`\(= \text{maximize}  \sum_{i=1}^n logLik (y_i) - \lambda\cdot \sum_{a=1}^{k}\sum_{b=1}^k \beta_a\cdot\beta_b\cdot P_{a,b}\)`
+
+`\(\text{ with respect to } Intercept, \ \beta_1,\ \beta_2, \ ...\)`
+
+
+---
+
+# How do we prevent overfitting?
+
+
+
+`\(\sum_{i=1}^n logLik (y_i|\boldsymbol{\beta}) - \lambda\cdot \boldsymbol{\beta}'\mathbf{S}\boldsymbol{\beta}\)`
+
+&lt;br /&gt;
+
+--
+
+
+The penalty `\(\lambda\)` trades off between how well the model fits the observed data ( `\(\sum_{i=1}^n logLik (y_i|\boldsymbol{\beta})\)` ), and how wiggly the fitted function is ( `\(\boldsymbol{\beta}'\mathbf{S}\boldsymbol{\beta}\)` ). 
+
+&lt;br /&gt;
+--
+
+The matrix `\(\mathbf{S}\)` measures how wiggly different function shapes are. Each type of smoother has its own penalty matrix; `mgcv` handles this.
+
+&lt;br /&gt;
+--
+
+Some combinations of parameters correspond to a penalty value of zero; these combinations are called the *null space* of the smoother
+
+---
+
+# How changing smoothing parameters affects the fit
+
+![](01-1D-smoothing_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+
+---
+
+
+
+# The default smoother: thin-plate regression splines
+
+We can create a penalty matrix that penalizes the squared second derivative of the curve across the range of the observed x-values:
+
+`\(\int_{x_1}^{x_n} [f^{\prime\prime}]^2 dx = \boldsymbol{\beta}^{\mathsf{T}}\mathbf{S}\boldsymbol{\beta}\)`
+
+
+--
+
+![](01-1D-smoothing_files/figure-html/pen-plot-1.png)&lt;!-- --&gt;
+
+---
+
+
+![](01-1D-smoothing_files/figure-html/pen-ani1-1.png)&lt;!-- --&gt;
+
+![](01-1D-smoothing_files/figure-html/pen-ani2-1.gif)&lt;!-- --&gt;
+
+---
+
+# Another example basis function: cyclic smoothers
+
+Bases designed to "wrap", so the smooth will have the same value at the start and end of the function
+
+
+--
+
+![](01-1D-smoothing_files/figure-html/pen-plot-cyclic-1.png)&lt;!-- --&gt;
+
+
+---
+
+![](01-1D-smoothing_files/figure-html/basis-animate-cyclic-1.gif)&lt;!-- --&gt;
+
+
+
+---
+
+# Calculating p-values, standard errors of smoothers
+
+
+The penalty `\(\lambda\)` also determines the *effective degrees of freedom* (EDF) of a smoother: EDF of a smooth with k basis functions ranges from a minimum of `\(k_{null}\)` (fully penalized) to `\(k\)` (fully unpenalized)
+
+
+
+![](01-1D-smoothing_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+
+
+
+
+---
+
+# You've also (probably) already seen penalties before:
+
+Single-level random effects are another type of smoother!
+
+&lt;img src="figures/spiderGAM.jpg" width="880" /&gt;
+
+---
+
+# You've also (probably) already seen penalties before:
+
+Single-level random effects are another type of smoother!
+
+You've probably seen random effects written like: 
+
+`\(y_{i,j} =\alpha + \beta_j + \epsilon_i\)`, `\(\beta_j \sim Normal(0, \sigma_{\beta}^2)\)`
+
+--
+
+* The basis functions are the different levels of the discrete variable: `\(f_j(x_i)=1\)` if `\(x_i\)` is in group `\(j\)`, `\(f_j(x_i)=0\)` if not
+
+--
+
+* The  `\(\beta_j\)` terms are the random effect  estimates
+
+--
+
+* `\(\lambda = 1/\sigma_{\beta}^2\)` and the `\(S\)` matrix for a random effect is just a diagonal matrix with `\(1\)` on the diagonal (the identity matrix), and `\(EDF = k/(1+\lambda)\)`
+
+
+---
+
+# How are the `\(\lambda\)` penalties fit?
+
+* By default, `mgcv` uses Generalized Cross-Validation, but this tends to work well only with really large data sets
+
+--
+
+* We will use restricted maximum likelihood (REML) throughout this workshop for fitting GAMs
+
+--
+
+* This is the same REML you may have used when fitting random effects models; again, smoothers in GAMs are basically a random effect in a different hat
+
+
+---
+
+# Another connection with Bayesian models
+
+
+.pull-left[ 
+
+&lt;img src="figures/Scooby doo - GAM - bayes.jpg" width="350px" /&gt;
+
+] 
+
+.pull-right[ 
+
+* Penalty matrices can also be viewed as *priors* on the shape of possible functions, with the penalty matrix equal to a multivariate normal prior on basis function coefficients:
+
+ `\(\lambda\boldsymbol{\beta}'\mathbf{S}\boldsymbol{\beta} \rightarrow p(\boldsymbol{\beta}) = MVN(0,\lambda^{-1}\mathbf{S}^{-1})\)`
+
+]
+---
+
+# Another connection with Bayesian models
+
+
+.pull-left[ 
+
+&lt;img src="figures/Scooby doo - GAM - bayes.jpg" width="350px" /&gt;
+
+] 
+
+.pull-right[ 
+
+* In this context: REML estimate of `\(\lambda\)` is equivalent to the maximum a posteriori probability (MAP) estimate of the variance, with flat priors on fixed effects (i.e. unpenalized model terms) and penalties
+* This will be useful when we look at model uncertainties later on
+
+]
+---
+
+
+# To review:
+
+* GAMs are like GLMs: they use link functions and likelihoods to model different types of data
+
+--
+
+* GAMs use linear combinations of basis functions to create nonlinear functions to predict data
+
+--
+
+* GAMs use penalty parameters, `\(\lambda\)`, to prevent overfitting the data; this trades off between how wiggly the function is and how well it fits the data 
+(measured by the likelihood)
+
+
+--
+
+* the penalty matrix for a given smooth, `\(\textbf{S}\)`, encodes how the shape of the function translates into the total size of the penalty
+
+--
+
+# But enough lecture; on to the live coding! 
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Day 3: Testing models, predictions &amp; model uncertainty</title>
+    <meta charset="utf-8" />
+    <meta name="date" content="2021-11-09" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <link rel="stylesheet" href="https:/stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: inverse, middle, left, my-title-slide, title-slide
+
+# Day 3: Testing models, predictions &amp; model uncertainty
+### November 9, 2021
+
+---
+
+
+
+
+
+
+# Today:
+
+1. Evaluating  model uncertainty and making predictions
+
+
+--
+
+2. Model checking 
+
+--
+
+3. Model selection methods:
+ - `select  = TRUE`
+ - AIC
+ - ANOVA
+
+
+---
+
+# Recap &amp;mdash; Flu data
+
+.pull-left[
+
+```r
+flu &lt;- read.csv(here('data',"california-flu-data.csv")) %&gt;%
+  mutate(season = factor(season))
+
+flu2010 &lt;- flu %&gt;%
+  filter(season=="2010-2011")
+```
+
+
+```r
+flu2010_posmod &lt;- gam(tests_pos ~ s(week_centered, k = 15, by = ) + offset(log(tests_total)),
+                            data= flu2010, 
+                            family = poisson,
+                            method = "REML")
+```
+
+]
+.pull-right[
+![](03-predictions-and-model-checking_files/figure-html/richness-violin-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+
+# Confidence bands
+
+.row[
+.col-6[
+
+`plot()`
+
+
+```r
+plot(flu2010_posmod)
+```
+
+![](03-predictions-and-model-checking_files/figure-html/plot-richness-model-1.svg)&lt;!-- --&gt;
+]
+.col-6[
+
+`gratia::draw()`
+
+
+```r
+draw(flu2010_posmod)
+```
+
+![](03-predictions-and-model-checking_files/figure-html/draw-richness-model-1.svg)&lt;!-- --&gt;
+]
+]
+
+What do the bands represent?
+
+---
+
+# Confidence intervals for smooths
+
+Bands are a bayesian 95% credible interval on the smooth
+
+`plot.gam()` draws the band at &amp;plusmn; **2** std. err.
+
+`gratia::draw()` draws them at `\((1 - \alpha) / 2\)` upper tail probability quantile of `\(\mathcal{N}(0,1)\)`
+
+`gratia::draw()` draws them at ~ &amp;plusmn;**1.96** std. err. &amp; user can change `\(\alpha\)` via argument `ci_level`
+
+--
+
+So `gratia::draw()` draws them at ~ &amp;plusmn;**2** st.d err
+
+---
+
+# Across the function intervals
+
+The *frequentist* coverage of the intervals is not pointwise &amp;mdash; instead these credible intervals have approximately 95% coverage when *averaged* over the whole function
+
+Some places will have more than 95% coverage, other places less
+
+--
+
+Assumptions yielding this result can fail, where estimated smooth is a straight line
+
+--
+
+Correct this with `seWithMean = TRUE` in `plot.gam()` or `overall_uncertainty = TRUE` in `gratia::draw()`
+
+This essentially includes the uncertainty in the intercept in the uncertainty band
+
+---
+
+# Correcting for smoothness selection
+
+The defaults assume that the smoothness parameter(s) `\(\lambda_j\)` are *known* and *fixed*
+
+--
+
+But we estimated them
+
+--
+
+Can apply a correction for this extra uncertainty via argument `unconditional = TRUE` in both `plot.gam()` and `gratia::draw()`
+
+---
+
+# But still, what do the bands represent?
+
+
+```r
+sm_fit &lt;- evaluate_smooth(flu2010_posmod, 's(week_centered)') # tidy data on smooth
+sm_post &lt;- smooth_samples(flu2010_posmod, 's(week_centered)', n = 20, seed = 42) # more on this later
+draw(sm_fit) + geom_line(data = sm_post, aes(x = .x1, y = value, group = draw),
+                         alpha = 0.3, colour = 'red')
+```
+
+![](03-predictions-and-model-checking_files/figure-html/plot-conf-band-plus-posterior-smooths-1.svg)&lt;!-- --&gt;
+
+---
+class: inverse middle center subsection
+
+# Making predictions with uncertainty
+
+---
+
+# Predicting with `predict()`
+
+`plot.gam()` and `gratia::draw()` show the component functions of the model on the link scale
+
+--
+
+Prediction (via the `predict` function) allows us to evaluate the model at known values of covariates on different scales:
+- response scale (`type = "response"`)
+- overall link scale (`type= "link"`)
+- Predictions for individual smooth terms (`type="terms"` or `type = "iterms"`)
+- For individual basis functions
+
+--
+
+Provide `newdata` with a data frame of values of covariates
+
+---
+
+# `predict()`
+
+
+```r
+new_flu &lt;- with(flu2010, tibble(week_centered = seq(min(week_centered), max(week_centered), length.out = 100),
+                                 tests_total = 1))
+pred &lt;- predict(flu2010_posmod, newdata = new_flu, se.fit = TRUE, type = 'link')
+pred &lt;- bind_cols(new_flu, as_tibble(as.data.frame(pred)))
+pred
+```
+
+```
+## # A tibble: 100 x 4
+##    week_centered tests_total   fit se.fit
+##            &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1        -11              1 -4.65  0.358
+##  2        -10.5            1 -4.70  0.304
+##  3         -9.97           1 -4.73  0.258
+##  4         -9.45           1 -4.75  0.224
+##  5         -8.94           1 -4.75  0.201
+##  6         -8.42           1 -4.72  0.187
+##  7         -7.91           1 -4.66  0.179
+##  8         -7.39           1 -4.56  0.170
+##  9         -6.88           1 -4.44  0.159
+## 10         -6.36           1 -4.29  0.146
+## # ... with 90 more rows
+```
+
+---
+
+# `predict()` &amp;rarr; response scale
+
+
+```r
+ilink &lt;- inv_link(flu2010_posmod)                         # inverse link function
+crit &lt;- qnorm((1 - 0.89) / 2, lower.tail = FALSE) # or just `crit &lt;- 2`
+pred &lt;- mutate(pred, pos_rate = ilink(fit),
+               lwr = ilink(fit - (crit * se.fit)), # lower...
+               upr = ilink(fit + (crit * se.fit))) # upper credible interval
+pred
+```
+
+```
+## # A tibble: 100 x 7
+##    week_centered tests_total   fit se.fit pos_rate     lwr    upr
+##            &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1        -11              1 -4.65  0.358  0.00951 0.00537 0.0169
+##  2        -10.5            1 -4.70  0.304  0.00913 0.00562 0.0148
+##  3         -9.97           1 -4.73  0.258  0.00882 0.00584 0.0133
+##  4         -9.45           1 -4.75  0.224  0.00865 0.00605 0.0124
+##  5         -8.94           1 -4.75  0.201  0.00866 0.00628 0.0119
+##  6         -8.42           1 -4.72  0.187  0.00893 0.00662 0.0120
+##  7         -7.91           1 -4.66  0.179  0.00949 0.00713 0.0126
+##  8         -7.39           1 -4.56  0.170  0.0104  0.00794 0.0137
+##  9         -6.88           1 -4.44  0.159  0.0118  0.00913 0.0152
+## 10         -6.36           1 -4.29  0.146  0.0136  0.0108  0.0172
+## # ... with 90 more rows
+```
+
+---
+
+# `predict()` &amp;rarr; plot
+
+Tidy objects like this are easy to plot with `ggplot()`
+
+
+```r
+ggplot(pred, aes(x = week_centered)) +
+    geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = 0.2) +
+    geom_line(aes(y = pos_rate)) + labs(y = "Test postivity rate", x = NULL)
+```
+
+![](03-predictions-and-model-checking_files/figure-html/plot-predictions-richness-1.svg)&lt;!-- --&gt;
+
+
+---
+class: inverse middle center subsection
+
+# Your turn!
+
+---
+class: inverse middle center subsection
+
+# Posterior simulation
+
+---
+
+# Remember this?
+
+![](03-predictions-and-model-checking_files/figure-html/plot-conf-band-plus-posterior-smooths-1.svg)&lt;!-- --&gt;
+
+--
+
+Where did the red lines come from?
+
+---
+
+# Posterior distributions
+
+Each red line is a draw from the *posterior distribution* of the smooth
+
+Remember the `\(\beta_j\)` from the first lecture?
+
+Together they are distributed *multivariate normal* with
+
+* mean vector given by `\(\hat{\beta}_j\)`
+* covariance matrix `\(\boldsymbol{\hat{V}}_{\beta}\)`
+
+`$$\text{MVN}(\boldsymbol{\hat{\beta}}, \boldsymbol{\hat{V}}_{\beta})$$`
+
+--
+
+The model as a whole has a posterior distribution too
+
+--
+
+We can simulate data from the model by taking draws from the posterior distribution
+
+---
+
+# Posterior simulation for a smooth
+
+Sounds fancy but it's only just slightly more complicated than using `rnorm()`
+
+To do this we need a few things:
+
+1. The vector of model parameters for the smooth, `\(\boldsymbol{\hat{\beta}}\)`
+2. The covariance matrix of those parameters, `\(\boldsymbol{\hat{V}}_{\beta}\)`
+3. A matrix `\(\boldsymbol{X}_p\)` that maps parameters to the linear predictors (i.e. basis functions) for the smooth
+
+`$$\boldsymbol{\hat{\eta}}_p = \boldsymbol{X}_p \boldsymbol{\hat{\beta}}$$`
+
+--
+
+Let's do this for `flu2010_posmod`
+
+---
+
+# Posterior sim for a smooth &amp;mdash; step 1
+
+The vector of model parameters for the smooth, `\(\boldsymbol{\hat{\beta}}\)`
+
+
+```r
+sm_week &lt;- get_smooth(flu2010_posmod, "s(week_centered)") # extract the smooth object from model
+idx &lt;- gratia:::smooth_coefs(sm_week)    # indices of the coefs for this smooth
+idx
+```
+
+```
+##  [1]  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+```
+
+```r
+beta &lt;- coef(flu2010_posmod)                     # vector of model parameters
+```
+
+---
+
+# Posterior sim for a smooth &amp;mdash; step 2
+
+The covariance matrix of the model parameters, `\(\boldsymbol{\hat{V}}_{\beta}\)`
+
+
+```r
+Vb &lt;- vcov(flu2010_posmod) # default is the bayesian covariance matrix
+```
+---
+
+# Posterior sim for a smooth &amp;mdash; step 3
+
+A matrix `\(\boldsymbol{X}_p\)` that maps parameters to the linear predictor for the smooth
+
+We get `\(\boldsymbol{X}_p\)` using the `predict()` method with `type = "lpmatrix"`
+
+
+```r
+new_weeks &lt;- with(flu2010, tibble(week_centered = seq_min_max(week_centered, n = 100),
+                                  tests_total = 1))
+Xp &lt;- predict(flu2010_posmod, newdata = new_weeks, type = 'lpmatrix')
+dim(Xp)
+```
+
+```
+## [1] 100  15
+```
+
+---
+
+# Posterior sim for a smooth &amp;mdash; step 4
+
+Take only the columns of `\(\boldsymbol{X}_p\)` that are involved in the smooth of `week_centered`
+
+
+```r
+Xp &lt;- Xp[, idx, drop = FALSE]
+dim(Xp)
+```
+
+```
+## [1] 100  14
+```
+
+---
+
+# Posterior sim for a smooth &amp;mdash; step 5
+
+Simulate parameters from the posterior distribution of the smooth of `week_centered`
+
+
+```r
+set.seed(42)
+beta_sim &lt;- rmvn(n = 20, beta[idx], Vb[idx, idx, drop = FALSE])
+dim(beta_sim)
+```
+
+```
+## [1] 20 14
+```
+
+Simulating many sets (20) of new model parameters from the estimated parameters and their uncertainty (covariance)
+
+Result is a matrix where each row is a set of new model parameters, each consistent with the fitted smooth
+
+---
+
+# Posterior sim for a smooth &amp;mdash; step 6
+
+.row[
+.col-6[
+Form `\(\boldsymbol{\hat{\eta}}_p\)`, the posterior draws for the smooth
+
+
+```r
+sm_draws &lt;- Xp %*% t(beta_sim)
+dim(sm_draws)
+```
+
+```
+## [1] 100  20
+```
+
+```r
+matplot(sm_draws, type = 'l')
+```
+
+A bit of rearranging is needed to plot with `ggplot()`
+]
+
+.col-6[
+![](03-predictions-and-model-checking_files/figure-html/richness-posterior-draws-1.svg)&lt;!-- --&gt;
+]
+
+]
+
+--
+
+Or use `smooth_samples()`
+
+---
+
+# Posterior sim for a smooth &amp;mdash; steps 1&amp;ndash;6
+
+
+```r
+sm_post &lt;- smooth_samples(flu2010_posmod, 's(week_centered)', n = 20, seed = 42)
+draw(sm_post)
+```
+
+![](03-predictions-and-model-checking_files/figure-html/plot-posterior-smooths-1.svg)&lt;!-- --&gt;
+
+---
+
+# Posterior simulation from the model
+
+Simulating from the posterior distribution of the model requires 1 modification of the recipe for a smooth and one extra step
+
+We want to simulate new values for all the parameters in the model, not just the ones involved in a particular smooth
+
+--
+
+Additionally, we could simulate *new response data* from the model and the simulated parameters (**not shown** below)
+
+---
+
+# Posterior simulation from the model
+
+
+```r
+beta &lt;- coef(flu2010_posmod)   # vector of model parameters
+Vb &lt;- vcov(flu2010_posmod)     # default is the Bayesian covariance matrix
+Xp &lt;- predict(flu2010_posmod, type = 'lpmatrix')
+set.seed(42)
+beta_sim &lt;- rmvn(n = 1000, beta, Vb) # simulate parameters
+eta_p &lt;- Xp %*% t(beta_sim)        # form linear predictor values
+mu_p &lt;- inv_link(flu2010_posmod)(eta_p)    # apply inverse link function
+
+mean(mu_p[1, ]) # mean of posterior for the first observation in the data
+```
+
+```
+## [1] 0.01009361
+```
+
+```r
+quantile(mu_p[1, ], probs = c(0.025, 0.975))
+```
+
+```
+##        2.5%       97.5% 
+## 0.004696046 0.018737832
+```
+
+---
+
+# Posterior simulation from the model
+
+
+```r
+week0_row &lt;- which(flu2010$week_centered==0)
+ggplot(tibble(positivity_rate = mu_p[week0_row , ]), aes(x = positivity_rate)) +
+    geom_histogram() + labs(title = "Posterior distribution of positivity rates for\nthe first week of January, 2011")
+```
+
+![](03-predictions-and-model-checking_files/figure-html/posterior-sim-model-hist-1.svg)&lt;!-- --&gt;
+
+
+---
+class: inverse middle center subsection
+
+# Your turn!
+
+
+
+
+---
+class: inverse middle center subsection
+
+# Part 2: Model comparisons
+
+
+
+---
+
+# Are predictions or inference any good?
+
+Only if model specification matches the data-generating process
+
+![](03-predictions-and-model-checking_files/figure-html/misspecify-1.svg)&lt;!-- --&gt;
+
+---
+background-image: url(figures/mug.jpg)
+background-size: contain
+---
+
+# How do we test for misspecification?
+
+-  Examine residuals and diagostic plots: `gam.check()` part 1
+
+-  Test for residual patterns in data: `gam.check()` part 2
+
+-  Look for confounding relationships amongst variables: `concurvity()`
+
+???
+
+---
+
+# First let's simulate some data 
+
+
+```r
+set.seed(2)
+n &lt;- 400
+x1 &lt;- rnorm(n)
+x2 &lt;- rnorm(n)
+y_val &lt;- 1 + 2*cos(pi*x1) + 2/(1+exp(-5*(x2)))
+y_norm &lt;- y_val + rnorm(n, 0, 0.5)
+y_negbinom &lt;- rnbinom(n, mu = exp(y_val),size=10)
+y_binom &lt;- rbinom(n,1,prob = exp(y_val)/(1+exp(y_val)))
+```
+
+---
+
+class: inverse middle center subsection
+
+# Using `gam.check()` part 1: Visual Checks
+
+
+---
+
+# Gaussian model on Gaussian data
+
+
+```r
+norm_model &lt;- gam(y_norm ~ s(x1, k=12) + s(x2, k=12), method = 'REML')
+gam.check(norm_model, rep = 500)
+```
+
+![](03-predictions-and-model-checking_files/figure-html/gam_check_plots1-1.svg)&lt;!-- --&gt;
+
+---
+
+# Negative binomial data, Poisson model
+
+
+```r
+pois_model &lt;- gam(y_negbinom ~ s(x1, k=12) + s(x2, k=12), family=poisson, method= 'REML')
+gam.check(pois_model, rep = 500)
+```
+
+![](03-predictions-and-model-checking_files/figure-html/gam_check_plots2-1.svg)&lt;!-- --&gt;
+
+---
+
+# NB data, NB model
+
+
+```r
+negbin_model &lt;- gam(y_negbinom ~ s(x1, k=12) + s(x2, k=12), family = nb, method = 'REML')
+gam.check(negbin_model, rep = 500)
+```
+
+![](03-predictions-and-model-checking_files/figure-html/gam_check_plots3-1.svg)&lt;!-- --&gt;
+
+
+
+
+---
+class: inverse middle center subsection
+
+# `gam.check()` part 2: do you have the right functional form?
+
+---
+
+# How good is the smooth?
+
+- Many choices influence whether a smooth is right for the data, one key one is **k**, the number of basis functions used to construct the smooth.
+
+- **k** sets the _maximum_ wiggliness of a smooth.  The smoothing penalty `\((\lambda)\)` remove "extra wiggliness" (_up to a point!_)
+
+- We want enough **k** to model all our complexity, but larger **k** means larger computation time (sometimes `\(O(n^2)\)`)
+
+- Set **k** per term in your model: `s(x, k=10)` or `s(x, y, k=100)`.  Default values must be checked!
+
+---
+
+# Checking basis size
+
+`gam.check()` prints diagnostics for basis size. Significant values indicate non-random residual patterns not captured by smooths.
+
+
+
+```r
+norm_model_1 &lt;- gam(y_norm~s(x1, k = 4) + s(x2, k = 4), method = 'REML')
+gam.check(norm_model_1)
+```
+
+```
+## 
+## Method: REML   Optimizer: outer newton
+## full convergence after 8 iterations.
+## Gradient range [-0.0003467788,0.0005154578]
+## (score 736.9402 &amp; scale 2.252304).
+## Hessian positive definite, eigenvalue range [0.000346021,198.5041].
+## Model rank =  7 / 7 
+## 
+## Basis dimension (k) checking results. Low p-value (k-index&lt;1) may
+## indicate that k is too low, especially if edf is close to k'.
+## 
+##         k'  edf k-index p-value    
+## s(x1) 3.00 1.00    0.13  &lt;2e-16 ***
+## s(x2) 3.00 2.91    1.04    0.77    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+background-image: url(figures/rookie.jpg)
+background-size: contain
+---
+
+# Checking basis size
+
+Increasing basis size can move issues to another part of the model.
+
+
+```r
+norm_model_2 &lt;- gam(y_norm ~ s(x1, k = 12) + s(x2, k = 4), method = 'REML')
+gam.check(norm_model_2)
+```
+
+```
+## 
+## Method: REML   Optimizer: outer newton
+## full convergence after 11 iterations.
+## Gradient range [-5.658609e-06,5.392657e-06]
+## (score 345.3111 &amp; scale 0.2706205).
+## Hessian positive definite, eigenvalue range [0.967727,198.6299].
+## Model rank =  15 / 15 
+## 
+## Basis dimension (k) checking results. Low p-value (k-index&lt;1) may
+## indicate that k is too low, especially if edf is close to k'.
+## 
+##          k'   edf k-index p-value   
+## s(x1) 11.00 10.84    0.99   0.330   
+## s(x2)  3.00  2.98    0.86   0.005 **
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+# Checking basis size
+
+Successively check issues in all smooths.
+
+
+```r
+norm_model_3 &lt;- gam(y_norm ~ s(x1, k = 12) + s(x2, k = 12),method = 'REML')
+gam.check(norm_model_3)
+```
+
+```
+## 
+## Method: REML   Optimizer: outer newton
+## full convergence after 8 iterations.
+## Gradient range [-1.136192e-08,6.794565e-13]
+## (score 334.2084 &amp; scale 0.2485446).
+## Hessian positive definite, eigenvalue range [2.812271,198.6868].
+## Model rank =  23 / 23 
+## 
+## Basis dimension (k) checking results. Low p-value (k-index&lt;1) may
+## indicate that k is too low, especially if edf is close to k'.
+## 
+##          k'   edf k-index p-value
+## s(x1) 11.00 10.85    0.98    0.29
+## s(x2) 11.00  7.95    0.95    0.14
+```
+
+---
+
+# Checking basis size
+
+![](03-predictions-and-model-checking_files/figure-html/gam_check_norm4-1.svg)&lt;!-- --&gt;
+
+---
+class: inverse center middle subsection
+
+# `concurvity()`: how independent are my variables?
+
+---
+
+# What is concurvity?
+
+- Nonlinear measure of variable relationships, similar to co-linearity
+
+- Generally a property of a _model_ and data, not data alone
+
+- In linear models, we may be concerned about co-linear variables, which we can find with `cor(data)`, or `pairs(data)` of the data
+
+- When using GAMs, we use `concurvity(model)`
+
+
+
+???
+
+Concurvity must be a model property because it depends on the type of curves allowed
+
+---
+
+# Effects of concurvity
+
+Independent variables yield nice, separable nonlinear GAM terms
+
+![](03-predictions-and-model-checking_files/figure-html/concurve1-1.svg)&lt;!-- --&gt;
+
+---
+
+# Effects of concurvity
+
+Modest dependence between predictor variables increases uncertainty.
+
+![](03-predictions-and-model-checking_files/figure-html/concurve2-1.svg)&lt;!-- --&gt;
+
+---
+
+# Effects of concurvity
+
+Smooth forms and intervals go &lt;span style="color:purple;"&gt;**buck wild**&lt;/span&gt; under strong dependence. 
+
+![](03-predictions-and-model-checking_files/figure-html/concurve4-1.svg)&lt;!-- --&gt;
+
+---
+
+# Use `concurvity()` to diagnose
+
+(It's easier to read with `round()`)
+
+
+
+.pull-left[
+
+```r
+round(concurvity(some_model), 2)
+```
+
+```
+##          para s(x1_cc) s(x2_cc)
+## worst       0     0.84     0.84
+## observed    0     0.22     0.57
+## estimate    0     0.28     0.60
+```
+
+- `full=TRUE` how much each smooth is explained by _all_ others
+- `full=FALSE` how much each smooth is explained by _each_ other 
+- 3 estimates provided
+]
+
+.pull-right[
+
+```r
+lapply(
+  concurvity(some_model, full= FALSE),
+  round, 2)
+```
+
+```
+## $worst
+##          para s(x1_cc) s(x2_cc)
+## para        1     0.00     0.00
+## s(x1_cc)    0     1.00     0.84
+## s(x2_cc)    0     0.84     1.00
+## 
+## $observed
+##          para s(x1_cc) s(x2_cc)
+## para        1     0.00     0.00
+## s(x1_cc)    0     1.00     0.57
+## s(x2_cc)    0     0.22     1.00
+## 
+## $estimate
+##          para s(x1_cc) s(x2_cc)
+## para        1     0.00      0.0
+## s(x1_cc)    0     1.00      0.6
+## s(x2_cc)    0     0.28      1.0
+```
+]
+
+---
+
+# Concurvity: Remember
+
+- Can make your model unstable to small changes
+
+- `cor(data)` not sufficient: use the `concurvity(model)` function
+
+- Not always obvious from plots of smooths!!
+
+
+---
+
+# Let's look at an example using the richness data
+
+
+
+.pull-left[
+
+```r
+# load the data
+trawls &lt;- read.csv(here("data","trawl_nl.csv"))
+trawls2010 &lt;- filter(trawls,year==2010)
+rich_tempdepth &lt;- gam(richness ~ s(log10(depth),k=30)+s(temp_bottom) + lat, 
+                       data= trawls2010,
+                       family = poisson, method ="REML")
+draw(rich_tempdepth)
+```
+
+]
+
+
+.pull-right[
+
+![](03-predictions-and-model-checking_files/figure-html/rich-spatial2-1.svg)&lt;!-- --&gt;
+
+]
+
+
+
+---
+
+
+
+.pull-left[
+
+```r
+concurvity(rich_tempdepth)
+```
+
+]
+
+
+.pull-right[
+
+
+```
+##               para s(log10(depth)) s(temp_bottom)
+## worst    0.9986329       0.7712929      0.8027293
+## observed 0.9986329       0.2205268      0.7859323
+## estimate 0.9986329       0.5174799      0.7027520
+```
+
+]
+
+
+---
+class: inverse middle center subsection
+
+# part 3: Model selection
+
+
+---
+
+# How do we choose between alternative models?
+
+- Models can differ in # of predictors, basis functions used, family, etc. 
+
+- When comparing models, we have to account for model fit and the flexibility of each model
+
+- MGCV uses the effective degrees of freedom of smooth terms when comparing models via ANOVA or AIC
+
+---
+
+
+# How do we choose between alternative models?
+
+Possible approaches:
+
+ - Look at terms within a model
+ - AIC 
+ - ANOVA table 
+ - Fitting full model and using `select = TRUE` option. 
+ 
+---
+
+# A few caveats first: 
+
+* you cannot compare models that differ in the number of data points, or in type of data (assuming count vs. continuous data, for example)
+
+* p-values for terms within each model are approximate, from ANOVA even more approximate
+
+* Make sure to use the same method ("ML", "REML" or "GCV.Cp") for all models to be compared
+
+
+---
+
+# Viewing smooth terms within a model:
+
+
+```r
+rich_tempdepth &lt;- gam(richness ~ s(log10(depth),k=30)+s(temp_bottom), 
+                      data= trawls2010,
+                      family = poisson, method ="REML")
+
+summary(rich_tempdepth)
+```
+
+```
+## 
+## Family: poisson 
+## Link function: log 
+## 
+## Formula:
+## richness ~ s(log10(depth), k = 30) + s(temp_bottom)
+## 
+## Parametric coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)  3.19764    0.00923   346.4   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Approximate significance of smooth terms:
+##                   edf Ref.df  Chi.sq p-value    
+## s(log10(depth)) 5.032  6.343 143.301  &lt;2e-16 ***
+## s(temp_bottom)  1.002  1.004   0.635   0.428    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## R-sq.(adj) =  0.218   Deviance explained = 21.6%
+## -REML = 1509.9  Scale est. = 1         n = 482
+```
+
+---
+
+# Using ANOVA to compare two models
+
+
+
+```r
+rich_depth &lt;- gam(richness ~ s(log10(depth),k=30), 
+                      data= trawls2010,
+                      family = poisson, method ="REML")
+
+anova(rich_depth, rich_tempdepth,test = "Chisq")
+```
+
+```
+## Analysis of Deviance Table
+## 
+## Model 1: richness ~ s(log10(depth), k = 30)
+## Model 2: richness ~ s(log10(depth), k = 30) + s(temp_bottom)
+##   Resid. Df Resid. Dev      Df Deviance Pr(&gt;Chi)
+## 1    474.05     565.84                          
+## 2    473.10     565.67 0.94931  0.17041   0.6586
+```
+
+
+---
+
+# Using ANOVA to compare two models
+
+
+Note for anova.gam: This assumes that models do not differ in terms that can be completely smoothed away (like simple random effects). See `?anova.gam` for more details
+
+
+---
+
+# Using AIC to compare two models
+
+
+
+.pull-left[
+
+
+```r
+AIC(rich_depth, rich_tempdepth)
+```
+
+```
+##                      df      AIC
+## rich_depth     6.643459 2997.568
+## rich_tempdepth 7.582491 2999.275
+```
+]
+
+
+
+.pull-right[
+
+* A corrected version of AIC (2k - 2logLik) to account for reduced degrees of freedom from smoothing, and uncertainty in smoothing parameters.
+
+* See ?`mgcv::AIC.gam` for more details
+
+
+]
+
+---
+background-image: url(figures/wood-quote.png)
+background-size: contain
+
+---
+
+
+# Final method: selection of smooth terms within a model
+
+* If we think a given smooth term can be removed from the model, it should also be possible to penalize the term to zero within the model
+
+--
+
+* Only works if a given term is penalized; remember from day 1 that some function shapes are not penalized (are in the null space of the model)
+
+--
+
+* If we set `select=TRUE` this adds a penalty to the null space of all models, letting mgcv remove the term if need be
+
+
+---
+
+
+
+```r
+rich_tempdepth_nonull &lt;- gam(richness ~ s(log10(depth),k=30)+s(temp_bottom), 
+                      data= trawls2010,
+                      family = poisson, method ="REML", select = TRUE)
+
+summary(rich_tempdepth_nonull)
+```
+
+```
+## 
+## Family: poisson 
+## Link function: log 
+## 
+## Formula:
+## richness ~ s(log10(depth), k = 30) + s(temp_bottom)
+## 
+## Parametric coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) 3.197728   0.009229   346.5   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Approximate significance of smooth terms:
+##                      edf Ref.df  Chi.sq p-value    
+## s(log10(depth)) 5.246284     29 159.254  &lt;2e-16 ***
+## s(temp_bottom)  0.002459      9   0.002   0.428    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## R-sq.(adj) =   0.22   Deviance explained = 21.6%
+## -REML = 1506.9  Scale est. = 1         n = 482
+```
+
+
+---
+
+
+
+```r
+draw(rich_tempdepth_nonull)
+```
+
+![](03-predictions-and-model-checking_files/figure-html/unnamed-chunk-7-1.svg)&lt;!-- --&gt;
+
+
+
+
+---
+
+class: inverse middle center subsection
+
+# Final exercise
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

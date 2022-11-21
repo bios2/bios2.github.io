@@ -1,0 +1,157 @@
+---
+title: "Introduction to Generalized Additive Models (GAMs)"
+description: "To address the increase in both quantity and complexity of available data, ecologists require flexible, robust statistical models, as well as software to perform such analyses. This workshop will focus on how a single tool, the R mgcv package, can be used to fit Generalized Additive Models (GAMs) to data from a wide range of sources."
+author:
+  - name: Eric Pedersen
+date: "11-02-2021"
+image: image.jpg
+categories: [Technical, EN]
+toc: true
+number-sections: true
+number-depth: 1
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction to Generalized Additive Models (GAMs)
+
+A short course on how to fit, plot, and evaluate GAMs
+
+The course website URL  available at [pedersen-fisheries-lab.github.io/one-day-gam-workshop/](https://pedersen-fisheries-lab.github.io/one-day-gam-workshop/)
+
+## Overview
+
+This is a 3-session, one-day workshop. It was developed with the goal of giving you enough GAM knowledge to feel comfortable fitting and working with GAMs in your day-to-day modelling practice, with just enough of more advanced applications to give a flavour of what GAMs can do. I will be covering a basic intro to GAM theory, with the rest focused on practical applications and a few advanced topics that I think might be interesting.
+
+## Learning Goals
+
+-   Understand the basic GAM model, basis functions, and penalties
+-   Fit 1D, 2D, and tensor-product GAMs to normal and non-normal data
+-   Plot GAM fits, and understand how to explain GAM outputs
+-   Diagnose common mispecification problems when fitting GAMs
+-   Use GAMs to make predictions about new data, and assess model uncertainty
+-   See how more complicated GAM models can be used as part of a modern workflow
+
+## Setup
+
+  - You will need to install **R** and I recommend using **RStudio**. The
+    latest version of R can be downloaded
+    [here](https://cran.r-project.org/mirrors.html). RStudio is an application
+    (an integrated development environment or IDE) that facilitates the use of R
+    and offers a number of nice additional features. It can be downloaded
+    [here](https://www.rstudio.com/products/rstudio/download/). You will need
+    the free Desktop version for your computer.
+
+  - Download the course materials as a ZIP file
+    [here](https://github.com/pedersen-fisheries-lab/one-day-gam-workshop/archive/main.zip).
+    Alternatively, if you have the [**usethis**](), R package, running the
+    following command will download the course materials and open them:
+
+    ``` {.r}
+    usethis::use_course('pedersen-fisheries-lab/one-day-gam-workshop')
+    ```
+
+  - Install the R packages required for this course by running the following
+    line of code your R console:
+
+    ``` {.r}
+    install.packages(c("dplyr", "ggplot2", "remotes", "mgcv", "tidyr"))
+    remotes::install_github("gavinsimpson/gratia")
+    ```
+
+
+# What is a GAM, and 1d smoothers
+
+On Day 1, we covered:
+
+-   Example data: Temperature with depth
+-   Refresher on GLMs (regression, parameters, link functions)
+-   Why smooth?
+-   Simple models with `s()`
+-   Introduction to the data
+-   Adding more than one smooth to your model
+-   `summary` and `plot`
+
+Follow the lecture and R script below:
+
+[Day 1 Script](scripts/01-intro-to-gams.R){.btn .btn-success role="button"}
+[Day 1 Solutions](scripts/01-intro-to-gams-solutions.R){.btn .btn-success role="button"}
+
+<iframe width="780" height="500" src="https://pedersen-fisheries-lab.github.io/one-day-gam-workshop/slides/00-Course-intro.html#1" title="Introduction to GAMs"></iframe>
+
+<iframe width="780" height="500" src="https://pedersen-fisheries-lab.github.io/one-day-gam-workshop/slides/01-1D-smoothing.html#1" title="What are GAMs?"></iframe>
+
+
+# "Twiddling knobs in `gam`"
+
+On Day 2, we covered:
+
+-   Moving beyond normal data (richness, shrimp biomass)
+    -   Exponential family and conditionally exp family (i.e., `family` + `tw` + `nb`)
+    
+-   More dimensions (Shrimp biomass)
+    -   Thin-plate 2d (Shrimp biomass with space)
+    -   What are tensors? (Shrimp biomass as a function of depth and temperature)
+        -   `ti` vs `te`
+    -   Spatio-temporal modelling
+        -   `te(x,y,t)` constructions
+
+-   Centering constraints
+    -   What does the intercept mean?
+
+Follow the lecture and R script below:
+
+[Day 2 Script](scripts/02-extending-gams.R){.btn .btn-success role="button"}
+    
+<iframe width="780" height="500" src="https://pedersen-fisheries-lab.github.io/one-day-gam-workshop/slides/02-extending-gams.html#1" title="Extending GAMs with interactions"></iframe>
+
+
+# Prediction, uncertainty, model checking, and selection 
+
+On Day 3, we covered:
+
+-   Using `predict` to calculate confidence intervals
+-   Posterior simulation
+-   `gam.check` for model checking
+-   Quantile residuals
+-   Diagnostic: `DHARMa`
+-   Fitting to the residuals
+-   `AIC` etc.
+-   Shrinkage and `select=TRUE`
+
+Follow the lecture and R script below:
+
+[Day 3 Script](scripts/03-predictions-and-model-checking.R){.btn .btn-success role="button"}
+
+<iframe width="780" height="500" src="https://pedersen-fisheries-lab.github.io/one-day-gam-workshop/slides/03-predictions-and-model-checking.html#1" title="Testing models, predictions & model uncertainty"></iframe>
+
+
+# Other useful resources
+
+  [3-day GAM workshop for DFO, a longer version of this workshop](https://github.com/pedersen-fisheries-lab/DFO-3day-gam-workshop/)
+  
+   [Our ESA GAM workshop](https://eric-pedersen.github.io/mgcv-esa-workshop/)
+   
+   [Our paper on Hierarchical Generalized Additive Models](https://peerj.com/articles/6876/)
+   
+ [Noam Ross's GAMs in R tutorial](https://noamross.github.io/gams-in-r-course/)
+ 
+ [Noam Ross's Short talk on many types of models that can fit with mgcv](https://raw.githubusercontent.com/noamross/gam-resources/master/2017-11-14-noamross-gams-nyhackr.pdf)
+ 
+ [Gavin Simpson's Blog: From the Bottom of the Heap](https://fromthebottomoftheheap.net/)
+ 
+ [Gavin Simpson's Online GAM workshop](https://www.youtube.com/watch?v=sgw4cu8hrZM&feature=youtu.be)
+
+[David Miller's NOAA workshop](https://converged.yt/mgcv-workshop/) based on the ESA workshop
+
+[ David Miller's Distance DSM workshop](http://workshops.distancesampling.org/online-dsm-2020/)
+
+# Other useful GAM resources:
+
+ - Simon Wood's book "Generalized Additive Models: An Introduction with R, Second Edition", is an incredibly useful tool for learning about GAMs, and covers all of this material in depth.
+ 
+- Hefley et al. (2017). "The basis function approach for modeling autocorrelation in ecological data". This is a great paper laying out how basis functions are used to model complex spatially structured systems. 
+
+- The `mgcVis` package has more tools for plotting GAM model outputs. See Fasiolo et al.'s paper 2019 "Scalable visualization methods for modern generalized additive models". 

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Extending GAMs with interactions</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Eric Pedersen" />
+    <meta name="date" content="2021-11-04" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https:/stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: inverse, middle, left, my-title-slide, title-slide
+
+# Extending GAMs with interactions
+### Eric Pedersen
+### November 4, 2021
+
+---
+
+
+
+
+# Reminder from Tuesday:
+
+A GLM is: 
+  - a distribution for our data + 
+  - a link function + 
+  - a linear model of the transformed mean as a function of covariates
+
+--
+
+A GAM is a GLM except:
+  - covariate functions can be nonlinear, built from basis functions of covariates
+  - Estimated with penalized likelihood, penalizing overly wiggly functions
+  
+  
+---
+
+
+# So far:
+
+- One-dimensional smooth models
+- Models with multiple separate predictors
+- Normally distributed response
+
+These are good models, but there's lots more to see!
+
+
+---
+
+# New things
+
+- distribution of the data
+  - `family=` argument
+- visually checking model assumptions when building models
+- adding dimensions to your smooths
+  - space and time
+
+
+---
+
+# Distributions
+
+- `family=` argument in `gam()`
+- see `?family.mgcv` for a list
+- what you'd expect, as for `lm()` and `glm()`
+- most useful cases:
+  - `binomial` ( yes/no, `\(y \in \{0, 1\}\)` )
+  - `poisson` ( counts, `\(y \in \{0, 1, 2, \ldots\}\)` )
+  - `Gamma` ( positive, `\(y&gt;0\)` )
+
+
+---
+
+# Special count distributions
+
+- Poisson is often not adequate for "real" counts
+- Assuming `\(\text{Var}(y) = \mathbb{E}(y)\)` is usually incorrect
+ 
+
+![](02-extending-gams_files/figure-html/species-gala-plots-1.svg)&lt;!-- --&gt;
+
+---
+
+# Special count distributions
+
+- Poisson is often not adequate for "real" counts
+- Assuming `\(\text{Var}(y) = \mathbb{E}(y)\)` is usually incorrect
+ 
+![](02-extending-gams_files/figure-html/species-gala-plots2-1.svg)&lt;!-- --&gt;
+---
+
+# Special count distributions
+
+
+Other options?
+ 
+- `quasipoisson` (count-ish, `\(y \geq 0\)`)
+  - `\(\text{Var}(y) = \psi\times\mathbb{E}(y)\)` 
+  - awkward to check, no likelihood
+  
+--
+
+- `nb`/`negbin` ( `\(y \geq 0\)`)
+  - `\(\text{Var}(y) = \mathbb{E}(y) + \kappa\times\mathbb{E}(y)^2\)` 
+  - models overdispersed counts
+  
+--
+
+- `tw`/`Tweedie` ( `\(y \geq 0\)`)
+  - great for CPUE-type data
+  - works on non-count positive data as well
+  - `\(\text{Var}\left(\text{y}\right) = \phi\mathbb{E}(\text{y})^q\)`
+
+---
+
+# Tweedie distribution
+
+.pull-left[
+![](02-extending-gams_files/figure-html/tweedie-1.svg)&lt;!-- --&gt;
+(NB there is a point mass at zero not plotted)
+]
+.pull-right[
+-  `\(\text{Var}\left(\text{y}\right) = \phi\mathbb{E}(\text{y})^q\)`
+- Poisson is `\(q=1\)` 
+- We estimate `\(q\)` and `\(\phi\)` for `tw`
+- We set `\(q\)` and estimate `\(\phi\)` for `Tweedie`
+]
+
+---
+
+# Negative binomial distribution
+
+.pull-left[
+![](02-extending-gams_files/figure-html/negbin-1.svg)&lt;!-- --&gt;
+]
+.pull-right[
+- `\(\text{Var}\left(\text{count}\right) =\)` `\(\mathbb{E}(\text{count}) + \kappa \mathbb{E}(\text{count})^2\)`
+- Poisson is `\(\kappa=0\)`
+- Estimate `\(\kappa\)` for `nb`
+- Set `\(\kappa\)` for `negbin` 
+]
+
+---
+
+# 🐟🐠🐡 Example 🐡🐠🐟
+
+.pull-left[
+- Let's look at species richness as a function of depth
+- Number of species in each trawl (counts!)
+
+
+```r
+trawls &lt;- read.csv(here("data/trawl_nl.csv"))
+```
+]
+
+.pull-right[
+![](02-extending-gams_files/figure-html/richness-violin-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+
+# 🐟🐠🐡 Example 🐡🐠🐟
+
+.pull-left[
+- Does richness vary with depth?
+- Let's try assuming the response is Poisson!
+
+
+```r
+rich_depthl10 &lt;- gam(richness~s(log10(depth),k = 30), 
+                     family=poisson,
+              method="REML", 
+              data=trawls)
+```
+]
+
+.pull-right[
+
+```r
+plot(rich_depthl10, shade=TRUE)
+```
+
+![](02-extending-gams_files/figure-html/plot-year-rich-1.svg)&lt;!-- --&gt;
+]
+
+
+
+
+---
+
+# `summary` output
+
+
+```
+## 
+## Family: poisson 
+## Link function: log 
+## 
+## Formula:
+## richness ~ s(log10(depth), k = 30)
+## 
+## Parametric coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) 3.155047   0.003212   982.3   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Approximate significance of smooth terms:
+##                   edf Ref.df Chi.sq p-value    
+## s(log10(depth)) 12.65   15.6  972.3  &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## R-sq.(adj) =  0.157   Deviance explained = 15.7%
+## -REML =  12983  Scale est. = 1         n = 4152
+```
+
+---
+
+# Other `family` stuff
+
+- can specify a `link=` argument
+  - (usually don't have to)
+  - `?family` has options for each distribution
+- for a fitted model `model$family`
+  - details of what was used
+  - `model$family$linkfun()` gives link function
+  - `model$family$linkinv()` gives inverse link
+
+---
+
+# How can we check whether our assumed distribution is adequate?
+
+
+
+```r
+par(mfrow=c(2,2))
+gam.check(rich_depthl10)
+```
+
+![](02-extending-gams_files/figure-html/pois-rich-check1-1.svg)&lt;!-- --&gt;
+
+```
+## 
+## Method: REML   Optimizer: outer newton
+## full convergence after 4 iterations.
+## Gradient range [-1.49377e-07,-1.49377e-07]
+## (score 12983.34 &amp; scale 1).
+## Hessian positive definite, eigenvalue range [2.515006,2.515006].
+## Model rank =  30 / 30 
+## 
+## Basis dimension (k) checking results. Low p-value (k-index&lt;1) may
+## indicate that k is too low, especially if edf is close to k'.
+## 
+##                   k'  edf k-index p-value   
+## s(log10(depth)) 29.0 12.7    0.95   0.005 **
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+
+# How can we check whether our assumed distribution is adequate?
+
+
+
+```r
+par(mfrow=c(2,2))
+gam.check(rich_depthl10)
+```
+
+```
+## 
+## Method: REML   Optimizer: outer newton
+## full convergence after 4 iterations.
+## Gradient range [-1.49377e-07,-1.49377e-07]
+## (score 12983.34 &amp; scale 1).
+## Hessian positive definite, eigenvalue range [2.515006,2.515006].
+## Model rank =  30 / 30 
+## 
+## Basis dimension (k) checking results. Low p-value (k-index&lt;1) may
+## indicate that k is too low, especially if edf is close to k'.
+## 
+##                   k'  edf k-index p-value   
+## s(log10(depth)) 29.0 12.7    0.95    0.01 **
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+```
+
+---
+
+# How can we check whether our assumed distribution is adequate?
+
+
+```r
+appraise(rich_depthl10)
+```
+
+![](02-extending-gams_files/figure-html/pois-rich-check3-1.svg)&lt;!-- --&gt;
+
+---
+
+--- 
+
+# Let's pause the talk here to try this ourselves
+
+---
+
+class: inverse middle center big-subsection
+
+## Beyond one dimensional smooths:&lt;br/&gt; space, time and more
+
+---
+
+# 🦐🦐 Example 🦐🦐
+
+.pull-left[
+
+```r
+trawls &lt;- read.csv(here("data/trawl_nl.csv"))
+trawls_2010 &lt;- filter(trawls, year==2010)
+range(trawls_2010$shrimp)
+```
+
+```
+## [1]    0.000 2293.699
+```
+
+```r
+head(trawls_2010$shrimp, 3)
+```
+
+```
+## [1]  0.1202384  0.9619069 13.6270140
+```
+
+Not normal, not integer!
+
+]
+
+.pull-right[
+
+![](02-extending-gams_files/figure-html/unnamed-chunk-1-1.svg)&lt;!-- --&gt;
+
+]
+
+---
+
+# 🦐🗺
+
+.pull-left[
+- spatial variation!
+- how do we model this??
+- `s(long) + s(lat)` misses the interaction
+]
+
+.pull-right[
+![](02-extending-gams_files/figure-html/biom-space-plot-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+# Adding dimensions
+
+- Thin plate regression splines (default basis)
+- `s(x, y)`
+- Assumes `x` and `y` are measured in the same units
+  - `x`, `y` projected coordinates 👍
+  - `x` temperature, `y` depth 👎
+
+---
+
+# 🦐🗺
+
+Starting with a 2D smooth, assuming data is Gaussian
+
+
+.pull-left[
+
+```r
+spatial_shrimp &lt;- gam(shrimp ~ s(x, y, k =100),
+                data=trawls_2010,
+                family = gaussian,
+                method="REML")
+```
+]
+
+.pull-right[
+
+```r
+plot(spatial_shrimp, asp=1)
+```
+
+![](02-extending-gams_files/figure-html/plot-effect-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+# That plot is hard to understand!
+
+.pull-left[
+
+```r
+plot(spatial_shrimp, asp=1)
+```
+
+![](02-extending-gams_files/figure-html/plot-effect-bad-1.svg)&lt;!-- --&gt;
+]
+
+.pull-right[
+
+```r
+plot(spatial_shrimp, scheme=2, asp=1)
+```
+
+![](02-extending-gams_files/figure-html/plot-effect-good-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+# Using gratia:
+.left-column[
+
+
+```r
+draw(spatial_shrimp)
+```
+
+]
+
+.right-column[
+![](02-extending-gams_files/figure-html/plot-effect-gratia2-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+# `summary` output
+
+
+```
+## 
+## Family: gaussian 
+## Link function: identity 
+## 
+## Formula:
+## shrimp ~ s(x, y, k = 100)
+## 
+## Parametric coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  125.390      8.658   14.48   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Approximate significance of smooth terms:
+##          edf Ref.df     F p-value    
+## s(x,y) 39.32  53.66 3.759  &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## R-sq.(adj) =  0.309   Deviance explained = 36.6%
+## -REML = 3241.7  Scale est. = 36132     n = 482
+```
+
+---
+
+class: inverse middle center big-subsection
+
+## Now give it a try!
+
+
+---
+
+class: inverse middle center big-subsection
+
+## Other multi-dimensional smooths
+
+---
+
+# `s(x,y)` doesn't always work
+
+- Only works for `bs="tp"` or `bs="ts"`
+- Covariates are isotropic
+- What if we wanted to use lat/long?
+- Or, more generally: interactions between covariates?
+
+---
+
+# Enter `te()`
+
+.pull-left[
+- We can built interactions using `te()`
+- Construct 2D basis from 2 1D bases
+- Biomass as a function of temperature and depth?
+  - `te(temp_bottom, log10(depth))`
+- 💭 "marginal 1Ds, join them up"
+]
+
+.pull-right[
+![](02-extending-gams_files/figure-html/tensor-1.svg)&lt;!-- --&gt;
+]
+
+---
+
+# Using `te()`
+
+Just like `s()`:
+
+
+
+```r
+shrimp_te &lt;- gam(shrimp ~ te(log10(depth), temp_bottom),
+                data=trawls_2010,
+                family=tw,
+                method="REML")
+```
+
+---
+
+# `summary`
+
+
+```
+## 
+## Family: Tweedie(p=1.595) 
+## Link function: log 
+## 
+## Formula:
+## shrimp ~ te(log10(depth), temp_bottom)
+## 
+## Parametric coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   1.8484     0.2531   7.304 1.22e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Approximate significance of smooth terms:
+##                                edf Ref.df     F p-value    
+## te(log10(depth),temp_bottom) 15.19  16.99 33.09  &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## R-sq.(adj) =  0.337   Deviance explained = 66.1%
+## -REML = 1946.5  Scale est. = 8.1292    n = 482
+```
+
+---
+
+# Things to fiddle with
+
+- Setting `k` in two ways:
+  - `k=5`: 5 for all covariates (total `\(5*5=25\)`)
+  - `k=c(3,5)`: per basis, in order (total `\(3*5=15\)`)
+- Setting `bs` in two  ways:
+  - `bs="tp"`: tprs for all bases
+  - `bs=c("tp", "tp")`: tprs per basis
+
+---
+
+# Pulling `te()` apart: `ti()`
+
+- Can we look at the components of the `te()`
+- `te(x, y) = ti(x, y) + ti(x) + ti(y)`
+
+
+```r
+shrimp_ti &lt;- gam(shrimp ~ ti(temp_bottom, depth) +
+                          s(temp_bottom) + s(depth),
+                data=trawls_2010,
+                family=tw,
+                method="REML")
+```
+
+---
+
+# `summary`
+
+
+```
+## 
+## Family: Tweedie(p=1.591) 
+## Link function: log 
+## 
+## Formula:
+## shrimp ~ ti(temp_bottom, depth) + s(temp_bottom) + s(depth)
+## 
+## Parametric coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)    1.672      1.067   1.568    0.118
+## 
+## Approximate significance of smooth terms:
+##                         edf Ref.df      F  p-value    
+## ti(temp_bottom,depth) 7.417  8.860  4.177 0.000459 ***
+## s(temp_bottom)        5.661  6.850  1.703 0.081067 .  
+## s(depth)              6.592  7.238 10.177  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## R-sq.(adj) =  0.349   Deviance explained = 66.7%
+## -REML = 1951.7  Scale est. = 8.1639    n = 482
+```
+
+---
+
+class: inverse middle center big-subsection
+
+## Now give it a try!
+
+
+---
+class: inverse middle center big-subsection
+
+## Building spatio-temporal models
+
+---
+
+# 🦐🗺🗓
+
+![](02-extending-gams_files/figure-html/biom-space-time-plot-1.svg)&lt;!-- --&gt;
+
+
+---
+
+# Space x time
+
+- We had a 2d spatial model, add time?
+  - `te(x,y,year)` ?
+- Want that 2d smooth rather than `te(lat, long)`?
+- `d=` groups covariates
+  - `te(x, y, year, d=c(2,1))` gives `x,y` smooth and `year` smooth tensor
+- Assuming default `k=` and `bs=` for bases
+
+---
+
+# Fiddling
+
+- Often fewer temporal replicates
+  - Fewer years than unique locations
+  - `k=` smaller for temporal covariate?
+- Use cubic spline basis for time?
+  - simpler basis, even knot placement
+- When using `ti()` everything needs to match up!
+
+---
+
+# 🦐🗺🗓
+
+Putting that together:
+
+
+```r
+shrimp_xyt &lt;- gam(shrimp ~ ti(y,x, year, d=c(2,1), 
+                              bs=c("tp", "cr"), k=c(20, 5)) +
+                           s(x, y, bs="tp", k=20) +
+                           s(year,  bs="cr", k=5),
+                data=trawls,
+                family=tw,
+                method="REML")
+```
+
+---
+
+# `summary`
+
+
+```
+## 
+## Family: Tweedie(p=1.686) 
+## Link function: log 
+## 
+## Formula:
+## shrimp ~ ti(y, x, year, d = c(2, 1), bs = c("tp", "cr"), k = c(20, 
+##     5)) + s(x, y, bs = "tp", k = 20) + s(year, bs = "cr", k = 5)
+## 
+## Parametric coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  3.89917    0.03127   124.7   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Approximate significance of smooth terms:
+##                edf Ref.df       F p-value    
+## ti(y,x,year) 47.65  58.59   8.144  &lt;2e-16 ***
+## s(x,y)       18.88  19.00 180.295  &lt;2e-16 ***
+## s(year)       3.87   3.98 108.490  &lt;2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## R-sq.(adj) =  0.136   Deviance explained = 45.2%
+## -REML =  19084  Scale est. = 9.3801    n = 4152
+```
+
+---
+
+# `ti(x, y)` and `ti(year)`
+
+![](02-extending-gams_files/figure-html/ti-xyt-plot-xy-t-1.svg)&lt;!-- --&gt;
+---
+
+# `ti(x, y, year)`
+
+![](02-extending-gams_files/figure-html/ti-xyt-plot-xyt-1.svg)&lt;!-- --&gt;
+
+
+
+---
+class: inverse middle center big-subsection
+
+## Recap
+
+---
+
+# What did we learn?
+
+- set response distribution
+  - `family=` argument
+  - see `?family`
+- spatial smoothing
+  - `s(x,y)` for projected coordinates
+  - `te(lat, long)` for latitude and longitude (better to project?)
+- interactions
+  - `te(covar1, covar2, ...)`
+  - `ti()` to decompose the effects
+- space and time
+  - `te(x, y, time, d=c(2,1))`
+  - again `ti()` to decompose
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
