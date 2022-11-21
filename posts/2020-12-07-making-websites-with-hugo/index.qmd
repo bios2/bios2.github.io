@@ -1,5 +1,5 @@
 ---
-title: "Making websites with HUGO"
+title: "Making Websites with HUGO"
 description: |
   This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.
 author:

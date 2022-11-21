@@ -12,7 +12,7 @@ number-depth: 1
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 ```
 
 <iframe src="https://giphy.com/embed/HGe4zsOVo7Jvy" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen>
@@ -141,7 +141,7 @@ Add a license
 usethis::use_mit_license(copyright_holder = "")
 ```
 
-note about the different roles taht R package authors can have. Funny ones. but creator and maintainer are the key ones.
+note about the different roles that R package authors can have. Funny ones. but creator and maintainer are the key ones.
 
 Note the R folder. We'll get much more into that later
 
@@ -181,7 +181,7 @@ load all -- shortcut
 
 > how to add something to the .Rbuildignore? it would be nice to have a little .dev script as a space to create all the ohter dependencies that are involved in making an R package.
 
-```{r}
+```{r, message=FALSE}
 usethis::use_build_ignore("development.R")
 ```
 

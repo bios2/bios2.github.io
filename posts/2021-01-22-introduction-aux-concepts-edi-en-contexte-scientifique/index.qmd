@@ -1,5 +1,5 @@
 ---
-title: "Introduction to EDI concepts in a scientific context"
+title: "Introduction to EDI Concepts in a Scientific Context"
 description: |
   A short introduction to EDI concepts in a scientific context.
 author:
@@ -17,7 +17,7 @@ number-depth: 1
 
 Texte en français [à la suite](#introduction-aux-concepts-edi-en-contexte-scientifique).
 
-# Introduction to EDI concepts in a scientific context
+# Introduction to EDI Concepts in a Scientific Context
 
 In 2021, the BIOS2 training program will be holding a series of training and reflection activities on equity, diversity and inclusion issues. The goal is to develop an EDI action plan for the program in order to consolidate a more inclusive, respectful and open environment.
 

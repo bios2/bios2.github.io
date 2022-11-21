@@ -1,5 +1,5 @@
 ---
-title: "4-Day Training in Spatial Statistics with Philippe Marchand"
+title: "Spatial Statistics in Ecology"
 description: |
   Training session about statistical analysis of spatial data in ecology, hosted by Philippe Marchand (UQAT). | 
   Session de formation sur l’analyse statistique des données spatiales en écologie, animée par Pr. Philippe Marchand (UQAT).
@@ -17,7 +17,7 @@ execute:
 
 Version en français [à la suite](#statistiques-spatiales-en-écologie).
 
-# Spatial statistics in ecology
+# Spatial Statistics in Ecology
 
 BIOS² hosted an online training session about statistical analysis of spatial data in ecology, led by Pr. Philippe Marchand (UQAT). This 12-hour training was conducted in 4 sessions: January 12, 14, 19 & 21 (2021) from 1:00 to 4:00 pm EST.
 
