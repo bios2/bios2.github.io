@@ -3,9 +3,9 @@ title: "Introduction to EDI Concepts in a Scientific Context"
 description: |
   A short introduction to EDI concepts in a scientific context.
 author:
-  - name: Agathe Riallan
-    affiliation: Faculté des Sciences à Université de Sherbrooke
-  - name: Marie-José Naud
+  - name: "Agathe Riallan"
+    affiliation: Université de Sherbrooke
+  - name: "Marie-José Naud"
     affiliation: Centre d’études nordiques (CEN)  
 categories: [Transversal competencies, FR, EN]
 date: "01-22-2021"
