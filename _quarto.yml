@@ -33,3 +33,5 @@ format:
 execute:
   freeze: auto
 editor: source
+listing:
+  sort-ui: [date, author]

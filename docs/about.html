@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -57,7 +59,37 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -139,7 +171,428 @@ ul.task-list li input[type="checkbox"] {
 <p>About this blog</p>
 
 
-</main> 
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
+     </select>
+  </div>
+</div>
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1669063224711" data-listing-reading-time-sort="0.005">
+<div class="thumbnail">
+<a href="./index.html">
+<div class="thumbnail-image">
+</div>
+</a><p><a href="./index.html"></a></p>
+</div>
+<div class="body">
+<a href="./index.html">
+<h3 class="no-anchor listing-title">
+BIOS² Education resources
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+  
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./index.html"> </a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1669062855422" data-listing-reading-time-sort="0.205">
+<div class="thumbnail">
+<a href="./summer-schools/BiodiversityModelling2022.html">
+<div class="thumbnail-image">
+</div>
+</a><p><a href="./summer-schools/BiodiversityModelling2022.html"></a></p>
+</div>
+<div class="body">
+<a href="./summer-schools/BiodiversityModelling2022.html">
+<h3 class="no-anchor listing-title">
+Biodiversity Modelling 2022
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+Diapositives des présentations données lors de la modélisation de la biodiversité en 2022
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./summer-schools/BiodiversityModelling2022.html"> </a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-categories="Technical,EN" data-listing-date-sort="1620100800000" data-listing-file-modified-sort="1669996985987" data-listing-reading-time-sort="4.785">
+<div class="thumbnail">
+<p><a href="./posts/2021-05-04-building-r-packages/index.html"> <img src="./posts/2021-05-04-building-r-packages/altumcode-PNbDkQ2DDgM-unsplash.jpeg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2021-05-04-building-r-packages/index.html">
+<h3 class="no-anchor listing-title">
+Building R packages
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>This practical training will cover the basics of modern package development in R with a focus on the following three aspects: (1) how to turn your code into functions, (2) how to write tests and documentation, and (3) how to share your R package on GitHub..</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2021-05-04-building-r-packages/index.html">
+<div class="listing-date">
+May 4, 2021
+</div>
+<div class="listing-author">
+Andrew MacDonald
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="Technical,Fellow contributed,EN" data-listing-date-sort="1600660800000" data-listing-file-modified-sort="1669996664577" data-listing-reading-time-sort="26.01">
+<div class="thumbnail">
+<p><a href="./posts/2020-09-21-data-visualization/index.html"> <img src="./posts/2020-09-21-data-visualization/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2020-09-21-data-visualization/index.html">
+<h3 class="no-anchor listing-title">
+Data Visualization
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>General principles of visualization and graphic design, and techniques of tailored visualization. This training was developed and delivered by Alex Arkilanian and Katherine Hébert on September 21st and 22nd, 2020.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2020-09-21-data-visualization/index.html">
+<div class="listing-date">
+Sep 21, 2020
+</div>
+<div class="listing-author">
+Alex Arkilanian, Katherine Hébert
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="Technical,EN" data-listing-date-sort="1621224000000" data-listing-file-modified-sort="1669997067845" data-listing-reading-time-sort="54.35">
+<div class="thumbnail">
+<p><a href="./posts/2021-07-19-glm-community-ecology/index.html"> <img src="./posts/2021-07-19-glm-community-ecology/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2021-07-19-glm-community-ecology/index.html">
+<h3 class="no-anchor listing-title">
+Generalized Linear Models for Community Ecology
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>In this workshop we will explore, discuss, and apply generalized linear models to combine information on species distributions, traits, phylogenies, environmental and landscape variation. We will also discuss inference under spatial and phylogenetic autocorrelation under fixed and random effects implementations. We will discuss technical elements and cover implementations using R.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2021-07-19-glm-community-ecology/index.html">
+<div class="listing-date">
+May 17, 2021
+</div>
+<div class="listing-author">
+Pedro Peres-Neto
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5" data-categories="Transversal competencies,FR,EN" data-listing-date-sort="1611291600000" data-listing-file-modified-sort="1669996734914" data-listing-reading-time-sort="1.595">
+<div class="thumbnail">
+<p><a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html"> <img src="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html">
+<h3 class="no-anchor listing-title">
+Introduction to EDI Concepts in a Scientific Context
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>A short introduction to EDI concepts in a scientific context.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html">
+<div class="listing-date">
+Jan 22, 2021
+</div>
+<div class="listing-author">
+Agathe Riallan, Marie-José Naud
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-categories="Technical,EN" data-listing-date-sort="1635825600000" data-listing-file-modified-sort="1669996465315" data-listing-reading-time-sort="4.165">
+<div class="thumbnail">
+<p><a href="./posts/2021-11-02-introduction-to-gams/index.html"> <img src="./posts/2021-11-02-introduction-to-gams/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2021-11-02-introduction-to-gams/index.html">
+<h3 class="no-anchor listing-title">
+Introduction to Generalized Additive Models (GAMs)
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>To address the increase in both quantity and complexity of available data, ecologists require flexible, robust statistical models, as well as software to perform such analyses. This workshop will focus on how a single tool, the R mgcv package, can be used to fit Generalized Additive Models (GAMs) to data from a wide range of sources.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2021-11-02-introduction-to-gams/index.html">
+<div class="listing-date">
+Nov 2, 2021
+</div>
+<div class="listing-author">
+Eric Pedersen
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="7" data-categories="Technical,EN" data-listing-date-sort="1652932800000" data-listing-file-modified-sort="1670001807048" data-listing-reading-time-sort="52.73">
+<div class="thumbnail">
+<p><a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html"> <img src="./posts/2022-05-19-introduction-to-microbiome-analysis/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html">
+<h3 class="no-anchor listing-title">
+Introduction to Microbiome Analysis
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>This workshop will give an overview of the theory and practice of using metabarcoding approaches to study the diversity of microbial communities. The workshop will give participants an understanding of 1) the current methods for microbiome diversity quantification using metabarcoding/amplicon sequencing approaches and 2) the normalization and diversity analysis approaches that can be used to quantify the diversity of microbial communities.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html">
+<div class="listing-date">
+May 19, 2022
+</div>
+<div class="listing-author">
+Steven Kembel, Zihui Wang, Salix Dubois
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="8" data-categories="Technical,Fellow contributed,EN" data-listing-date-sort="1624334400000" data-listing-file-modified-sort="1669997018547" data-listing-reading-time-sort="34.775">
+<div class="thumbnail">
+<p><a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html"> <img src="./posts/2021-06-22-introduction-to-shiny-apps/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html">
+<h3 class="no-anchor listing-title">
+Introduction to Shiny Apps
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>Introduction to interactive app development with R Shiny.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html">
+<div class="listing-date">
+Jun 22, 2021
+</div>
+<div class="listing-author">
+Katherine Hébert, Andrew MacDonald, Jake Lawlor, Vincent Bellavance
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="9" data-categories="Technical,Transversal competencies,EN" data-listing-date-sort="1607317200000" data-listing-file-modified-sort="1669996688136" data-listing-reading-time-sort="20.225">
+<div class="thumbnail">
+<p><a href="./posts/2020-12-07-making-websites-with-hugo/index.html"> <img src="./posts/2020-12-07-making-websites-with-hugo/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2020-12-07-making-websites-with-hugo/index.html">
+<h3 class="no-anchor listing-title">
+Making Websites with HUGO
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2020-12-07-making-websites-with-hugo/index.html">
+<div class="listing-date">
+Dec 7, 2020
+</div>
+<div class="listing-author">
+Dominique Gravel, Guillaume Larocque
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="10" data-categories="Technical,EN" data-listing-date-sort="1578978000000" data-listing-file-modified-sort="1669996244040" data-listing-reading-time-sort="5.305">
+<div class="thumbnail">
+<p><a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html"> <img src="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/StabilityPictures.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html">
+<h3 class="no-anchor listing-title">
+Mathematical Modeling in Ecology and Evolution
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>This workshop will introduce participants to the logic behind modeling in biology, focusing on developing equations, finding equilibria, analyzing stability, and running simulations.Techniques will be illustrated with the software tools, Mathematica and Maxima. This workshop was held in two parts: January 14 and January 16, 2020.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html">
+<div class="listing-date">
+Jan 14, 2020
+</div>
+<div class="listing-author">
+Sarah P. Otto
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="11" data-categories="Technical,EN" data-listing-date-sort="1616644800000" data-listing-file-modified-sort="1669996962993" data-listing-reading-time-sort="14.685">
+<div class="thumbnail">
+<p><a href="./posts/2021-03-25-point-count-data-analysis/index.html"> <img src="./posts/2021-03-25-point-count-data-analysis/thumb.jpeg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2021-03-25-point-count-data-analysis/index.html">
+<h3 class="no-anchor listing-title">
+Point-count Data Analysis
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Péter Sólymos to BIOS2 Fellows in March 2021.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2021-03-25-point-count-data-analysis/index.html">
+<div class="listing-date">
+Mar 25, 2021
+</div>
+<div class="listing-author">
+Péter Sólymos
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="12" data-categories="Career,Fellow contributed,EN" data-listing-date-sort="1592193600000" data-listing-file-modified-sort="1669996631704" data-listing-reading-time-sort="1.955">
+<div class="thumbnail">
+<p><a href="./posts/2020-06-15-science-communication/index.html"> <img src="./posts/2020-06-15-science-communication/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2020-06-15-science-communication/index.html">
+<h3 class="no-anchor listing-title">
+Science Communication
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>Recordings, content and handouts from a 6-hour Science Communication workshop held over two days on 15 and 16 June 2020.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2020-06-15-science-communication/index.html">
+<div class="listing-date">
+Jun 15, 2020
+</div>
+<div class="listing-author">
+Gracielle Higino, Katherine Hébert
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="13" data-categories="Transversal competencies,FR" data-listing-date-sort="1588046400000" data-listing-file-modified-sort="1669996526901" data-listing-reading-time-sort="2.37">
+<div class="thumbnail">
+<p><a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html"> <img src="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html">
+<h3 class="no-anchor listing-title">
+Sensibilisation aux réalités autochtones et recherche collaborative
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>Série de deux webinaires sur la sensibilisation aux réalités autochtones et la recherche en collaboration avec les Autochtones, offert du 28 au 30 avril 2020 par Catherine-Alexandra Gagnon, PhD.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html">
+<div class="listing-date">
+Apr 28, 2020
+</div>
+<div class="listing-author">
+Catherine-Alexandra Gagnon
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="14" data-categories="FR,EN,Technical" data-listing-date-sort="1610427600000" data-listing-file-modified-sort="1669996710664" data-listing-reading-time-sort="153.065">
+<div class="thumbnail">
+<p><a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html"> <img src="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/image.jpg" class="thumnail-image"> </a></p>
+</div>
+<div class="body">
+<a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html">
+<h3 class="no-anchor listing-title">
+Spatial Statistics in Ecology
+</h3>
+<div class="listing-subtitle">
+</div>
+<div class="listing-description">
+<p>Training session about statistical analysis of spatial data in ecology, hosted by Philippe Marchand (UQAT). | Session de formation sur l’analyse statistique des données spatiales en écologie, animée par Pr. Philippe Marchand (UQAT).</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html">
+<div class="listing-date">
+Jan 12, 2021
+</div>
+<div class="listing-author">
+Philippe Marchand
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> 
   <hr class="about-sep">
    <div class="about-links">
   <a href="https://twitter.com" class="about-link">
