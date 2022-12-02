@@ -22,7 +22,9 @@ website:
       href: https://github.com/bios2/bios2.github.io
     - icon: twitter
       href: https://twitter.com/_bios2
-    search: false
+  search:
+    location: navbar
+    type: textbox
   site-url: https://bios2.github.io
 format:
   html:
