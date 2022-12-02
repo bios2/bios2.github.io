@@ -23,6 +23,7 @@ website:
     - icon: twitter
       href: https://twitter.com/_bios2
     search: false
+  site-url: https://bios2.github.io
 format:
   html:
     theme: flatly
