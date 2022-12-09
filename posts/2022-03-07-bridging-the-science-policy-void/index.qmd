@@ -1,0 +1,37 @@
+---
+title: "Bridging the Science-Policy Void"
+description: "Do you think science should influence policy? Do you wonder how to improve evidence-based decision making? Do you have a particular issue that you would like to bring to the attention of decision makers? This workshop covers how to present science in a more impactful way, how to prepare a brief, and encourages participants to meet with a decision maker to discuss the issue raised in their policy brief."
+author:
+  - name: "Sarah P. Otto"
+    affiliation: University of British Columbia
+date: "07-03-2022"
+image: image.jpg
+categories: [Transversal competencies, Career, EN]
+toc: true
+number-sections: true
+number-depth: 1
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+This training session was presented by Sally Otto, professor in the Department of Zoology at the University of British Columbia and BIOS² co-PI. Pr. Sarah P. Otto has strong expertise on quantitative analysis and mathematical modeling for biologists, and a lot of experience communicating theory to policy decision makers.
+
+The workshop was held in four 1h30 sessions in English on March 7, 14, 21 and 28.
+
+# Why bridge the science-policy void?
+
+# Developing your message
+
+# Writing a brief
+
+# Connecting
+
+# Resources
+
+
+
+
