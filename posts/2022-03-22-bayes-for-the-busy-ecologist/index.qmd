@@ -1,0 +1,828 @@
+---
+title: "Bayes for the Busy Ecologist"
+description: "This workshop presents one idea of a complete workflow for applied Bayesian statistics with real-world models that are actually used by biodiversity scientists."
+author:
+  - name: "Andrew MacDonald"
+    affiliation: "BIOS² and Université de Sherbrooke"
+date: "22-03-2022"
+image: image.jpg
+categories: [Technical, EN]
+toc: true
+number-sections: true
+number-depth: 1
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE)
+# set a common theme for all ggplots
+ggplot2::theme_set(ggplot2::theme_minimal())
+```
+
+# Applied Bayesian models for working ecologists {-}
+
+This training covers how to write down a model, how to translate that into computer code, how to fit it to data and finally, how to work with the resulting posterior distribution. We’ll use Stan, which is a language for writing Bayesian models, and practice with some of the tools that help us work with Stan: rstanarm, brms, tidybayes, shinystan.
+
+This training is intended for experienced users of Bayesian tools and for complete beginners who want to use such tools.
+
+This 6 to 8h online workshop was conducted in 4 sessions: March 22, 24, 29, 31, 2022, from 11AM – 1 PM Pacific Time / 12 – 2 PM Mountain Time / 2-4 PM Eastern Time. The training was built and presented by Dr. Andrew MacDonald in English with bilingual support throughout.
+
+Andrew MacDonald is the Training Coordinator of the BIOS² program. He is a quantitative ecologist who works mostly in R and a well-experienced trainer in teaching quantitative and computational methods. He is currently a research professional at Université de Sherbrooke.
+
+# Day 1
+
+# Day 2: Hierarchical and nonlinear models
+
+In which we discuss many groups and curving lines.
+
+## Outline
+
+* Return to previous model: Poisson regression 
+* Panel regression version of this model
+* Bayesian workflow
+* Brief foray into moment matching
+* Nonlinear model
+* Nonlinear model with random effects
+
+## Quick review
+
+### Bird masses
+
+This example is based on work by Marie-Eve at UdeS! 
+
+We imagine a model like the following: 
+
+$$
+\begin{align}
+\text{Nestlings}_i & \sim \text{Poisson}(\lambda_i) \\
+\text{log}(\lambda_i) &= \beta_0 + \beta_1 \times \text{Mass}_i \\
+\beta_0 & \sim \text{Normal}(??, ??) \\
+\beta_1 & \sim \text{Normal}(??, ??)
+\end{align}
+$$
+
+
+$i$ keeps track of which bird we are talking about. You can think of it as "bird number i"
+
+Note: We could also write the model like this:
+
+$$
+\begin{align}
+\text{Nestlings}_i & \sim \text{Poisson}(e^{\beta_0} \times e^{\beta_1 \times \text{Mass}_i}) \\
+\beta_0 & \sim \text{Normal}(??, ??) \\
+\beta_1 & \sim \text{Normal}(??, ??)
+\end{align}
+$$
+
+### Centering variables
+
+Centering variables is one of the most important things we can do to help our models be more interpretable. This also helps us to set good priors. 
+
+Centering a variable means to subtract the mean from the variable:
+
+$$
+\begin{align}
+\text{Nestlings}_i & \sim \text{Poisson}(\lambda_i) \\
+\text{log}(\lambda_i) &= \beta_0 + \beta_1 \times (\text{Mass}_i - \overline{\text{Mass}}) \\
+\beta_0 & \sim \text{Normal}(??, ??) \\
+\beta_1 & \sim \text{Normal}(??, ??)
+\end{align}
+$$
+
+*Question* How does this change the meaning of $\beta_0$ and/or $\beta_1$, if at all? (Hint: what will be the equation for a bird who has exactly average mass?) 
+
+```{r bird-simulation}
+set.seed(1234)
+
+n_birds <- 15
+avg_nestlings_at_avg_mass <- log(4.2)
+effect_of_one_gram <- .2
+
+mother_masses_g <- rnorm(n_birds, mean = 15, sd = 3)
+avg_mother_mass <- mean(mother_masses_g)
+
+log_average_nestlings <- avg_nestlings_at_avg_mass + 
+  effect_of_one_gram * (mother_masses_g - avg_mother_mass)
+
+nestlings <- rpois(n = n_birds, lambda = exp(log_average_nestlings))
+```
+
+Plot these to get an idea of it:
+
+```{r, message=FALSE}
+suppressPackageStartupMessages(library(tidyverse))
+imaginary_birds <- tibble(mother_masses_g, nestlings)
+
+ggplot(imaginary_birds, aes(x = mother_masses_g, y = nestlings)) + 
+  geom_point()
+```
+
+*NOTE* We can also fit this very same model by frequentist statistics, using `lm`
+
+```{r}
+coef(glm(nestlings ~ 1 + I(mother_masses_g - mean(mother_masses_g)), family = "poisson"))
+# compare to known values
+avg_nestlings_at_avg_mass
+effect_of_one_gram
+```
+
+### Bayesian workflow: define a model and priors
+
+```{r, message=FALSE}
+library(brms)
+
+imaginary_birds_centered <- imaginary_birds |> 
+  mutate(mother_mass_g_cen = mother_masses_g - mean(mother_masses_g))
+
+bird_form <- bf(nestlings ~ 1 + mother_mass_g_cen, family = poisson(link = "log"))
+
+get_prior(bird_form, data = imaginary_birds_centered)
+```
+
+We set a prior for each parameter. 
+
+```{r}
+bird_priors <- c(
+  prior(normal(1, .5), class = "Intercept"),
+  prior(normal(.1, .1), class = "b", coef = "mother_mass_g_cen")
+)
+```
+
+#### Prior predictive checks
+
+```{r}
+prior_predictions <- brm(bird_form,
+                         data = imaginary_birds_centered,
+                         prior = bird_priors, 
+                         sample_prior = "only", 
+                         file = "bird_model",
+                         file_refit = "on_change",
+                         refresh = FALSE)
+```
+
+Plot a few of these:
+
+```{r, message=FALSE}
+library(tidybayes)
+imaginary_birds_centered |> 
+  add_predicted_draws(prior_predictions, ndraws = 6, seed = 4321) |> 
+  ggplot(aes(x = mother_masses_g, y = .prediction)) + geom_point() + facet_wrap(~.draw)
+```
+
+*Question* are we satisfied with these priors?
+
+#### Fit to the data
+
+```{r}
+bird_posterior <- update(prior_predictions, sample_prior = "yes", 
+                         file = "bird_posterior", 
+                         file_refit = "on_change", refresh = FALSE)
+```
+
+```{r}
+summary(bird_posterior)
+
+knitr::kable(head(tidybayes::tidy_draws(bird_posterior)))
+```
+
+How do our priors and posteriors compare?
+
+```{r, message=FALSE}
+library(ggridges)
+tidybayes::tidy_draws(bird_posterior) |> 
+  select(.draw, b_Intercept:prior_b_mother_mass_g_cen) |> 
+  pivot_longer(-.draw) |> 
+  ggplot(aes(x = value, y = name)) + geom_density_ridges()
+```
+
+Can we draw the regression line? 
+
+```{r, warning = FALSE}
+average_mom <- mean(mother_masses_g)
+
+range(imaginary_birds_centered$mother_mass_g_cen)
+
+tibble(mother_mass_g_cen = modelr::seq_range(imaginary_birds_centered$mother_mass_g_cen, 
+                                             n = 10)) |> 
+  tidybayes::add_epred_draws(bird_posterior) |> 
+  ungroup() |> 
+  ggplot(aes(x = average_mom + mother_mass_g_cen, y = .epred)) + 
+  stat_lineribbon() + 
+  scale_fill_brewer(palette = "Greens", direction = -1) + 
+  geom_point(aes(x = mother_masses_g, y = nestlings),
+             data = imaginary_birds_centered, pch = 21,
+             fill = "orange", size = 3)
+  
+
+```
+
+Let's also try drawing the prediction intervals.
+
+```{r}
+average_mom <- mean(mother_masses_g)
+
+range(imaginary_birds_centered$mother_mass_g_cen)
+
+tibble(mother_mass_g_cen = modelr::seq_range(imaginary_birds_centered$mother_mass_g_cen, 
+                                             n = 10)) |> 
+  tidybayes::add_predicted_draws(bird_posterior) |> 
+  ungroup() |> 
+  ggplot(aes(x = average_mom + mother_mass_g_cen, y = .prediction)) + 
+  stat_lineribbon() + 
+  scale_fill_brewer(palette = "Greens", direction = -1) + 
+  geom_point(aes(x = mother_masses_g, y = nestlings),
+             data = imaginary_birds_centered, pch = 21,
+             fill = "orange", size = 3)
+  
+
+```
+
+Other checks we can do:
+
+```{r eval=FALSE}
+bird_posterior_onlyparam <- update(prior_predictions, sample_prior = "no", 
+                         file = "bird_posterior", 
+                         file_refit = "on_change", refresh = FALSE)
+
+shinystan::launch_shinystan(bird_posterior_onlyparam)
+```
+
+
+## Multilevel models
+
+Based on the awesome vignette for vignette for `tidybayes`
+
+We begin by sampling some data from five different "conditions":
+
+```{r setup-vig, message=FALSE}
+library(modelr)
+set.seed(5)
+n <- 10
+n_condition <- 5
+ABC <-
+  data_frame(
+    condition = rep(c("A", "B", "C", "D", "E"), n),
+    response = rnorm(n * 5, c(0, 1, 2, 1, -1), 0.5)
+  )
+
+ABC %>%
+  ggplot(aes(y = condition, x = response)) +
+  geom_point(pch = 21, size = 4, stroke = 1.4, fill = "#41b6c4")
+```
+
+And by fitting a model to these data, with varying intercepts for each group:
+
+```{r MODEL_m, message=FALSE, warning=FALSE, results='hide'}
+m <- brm(
+  response ~ (1 | condition), data = ABC, 
+  control = list(adapt_delta = .99),
+  prior = c(
+    prior(normal(0, 1), class = Intercept),
+    prior(student_t(3, 0, 1), class = sd),
+    prior(student_t(3, 0, 1), class = sigma)
+  )
+)
+```
+
+An easy way to visualize these results is with a _ridgeline plot_ as above
+
+```{r m_plot}
+ABC %>%
+  modelr::data_grid(condition) %>%
+  tidybayes::add_predicted_draws(m) %>%
+  ggplot(aes(x = .prediction, y = condition)) +
+  geom_density_ridges(fill = "#41b6c4") + 
+  theme_minimal()
+```
+
+Alright. This used the simple vanilla option, `add_predicted_samples(m)`. This uses the default options for making predictions, which recall is "NULL (default), include all group-level effects". If you set `add_predicted_samples(m, re_formula = NULL)`, you'll get exactly the same figure.  
+
+So we can see that to "include" an effect is to take the actual estimated intercepts for each _specific group we studied_ and use them to make new predictions for the same groups. This is **Case 1** from McElreath's list (though in this case, because we only have groups and nothing else, Case 1 and 2 are the same). 
+
+We can also say the **exact same thing** using a formula: 
+
+```{r m_re_condition}
+ABC %>%
+  data_grid(condition) %>%
+  add_predicted_draws(m, re_formula = ~(1|condition)) %>%
+  ggplot(aes(x = .prediction, y = condition)) +
+  geom_density_ridges(fill = "#41b6c4") +  
+  theme_minimal()
+```
+
+That's right, there are three ways to say the exact same thing: say nothing, say `NULL`, or say the original "random effects" formula^[this impulse in R to "help your users" by making it possible to say a great deal by saying almost nothing is... actually pretty counterproductive, I'd argue? But that's a different post]. You go with what you feel in your heart is right, but I prefer the formula.   
+
+In all three cases, we are using the model to predict the means for the groups in our varying-intercepts model. This is what the documentation means by "including" these varying intercepts.
+
+### Squishing those random effects
+
+OK, so that was three separate ways to make predictions for the _same_ groups. What else can we do? Let's try that thing with the `NA` argument, which means "include no group-level effects":
+
+```{r m_plot_NA_TRUE-and_zero}
+ABC %>%
+  data_grid(condition) %>%
+  add_predicted_draws(m, re_formula = NA,
+                        n = 2000) %>%
+  ggplot(aes(x = .prediction, y = condition)) +
+  geom_density_ridges(fill = "#41b6c4") +    theme_minimal()
+```
+
+Ah, so if you do this, all the groups come out the same! But if they're all the same, what do they represent? It seems reasonable that they represent the model's intercept, as if the varying intercepts were all 0. Let's calculate predicitons that ignore the varying effects -- that is, using only the model intercept and the standard deviation of the response -- using a bit of [handy `purrr` magic]^[no magic required! `rnorm` is already vectorized]:
+
+
+```{r}
+m %>% 
+  spread_draws(b_Intercept, sigma) %>% 
+  mutate(prediction = rnorm(length(b_Intercept), b_Intercept, sigma),
+         #map2_dbl(b_Intercept, sigma, ~ rnorm(1, mean = .x, sd = .y)),
+         Prediction = "prediction") %>% #glimpse %>% 
+  ggplot(aes(x = prediction, y = Prediction)) +
+  geom_density_ridges(fill = "#41b6c4") +    
+  theme_minimal()
+```
+
+As you can see, this distribution has exactly the same shape as the five in the previous figure! It is as if we calculated the predictions for a group which was exactly at the average (in other words, it had a varying intercept of 0.) In the Rethinking book, readers are taught to do this in a much more explicit way: you actually generate all the 0 intercepts yourself, and give that to the model in place of the estimated intercepts! A very manual and concrete way to "set something to 0".  
+
+`brms` does this too. As the documentation says
+>NA values within factors in newdata, are interpreted as if all dummy variables of this factor are zero.
+
+The `brms` phrasing certainly takes less space, though it also requires you to remember that this is what NA gets you!
+
+We can also remove random effects from our predictions by excluding them from the `re_formula`. In our model, we have only one varying effect -- yet an even simpler formula is possible, a model with no intercept at all:
+
+```{r}
+ABC %>%
+  data_grid(condition) %>%
+  add_predicted_draws(m, re_formula = ~ 0,
+                        n = 2000) %>%
+  ggplot(aes(x = .prediction, y = condition)) +
+  geom_density_ridges(fill = "#41b6c4") + theme_minimal() 
+```
+
+Once again, the same distribution appears: it is as if all group effects had been set to zero. If we had two random effects and omitted one, this is what we would get for the omitted effect -- the expected value if all its effects were 0.
+
+### New levels
+
+I'm going to show how to create predictions for new levels, but first I'm going to show two mistakes that I made frequently while learning:
+
+First, asking for new levels without specifying `allow_new_levels = TRUE`:
+
+```{r m_failur_no_newlevel, error=TRUE}
+# this does not work at all!!
+data_frame(condition = "bugaboo") %>%
+  add_predicted_draws(m, re_formula = ~(1|condition),
+                        n = 2000)
+```
+
+That fails because I tried to pass in a level of my grouping variable that _wasn't_ in the original model! 
+
+Second, passing in new levels -- but telling the function to just ignore them:
+
+```{r m_data_NA}
+data_frame(condition = "bugaboo") %>%
+  add_predicted_draws(m, re_formula = NA,#~(1|condition),
+                        n = 2000) %>%
+  ggplot(aes(x = .prediction, y = condition)) +
+  geom_density_ridges(fill = "#41b6c4") + 
+  theme_minimal()
+```
+
+Here, I'm still passing in the unknown level -- but the function doesn't complain, because I'm not including random effects at all! This is the same result from above, when we used `NA` or `~0` to remove varying effects altogether. This is definitely something to watch for if you are passing in new data (I made this mistake, and it cost me an afternoon!)
+
+If we avoid both of these errors, we get what we expect: our means for our original groups, and a new predicted mean for `"bugaboo"`:
+
+```{r, new_level}
+ABC %>%
+  data_grid(condition) %>% 
+  add_row(condition = "bugaboo") %>%
+  add_predicted_draws(m, re_formula = ~(1|condition),
+                        allow_new_levels = TRUE,
+                        n = 2000) %>%
+  ggplot(aes(x = .prediction, y = condition)) +
+  geom_density_ridges(fill = "#41b6c4") +    theme_minimal()
+```
+
+Here you can see that the new level is much flatter than the other original five. It comes from the same population as the others, which is rather variable (the group means are sort of different to each other). As a result, this new distribution is quite wide, including all that uncertainty. 
+
+An ecologist might do something like this if we were had data on _some_ species in a community, but wanted to make predictions for new, as yet unobserved, species we might find next year.
+
+# Day 3: Offsets
+
+In which we cover how to do a count analysis for different efforts or exposure.
+
+## Outline
+
+- Poisson count model
+- Bayesian Poisson count model
+
+## Data: Dandelion counts
+
+Let's imagine that we have counted dandelions. 
+
+Dandelions occur on average 6 per square meter.
+
+However, we have five kinds of quadrat: 1, 4, 9 and 25 square meters.
+
+```{r}
+library(tidyverse)
+
+imaginary_dandelions <- tibble(quadrat_size = rep(c(1,4, 9, 25), each = 15),
+       n_per_m2 = purrr::map(quadrat_size, rpois, lambda = 6),
+       obs_dandelions = map_dbl(n_per_m2, sum))
+
+ggplot(imaginary_dandelions, aes(x = obs_dandelions)) + geom_histogram() + 
+  facet_wrap(~quadrat_size)
+```
+
+How can we get the correct number of dandelions? 
+
+## Poisson count model
+
+$$
+\begin{align}
+y &\sim \text{Poisson}(\lambda) \\
+\text{log}(\lambda) &= \beta
+\end{align}
+$$
+$\lambda$ is the average response. If we want to measure the average _per unit effort_, we can do that too:
+
+$$
+\begin{align}
+y &\sim \text{Poisson}(\lambda) \\
+\text{log}(\lambda/Q) &= \beta
+\end{align}
+$$
+
+
+
+
+$$
+\begin{align}
+y &\sim \text{Poisson}(\lambda) \\
+\text{log}(\lambda) - \text{log}(Q) &= \beta
+\end{align}
+$$
+
+
+$$
+\begin{align}
+y &\sim \text{Poisson}(\lambda) \\
+\text{log}(\lambda) &= \beta + \text{log}(Q)
+\end{align}
+$$
+
+In other words, we need a way to add a log coefficient to a model and give it a slope of _exactly one_. Fortunately the function `offset()` is here to do exactly this:
+
+```{r}
+dandelion_model <- glm(obs_dandelions ~ 1, family = poisson(link = "log"), data = imaginary_dandelions)
+summary(dandelion_model) 
+
+```
+
+This gives the wrong answer! 
+ 
+```{r}
+dandelion_model <- glm(obs_dandelions ~ 1 + offset(log(quadrat_size)),
+                       family = poisson(link = "log"),
+                       data = imaginary_dandelions)
+summary(dandelion_model) 
+```
+
+The coefficient should be close to 6, after we reverse the link function:
+
+```{r}
+exp(coef(dandelion_model)[[1]])
+```
+
+## Do it the Bayes Way
+
+```{r}
+library(brms)
+
+dandelion_bf <- bf(obs_dandelions ~ 1 + offset(log(quadrat_size)), 
+                   family = poisson(link = "log"))
+
+get_prior(dandelion_bf, data = imaginary_dandelions)
+
+dandelion_prior <- prior(normal(2, 1), class = "Intercept")
+
+dandelion_model <- brm(formula = dandelion_bf,
+                       data = imaginary_dandelions, 
+                       prior = dandelion_prior)
+
+```
+
+Look at the Stan code:
+
+```{r}
+stancode(dandelion_model)
+```
+
+Look at posterior distribution of parameter:
+
+```{r}
+# as.matrix(dandelion_model) |> head()
+
+library(tidybayes)
+
+tidy_draws(dandelion_model) |> 
+  ggplot(aes(x = exp(b_Intercept))) + 
+  geom_histogram() + 
+  geom_vline(xintercept = 6, col = "red", lwd = 3)
+```
+
+# Day 3: Nonlinear models
+
+In which we consider that nature has no straight lines.
+
+Fitting nonlinear models to ecological data is interesting and powerful. 
+
+This is possible in base R using the function `nls()`. 
+In a Bayesian approach we can do the same thing, but we don't need to learn any new tools.
+
+## Data: Hemlock growth
+
+We will work with a dataset about hemlock growth.
+
+```{r}
+library(tidyverse)
+library(tidybayes)
+library(brms)
+
+hemlock <- readr::read_delim(
+  "https://raw.githubusercontent.com/bios2/biodiversity_modelling_2021/master/data/hemlock.txt", 
+  delim = " ",
+  col_names = c("x","light", "growth"), skip = 1)
+
+knitr::kable(head(hemlock, n = 3))
+
+ggplot(hemlock, aes(x = light, y = growth)) + 
+  geom_point()
+```
+
+## Define a model
+
+We need a function for the mean growth rate per species. 
+A very popular choice in ecology is the famous **Type 2 functional response**:
+
+$$
+y = \frac{a x}{b + x}
+$$
+* $a$ is the asymptote -- the max value of $y$ when $x$ is large
+* $b$ is the value of $x$ where $y = a/2$
+
+We experiment using `curve` to understand how this works
+
+```{r}
+a <- 195
+b <- 30
+curve(a * x / (b + x), xlim = c(0, 100))
+```
+
+
+## Define a distribution for observations around this average
+
+We can use the gamma distribution. The gamma distribution looks like this:
+
+```{r}
+curve(dgamma(x, 3,5), xlim = c(0, 3))
+```
+
+The gamma distribution has two parameters:
+
+$$
+\text{Gamma}(a, b)
+$$
+
+The mean and variance are both functions of both of these parameters:
+
+$$
+\mu = \frac{a}{b}
+$$
+$$
+\sigma^2 = \frac{a}{b^2}
+$$
+
+We can demonstrate this easily in R:
+
+```{r}
+xx <- rgamma(5000, 3, 5)
+mean(xx) #about 3/5  = 0.6
+var(xx) #about 3/(5^2) = 0.12
+```
+
+We can reverse this: write the parameters $a$ and $b$ in terms of the desired mean and standard deviation:
+
+$$
+\begin{align}
+a &= \frac{\mu^2}{\sigma^2} \\
+b &= \frac{\mu}{\sigma^2} \\
+\end{align}
+$$
+
+_optional_ prove that to yourself with algebra!
+
+*Exercise*: Simulate 3000 from a Gamma distribution with a mean of 42 and a standard deviation of 10.
+
+### Simulating observations:
+
+We exploit this technique to make up some fake data:
+
+```{r}
+a <- 195
+b <- 20
+x_values <- runif(n = 70, min = 0, max = 100)
+average_response <- a * x_values / (b + x_values)
+plot(x_values, average_response)
+
+```
+
+```{r}
+sigma <- 31
+
+observed_response <- rgamma(n = 70, shape = average_response^2/sigma^2, rate = average_response/ sigma^2)
+
+plot(x_values, observed_response)
+```
+
+## Defining a Bayesian model
+
+To fully build our Bayesian model we put all the above together:
+
+* our function that describes how light causes the _average_ growth
+* a distribution for observations around that average
+* priors for the three unobserved quantities: $a$, $b$ and $\sigma$
+
+$$
+\begin{align}
+\text{growth} &\sim \text{Gamma}(\mu^2/\sigma^2, \mu/\sigma^2) \\
+\mu &= \frac{aL}{b + L} \\
+\sigma & \sim \text{Exponential}(4)\\
+a               & \sim \text{Normal}(200, 15)\\
+b               & \sim \text{Normal}(25, 5)\\
+\end{align}
+$$
+
+## Prior predictive simulations
+
+```{r}
+hemlock$x <- NULL
+
+light_curve_bf <- bf(growth ~ exp(loga) * light / (exp(logb) + light),
+                        family = Gamma(link = "identity"),
+                        loga ~ 1,
+                        logb ~ 1, 
+                        nl = TRUE)
+
+get_prior(light_curve_bf, data = hemlock)
+
+light_curve_prior <- c(
+  # prior(exponential(.1), class = "shape"),
+  prior(gamma(6.25, .25), class = "shape"),
+  prior(gamma(250^2/70^2, 250/70^2), class = "b", nlpar = "a", lb = 0),
+  prior(normal(30, 20), class = "b", nlpar = "b")
+)
+
+light_curve_model_prior <- brm(light_curve_bf,
+                               prior = light_curve_prior,
+                               data = hemlock,
+                               refresh = FALSE,
+                               sample_prior = "only", 
+                               file = here::here("light_curve_prior"),
+                               file_refit = "on_change")
+```
+
+
+```{r}
+hemlock |> 
+  add_predicted_draws(light_curve_model_prior, ndraws = 6) |> 
+  ggplot(aes(x = light, y = .prediction)) + 
+  geom_point() + 
+  facet_wrap(~.draw) + 
+  coord_cartesian(ylim = c(0, 300))
+```
+
+Fit to real data:
+
+```{r}
+light_curve_model_posterior <- brm(light_curve_bf,
+                               prior = light_curve_prior,
+                               data = hemlock,
+                               sample_prior = "yes", 
+                               file = here::here("light_curve_posterior"),
+                               file_refit = "on_change")
+```
+
+Predictions with the original data:
+
+```{r}
+
+hemlock_post <- hemlock |> 
+  add_predicted_draws(light_curve_model_posterior)
+
+
+hemlock_post |> 
+  ggplot(aes(x = light, y = .prediction)) + 
+  stat_lineribbon()+ 
+  coord_cartesian(ylim = c(0, 300)) + 
+  scale_fill_brewer(palette = "Oranges") + 
+  geom_point(aes(x = light, y = growth), size = 3, pch = 21,
+             fill = "lightblue", data = hemlock)
+```
+
+### Multilevel nonlinear model
+
+```{r}
+light_curve_bf <- bf(growth ~ exp(loga) * light / (exp(logb) + light),
+                        family = Gamma(link = "identity"),
+                        loga ~ 1 + (1|ben|spp),
+                        logb ~ 1 + (1|ben|spp), 
+                        nl = TRUE)
+
+get_prior(light_curve_bf, data = hemlock |> mutate(spp = "a"))
+
+light_curve_prior <- c(
+  # prior(exponential(.1), class = "shape"),
+  prior(gamma(6.25, .25), class = "shape"),
+  prior(normal(5.5, 3), class = "b", nlpar = "loga"),
+  prior(normal(3.4, 2), class = "b", nlpar = "logb"),
+  prior(exponential(8), class = "sd", group = "spp", nlpar = "loga"),
+  prior(exponential(8), class = "sd", group = "spp", nlpar = "logb"),
+  prior(lkj(2), class = "cor")
+)
+
+fake_hemlock <- expand.grid(spp = letters[1:3],
+                            light = runif(120, min = 0, max = 100), 
+                            growth = 1)
+
+light_curve_model_prior <- brm(light_curve_bf,
+                               prior = light_curve_prior,
+                               data = fake_hemlock,
+                               refresh = FALSE,
+                               sample_prior = "only", 
+                               file = here::here("light_curve_prior"),
+                               file_refit = "on_change")
+```
+
+```{r}
+fake_spp_prior <- fake_hemlock |> 
+  add_predicted_draws(light_curve_model_prior, ndraws = "4")
+
+
+fake_spp_prior |> 
+  ggplot(aes(x = light , y = .prediction)) + geom_point() + 
+  facet_grid(spp~.draw)
+```
+
+```{r}
+# mean of 5, sd of 2
+hist(rnorm(400, 5, 2))
+
+hist(rnorm(400, 0, 1))
+hist(rnorm(400, 0, 1)*2 + 5)
+```
+
+# Day 3: Random effects (continued)
+
+```{r}
+library(tidyverse)
+
+n <- 300
+
+sigma_disper <- .7
+average_nestling <- 5
+nestling_shrub <- .03
+
+fake_nestlings <- tibble(
+  obs_label = 1:n,
+  shrub_cover = runif(n, min = 3, max = 70),
+  shrub_cover_c = shrub_cover - mean(shrub_cover),
+  log_avg_nestlings = log(average_nestling) + nestling_shrub*shrub_cover_c,
+  log_avg_nestlings_overdisp = log_avg_nestlings + rnorm(n, mean = 0, sd = sigma_disper),
+  nestlings_pois = rpois(n, exp(log_avg_nestlings)),
+  nestlings_overdisp = rpois(n, exp(log_avg_nestlings_overdisp)))
+```
+
+```{r}
+fake_nestlings |> 
+  ggplot(aes(x = shrub_cover, y = nestlings_pois)) + geom_point()
+```
+
+```{r}
+fake_nestlings |> 
+  ggplot(aes(x = shrub_cover, y = nestlings_overdisp)) + geom_point()
+
+```
+
+
+```{r}
+library(brms)
+
+nest_poisson <- bf(nestlings_overdisp ~ shrub_cover_c, family = poisson())
+nest_intercept <- bf(nestlings_overdisp ~ shrub_cover_c + (1|obs_label), family = poisson())
+nest_negbin <- bf(nestlings_overdisp ~ shrub_cover_c, family = negbinomial())
+```
+
+```{r}
+brm(nest)
+```
+
