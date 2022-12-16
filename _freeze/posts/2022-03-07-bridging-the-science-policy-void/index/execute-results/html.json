@@ -1,0 +1,14 @@
+{
+  "hash": "24e4edb38c5590b66f684dcdf3fc5626",
+  "result": {
+    "markdown": "---\ntitle: \"Bridging the Science-Policy Void\"\ndescription: \"Do you think science should influence policy? Do you wonder how to improve evidence-based decision making? Do you have a particular issue that you would like to bring to the attention of decision makers? This workshop covers how to present science in a more impactful way, how to prepare a brief, and encourages participants to meet with a decision maker to discuss the issue raised in their policy brief.\"\nauthor:\n  - name: \"Sarah P. Otto\"\n    affiliation: University of British Columbia\ndate: \"07-03-2022\"\nimage: image.jpg\ncategories: [Transversal competencies, Career, EN]\ntoc: true\nnumber-sections: true\nnumber-depth: 1\n---\n\n\n\n\n## Overview\n\nThis training session was presented by Sally Otto, professor in the Department of Zoology at the University of British Columbia and BIOS² co-PI. Pr. Sarah P. Otto has strong expertise on quantitative analysis and mathematical modeling for biologists, and a lot of experience communicating theory to policy decision makers.\n\nThe workshop was held in four 1h30 sessions in English on March 7, 14, 21 and 28.\n\n# Why bridge the science-policy void?\n\n# Developing your message\n\n# Writing a brief\n\n# Connecting\n\n# Resources\n\nThe [Federal Recruitment of Policy Leaders program](https://www.canada.ca/en/public-service-commission/jobs/services/recruitment/graduates/recruitment-policy-leaders.html) mentioned by Katie Gibbs. This program takes leaders of all ilks, not just PhDs.\n\nSutherland et al. article about what policy makers should know about science ([link](https://www.nature.com/articles/503335a) and [PDF](docs/503335a.pdf)), and the response letter about the [Top 20 things scientists need to know about policy-making](https://www.theguardian.com/science/2013/dec/02/scientists-policy-governments-science).\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
