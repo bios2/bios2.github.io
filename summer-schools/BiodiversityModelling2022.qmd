@@ -1,0 +1,121 @@
+---
+title: "Biodiversity Modelling 2022"
+description: "<br> The 2022 edition of the Biodiversity Modelling Summer School was on the theme: Biodiversity changes and data visualization. The course took the form of a workshop during which the students, in collaboration with local organizations involved in biodiversity monitoring, developed a web platform for visualizing biodiversity changes."
+author:
+  - name: "Dominique Gravel"
+    affiliation: Université de Sherbrooke
+  - name: "Vincent Beauregard"
+    affiliation: Université de Sherbrooke
+date: "2022-08-22"
+image: 2022.jpeg
+toc: true
+number-sections: true
+number-depth: 1
+---
+
+# Biodiversity Changes and Data Visualization
+
+The 2022 edition of the Biodiversity Modelling Summer School was presented by Dominique Gravel and Vincent Beauregard (Université de Sherbrooke) as well as several invited experts and partners. 
+
+It took place from August 22 to August 26 2022 in the form of a retreat at the Jouvence Resort in Orford in the heart of the Eastern Townships.
+
+The intensive summer school is supported by Université de Sherbrooke and the NSERC-CREATE Training program in computational biodiversity science and services BIOS².
+
+## General objective 
+
+Massive, complex and sometimes real-time data offer new opportunities for biodiversity monitoring. Data science uses a variety of methods to extract knowledge from multi-dimensional information systems to address a wide range of applications and disciplines. The increasing availability of information on biodiversity and its changes also comes with a challenge of communication and representation, not only to scientists but also to policy makers and the general public. Biodiversity science is no exception and quantitative ecologists are called upon to develop communication techniques and tools to assist decision making. This process, often referred to as business intelligence, relies on a set of skills that range from consulting with partners to the production of interactive applications, through the creation of data models and analysis schemes.
+
+At the end of this course, students will be able to conceptualize and develop a communication strategy based on biodiversity data to meet the needs of a partner.
+
+Upon completion of this course, students will be able to:
+
++ Formulate an intervention plan based on business intelligence principles
++ Identify the information needs of a partner
++ Characterize the profile of data users
++ Set up a data model specific to the communication strategy
++ Conceptualize an interactive dashboard in the form of a model
+
+## Pedagogical approach
+
+The course is based on a strategic communication mandate for a partner organization. Students will conduct a consultation to identify information needs and develop the appropriate data model. Sessions consist of short lectures on theoretical concepts presented by specialists from different disciplines, interspersed with specific exercises designed to practice the elements taught and apply them to their consulting problem. The projects are based on data organized and distributed by Biodiversité Québec.
+
+## Materials
+
+### Day 1: Monday, August 22
+
+The first day of the course was focused on initiating a mandate with partners.
+
+The session covered:
+
++ Introduction to the course
++ Presentation of partners
++ Consultation workshop
+
+Participants prepared their first __deliverable__: Schematization of the consultation mandate.
+
+View the presentation for this session below:
+
+<iframe src="https://widgets.figshare.com/articles/21335004/embed?show_title=0" width="580" height="425" allowfullscreen frameborder="0"></iframe>
+
+### Day 2: Tuesday, August 23
+
+The second day of the course was focused on business intelligence and design, with guest expert [Daniel Chamberland-Tremblay](https://www.usherbrooke.ca/ecole-gestion/personnel/professeurs/simqg/daniel-chamberland-tremblay) from the École de Gestion at Université de Sherbrooke.
+
+The session covered:
+
++ Business Intelligence Principles
++ Mike2.0 methodology
++ Elements of design
++ Development of persona and user journey
+
+Participants prepared a __deliverable__: User characterization grid.
+
+View the presentation for this session below:
+
+<iframe src="https://widgets.figshare.com/articles/21357207/embed?show_title=0" width="580" height="425" allowfullscreen frameborder="0"></iframe>
+
+### Day 3: Wednesday, August 24
+
+The third day of the course covered data models, biodiversity indicators, and media.
+
++ Data and information systems architecture
++ Essential biodiversity variables
++ Case study: Living Planet Index and Biodiversity Distribution Index
++ Data journalism and digital storytelling
+
+Participants prepared a __deliverable__: Conceptualization of the data and indicators model.
+
+View the presentation for this session below:
+
+<iframe src="https://widgets.figshare.com/articles/21335049/embed?show_title=0" width="580" height="425" allowfullscreen frameborder="0"></iframe>
+
+### Day 4: Thursday, August 25
+
+The fourth day focused on interactive dashboards and data visualisation principles with guest expert Thomas Hurtut, a [professor at Polytechnique Montréal](http://www.professeurs.polymtl.ca/thomas.hurtut/) and co-founder of [Kashika studio](https://kashika.studio/).
+
+The session covered:
+
++ Dashboard design
++ For an effective visualization
++ Visualization tools and technologies
++ Model design using Figma
+
+Participants prepated a __deliverable__: Interactive dashboard model.
+
+View the presentation "Data visualization design: process and principles" by guest expert Thomas Hurtut [__here__](https://bit.ly/dataviz_uds).
+
+### Day 5: Friday, August 26
+
+On the final day, participants completed and presented their projects to the group and to their partners. 
+
+The session covered:
+
++ Figma workshop (continuation and end)
++ Presentation of the models
++ Exchanges with the partners
+
+There is no presentation for this day.
+
+## More information
+
+Visit the course homepage [here](https://www.usherbrooke.ca/ecoles-de-pointe/en/2022-biodiversity-modelling) and learn more about the course content and format [here](https://www.usherbrooke.ca/ecoles-de-pointe/en/home/biology/2022-biodiversity-modelling/content-and-format).
