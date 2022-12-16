@@ -2,7 +2,9 @@
 title: "Building R packages"
 description: |
   This practical training will cover the basics of modern package development in R with a focus on the following three aspects: (1) how to turn your code into functions, (2) how to write tests and documentation, and (3) how to share your R package on GitHub..
-author: Andrew MacDonald
+author: 
+  - name: "Andrew MacDonald"
+    affilitation: Université de Sherbrooke
 date: "2021-05-04"
 image: altumcode-PNbDkQ2DDgM-unsplash.jpeg
 categories: [Technical, EN]

@@ -1,7 +1,52 @@
 {
   "listingMap": {
+    "posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2020-09-21-data-visualization/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2021-11-02-introduction-to-gams/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2020-06-15-science-communication/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2021-06-22-introduction-to-shiny-apps/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2021-05-04-building-r-packages/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2022-05-19-introduction-to-microbiome-analysis/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2020-12-07-making-websites-with-hugo/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2021-03-25-point-count-data-analysis/index.qmd": [
+      "B3049D40"
+    ],
+    "posts/2021-07-19-glm-community-ecology/index.qmd": [
+      "B3049D40"
+    ],
+    "summer-schools/BiodiversityModelling2022.qmd": [
+      "B3049D40"
+    ],
     "index.qmd": [
       "posts"
+    ],
+    "about.qmd": [
+      "B3049D40"
     ]
   }
 }

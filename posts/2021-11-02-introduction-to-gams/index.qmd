@@ -2,7 +2,8 @@
 title: "Introduction to Generalized Additive Models (GAMs)"
 description: "To address the increase in both quantity and complexity of available data, ecologists require flexible, robust statistical models, as well as software to perform such analyses. This workshop will focus on how a single tool, the R mgcv package, can be used to fit Generalized Additive Models (GAMs) to data from a wide range of sources."
 author:
-  - name: Eric Pedersen
+  - name: "Eric Pedersen"
+    affiliation: Concordia University
 date: "11-02-2021"
 image: image.jpg
 categories: [Technical, EN]
