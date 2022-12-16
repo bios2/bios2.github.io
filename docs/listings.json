@@ -8,6 +8,10 @@
     "items": []
   },
   {
+    "listing": "/posts/2022-03-22-bayes-for-the-busy-ecologist/index.html",
+    "items": []
+  },
+  {
     "listing": "/posts/2021-11-02-introduction-to-gams/index.html",
     "items": []
   },
@@ -78,6 +82,7 @@
     "listing": "/about.html",
     "items": [
       "/index.html",
+      "/posts/2022-03-22-bayes-for-the-busy-ecologist/index.html",
       "/summer-schools/BiodiversityModelling2022.html",
       "/posts/2021-05-04-building-r-packages/index.html",
       "/posts/2020-09-21-data-visualization/index.html",
