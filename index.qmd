@@ -11,7 +11,7 @@ page-layout: full
 title-block-banner: false
 ---
 
-The Computational Biodiversity Science and Services (BIOS²) training program is a NSERC’s Collaborative Research and Training Experience (CREATE) Program. 
+The [Computational Biodiversity Science and Services (BIOS²)](https://bios2.usherbrooke.ca/) training program is a NSERC’s Collaborative Research and Training Experience (CREATE) Program. 
 
 BIOS² co-PIs and fellows contribute and participate in training modules and intensive Biodiversity Modelling summer schools that cover a wide range of technical and essential soft skills, to prepare the next generation of highly qualified professionals and researchers for the Canadian labour market. 
 
