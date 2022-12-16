@@ -3,9 +3,7 @@ title: "Spatial Statistics in Ecology"
 description: |
   Training session about statistical analysis of spatial data in ecology, hosted by Philippe Marchand (UQAT). | 
   Session de formation sur l’analyse statistique des données spatiales en écologie, animée par Pr. Philippe Marchand (UQAT).
-author: 
-  - name: "Philippe Marchand"
-    affiliation: Université du Québec en Abitibi-Témiscamingue
+author: Philippe Marchand
 categories: [FR, EN, Technical]
 date: "2021-01-12"
 image: image.jpg

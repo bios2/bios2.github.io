@@ -1,10 +1,8 @@
 ---
 title: "Point-count Data Analysis"
 description: |
-  Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Péter Sólymos to BIOS2 Fellows in March 2021.
-author: 
-  - name: "Péter Sólymos"
-    affiliation: University of Alberta
+  Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Peter Solymos to BIOS2 Fellows in March 2021.
+author: Peter Solymos
 image: thumb.jpeg
 date: "2021-03-25"
 categories: [Technical, EN]

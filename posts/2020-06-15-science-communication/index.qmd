@@ -3,10 +3,8 @@ title: "Science Communication"
 description: |
   Recordings, content and handouts from a 6-hour Science Communication workshop held over two days on 15 and 16 June 2020.
 author:
-  - name: "Gracielle Higino"
-    affiliation: Université de Montréal
-  - name: "Katherine Hébert"
-    affiliation: Université de Sherbrooke
+  - name: Gracielle Higino
+  - name: Katherine Hébert
 base_url: https://bios2.github.io/
 image: image.jpg
 categories: [Career, Fellow contributed, EN]

@@ -2,14 +2,10 @@
 title: "Introduction to Shiny Apps"
 description: "Introduction to interactive app development with R Shiny."
 author:
-  - name: "Katherine Hébert"
-    affiliation: Université de Sherbrooke
-  - name: "Andrew MacDonald"
-    affiliation: Université de Sherbrooke
-  - name: "Jake Lawlor"
-    affiliation: McGill University
-  - name: "Vincent Bellavance"
-    affiliation: Université de Sherbrooke
+  - name: Katherine Hébert
+  - name: Andrew MacDonald
+  - name: Jake Lawlor
+  - name: Vincent Bellevance
 date: "06-22-2021"
 image: image.jpg
 categories: [Technical, Fellow contributed, EN]

@@ -3,10 +3,8 @@ title: "Data Visualization"
 description: |
   General principles of visualization and graphic design, and techniques of tailored visualization. This training was developed and delivered by Alex Arkilanian and Katherine Hébert on September 21st and 22nd, 2020.
 author:
-  - name: "Alex Arkilanian"
-    affiliation: McGill University
-  - name: "Katherine Hébert"
-    affiliation: Université de Sherbrooke
+  - Alex Arkilanian
+  - Katherine Hébert
 categories: [Technical, Fellow contributed, EN]
 date: "09-21-2020"
 image: image.jpg

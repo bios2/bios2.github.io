@@ -3,12 +3,10 @@ title: "Introduction to Microbiome Analysis"
 description: |
   This workshop will give an overview of the theory and practice of using metabarcoding approaches to study the diversity of microbial communities. The workshop will give participants an understanding of 1) the current methods for microbiome diversity quantification using metabarcoding/amplicon sequencing approaches and 2) the normalization and diversity analysis approaches that can be used to quantify the diversity of microbial communities.
 author:
-  - name: "Steven Kembel"
+  - name: Steven Kembel
     affiliation: Université du Québec à Montréal
-  - name: "Zihui Wang"
-    affiliation: Université du Québec à Montréal
-  - name: "Salix Dubois"
-    affiliation: Université du Québec à Montréal
+  - name: Zihui Wang
+  - name: Salix Dubois
 categories: [Technical, EN]
 date: "05-19-2022"
 image: image.jpg

@@ -2,8 +2,7 @@
 title: "Generalized Linear Models for Community Ecology"
 description: "In this workshop we will explore, discuss, and apply generalized linear models to combine information on species distributions, traits, phylogenies, environmental and landscape variation. We will also discuss inference under spatial and phylogenetic autocorrelation under fixed and random effects implementations. We will discuss technical elements and cover implementations using R."
 author:
-  - name: "Pedro Peres-Neto"
-    affiliation: Concordia University
+  - name: Pedro Peres-Neto
 date: "05-17-2021"
 image: image.jpg
 categories: [Technical, EN]

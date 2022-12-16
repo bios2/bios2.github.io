@@ -3,10 +3,8 @@ title: "Making Websites with HUGO"
 description: |
   This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.
 author:
-  - name: "Dominique Gravel"
-    affiliation: Université de Sherbrooke
-  - name: "Guillaume Larocque"
-    affiliation: Quebec Centre for Biodiversity Science
+  - name: Dominique Gravel
+  - name: Guillaume Larocque
 image: image.jpg
 categories: [Technical, Transversal competencies, EN]
 date: "12-07-2020"
