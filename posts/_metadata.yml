@@ -6,3 +6,7 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+# Enable generating a citation for all posts automatically
+citation:
+  container-title: "BIOS² Education Resources"

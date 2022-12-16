@@ -46,7 +46,7 @@ ul.task-list li input[type="checkbox"] {
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
-  "type": "overlay",
+  "type": "textbox",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
@@ -159,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(14)</span></div><div class="category" data-category="Career">Career <span class="quarto-category-count">(1)</span></div><div class="category" data-category="EN">EN <span class="quarto-category-count">(13)</span></div><div class="category" data-category="FR">FR <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Fellow contributed">Fellow contributed <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Technical">Technical <span class="quarto-category-count">(11)</span></div><div class="category" data-category="Transversal competencies">Transversal competencies <span class="quarto-category-count">(3)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(13)</span></div><div class="category" data-category="Career">Career <span class="quarto-category-count">(1)</span></div><div class="category" data-category="EN">EN <span class="quarto-category-count">(12)</span></div><div class="category" data-category="FR">FR <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Fellow contributed">Fellow contributed <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Technical">Technical <span class="quarto-category-count">(10)</span></div><div class="category" data-category="Transversal competencies">Transversal competencies <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -185,46 +185,26 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+       <option value="" disabled="" selected="" hidden="">Order By</option>
+       <option value="index" data-direction="asc">Default</option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
+         <option value="listing-author" data-direction="asc">
+          Author
+        </option>
+     </select>
+  </div>
+</div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Technical,EN" data-listing-date-sort="1696305600000" data-listing-file-modified-sort="1671209447129" data-listing-reading-time-sort="22.95">
-<div class="thumbnail">
-<p><a href="./posts/2022-03-22-bayes-for-the-busy-ecologist/index.html"> <img src="./posts/2022-03-22-bayes-for-the-busy-ecologist/image.jpg" class="thumnail-image"> </a></p>
-</div>
-<div class="body">
-<a href="./posts/2022-03-22-bayes-for-the-busy-ecologist/index.html">
-<h3 class="no-anchor listing-title">
-Bayes for the Busy Ecologist
-</h3>
-<div class="listing-subtitle">
-
-</div>
-</a>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Technical'); return false;">
-Technical
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('EN'); return false;">
-EN
-</div>
-</div>
-<a href="./posts/2022-03-22-bayes-for-the-busy-ecologist/index.html">
-<div class="listing-description">
-<p>This workshop presents one idea of a complete workflow for applied Bayesian statistics with real-world models that are actually used by biodiversity scientists.</p>
-</div>
-</a>
-</div>
-<div class="metadata">
-<a href="./posts/2022-03-22-bayes-for-the-busy-ecologist/index.html">
-<div class="listing-date">
-Oct 3, 2023
-</div>
-<div class="listing-author">
-Andrew MacDonald
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Technical,EN" data-listing-date-sort="1652932800000" data-listing-file-modified-sort="1671204649942" data-listing-reading-time-sort="52.73">
+<div class="quarto-post image-right" data-index="0" data-categories="Technical,EN" data-listing-date-sort="1652932800000" data-listing-file-modified-sort="1671217196106" data-listing-reading-time-sort="52.73">
 <div class="thumbnail">
 <p><a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html"> <img src="./posts/2022-05-19-introduction-to-microbiome-analysis/image.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -262,7 +242,7 @@ Steven Kembel, Zihui Wang, Salix Dubois
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Technical,EN" data-listing-date-sort="1635825600000" data-listing-file-modified-sort="1671204649940" data-listing-reading-time-sort="4.165">
+<div class="quarto-post image-right" data-index="1" data-categories="Technical,EN" data-listing-date-sort="1635825600000" data-listing-file-modified-sort="1671217196104" data-listing-reading-time-sort="4.165">
 <div class="thumbnail">
 <p><a href="./posts/2021-11-02-introduction-to-gams/index.html"> <img src="./posts/2021-11-02-introduction-to-gams/image.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -300,7 +280,7 @@ Eric Pedersen
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Technical,Fellow contributed,EN" data-listing-date-sort="1624334400000" data-listing-file-modified-sort="1671204649939" data-listing-reading-time-sort="34.775">
+<div class="quarto-post image-right" data-index="2" data-categories="Technical,Fellow contributed,EN" data-listing-date-sort="1624334400000" data-listing-file-modified-sort="1671217196103" data-listing-reading-time-sort="34.775">
 <div class="thumbnail">
 <p><a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html"> <img src="./posts/2021-06-22-introduction-to-shiny-apps/image.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -336,12 +316,12 @@ EN
 Jun 22, 2021
 </div>
 <div class="listing-author">
-Katherine Hébert, Andrew MacDonald, Jake Lawlor, Vincent Bellevance
+Katherine Hébert, Andrew MacDonald, Jake Lawlor, Vincent Bellavance
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Technical,EN" data-listing-date-sort="1621224000000" data-listing-file-modified-sort="1671204649940" data-listing-reading-time-sort="54.35">
+<div class="quarto-post image-right" data-index="3" data-categories="Technical,EN" data-listing-date-sort="1621224000000" data-listing-file-modified-sort="1671217196104" data-listing-reading-time-sort="54.35">
 <div class="thumbnail">
 <p><a href="./posts/2021-07-19-glm-community-ecology/index.html"> <img src="./posts/2021-07-19-glm-community-ecology/image.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -379,7 +359,7 @@ Pedro Peres-Neto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Technical,EN" data-listing-date-sort="1620100800000" data-listing-file-modified-sort="1671204649938" data-listing-reading-time-sort="4.785">
+<div class="quarto-post image-right" data-index="4" data-categories="Technical,EN" data-listing-date-sort="1620100800000" data-listing-file-modified-sort="1671217196102" data-listing-reading-time-sort="4.785">
 <div class="thumbnail">
 <p><a href="./posts/2021-05-04-building-r-packages/index.html"> <img src="./posts/2021-05-04-building-r-packages/altumcode-PNbDkQ2DDgM-unsplash.jpeg" class="thumnail-image"> </a></p>
 </div>
@@ -417,7 +397,7 @@ Andrew MacDonald
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="Technical,EN" data-listing-date-sort="1616644800000" data-listing-file-modified-sort="1671204649922" data-listing-reading-time-sort="14.685">
+<div class="quarto-post image-right" data-index="5" data-categories="Technical,EN" data-listing-date-sort="1616644800000" data-listing-file-modified-sort="1671217196101" data-listing-reading-time-sort="14.685">
 <div class="thumbnail">
 <p><a href="./posts/2021-03-25-point-count-data-analysis/index.html"> <img src="./posts/2021-03-25-point-count-data-analysis/thumb.jpeg" class="thumnail-image"> </a></p>
 </div>
@@ -440,7 +420,7 @@ EN
 </div>
 <a href="./posts/2021-03-25-point-count-data-analysis/index.html">
 <div class="listing-description">
-<p>Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Peter Solymos to BIOS2 Fellows in March 2021.</p>
+<p>Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Péter Sólymos to BIOS2 Fellows in March 2021.</p>
 </div>
 </a>
 </div>
@@ -450,12 +430,12 @@ EN
 Mar 25, 2021
 </div>
 <div class="listing-author">
-Peter Solymos
+Péter Sólymos
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="Transversal competencies,FR,EN" data-listing-date-sort="1611291600000" data-listing-file-modified-sort="1671204649921" data-listing-reading-time-sort="1.595">
+<div class="quarto-post image-right" data-index="6" data-categories="Transversal competencies,FR,EN" data-listing-date-sort="1611291600000" data-listing-file-modified-sort="1671217196100" data-listing-reading-time-sort="1.595">
 <div class="thumbnail">
 <p><a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html"> <img src="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/image.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -496,7 +476,7 @@ Agathe Riallan, Marie-José Naud
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="FR,EN,Technical" data-listing-date-sort="1610427600000" data-listing-file-modified-sort="1671204649920" data-listing-reading-time-sort="153.065">
+<div class="quarto-post image-right" data-index="7" data-categories="FR,EN,Technical" data-listing-date-sort="1610427600000" data-listing-file-modified-sort="1671217196099" data-listing-reading-time-sort="153.065">
 <div class="thumbnail">
 <p><a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html"> <img src="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/image.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -537,7 +517,7 @@ Philippe Marchand
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="Technical,Transversal competencies,EN" data-listing-date-sort="1607317200000" data-listing-file-modified-sort="1671204649917" data-listing-reading-time-sort="20.225">
+<div class="quarto-post image-right" data-index="8" data-categories="Technical,Transversal competencies,EN" data-listing-date-sort="1607317200000" data-listing-file-modified-sort="1671217196096" data-listing-reading-time-sort="20.225">
 <div class="thumbnail">
 <p><a href="./posts/2020-12-07-making-websites-with-hugo/index.html"> <img src="./posts/2020-12-07-making-websites-with-hugo/image.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -578,7 +558,7 @@ Dominique Gravel, Guillaume Larocque
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="Technical,Fellow contributed,EN" data-listing-date-sort="1600660800000" data-listing-file-modified-sort="1671204649916" data-listing-reading-time-sort="26.01">
+<div class="quarto-post image-right" data-index="9" data-categories="Technical,Fellow contributed,EN" data-listing-date-sort="1600660800000" data-listing-file-modified-sort="1671217196095" data-listing-reading-time-sort="26.01">
 <div class="thumbnail">
 <p><a href="./posts/2020-09-21-data-visualization/index.html"> <img src="./posts/2020-09-21-data-visualization/image.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -619,7 +599,7 @@ Alex Arkilanian, Katherine Hébert
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="Career,Fellow contributed,EN" data-listing-date-sort="1592193600000" data-listing-file-modified-sort="1671204649915" data-listing-reading-time-sort="1.955">
+<div class="quarto-post image-right" data-index="10" data-categories="Career,Fellow contributed,EN" data-listing-date-sort="1592193600000" data-listing-file-modified-sort="1671217196094" data-listing-reading-time-sort="1.955">
 <div class="thumbnail">
 <p><a href="./posts/2020-06-15-science-communication/index.html"> <img src="./posts/2020-06-15-science-communication/image.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -660,7 +640,7 @@ Gracielle Higino, Katherine Hébert
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="Transversal competencies,FR" data-listing-date-sort="1588046400000" data-listing-file-modified-sort="1671204649914" data-listing-reading-time-sort="2.37">
+<div class="quarto-post image-right" data-index="11" data-categories="Transversal competencies,FR" data-listing-date-sort="1588046400000" data-listing-file-modified-sort="1671217196093" data-listing-reading-time-sort="2.37">
 <div class="thumbnail">
 <p><a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html"> <img src="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/image.jpg" class="thumnail-image"> </a></p>
 </div>
@@ -693,12 +673,12 @@ FR
 Apr 28, 2020
 </div>
 <div class="listing-author">
-Dr Catherine-Alexandra Gagnon
+Catherine-Alexandra Gagnon
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="Technical,EN" data-listing-date-sort="1578978000000" data-listing-file-modified-sort="1670006287710" data-listing-reading-time-sort="5.305">
+<div class="quarto-post image-right" data-index="12" data-categories="Technical,EN" data-listing-date-sort="1578978000000" data-listing-file-modified-sort="1670006287710" data-listing-reading-time-sort="5.305">
 <div class="thumbnail">
 <p><a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html"> <img src="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/StabilityPictures.jpg" class="thumnail-image"> </a></p>
 </div>

@@ -3,7 +3,9 @@ title: "Sensibilisation aux réalités autochtones et recherche collaborative"
 description: |
   Série de deux webinaires sur la sensibilisation aux réalités autochtones et la recherche en collaboration avec les Autochtones, offert du 28 au 30 avril 2020 par Catherine-Alexandra Gagnon, PhD.
 categories: [Transversal competencies, FR]
-author: "Dr Catherine-Alexandra Gagnon"
+author: 
+  - name: "Catherine-Alexandra Gagnon"
+    affiliation: Érébia - Cabinet-conseil en environnement
 bibliography: citations.bib
 base_url: https://bios2.github.io/
 image: image.jpg
@@ -21,7 +23,7 @@ number-depth: 1
 
 -   Développer des notions et compétences afin d'agir contre les préjugés et le racisme.
 
-### Durant ce webminaire, nous allons: 
+### Durant ce webinaire, nous allons: 
 
 -   Faire un survol des événements historiques importants et de leurs impacts à ce jour (Loi sur les Indiens, politiques d'assimilation, les pensionnats, etc.). 
 
