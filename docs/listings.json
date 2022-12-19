@@ -52,7 +52,11 @@
     "items": []
   },
   {
-    "listing": "/summer-schools/BiodiversityModelling2022.html",
+    "listing": "/summer-schools/v2019/BiodiversityModelling2019.html",
+    "items": []
+  },
+  {
+    "listing": "/summer-schools/v2022/BiodiversityModelling2022.html",
     "items": []
   },
   {
@@ -77,7 +81,8 @@
     "listing": "/about.html",
     "items": [
       "/index.html",
-      "/summer-schools/BiodiversityModelling2022.html",
+      "/summer-schools/v2019/BiodiversityModelling2019.html",
+      "/summer-schools/v2022/BiodiversityModelling2022.html",
       "/posts/2021-05-04-building-r-packages/index.html",
       "/posts/2020-09-21-data-visualization/index.html",
       "/posts/2021-07-19-glm-community-ecology/index.html",

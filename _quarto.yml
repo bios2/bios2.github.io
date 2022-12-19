@@ -10,13 +10,17 @@ website:
     right:
     - text: "Home"
       href: index.html
-    - text: "Biodiversity Modelling Summer Schools"
+    - text: "Intensive courses"
       menu:
+        - text: "Biodiversity Modelling Summer School 2022"
+          href: summer-schools/v2022/BiodiversityModelling2022.html
         - text: "Biodiversity Modelling Summer School 2021"
           href: https://bios2.github.io/biodiversity_modelling_2021/
-        - text: "Biodiversity Modelling Summer School 2022"
-          href: summer-schools/BiodiversityModelling2022.html
-    - text: "About"
+        - text: "Biodiversity Modelling Summer School 2019"
+          href: summer-schools/v2019/BiodiversityModelling2019.html
+        - text: "Data-driven ecological synthesis"
+          href: https://poisotlab.io/ddes/
+    - text: "About BIOS²"
       href: https://bios2.usherbrooke.ca/
     - icon: github
       href: https://github.com/bios2/bios2.github.io
