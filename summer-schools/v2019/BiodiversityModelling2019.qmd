@@ -1,0 +1,41 @@
+---
+title: "Biodiversity Modelling 2019"
+description: "<br> The 2019 edition of the Summer School was on the theme: Biodiversity Modelling. The course took the form of lectures and practical exercises that covered a variety of methods used to model biodiversity, complemented by guest speakers."
+author:
+  - name: "Dominique Gravel"
+    affiliation: Université de Sherbrooke
+  - name: "Guillaume Blanchet"
+    affiliation: Université de Sherbrooke
+date: "2019-08-18"
+toc: true
+number-sections: true
+number-depth: 1
+---
+
+# Biodiversity Modelling 2019
+
+The 2019 edition of the Biodiversity Modelling Summer School was presented by Dominique Gravel and Guillaume Blanchet (Université de Sherbrooke) as well as several invited speakers. 
+
+It took place from August 18 to August 23 2019 in the form of a retreat at Orford Musique in the Eastern Townships.
+
+The intensive summer school is supported by Université de Sherbrooke and the NSERC-CREATE Training program in computational biodiversity science and services BIOS².
+
+## General objective 
+
+Biodiversity modeling has become an integral part of the work of biologists in basic ecology, conservation biology, and evolutionary biology. Upon completion of this course, students will be able to use different approaches to biodiversity modeling and understand the limitations of various ecological data. Students will also be able to understand the basics of various approaches used to predict different facets of biodiversity (e.g. species distribution, ecological network structure) and to use them in their own research. Finally, the student will also be able to apply the approaches discussed during the course to identify biodiversity issues in a given region and assist in decision-making.
+
+Upon completion of this course, students will be able to:
+
+- Use different techniques for modeling biodiversity (statistics, differential equations, stochastic simulations)
+- Use climate change model outputs for biodiversity simulation
+- Create biodiversity scenarios based on the analysis of empirical data;
+- Critique scenario simulation methods
+- Evaluate sources of uncertainty in biodiversity projections 
+
+## Pedagogical approach
+
+The sessions consisted of short lectures on basic concepts, interspersed with specific exercises designed to practice the elements taught. The sessions were complemented by the analysis of applied problems that make use of the discussed models. The sessions were complemented by discussions on the characteristics of the approaches presented and their usefulness in practical settings. Students were asked to complete an integrative data analysis project throughout the week of intensive training.
+
+## Materials
+
+All readings, slides, and practical exercises for this summer school can be downloaded from [GitHub](https://github.com/bios2/biodiversity_modelling_2019).
