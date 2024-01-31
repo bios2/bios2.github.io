@@ -2,7 +2,7 @@
 title: "(un)Reproducibility Detox"
 description: |
   A seven-day detox routine to improve the reproducibility of your projects!
-author: Gracielle Higino
+author: "Gracielle Higino, Tanya Strydom"
 preview: thumb.png
 categories: 
   - Technical
@@ -13,6 +13,15 @@ output:
     self_contained: false
     toc: true
 ---
+
+### 🚧 **This is a work in progress!** 🚧  
+
+For participants of the Project Set-Up training, we will use the first 4 days of this guide (Sunday through Wednesday). Please ignore the other ones (although Thursday is really cool!).  
+
+Have fun!  
+
+
+--- 
 
 Have you ever felt lost in your own projects? Do you feel like your workflow is quite effective, but it's not transparent enough? This detox routine can help you regain control over your (very messy - I know!) project structure and discover a marvelous world of collaboration and contribution in open science!  
 
