@@ -85,5 +85,11 @@
   },
   "summer-schools/v2024/tutorials/atlas.qmd": {
     "atlas.html": "9c37344b"
+  },
+  "summer-schools/v2024/other_resources.Rmd": {
+    "other_resources.html": "d15bab86"
+  },
+  "summer-schools/v2024/slides/slides.Rmd": {
+    "slides.html": "a2af2acc"
   }
 }

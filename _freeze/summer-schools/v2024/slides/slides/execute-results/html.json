@@ -1,0 +1,15 @@
+{
+  "hash": "8baa52e6456a8ead744f16872fbbbe0a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Slides\"\noutput: html_document\n---\n\n\n\nBelow you will find the slides for the presentations made during the Summer School. Feel free to download them and use them for your own purposes.\n\n## Day 1\n\n### International negotiations\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](Gouvernance.pdf)\n:::\n:::\n\n\n\n### Global Biodiversity Framework\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](GlobalBiodFramework.pdf)\n:::\n:::\n\n\n\n## Day 2\n\n### LPI\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](mardi_1_LPI.pdf)\n:::\n:::\n\n\n\n### Quebec indicators\n\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](mardi_2_quebecindicators.pdf)\n:::\n:::\n\n\n\n\n\n## Day 3\n\n### [Accessing Biodiversity Data](https://vincent-beauregard-ielab.github.io/Ecole_dete_2024/#1)\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
