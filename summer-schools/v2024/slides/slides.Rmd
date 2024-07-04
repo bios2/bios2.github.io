@@ -1,5 +1,6 @@
 ---
 title: "Slides"
+date: "2024-05-13"
 output: html_document
 ---
 
@@ -7,36 +8,17 @@ Below you will find the slides for the presentations made during the Summer Scho
 
 ## Day 1
 
-### International negotiations
-
-```{r echo=FALSE}
-knitr::include_graphics("Gouvernance.pdf")
-```
-
-### Global Biodiversity Framework
-
-```{r echo=FALSE}
-knitr::include_graphics("GlobalBiodFramework.pdf")
-```
+- [International negociations](Gouvernance.pdf)  
+- [Global Biodiversity Framework](GlobalBiodFramework.pdf) 
 
 ## Day 2
 
-### LPI
-
-```{r echo=FALSE}
-knitr::include_graphics("mardi_1_LPI.pdf")
-```
-
-### Quebec indicators
-
-```{r echo=FALSE}
-knitr::include_graphics("mardi_2_quebecindicators.pdf")
-```
-
+- [LPI](mardi_1_LPI.pdf)  
+- [Quebec indicators](mardi_2_quebecindicators.pdf)
 
 
 ## Day 3
 
-### [Accessing Biodiversity Data](https://vincent-beauregard-ielab.github.io/Ecole_dete_2024/#1)
+- [Accessing Biodiversity Data](https://vincent-beauregard-ielab.github.io/Ecole_dete_2024/#1)
 
 
