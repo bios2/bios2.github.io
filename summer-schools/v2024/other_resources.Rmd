@@ -1,0 +1,20 @@
+---
+title: "Other resources"
+output: html_document
+---
+
+# Tutorials
+
+```{r echo=FALSE}
+knitr::include_app("https://4a517afbbee642bdb5d609351d817048.publish.posit.cloud/")
+```
+
+
+# Notes document
+
+![](BIOS2-SS2024-BiodivModel-notes.pdf){width=85%}
+
+
+# Information document
+
+![](BIOS2-SS-BiodivModelling-2024.pdf){width=85%}

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.253">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2021-01-12">
 <meta name="description" content="Training session about statistical analysis of spatial data in ecology, hosted by Philippe Marchand (UQAT). | Session de formation sur l’analyse statistique des données spatiales en écologie, animée par Pr. Philippe Marchand (UQAT).">
 
-<title>BIOS² Education resources - Spatial Statistics in Ecology</title>
+<title>Spatial Statistics in Ecology – BIOS² Education resources</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,11 +20,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -35,7 +36,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -49,43 +50,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -113,7 +84,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -122,8 +98,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script>
@@ -156,7 +134,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   })
   </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -164,10 +170,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../Bios2_reverse.png" alt="" class="navbar-logo">
     </a>
@@ -175,20 +181,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">BIOS² Education resources</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-intensive-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-intensive-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Intensive courses</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-intensive-courses">    
+        <li>
+    <a class="dropdown-item" href="../../summer-schools/v2024/BiodiversityModelling2024.html">
+ <span class="dropdown-text">Biodiversity Modelling Summer School 2024</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="../../summer-schools/v2022/BiodiversityModelling2022.html">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2022</span></a>
@@ -201,29 +212,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="dropdown-item" href="../../summer-schools/v2019/BiodiversityModelling2019.html">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2019</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://poisotlab.io/ddes/">
- <span class="dropdown-text">Data-driven ecological synthesis</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="https://bios2.usherbrooke.ca/">
- <span class="menu-text">About BIOS²</span></a>
+    <a class="nav-link" href="https://bios2.usherbrooke.ca/"> 
+<span class="menu-text">About BIOS²</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/bios2/bios2.github.io"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/bios2/bios2.github.io"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/_bios2"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/_bios2"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -247,17 +255,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     
   <div class="quarto-title-meta-author">
     <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-heading"></div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
     
       <div class="quarto-title-meta-contents">
-      Philippe Marchand 
+      <p class="author">Philippe Marchand </p>
     </div>
-      <div class="quarto-title-meta-contents">
+    <div class="quarto-title-meta-contents">
           <p class="affiliation">
               Université du Québec en Abitibi-Témiscamingue
             </p>
         </div>
-      </div>
+    </div>
 
   <div class="quarto-title-meta">
 
@@ -281,17 +289,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#spatial-statistics-in-ecology" id="toc-spatial-statistics-in-ecology" class="nav-link active" data-scroll-target="#spatial-statistics-in-ecology"><span class="toc-section-number">1</span>  Spatial Statistics in Ecology</a>
+  <li><a href="#spatial-statistics-in-ecology" id="toc-spatial-statistics-in-ecology" class="nav-link active" data-scroll-target="#spatial-statistics-in-ecology"><span class="header-section-number">1</span> Spatial Statistics in Ecology</a>
   <ul class="collapse">
   <li><a href="#course-outline" id="toc-course-outline" class="nav-link" data-scroll-target="#course-outline">Course outline</a></li>
   </ul></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="toc-section-number">2</span>  Introduction to spatial statistics</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">2</span> Introduction to spatial statistics</a>
   <ul class="collapse">
   <li><a href="#types-of-spatial-analyses" id="toc-types-of-spatial-analyses" class="nav-link" data-scroll-target="#types-of-spatial-analyses">Types of spatial analyses</a></li>
   <li><a href="#stationarity-and-isotropy" id="toc-stationarity-and-isotropy" class="nav-link" data-scroll-target="#stationarity-and-isotropy">Stationarity and isotropy</a></li>
   <li><a href="#georeferenced-data" id="toc-georeferenced-data" class="nav-link" data-scroll-target="#georeferenced-data">Georeferenced data</a></li>
   </ul></li>
-  <li><a href="#point-pattern" id="toc-point-pattern" class="nav-link" data-scroll-target="#point-pattern"><span class="toc-section-number">3</span>  Point pattern analysis</a>
+  <li><a href="#point-pattern" id="toc-point-pattern" class="nav-link" data-scroll-target="#point-pattern"><span class="header-section-number">3</span> Point pattern analysis</a>
   <ul class="collapse">
   <li><a href="#point-pattern-and-point-process" id="toc-point-pattern-and-point-process" class="nav-link" data-scroll-target="#point-pattern-and-point-process">Point pattern and point process</a></li>
   <li><a href="#complete-spatial-randomness" id="toc-complete-spatial-randomness" class="nav-link" data-scroll-target="#complete-spatial-randomness">Complete spatial randomness</a></li>
@@ -313,45 +321,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#marked-point-patterns" id="toc-marked-point-patterns" class="nav-link" data-scroll-target="#marked-point-patterns">Marked point patterns</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
-  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="toc-section-number">4</span>  Solutions</a>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">4</span> Solutions</a>
   <ul class="collapse">
   <li><a href="#exercise-1-1" id="toc-exercise-1-1" class="nav-link" data-scroll-target="#exercise-1-1">Exercise 1</a></li>
   <li><a href="#exercise-2-1" id="toc-exercise-2-1" class="nav-link" data-scroll-target="#exercise-2-1">Exercise 2</a></li>
   </ul></li>
-  <li><a href="#spatial-correlation" id="toc-spatial-correlation" class="nav-link" data-scroll-target="#spatial-correlation"><span class="toc-section-number">5</span>  Spatial correlation of a variable</a>
+  <li><a href="#spatial-correlation" id="toc-spatial-correlation" class="nav-link" data-scroll-target="#spatial-correlation"><span class="header-section-number">5</span> Spatial correlation of a variable</a>
   <ul class="collapse">
   <li><a href="#intrinsic-or-induced-dependence" id="toc-intrinsic-or-induced-dependence" class="nav-link" data-scroll-target="#intrinsic-or-induced-dependence">Intrinsic or induced dependence</a></li>
   <li><a href="#different-ways-to-model-spatial-effects" id="toc-different-ways-to-model-spatial-effects" class="nav-link" data-scroll-target="#different-ways-to-model-spatial-effects">Different ways to model spatial effects</a></li>
   </ul></li>
-  <li><a href="#geostat-models" id="toc-geostat-models" class="nav-link" data-scroll-target="#geostat-models"><span class="toc-section-number">6</span>  Geostatistical models</a>
+  <li><a href="#geostat-models" id="toc-geostat-models" class="nav-link" data-scroll-target="#geostat-models"><span class="header-section-number">6</span> Geostatistical models</a>
   <ul class="collapse">
   <li><a href="#variogram" id="toc-variogram" class="nav-link" data-scroll-target="#variogram">Variogram</a></li>
   <li><a href="#theoretical-models-for-the-variogram" id="toc-theoretical-models-for-the-variogram" class="nav-link" data-scroll-target="#theoretical-models-for-the-variogram">Theoretical models for the variogram</a></li>
   <li><a href="#empirical-variogram" id="toc-empirical-variogram" class="nav-link" data-scroll-target="#empirical-variogram">Empirical variogram</a></li>
   <li><a href="#regression-model-with-spatial-correlation" id="toc-regression-model-with-spatial-correlation" class="nav-link" data-scroll-target="#regression-model-with-spatial-correlation">Regression model with spatial correlation</a></li>
   </ul></li>
-  <li><a href="#geostatistical-models-in-r" id="toc-geostatistical-models-in-r" class="nav-link" data-scroll-target="#geostatistical-models-in-r"><span class="toc-section-number">7</span>  Geostatistical models in R</a>
+  <li><a href="#geostatistical-models-in-r" id="toc-geostatistical-models-in-r" class="nav-link" data-scroll-target="#geostatistical-models-in-r"><span class="header-section-number">7</span> Geostatistical models in R</a>
   <ul class="collapse">
   <li><a href="#regression-with-spatial-correlation" id="toc-regression-with-spatial-correlation" class="nav-link" data-scroll-target="#regression-with-spatial-correlation">Regression with spatial correlation</a></li>
   <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
   </ul></li>
-  <li><a href="#kriging" id="toc-kriging" class="nav-link" data-scroll-target="#kriging"><span class="toc-section-number">8</span>  Kriging</a></li>
-  <li><a href="#solutions-1" id="toc-solutions-1" class="nav-link" data-scroll-target="#solutions-1"><span class="toc-section-number">9</span>  Solutions</a></li>
-  <li><a href="#areal-data" id="toc-areal-data" class="nav-link" data-scroll-target="#areal-data"><span class="toc-section-number">10</span>  Areal data</a></li>
-  <li><a href="#moran-i" id="toc-moran-i" class="nav-link" data-scroll-target="#moran-i"><span class="toc-section-number">11</span>  Moran’s I</a></li>
-  <li><a href="#spatial-autoreg" id="toc-spatial-autoreg" class="nav-link" data-scroll-target="#spatial-autoreg"><span class="toc-section-number">12</span>  Spatial autoregression models</a>
+  <li><a href="#kriging" id="toc-kriging" class="nav-link" data-scroll-target="#kriging"><span class="header-section-number">8</span> Kriging</a></li>
+  <li><a href="#solutions-1" id="toc-solutions-1" class="nav-link" data-scroll-target="#solutions-1"><span class="header-section-number">9</span> Solutions</a></li>
+  <li><a href="#areal-data" id="toc-areal-data" class="nav-link" data-scroll-target="#areal-data"><span class="header-section-number">10</span> Areal data</a></li>
+  <li><a href="#moran-i" id="toc-moran-i" class="nav-link" data-scroll-target="#moran-i"><span class="header-section-number">11</span> Moran’s I</a></li>
+  <li><a href="#spatial-autoreg" id="toc-spatial-autoreg" class="nav-link" data-scroll-target="#spatial-autoreg"><span class="header-section-number">12</span> Spatial autoregression models</a>
   <ul class="collapse">
   <li><a href="#conditional-autoregressive-car-model" id="toc-conditional-autoregressive-car-model" class="nav-link" data-scroll-target="#conditional-autoregressive-car-model">Conditional autoregressive (CAR) model</a></li>
   <li><a href="#simultaneous-autoregressive-sar-model" id="toc-simultaneous-autoregressive-sar-model" class="nav-link" data-scroll-target="#simultaneous-autoregressive-sar-model">Simultaneous autoregressive (SAR) model</a></li>
   </ul></li>
-  <li><a href="#analysis-areal" id="toc-analysis-areal" class="nav-link" data-scroll-target="#analysis-areal"><span class="toc-section-number">13</span>  Analysis of areal data in R</a>
+  <li><a href="#analysis-areal" id="toc-analysis-areal" class="nav-link" data-scroll-target="#analysis-areal"><span class="header-section-number">13</span> Analysis of areal data in R</a>
   <ul class="collapse">
   <li><a href="#definition-of-the-neighbourhood-network" id="toc-definition-of-the-neighbourhood-network" class="nav-link" data-scroll-target="#definition-of-the-neighbourhood-network">Definition of the neighbourhood network</a></li>
   <li><a href="#spatial-autoregression-models" id="toc-spatial-autoregression-models" class="nav-link" data-scroll-target="#spatial-autoregression-models">Spatial autoregression models</a></li>
   <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise</a></li>
   <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference">Reference</a></li>
   </ul></li>
-  <li><a href="#glmm-spatial-gaussian" id="toc-glmm-spatial-gaussian" class="nav-link" data-scroll-target="#glmm-spatial-gaussian"><span class="toc-section-number">14</span>  GLMM with spatial Gaussian process</a>
+  <li><a href="#glmm-spatial-gaussian" id="toc-glmm-spatial-gaussian" class="nav-link" data-scroll-target="#glmm-spatial-gaussian"><span class="header-section-number">14</span> GLMM with spatial Gaussian process</a>
   <ul class="collapse">
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#non-spatial-glmm" id="toc-non-spatial-glmm" class="nav-link" data-scroll-target="#non-spatial-glmm">Non-spatial GLMM</a></li>
@@ -359,21 +367,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#gaussian-process-models-vs.-smoothing-splines" id="toc-gaussian-process-models-vs.-smoothing-splines" class="nav-link" data-scroll-target="#gaussian-process-models-vs.-smoothing-splines">Gaussian process models vs.&nbsp;smoothing splines</a></li>
   <li><a href="#bayesian-methods-for-glmms-with-gaussian-processes" id="toc-bayesian-methods-for-glmms-with-gaussian-processes" class="nav-link" data-scroll-target="#bayesian-methods-for-glmms-with-gaussian-processes">Bayesian methods for GLMMs with Gaussian processes</a></li>
   </ul></li>
-  <li><a href="#glmm-spatial-autoreg" id="toc-glmm-spatial-autoreg" class="nav-link" data-scroll-target="#glmm-spatial-autoreg"><span class="toc-section-number">15</span>  GLMM with spatial autoregression</a>
+  <li><a href="#glmm-spatial-autoreg" id="toc-glmm-spatial-autoreg" class="nav-link" data-scroll-target="#glmm-spatial-autoreg"><span class="header-section-number">15</span> GLMM with spatial autoregression</a>
   <ul class="collapse">
   <li><a href="#reference-1" id="toc-reference-1" class="nav-link" data-scroll-target="#reference-1">Reference</a></li>
   </ul></li>
-  <li><a href="#statistiques-spatiales-en-écologie" id="toc-statistiques-spatiales-en-écologie" class="nav-link" data-scroll-target="#statistiques-spatiales-en-écologie"><span class="toc-section-number">16</span>  Statistiques spatiales en écologie</a>
+  <li><a href="#statistiques-spatiales-en-écologie" id="toc-statistiques-spatiales-en-écologie" class="nav-link" data-scroll-target="#statistiques-spatiales-en-écologie"><span class="header-section-number">16</span> Statistiques spatiales en écologie</a>
   <ul class="collapse">
   <li><a href="#plan-du-cours" id="toc-plan-du-cours" class="nav-link" data-scroll-target="#plan-du-cours">Plan du cours</a></li>
   </ul></li>
-  <li><a href="#introduction-fr" id="toc-introduction-fr" class="nav-link" data-scroll-target="#introduction-fr"><span class="toc-section-number">17</span>  Introduction aux statistiques spatiales</a>
+  <li><a href="#introduction-fr" id="toc-introduction-fr" class="nav-link" data-scroll-target="#introduction-fr"><span class="header-section-number">17</span> Introduction aux statistiques spatiales</a>
   <ul class="collapse">
   <li><a href="#types-danalyses-spatiales" id="toc-types-danalyses-spatiales" class="nav-link" data-scroll-target="#types-danalyses-spatiales">Types d’analyses spatiales</a></li>
   <li><a href="#stationnarité-et-isotropie" id="toc-stationnarité-et-isotropie" class="nav-link" data-scroll-target="#stationnarité-et-isotropie">Stationnarité et isotropie</a></li>
   <li><a href="#données-géoréférencées" id="toc-données-géoréférencées" class="nav-link" data-scroll-target="#données-géoréférencées">Données géoréférencées</a></li>
   </ul></li>
-  <li><a href="#point-pattern-fr" id="toc-point-pattern-fr" class="nav-link" data-scroll-target="#point-pattern-fr"><span class="toc-section-number">18</span>  Analyse des patrons de points</a>
+  <li><a href="#point-pattern-fr" id="toc-point-pattern-fr" class="nav-link" data-scroll-target="#point-pattern-fr"><span class="header-section-number">18</span> Analyse des patrons de points</a>
   <ul class="collapse">
   <li><a href="#patron-de-points-et-processus-ponctuel" id="toc-patron-de-points-et-processus-ponctuel" class="nav-link" data-scroll-target="#patron-de-points-et-processus-ponctuel">Patron de points et processus ponctuel</a></li>
   <li><a href="#structure-spatiale-totalement-aléatoire" id="toc-structure-spatiale-totalement-aléatoire" class="nav-link" data-scroll-target="#structure-spatiale-totalement-aléatoire">Structure spatiale totalement aléatoire</a></li>
@@ -395,45 +403,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#patrons-de-points-marqués" id="toc-patrons-de-points-marqués" class="nav-link" data-scroll-target="#patrons-de-points-marqués">Patrons de points marqués</a></li>
   <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références">Références</a></li>
   </ul></li>
-  <li><a href="#solutions-2" id="toc-solutions-2" class="nav-link" data-scroll-target="#solutions-2"><span class="toc-section-number">19</span>  Solutions</a>
+  <li><a href="#solutions-2" id="toc-solutions-2" class="nav-link" data-scroll-target="#solutions-2"><span class="header-section-number">19</span> Solutions</a>
   <ul class="collapse">
   <li><a href="#exercice-1-1" id="toc-exercice-1-1" class="nav-link" data-scroll-target="#exercice-1-1">Exercice 1</a></li>
   <li><a href="#exercice-2-1" id="toc-exercice-2-1" class="nav-link" data-scroll-target="#exercice-2-1">Exercice 2</a></li>
   </ul></li>
-  <li><a href="#spatial-correlation-fr" id="toc-spatial-correlation-fr" class="nav-link" data-scroll-target="#spatial-correlation-fr"><span class="toc-section-number">20</span>  Corrélation spatiale d’une variable</a>
+  <li><a href="#spatial-correlation-fr" id="toc-spatial-correlation-fr" class="nav-link" data-scroll-target="#spatial-correlation-fr"><span class="header-section-number">20</span> Corrélation spatiale d’une variable</a>
   <ul class="collapse">
   <li><a href="#dépendance-intrinsèque-ou-induite" id="toc-dépendance-intrinsèque-ou-induite" class="nav-link" data-scroll-target="#dépendance-intrinsèque-ou-induite">Dépendance intrinsèque ou induite</a></li>
   <li><a href="#différentes-façons-de-modéliser-les-effets-spatiaux" id="toc-différentes-façons-de-modéliser-les-effets-spatiaux" class="nav-link" data-scroll-target="#différentes-façons-de-modéliser-les-effets-spatiaux">Différentes façons de modéliser les effets spatiaux</a></li>
   </ul></li>
-  <li><a href="#geostat-models-fr" id="toc-geostat-models-fr" class="nav-link" data-scroll-target="#geostat-models-fr"><span class="toc-section-number">21</span>  Modèles géostatistiques</a>
+  <li><a href="#geostat-models-fr" id="toc-geostat-models-fr" class="nav-link" data-scroll-target="#geostat-models-fr"><span class="header-section-number">21</span> Modèles géostatistiques</a>
   <ul class="collapse">
   <li><a href="#variogramme" id="toc-variogramme" class="nav-link" data-scroll-target="#variogramme">Variogramme</a></li>
   <li><a href="#modèles-théoriques-du-variogramme" id="toc-modèles-théoriques-du-variogramme" class="nav-link" data-scroll-target="#modèles-théoriques-du-variogramme">Modèles théoriques du variogramme</a></li>
   <li><a href="#variogramme-empirique" id="toc-variogramme-empirique" class="nav-link" data-scroll-target="#variogramme-empirique">Variogramme empirique</a></li>
   <li><a href="#modèle-de-régression-avec-corrélation-spatiale" id="toc-modèle-de-régression-avec-corrélation-spatiale" class="nav-link" data-scroll-target="#modèle-de-régression-avec-corrélation-spatiale">Modèle de régression avec corrélation spatiale</a></li>
   </ul></li>
-  <li><a href="#modèles-géostatistiques-dans-r" id="toc-modèles-géostatistiques-dans-r" class="nav-link" data-scroll-target="#modèles-géostatistiques-dans-r"><span class="toc-section-number">22</span>  Modèles géostatistiques dans R</a>
+  <li><a href="#modèles-géostatistiques-dans-r" id="toc-modèles-géostatistiques-dans-r" class="nav-link" data-scroll-target="#modèles-géostatistiques-dans-r"><span class="header-section-number">22</span> Modèles géostatistiques dans R</a>
   <ul class="collapse">
   <li><a href="#régression-avec-corrélation-spatiale" id="toc-régression-avec-corrélation-spatiale" class="nav-link" data-scroll-target="#régression-avec-corrélation-spatiale">Régression avec corrélation spatiale</a></li>
   <li><a href="#exercice" id="toc-exercice" class="nav-link" data-scroll-target="#exercice">Exercice</a></li>
   </ul></li>
-  <li><a href="#krigeage" id="toc-krigeage" class="nav-link" data-scroll-target="#krigeage"><span class="toc-section-number">23</span>  Krigeage</a></li>
-  <li><a href="#solutions-3" id="toc-solutions-3" class="nav-link" data-scroll-target="#solutions-3"><span class="toc-section-number">24</span>  Solutions</a></li>
-  <li><a href="#areal-data-fr" id="toc-areal-data-fr" class="nav-link" data-scroll-target="#areal-data-fr"><span class="toc-section-number">25</span>  Données aréales</a></li>
-  <li><a href="#moran-i-fr" id="toc-moran-i-fr" class="nav-link" data-scroll-target="#moran-i-fr"><span class="toc-section-number">26</span>  Indice de Moran</a></li>
-  <li><a href="#spatial-autoreg-fr" id="toc-spatial-autoreg-fr" class="nav-link" data-scroll-target="#spatial-autoreg-fr"><span class="toc-section-number">27</span>  Modèles d’autorégression spatiale</a>
+  <li><a href="#krigeage" id="toc-krigeage" class="nav-link" data-scroll-target="#krigeage"><span class="header-section-number">23</span> Krigeage</a></li>
+  <li><a href="#solutions-3" id="toc-solutions-3" class="nav-link" data-scroll-target="#solutions-3"><span class="header-section-number">24</span> Solutions</a></li>
+  <li><a href="#areal-data-fr" id="toc-areal-data-fr" class="nav-link" data-scroll-target="#areal-data-fr"><span class="header-section-number">25</span> Données aréales</a></li>
+  <li><a href="#moran-i-fr" id="toc-moran-i-fr" class="nav-link" data-scroll-target="#moran-i-fr"><span class="header-section-number">26</span> Indice de Moran</a></li>
+  <li><a href="#spatial-autoreg-fr" id="toc-spatial-autoreg-fr" class="nav-link" data-scroll-target="#spatial-autoreg-fr"><span class="header-section-number">27</span> Modèles d’autorégression spatiale</a>
   <ul class="collapse">
   <li><a href="#autorégression-conditionnelle-car" id="toc-autorégression-conditionnelle-car" class="nav-link" data-scroll-target="#autorégression-conditionnelle-car">Autorégression conditionnelle (CAR)</a></li>
   <li><a href="#autorégression-simultanée-sar" id="toc-autorégression-simultanée-sar" class="nav-link" data-scroll-target="#autorégression-simultanée-sar">Autorégression simultanée (SAR)</a></li>
   </ul></li>
-  <li><a href="#analysis-areal-fr" id="toc-analysis-areal-fr" class="nav-link" data-scroll-target="#analysis-areal-fr"><span class="toc-section-number">28</span>  Analyse des données aréales dans R</a>
+  <li><a href="#analysis-areal-fr" id="toc-analysis-areal-fr" class="nav-link" data-scroll-target="#analysis-areal-fr"><span class="header-section-number">28</span> Analyse des données aréales dans R</a>
   <ul class="collapse">
   <li><a href="#définition-du-réseau-de-voisinage" id="toc-définition-du-réseau-de-voisinage" class="nav-link" data-scroll-target="#définition-du-réseau-de-voisinage">Définition du réseau de voisinage</a></li>
   <li><a href="#modèles-dautorégression-spatiale" id="toc-modèles-dautorégression-spatiale" class="nav-link" data-scroll-target="#modèles-dautorégression-spatiale">Modèles d’autorégression spatiale</a></li>
   <li><a href="#exercice-3" id="toc-exercice-3" class="nav-link" data-scroll-target="#exercice-3">Exercice</a></li>
   <li><a href="#référence" id="toc-référence" class="nav-link" data-scroll-target="#référence">Référence</a></li>
   </ul></li>
-  <li><a href="#glmm-spatial-gaussian-fr" id="toc-glmm-spatial-gaussian-fr" class="nav-link" data-scroll-target="#glmm-spatial-gaussian-fr"><span class="toc-section-number">29</span>  GLMM avec processus spatial gaussien</a>
+  <li><a href="#glmm-spatial-gaussian-fr" id="toc-glmm-spatial-gaussian-fr" class="nav-link" data-scroll-target="#glmm-spatial-gaussian-fr"><span class="header-section-number">29</span> GLMM avec processus spatial gaussien</a>
   <ul class="collapse">
   <li><a href="#données" id="toc-données" class="nav-link" data-scroll-target="#données">Données</a></li>
   <li><a href="#glmm-non-spatial" id="toc-glmm-non-spatial" class="nav-link" data-scroll-target="#glmm-non-spatial">GLMM non spatial</a></li>
@@ -441,7 +449,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#processus-gaussiens-vs.-splines-de-lissage" id="toc-processus-gaussiens-vs.-splines-de-lissage" class="nav-link" data-scroll-target="#processus-gaussiens-vs.-splines-de-lissage">Processus gaussiens vs.&nbsp;splines de lissage</a></li>
   <li><a href="#méthodes-bayésiennes-pour-les-glmm-avec-processus-gaussiens" id="toc-méthodes-bayésiennes-pour-les-glmm-avec-processus-gaussiens" class="nav-link" data-scroll-target="#méthodes-bayésiennes-pour-les-glmm-avec-processus-gaussiens">Méthodes bayésiennes pour les GLMM avec processus gaussiens</a></li>
   </ul></li>
-  <li><a href="#glmm-spatial-autoreg-fr" id="toc-glmm-spatial-autoreg-fr" class="nav-link" data-scroll-target="#glmm-spatial-autoreg-fr"><span class="toc-section-number">30</span>  GLMM avec autorégression spatiale</a>
+  <li><a href="#glmm-spatial-autoreg-fr" id="toc-glmm-spatial-autoreg-fr" class="nav-link" data-scroll-target="#glmm-spatial-autoreg-fr"><span class="header-section-number">30</span> GLMM avec autorégression spatiale</a>
   <ul class="collapse">
   <li><a href="#référence-1" id="toc-référence-1" class="nav-link" data-scroll-target="#référence-1">Référence</a></li>
   </ul></li>
@@ -450,6 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
+
 
 
 
@@ -463,7 +472,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>If you wish to consult the lesson materials and follow the exercises at your own pace, you can access them through <a href="https://bios2.github.io/Marchand.html#category:EN">this link</a>. Basic knowledge of linear regression models and experience fitting them in R is recommended. Original repository can be found <a href="https://github.com/pmarchand1/BIOS2-spatial-stats">here</a>.</strong></p>
 <section id="course-outline" class="level2">
 <h2 class="anchored" data-anchor-id="course-outline">Course outline</h2>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Day</th>
@@ -532,7 +541,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the graph below, only the pattern on the right is completely random. The pattern on the left shows point aggregation (higher probability of observing a point close to another point), while the pattern in the center shows repulsion (low probability of observing a point very close to another).</p>
 <div class="cell" data-fig.dim="[9,3]" data-hash="index_cache/html/unnamed-chunk-2_c019229dfeb24b4b22a136e6b038583d">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="864"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -552,7 +565,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For example, the graphs below show the estimated <span class="math inline">\(K(r)\)</span> function for the patterns shown above, for values of <span class="math inline">\(r\)</span> up to 1/4 of the window width. The red dashed curve shows the theoretical value for CSR and the gray area is an “envelope” produced by 99 simulations of that null pattern. The aggregated pattern shows an excess of neighbours up to <span class="math inline">\(r = 0.25\)</span> and the pattern with repulsion shows a significant deficit of neighbours for small values of <span class="math inline">\(r\)</span>.</p>
 <div class="cell" data-fig.dim="[9,3]" data-hash="index_cache/html/unnamed-chunk-4_93b9963febba16ed4365408bd10b6c70">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="864"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In addition to <span class="math inline">\(K\)</span>, there are other statistics to describe the second-order properties of point patterns, such as the mean distance between a point and its nearest <span class="math inline">\(N\)</span> neighbours. You can refer to the Wiegand and Moloney (2013) textbook in the references to learn more about different summary statistics for point patterns.</p>
@@ -598,7 +615,11 @@ window: rectangle = [0, 15] x [0, 15] units</code></pre>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-7_ba656f4aa5befb58b9e9845ae787d99d">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(semis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The <code>intensity</code> function calculates the density of points of each species by unit area (here, by <span class="math inline">\(m^2\)</span>).</p>
@@ -614,7 +635,11 @@ window: rectangle = [0, 15] x [0, 15] units</code></pre>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>semis_split <span class="ot">&lt;-</span> <span class="fu">split</span>(semis)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(semis_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The <code>Kest</code> function calculates Ripley’s <span class="math inline">\(K\)</span> for a series of distances up to (by default) 1/4 of the width of the window. Here we apply it to the first pattern (birch) by choosing <code>semis_split[[1]]</code>. Note that double square brackets are necessary to choose an item from a list in R.</p>
@@ -623,7 +648,11 @@ window: rectangle = [0, 15] x [0, 15] units</code></pre>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">Kest</span>(semis_split[[<span class="dv">1</span>]], <span class="at">correction =</span> <span class="st">"iso"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>According to this graph, there seems to be an excess of neighbours for distances of 1 m and above. To check if this is a significant difference, we produce a simulation envelope with the <code>envelope</code> function. The first argument of <code>envelope</code> is a point pattern to which the simulations will be compared, the second one is a function to be computed (here, <code>Kest</code>) for each simulated pattern, then we add the arguments of the <code>Kest</code> function (here, only <code>correction</code>).</p>
@@ -638,7 +667,11 @@ window: rectangle = [0, 15] x [0, 15] units</code></pre>
 Done.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>As indicated by the message, by default the function performs 99 simulations of the null model corresponding to complete spatial randomness (CSR).</p>
@@ -653,7 +686,11 @@ Done.</code></pre>
 <p>The graph below illustrates a <em>heterogeneous</em> point pattern, i.e.&nbsp;it shows an density gradient (more points on the left than on the right).</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-13_36849871c75ced31ddf5bd09edb7ace9">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>A density gradient can be confused with an aggregation of points, as can be seen on the graph of the corresponding Ripley’s <span class="math inline">\(K\)</span>. In theory, these are two different processes:</p>
@@ -668,14 +705,22 @@ Done.</code></pre>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dens_p)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(semis_split[[<span class="dv">2</span>]], <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>To measure the aggregation or repulsion of points in a heterogeneous pattern, we must use the inhomogeneous version of the <span class="math inline">\(K\)</span> statistic (<code>Kinhom</code> in <em>spatstat</em>). This statistic is still equal to the mean number of neighbours within a radius <span class="math inline">\(r\)</span> of a point in the pattern, but rather than standardizing this number by the overall intensity of the pattern, it is standardized by the local estimated density. As above, we specify <code>sigma = 2</code> to control the level of smoothing for the varying density estimate.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-15_f82857163481aaf3f03a5dd201df8615">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">Kinhom</span>(semis_split[[<span class="dv">2</span>]], <span class="at">sigma =</span> <span class="dv">2</span>, <span class="at">correction =</span> <span class="st">"iso"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Taking into account the heterogeneity of the pattern at a scale <code>sigma</code> of 2 m, there seems to be a deficit of neighbours starting at a radius of about 1.5 m. We can now check whether this deviation is significant.</p>
@@ -696,7 +741,11 @@ Done.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(khet_p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><em>Note</em>: For a hypothesis test based on simulations of a null hypothesis, the <span class="math inline">\(p\)</span>-value is estimated by <span class="math inline">\((m + 1)/(n + 1)\)</span>, where <span class="math inline">\(n\)</span> is the number of simulations and <span class="math inline">\(m\)</span> is the number of simulations where the value of the statistic is more extreme than that of the observed data. This is why the number of simulations is often chosen to be 99, 199, etc.</p>
@@ -711,7 +760,11 @@ Done.</code></pre>
 <p>Let’s consider a case where we have two point patterns, for example the position of trees of two species in a plot (orange and green points in the graph below). Each of the two patterns may or may not present an aggregation of points.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-17_b4289a87928bcb641b5e8e2bd2b6abf1">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Regardless of whether points are aggregated at the species level, we want to determine whether the two species are arranged independently. In other words, does the probability of observing a tree of one species depend on the presence of a tree of the other species at a given distance?</p>
@@ -721,7 +774,11 @@ Done.</code></pre>
 <p>One way to do this randomization is to shift one of the two patterns horizontally and/or vertically by a random distance. The part of the pattern that “comes out” on one side of the window is attached to the other side. This method is called a toroidal shift, because by connecting the top and bottom as well as the left and right of a rectangular surface, we obtain the shape of a torus (a three-dimensional “donut”).</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-18_2719c0934b27fb43697dae326b9542d1">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The graph above shows a translation of the green pattern to the right, while the orange pattern remains in the same place. The green points in the shaded area are brought back on the other side. Note that while this method generally preserves the structure of each pattern while randomizing their relative position, it can have some drawbacks, such as dividing point clusters that are near the cutoff point.</p>
@@ -729,7 +786,11 @@ Done.</code></pre>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-19_4dcee95d46a21e9800bad80559da1926">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">Kcross</span>(semis, <span class="at">i =</span> <span class="st">"P"</span>, <span class="at">j =</span> <span class="st">"B"</span>, <span class="at">correction =</span> <span class="st">"iso"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Here, the observed <span class="math inline">\(K\)</span> is lower than the theoretical value, indicating a possible repulsion between the two patterns.</p>
@@ -748,7 +809,11 @@ Done.</code></pre>
 Done.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Here, the observed curve is totally within the envelope, so we do not reject the null hypothesis of independence of the two patterns.</p>
@@ -781,7 +846,11 @@ Done.</code></pre>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">window =</span> <span class="fu">owin</span>(<span class="at">xrange =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="at">yrange =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)))</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fir)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Suppose that we want to check whether fir mortality is independent or correlated between neighbouring trees. How does this question differ from the previous example, where we wanted to know if the position of the points of two species was independent?</p>
@@ -792,7 +861,11 @@ Done.</code></pre>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-23_ea3bee43b75cb2228264e2bba732134d">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">markconnect</span>(fir, <span class="at">i =</span> <span class="st">"A"</span>, <span class="at">j =</span> <span class="st">"D"</span>, <span class="at">correction =</span> <span class="st">"iso"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In this graph, the fluctuations in the function are due to the estimation error of a continuous <span class="math inline">\(r\)</span> function from a limited number of discrete point pairs.</p>
@@ -811,7 +884,11 @@ Done.</code></pre>
 Done.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Note that since the <code>rlabel</code> function has only one required argument corresponding to the original point pattern, it was not necessary to specify: <code>simulate = function(x) rlabel(x)</code>.</p>
@@ -843,7 +920,11 @@ Done.</code></pre>
 Done.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="960"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>It therefore appears that fir mortality due to this outbreak is spatially aggregated, since trees located in close proximity to each other have a greater probability of sharing the same status than predicted by the null hypothesis.</p>
@@ -870,7 +951,11 @@ Done.</code></pre>
 Done.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Poplar seedlings seem to be significantly aggregated according to the <span class="math inline">\(K\)</span> function.</p>
@@ -882,7 +967,11 @@ Done.</code></pre>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dens_p)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(semis_split[[<span class="dv">2</span>]], <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>khet_p <span class="ot">&lt;-</span> <span class="fu">envelope</span>(semis_split[[<span class="dv">2</span>]], Kinhom, <span class="at">sigma =</span> <span class="dv">5</span>, <span class="at">correction =</span> <span class="st">"iso"</span>,</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">nsim =</span> <span class="dv">199</span>, <span class="at">nrank =</span> <span class="dv">5</span>, <span class="at">simulate =</span> <span class="cf">function</span>(x) <span class="fu">rpoispp</span>(dens_p))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -898,7 +987,11 @@ Done.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(khet_p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-27-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-27-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Here, as we estimate density variations at a larger scale, even after accounting for this variation, the poplar seedlings seem to be aggregated at a small scale.</p>
@@ -954,7 +1047,11 @@ Done.</code></pre>
 <p>Here is a graphical representation of this variogram.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-28_db8b05730133a816cb7d6c558cbd7757">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Because of the exponential function, the value of <span class="math inline">\(\gamma\)</span> at large distances approaches the global variance <span class="math inline">\(\sigma_z^2\)</span> without exactly reaching it. This asymptote is called a <em>sill</em> in the geostatistical context and is represented by the symbol <span class="math inline">\(s\)</span>.</p>
@@ -964,11 +1061,15 @@ Done.</code></pre>
 <p>In the <em>gstat</em> package that we use below, the term <span class="math inline">\((s-n)\)</span> is called a <em>partial sill</em> or <code>psill</code> for the exponential portion of the variogram.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-29_76ce196068f7afb370f9fcd84ff0bf2d">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In addition to the exponential model, two other common theoretical models for the variogram are the Gaussian model (where the correlation follows a half-normal curve), and the spherical model (where the variogram increases linearly at the start and then curves and reaches the plateau at a distance equal to its range <span class="math inline">\(r\)</span>). The spherical model thus allows the correlation to be exactly 0 at large distances, rather than gradually approaching zero in the case of the other models.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 34%">
@@ -1002,7 +1103,11 @@ Done.</code></pre>
 <p>* For the spherical model, <span class="math inline">\(\rho = 0\)</span> and <span class="math inline">\(\gamma = s\)</span> if <span class="math inline">\(h \ge r\)</span>.</p>
 <div class="cell" data-fig.dim="[9,4]" data-hash="index_cache/html/unnamed-chunk-30_36d08077ec0b54caf8dbcbb8751648be">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="864"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1067,7 +1172,11 @@ Done.</code></pre>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Note that the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> axes have been inverted to save space. The <code>coord_fixed()</code> function of <em>ggplot2</em> ensures that the scale is the same on both axes, which is useful for representing spatial data.</p>
@@ -1076,7 +1185,11 @@ Done.</code></pre>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(oxford, <span class="fu">aes</span>(<span class="at">x =</span> PH1, <span class="at">y =</span> MG1)) <span class="sc">+</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The <code>variogram</code> function of <em>gstat</em> is used to estimate a variogram from empirical data. Here is the result obtained for the variable <code>MG1</code>.</p>
@@ -1106,7 +1219,11 @@ Done.</code></pre>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-35_dced0e607669b721d5ef7df8faa51cb2">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var_mg, <span class="at">col =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>If we want to estimate the residual spatial correlation of <code>MG1</code> after including the effect of <code>PH1</code>, we can add that predictor to the formula.</p>
@@ -1114,7 +1231,11 @@ Done.</code></pre>
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>var_mg <span class="ot">&lt;-</span> <span class="fu">variogram</span>(MG1 <span class="sc">~</span> PH1, <span class="at">locations =</span> <span class="sc">~</span> XCOORD <span class="sc">+</span> YCOORD, <span class="at">data =</span> oxford)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var_mg, <span class="at">col =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Including the effect of pH, the range of the spatial correlation seems to decrease, while the plateau is reached around 300 m. It even seems that the variogram decreases beyond 400 m. In general, we assume that the variance between two points does not decrease with distance, unless there is a periodic spatial pattern.</p>
@@ -1145,7 +1266,11 @@ Done.</code></pre>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-39_acab997244a63895e5eaedd7b9e62465">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var_mg, vfit, <span class="at">col =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <section id="regression-with-spatial-correlation" class="level2">
@@ -1208,7 +1333,11 @@ Degrees of freedom: 126 total; 124 residual</code></pre>
 <span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var_mg, gls_vgm, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Does the model fit the data less well here? In fact, this empirical variogram represented by the points was obtained from the residuals of the linear model ignoring the spatial correlation, so it is a biased estimate of the actual spatial correlations. The method is still adequate to quickly check if spatial correlations are present. However, to simultaneously fit the regression coefficients and the spatial correlation parameters, the generalized least squares (GLS) approach is preferable and will produce more accurate estimates.</p>
@@ -1292,7 +1421,11 @@ Degrees of freedom: 126 total; 124 residual</code></pre>
 <span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> pred, <span class="at">shape =</span> <span class="dv">17</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The estimated mean and variance from kriging can be used to simulate possible values of the variable at each new point, conditional on the sampled values. In the example below, we performed 4 conditional simulations by adding the argument <code>nsim = 4</code> to the same <code>krige</code> instruction.</p>
@@ -1323,7 +1456,11 @@ Degrees of freedom: 126 total; 124 residual</code></pre>
 <span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
 <span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> sim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="960"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1359,7 +1496,11 @@ F-statistic: 59.86 on 2 and 417 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">variogram</span>(<span class="fu">sqrt</span>(richness) <span class="sc">~</span> forest <span class="sc">+</span> wetland, <span class="at">locations =</span> <span class="sc">~</span> x <span class="sc">+</span> y,</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> bryo_belg, <span class="at">cutoff =</span> <span class="dv">50</span>), <span class="at">col =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The variogram is increasing from 0 to at least 40 km, so there appears to be spatial correlations in the model residuals.</p>
@@ -1513,7 +1654,11 @@ Projected CRS: LambertAQ
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-54_b911c1230b37d88999c315735187b9c4">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elect2018[<span class="st">"rev_med"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In this example, we want to model the fraction of votes obtained by the CAQ based on the characteristics of the population in each riding and taking into account the spatial correlations between neighbouring ridings.</p>
@@ -1543,7 +1688,11 @@ Projected CRS: LambertAQ
 <span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elect2018[<span class="st">"geometry"</span>])</span>
 <span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vois, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">coords =</span> coords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can “zoom” on southern Québec by choosing the limits <code>xlim</code> and <code>ylim</code>.</p>
@@ -1552,7 +1701,11 @@ Projected CRS: LambertAQ
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">400000</span>, <span class="dv">800000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">100000</span>, <span class="dv">500000</span>))</span>
 <span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vois, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">coords =</span> coords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-58-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We still have to add weights to each network link with the <code>nb2listw</code> function. The style of weights “B” corresponds to binary weights, i.e.&nbsp;1 for the presence of link and 0 for the absence of link between two ridings.</p>
@@ -1785,7 +1938,11 @@ override using the `.groups` argument.</code></pre>
 <span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb106-6"><a href="#cb106-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-66-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-66-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We use the <code>gambia.borders</code> dataset from the <em>geoR</em> package to trace the country boundaries with <code>geom_path</code>. Since those boundaries are in meters, we divide by 1000 to get the same scale as our points. We also use <code>coord_fixed</code> to ensure a 1:1 aspect ratio between the axes and use the <code>viridis</code> color scale, which makes it easier to visualize a continuous variable compared with the default gradient scale in <em>ggplot2</em>.</p>
@@ -1867,7 +2024,11 @@ phc    -0.715 -0.025</code></pre>
 <span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>res_glmm <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(mod_glmm)</span>
 <span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res_glmm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-71-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-71-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The graph on the left is a quantile-quantile plot of standardized residuals. The results of three statistical tests also also shown: a Kolmogorov-Smirnov (<em>KS</em>) test which checks whether there is a deviation from the theoretical distribution, a dispersion test that checks whether there is underdispersion or overdispersion, and an outlier test based on the number of residuals that are more extreme than all the simulations. Here, we get a significant result for the outliers, though the message indicates that this result might have an inflated type I error rate in this case.</p>
@@ -1878,7 +2039,11 @@ phc    -0.715 -0.025</code></pre>
 <pre><code>DHARMa:testOutliers with type = binomial may have inflated Type I error rates for integer-valued distributions. To get a more exact result, it is recommended to re-run testOutliers with type = 'bootstrap'. See ?testOutliers for details</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-72-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-72-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The plot to the right now shows individual points, along with a quantile regression for the 1st quartile, the median and the 3rd quartile. In theory, these three curves should be horizontal straight lines (no leftover trend in the residuals vs.&nbsp;predictions). The curve for the 3rd quartile (in red) is significantly different from a horizontal line, which could indicate some systematic effect that is missing from the model.</p>
@@ -2007,21 +2172,33 @@ phc         -0.4984835  0.2604083 -1.9142382 5.558973e-02</code></pre>
 <pre><code>DHARMa:testOutliers with type = binomial may have inflated Type I error rates for integer-valued distributions. To get a more exact result, it is recommended to re-run testOutliers with type = 'bootstrap'. See ?testOutliers for details</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-77-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-77-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">recalculateResiduals</span>(res_spamm, <span class="at">group =</span> gambia<span class="sc">$</span>id_village))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>DHARMa:testOutliers with type = binomial may have inflated Type I error rates for integer-valued distributions. To get a more exact result, it is recommended to re-run testOutliers with type = 'bootstrap'. See ?testOutliers for details</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-77-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-77-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Finally, while we will show how to make and visualize spatial predictions below, we can produce a quick map of the estimated spatial effects in a <em>spaMM</em> model with the <code>filled.mapMM</code> function.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-78_9aa73f93f8884bdd0fab5e2e18929e73">
 <div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filled.mapMM</span>(mod_spamm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-78-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-78-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -2040,7 +2217,11 @@ phc         -0.4984835  0.2604083 -1.9142382 5.558973e-02</code></pre>
 <div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gratia)</span>
 <span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw</span>(mod_gam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-80-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-80-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Note that the plot of the spline <code>s(x, y)</code> (top right) does not extend too far from the locations of the data (other areas are blank). In this graph, we can also see that the village random effects follow the expected Gaussian distribution (top left).</p>
@@ -2056,7 +2237,11 @@ phc         -0.4984835  0.2604083 -1.9142382 5.558973e-02</code></pre>
 <span id="cb137-8"><a href="#cb137-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb137-9"><a href="#cb137-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-81-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-81-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>To make predictions from the GAMM model at those points, the code below goes through the following steps:</p>
@@ -2108,7 +2293,11 @@ phc         -0.4984835  0.2604083 -1.9142382 5.558973e-02</code></pre>
 <span id="cb141-6"><a href="#cb141-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span></span>
 <span id="cb141-7"><a href="#cb141-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-85-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-85-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>While both models agree that there is a higher prevalence near the eastern cluster of villages, the GAMM also estimates a higher prevalence at a few points (western edge and around the center) where there is no data. This is an artifact of the shape of the spline fit around the data points, since a spline is meant to fit a global, although nonlinear, trend. In contrast, the geostatistical model represents the spatial effect as local correlations and reverts to the overall mean prevalence when far from any data points, which is a safer assumption. This is one reason to choose a geostatistical / Gaussian process model in this case.</p>
@@ -2128,7 +2317,11 @@ phc         -0.4984835  0.2604083 -1.9142382 5.558973e-02</code></pre>
 <span id="cb142-3"><a href="#cb142-3" aria-hidden="true" tabindex="-1"></a>rls_covid <span class="ot">&lt;-</span> rls_covid[<span class="sc">!</span><span class="fu">is.na</span>(rls_covid<span class="sc">$</span>dens_pop), ]</span>
 <span id="cb142-4"><a href="#cb142-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rls_covid[<span class="st">"taux_1k"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-86-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-86-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Previously, we modelled the logarithm of this rate as a linear function of the logarithm of population density, with the residual variance correlated among neighbouring units via a CAR (conditional autoregression) structure, as shown in the code below.</p>
@@ -2222,7 +2415,7 @@ logL       (p_v(h)): -709.3234</code></pre>
 <p><strong>Si vous souhaitez consulter le matériel pédagogique et suivre les exercices à votre propre rythme, vous pouvez y accéder par <a href="https://bios2.github.io/Marchand.html#category:FR">ce lien</a>. Une connaissance de base des modèles de régression linéaire et une expérience de l’ajustement de ces modèles dans R sont recommandées. Le repositoire original se trouve <a href="https://github.com/pmarchand1/BIOS2-spatial-stats">ici</a>.</strong></p>
 <section id="plan-du-cours" class="level2">
 <h2 class="anchored" data-anchor-id="plan-du-cours">Plan du cours</h2>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Jour</th>
@@ -2291,7 +2484,11 @@ logL       (p_v(h)): -709.3234</code></pre>
 <p>Dans le graphique ci-dessous, seul le patron à droite est totalement aléatoire. Le patron à gauche montre une agrégation des points (probabilité plus grande d’observer un point si on est à proximité d’un autre point), tandis que le patron du centre montre une répulsion (faible probabilité d’observer un point très près d’un autre).</p>
 <div class="cell" data-fig.dim="[9,3]" data-hash="index_cache/html/unnamed-chunk-91_adc67cb15e035b62bde9aae5a2aa1217">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-91-1.png" class="img-fluid" width="864"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-91-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -2311,7 +2508,11 @@ logL       (p_v(h)): -709.3234</code></pre>
 <p>Par exemple, les graphiques ci-dessous présentent la fonction estimée <span class="math inline">\(K(r)\)</span> pour les patrons illustrés ci-dessus, pour des valeurs de <span class="math inline">\(r\)</span> allant jusqu’à 1/4 de la largeur de la fenêtre. La courbe pointillée rouge indique la valeur théorique pour une structure spatiale totalement aléatoire et la zone grise est une “enveloppe” produite par 99 simulations de ce modèle nul. Le patron agrégé montre un excès de voisins jusqu’à <span class="math inline">\(r = 0.25\)</span> et le patron avec répulsion montre un déficit significatif de voisins pour les petites valeurs de <span class="math inline">\(r\)</span>.</p>
 <div class="cell" data-fig.dim="[9,3]" data-hash="index_cache/html/unnamed-chunk-93_6abeb25aeaeb61368f985f60bb26c046">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-93-1.png" class="img-fluid" width="864"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-93-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Outre le <span class="math inline">\(K\)</span>, il existe d’autres statistiques pour décrire les propriétés de second ordre du patron, par exemple la distance moyenne entre un point et ses <span class="math inline">\(N\)</span> plus proches voisins. Vous pouvez consulter le manuel de Wiegand et Moloney (2013) suggéré en référence pour en apprendre plus sur différentes statistiques sommaires des patrons de points.</p>
@@ -2357,7 +2558,11 @@ window: rectangle = [0, 15] x [0, 15] units</code></pre>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-96_96d77aa12e04c69ed21ee84e297dba59">
 <div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(semis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-96-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-96-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>La fonction <code>intensity</code> calcule la densité des points de chaque espèce par unité de surface, ici en <span class="math inline">\(m^2\)</span>.</p>
@@ -2373,7 +2578,11 @@ window: rectangle = [0, 15] x [0, 15] units</code></pre>
 <div class="sourceCode cell-code" id="cb155"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb155-1"><a href="#cb155-1" aria-hidden="true" tabindex="-1"></a>semis_split <span class="ot">&lt;-</span> <span class="fu">split</span>(semis)</span>
 <span id="cb155-2"><a href="#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(semis_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-98-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-98-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>La fonction <code>Kest</code> calcule le <span class="math inline">\(K\)</span> de Ripley pour une série de distances allant (par défaut) jusqu’à 1/4 de la largeur de la fenêtre. Ici, nous l’appliquons au premier patron (bouleau) en choisissant <code>semis_split[[1]]</code>. Notez que les doubles crochets sont nécessaires pour choisir un élément d’une liste dans R.</p>
@@ -2382,7 +2591,11 @@ window: rectangle = [0, 15] x [0, 15] units</code></pre>
 <div class="sourceCode cell-code" id="cb156"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fu">Kest</span>(semis_split[[<span class="dv">1</span>]], <span class="at">correction =</span> <span class="st">"iso"</span>)</span>
 <span id="cb156-2"><a href="#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(k)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-99-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-99-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Selon ce graphique, il semble y avoir une excès de voisins à partir d’un rayon de 1 m. Pour vérifier s’il s’agit d’un écart significatif, nous produisons une enveloppe de simulation avec la fonction <code>envelope</code>. Le permier argument d’<code>envelope</code> est un patron de point auquel les simulations seront comparées, le deuxième une fonction à calculer (ici, <code>Kest</code>) pour chaque patron simulé, puis on y ajoute les arguments de la fonction <code>Kest</code> (ici, seulement <code>correction</code>).</p>
@@ -2397,7 +2610,11 @@ window: rectangle = [0, 15] x [0, 15] units</code></pre>
 Done.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-100-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-100-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Tel qu’indiqué par le message, cette fonction effectue par défaut 99 simulations de l’hypothèse nulle correspondant à une structure spatiale totalement aléatoire (CSR, pour <em>complete spatial randomness</em>).</p>
@@ -2412,7 +2629,11 @@ Done.</code></pre>
 <p>Le graphique ci-dessous illustre un patron de points <em>hétérogène</em>, c’est-à-dire qu’il présente un gradient d’intensité (plus de points à gauche qu’à droite).</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-102_4f8ece21b321a6bc37f12ea916525a4e">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-102-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-102-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Un gradient de densité peut être confondu avec une agrégation des points, comme on peut voir sur le graphique du <span class="math inline">\(K\)</span> de Ripley correspondant. En théorie, il s’agit de deux processus différents:</p>
@@ -2427,14 +2648,22 @@ Done.</code></pre>
 <span id="cb159-2"><a href="#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dens_p)</span>
 <span id="cb159-3"><a href="#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(semis_split[[<span class="dv">2</span>]], <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-103-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-103-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Pour mesurer l’agrégation ou la répulsion des points d’un patron hétérogène, nous devons utilisé la version non-homogène de la statistique <span class="math inline">\(K\)</span> (<code>Kinhom</code> dans <em>spatstat</em>). Cette statistique est toujours égale au nombre moyen de voisins dans un rayon <span class="math inline">\(r\)</span> d’un point du patron, mais plutôt que de normaliser ce nombre par l’intensité globale du patron, il est normalisé par l’estimation locale de la densité de points. Comme ci-dessus, nous spécifions <code>sigma = 2</code> pour contrôler le niveau de lissage de l’estimation de la densité variable.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-104_2e7d6e77388db4c6cf95e3825468e730">
 <div class="sourceCode cell-code" id="cb160"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">Kinhom</span>(semis_split[[<span class="dv">2</span>]], <span class="at">sigma =</span> <span class="dv">2</span>, <span class="at">correction =</span> <span class="st">"iso"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-104-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-104-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En tenant compte de l’hétérogénéité du patron à une échelle <code>sigma</code> de 2 m, il semble donc y avoir un déficit de voisins à partir d’environ 1.5 m des points du patron. Il reste à voir si cette déviation est significative.</p>
@@ -2455,7 +2684,11 @@ Done.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb163"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb163-1"><a href="#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(khet_p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-105-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-105-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><em>Note</em>: Pour un test d’hypothèse basé sur des simulations d’une hypothèse nulle, la valeur <span class="math inline">\(p\)</span> est estimée par <span class="math inline">\((m + 1)/(n + 1)\)</span>, où <span class="math inline">\(n\)</span> est le nombre de simulations et <span class="math inline">\(m\)</span> est le nombre de simulations où la valeur de la statistique est plus extrême que celle des données observées. C’est pour cette raison qu’on choisit un nombre de simulations comme 99, 199, etc.</p>
@@ -2470,7 +2703,11 @@ Done.</code></pre>
 <p>Considérons un cas où nous avons deux patrons de points, par exemple la position des arbres de deux espèces dans une parcelle (points oranges et verts dans le graphique ci-dessous). Chacun des deux patrons peut présenter ou non des agrégations de points.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-106_a7d54ff1bdd2b3ad9381ec359732b6e9">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-106-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-106-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Sans égard à cette agrégation au niveau de l’espèce, nous voulons déterminer si les deux espèces sont disposées indépendamment. Autrement dit, la probabilité d’observer un arbre d’une espèce dépend-elle de la présence d’un arbre de l’autre espèce à une distance donnée?</p>
@@ -2480,7 +2717,11 @@ Done.</code></pre>
 <p>Une des façons d’effectuer cette randomisation consiste à décaler l’un des deux patrons horizontalement et/ou verticalement d’une distance aléatoire. La partie du patron qui “sort” d’un côté de la fenêtre est rattachée de l’autre côté. Cette méthode s’appelle une translation toroïdale (<em>toroidal shift</em>), car en connectant le haut et le bas ainsi que la gauche et la droite d’une surface rectangulaire, on obtient la forme d’un tore (un “beigne” en trois dimensions).</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-107_1757cb541cf05d572ea82ab56ed6f90e">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-107-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-107-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Le graphique ci-dessus illustre une translation du patron vert vers la droite, tandis que le patron orange reste au même endroit. Les points verts dans la zone ombragée sont ramenés de l’autre côté. Notez que si cette méthode préserve de façon générale la structure de chaque patron tout en randomisant leur position relative, elle peut comporter certains inconvénients, comme de diviser des amas de points qui se trouvent près du point de coupure.</p>
@@ -2488,7 +2729,11 @@ Done.</code></pre>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-108_e1fb67c992e6fbc5436f40af7db13109">
 <div class="sourceCode cell-code" id="cb164"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">Kcross</span>(semis, <span class="at">i =</span> <span class="st">"P"</span>, <span class="at">j =</span> <span class="st">"B"</span>, <span class="at">correction =</span> <span class="st">"iso"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-108-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-108-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Ici, le <span class="math inline">\(K\)</span> observé est inférieur à la valeur théorique, indiquant une répulsion possible des deux patrons.</p>
@@ -2507,7 +2752,11 @@ Done.</code></pre>
 Done.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-109-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-109-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Ici, la courbe observée se situe totalement dans l’enveloppe, donc nous ne rejetons pas l’hypothèse nulle d’indépendance des deux patrons.</p>
@@ -2540,7 +2789,11 @@ Done.</code></pre>
 <span id="cb169-2"><a href="#cb169-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">window =</span> <span class="fu">owin</span>(<span class="at">xrange =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>), <span class="at">yrange =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)))</span>
 <span id="cb169-3"><a href="#cb169-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fir)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-111-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-111-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Supposons que nous voulons vérifier si la mortalité des sapins est indépendante ou corrélée entre arbres rapprochés. En quoi cette question diffère-t-elle de l’exemple précédent où nous voulions savoir si la position des points de deux espèces était indépendante?</p>
@@ -2551,7 +2804,11 @@ Done.</code></pre>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-112_e925b891841588727659504a7a0c6e6d">
 <div class="sourceCode cell-code" id="cb170"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb170-1"><a href="#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">markconnect</span>(fir, <span class="at">i =</span> <span class="st">"A"</span>, <span class="at">j =</span> <span class="st">"D"</span>, <span class="at">correction =</span> <span class="st">"iso"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-112-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-112-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Dans ce graphique, les ondulations dans la fonction sont dues à l’erreur d’estimation d’une fonction continue de <span class="math inline">\(r\)</span> à partir d’un nombre limité de paires de points discrètes.</p>
@@ -2570,7 +2827,11 @@ Done.</code></pre>
 Done.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-113-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-113-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Notez que puisque la fonction <code>rlabel</code> a un seul argument obligatoire correspondant au patron de points original, il n’était pas nécessaire de spécifier au long: <code>simulate = function(x) rlabel(x)</code>.</p>
@@ -2602,7 +2863,11 @@ Done.</code></pre>
 Done.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-114-1.png" class="img-fluid" width="960"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-114-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Il semble donc que la mortalité des sapins due à cette épidémie est agrégée spatialement, puisque les arbres situés à proximité l’un de l’autre ont une plus grande probabilité de partager le même statut que prévu par l’hypothèse nulle.</p>
@@ -2629,7 +2894,11 @@ Done.</code></pre>
 Done.</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-115-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-115-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Les semis de peuplier semblent significativement agrégés selon la valeur du <span class="math inline">\(K\)</span>.</p>
@@ -2641,7 +2910,11 @@ Done.</code></pre>
 <span id="cb179-2"><a href="#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dens_p)</span>
 <span id="cb179-3"><a href="#cb179-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(semis_split[[<span class="dv">2</span>]], <span class="at">add =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-116-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-116-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb180"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb180-1"><a href="#cb180-1" aria-hidden="true" tabindex="-1"></a>khet_p <span class="ot">&lt;-</span> <span class="fu">envelope</span>(semis_split[[<span class="dv">2</span>]], Kinhom, <span class="at">sigma =</span> <span class="dv">5</span>, <span class="at">correction =</span> <span class="st">"iso"</span>,</span>
 <span id="cb180-2"><a href="#cb180-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">nsim =</span> <span class="dv">199</span>, <span class="at">nrank =</span> <span class="dv">5</span>, <span class="at">simulate =</span> <span class="cf">function</span>(x) <span class="fu">rpoispp</span>(dens_p))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2657,7 +2930,11 @@ Done.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb182"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb182-1"><a href="#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(khet_p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-116-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-116-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Ici, puisque nous estimons la variation de densité à une plus grande échelle, même après avoir tenu compte de cette variation, les semis de peuplier semblent agrégés à petite échelle.</p>
@@ -2713,7 +2990,11 @@ Done.</code></pre>
 <p>Voici une représentation graphique de ce variogramme.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-117_94b4bef8ba36e1b515cfee5fff6c1ebb">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-117-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-117-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En raison de la fonction exponentielle, la valeur de <span class="math inline">\(\gamma\)</span> à des grandes distances s’approche de la variance globale <span class="math inline">\(\sigma_z^2\)</span> sans exactement l’atteindre. Cette asymptote est appelée palier (<em>sill</em>) dans le contexte géostatistique et représentée par le symbole <span class="math inline">\(s\)</span>.</p>
@@ -2723,11 +3004,15 @@ Done.</code></pre>
 <p>Dans le package <em>gstat</em> que nous utiliserons ci-dessous, le terme <span class="math inline">\((s - n)\)</span> est le palier partiel (<em>partial sill</em>, ou <code>psill</code>) pour la partie exponentielle.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-118_616ef9e44728a1524a3df51fd61bde38">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-118-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-118-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En plus du modèle exponentiel, deux autres modèles théoriques courants pour le variogramme sont le modèle gaussien (où la corrélation suit une courbe demi-normale), ainsi que le modèle sphérique (où le variogramme augmente de façon linéaire au départ pour ensuite courber et atteindre le palier à une distance égale à sa portée <span class="math inline">\(r\)</span>). Le modèle sphérique permet donc à la corrélation d’être exactement 0 à grande distance, plutôt que de s’approcher graduellement de zéro dans le cas des autres modèles.</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 22%">
 <col style="width: 35%">
@@ -2761,7 +3046,11 @@ Done.</code></pre>
 <p>* Pour le modèle sphérique, <span class="math inline">\(\rho = 0\)</span> et <span class="math inline">\(\gamma = s\)</span> si <span class="math inline">\(h \ge r\)</span>.</p>
 <div class="cell" data-fig.dim="[9,4]" data-hash="index_cache/html/unnamed-chunk-119_df4e0a7376691267996d3cce69016995">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-119-1.png" class="img-fluid" width="864"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-119-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -2826,7 +3115,11 @@ Done.</code></pre>
 <span id="cb185-3"><a href="#cb185-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb185-4"><a href="#cb185-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-121-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-121-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Notez que les axes <span class="math inline">\(x\)</span> et <span class="math inline">\(y\)</span> ont été inversés par souci d’espace. La fonction <code>coord_fixed()</code> de <em>ggplot2</em> assure que l’échelle soit la même sur les deux axes, ce qui est utile pour représenter des données spatiales.</p>
@@ -2835,7 +3128,11 @@ Done.</code></pre>
 <div class="sourceCode cell-code" id="cb186"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb186-1"><a href="#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(oxford, <span class="fu">aes</span>(<span class="at">x =</span> PH1, <span class="at">y =</span> MG1)) <span class="sc">+</span></span>
 <span id="cb186-2"><a href="#cb186-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-122-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-122-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>La fonction <code>variogram</code> de <em>gstat</em> sert à estimer un variogramme à partir de données empiriques. Voici le résultat obtenu pour la variable <code>MG1</code>.</p>
@@ -2865,7 +3162,11 @@ Done.</code></pre>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-124_ca0a474a676de6872283aecd1d7057df">
 <div class="sourceCode cell-code" id="cb189"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb189-1"><a href="#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var_mg, <span class="at">col =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-124-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-124-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Si nous voulons estimer la corrélation spatiale résiduelle de <code>MG1</code> après avoir inclus l’effet de <code>PH1</code>, nous pouvons ajouter ce prédicteur à la formule.</p>
@@ -2873,7 +3174,11 @@ Done.</code></pre>
 <div class="sourceCode cell-code" id="cb190"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a>var_mg <span class="ot">&lt;-</span> <span class="fu">variogram</span>(MG1 <span class="sc">~</span> PH1, <span class="at">locations =</span> <span class="sc">~</span> XCOORD <span class="sc">+</span> YCOORD, <span class="at">data =</span> oxford)</span>
 <span id="cb190-2"><a href="#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var_mg, <span class="at">col =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-125-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-125-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>En incluant l’effet du pH, la portée de la corrélation spatiale semble diminuer, alors que le plateau est atteint autour de 300 m. Il semble même que le variogramme diminue au-delà de 400 m. En général, nous supposons que la variance entre deux points ne diminue pas avec la distance, à moins d’avoir un patron spatial périodique.</p>
@@ -2904,7 +3209,11 @@ Done.</code></pre>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-128_c877e0be691daa5fe18f6d2ba00dfdcd">
 <div class="sourceCode cell-code" id="cb195"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var_mg, vfit, <span class="at">col =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-128-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-128-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <section id="régression-avec-corrélation-spatiale" class="level2">
@@ -2967,7 +3276,11 @@ Degrees of freedom: 126 total; 124 residual</code></pre>
 <span id="cb198-7"><a href="#cb198-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb198-8"><a href="#cb198-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var_mg, gls_vgm, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-130-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-130-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Est-ce que le modèle est moins bien ajusté aux données ici? En fait, ce variogramme empirique représenté par les points avait été obtenu à partir des résidus du modèle linéaire ignorant la corrélation spatiale, donc c’est un estimé biaisé des corrélations spatiales réelles. La méthode est quand même adéquate pour vérifier rapidement s’il y a présence de corrélations spatiales. Toutefois, pour ajuster simultanément les coefficients de la régression et les paramètres de corrélation spatiale, l’approche des moindres carrés généralisés (GLS) est préférable et produira des estimés plus justes.</p>
@@ -3051,7 +3364,11 @@ Degrees of freedom: 126 total; 124 residual</code></pre>
 <span id="cb205-5"><a href="#cb205-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> pred, <span class="at">shape =</span> <span class="dv">17</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb205-6"><a href="#cb205-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-133-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-133-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>La moyenne et la variance estimées par krigeage peuvent être utilisées pour simuler les valeurs possibles de la variable à chaque nouveau point, conditionnellement aux valeurs échantillonnées. Dans l’exemple ci-dessous, nous avons effectué 4 simulations conditionnelles en ajoutant l’argument <code>nsim = 4</code> à la même instruction <code>krige</code>.</p>
@@ -3082,7 +3399,11 @@ Degrees of freedom: 126 total; 124 residual</code></pre>
 <span id="cb210-6"><a href="#cb210-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
 <span id="cb210-7"><a href="#cb210-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="sc">~</span> sim)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-135-1.png" class="img-fluid" width="960"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-135-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -3118,7 +3439,11 @@ F-statistic: 59.86 on 2 and 417 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode cell-code" id="cb213"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">variogram</span>(<span class="fu">sqrt</span>(richness) <span class="sc">~</span> forest <span class="sc">+</span> wetland, <span class="at">locations =</span> <span class="sc">~</span> x <span class="sc">+</span> y,</span>
 <span id="cb213-2"><a href="#cb213-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> bryo_belg, <span class="at">cutoff =</span> <span class="dv">50</span>), <span class="at">col =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-137-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-137-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Le variogramme augmente au moins jusqu’à une distance de 40 km, il semble donc y avoir des corrélations spatiales dans les résidus du modèle.</p>
@@ -3272,7 +3597,11 @@ Projected CRS: LambertAQ
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-143_118d70deac183e230a7c64b3208cd1a7">
 <div class="sourceCode cell-code" id="cb228"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb228-1"><a href="#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elect2018[<span class="st">"rev_med"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-143-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-143-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Dans cet exemple, nous voulons modéliser la fraction des votes obtenue par la CAQ en fonction des caractéristiques de la population dans chaque circonscription et en tenant compte des corrélations spatiales entre circonscriptions voisines.</p>
@@ -3302,7 +3631,11 @@ Projected CRS: LambertAQ
 <span id="cb233-3"><a href="#cb233-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elect2018[<span class="st">"geometry"</span>])</span>
 <span id="cb233-4"><a href="#cb233-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vois, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">coords =</span> coords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-146-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-146-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>On peut faire un “zoom” sur le sud du Québec en choisissant les limites <code>xlim</code> et <code>ylim</code> appropriées.</p>
@@ -3311,7 +3644,11 @@ Projected CRS: LambertAQ
 <span id="cb234-2"><a href="#cb234-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">400000</span>, <span class="dv">800000</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">100000</span>, <span class="dv">500000</span>))</span>
 <span id="cb234-3"><a href="#cb234-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(vois, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">coords =</span> coords)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-147-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-147-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Il nous reste à ajouter des poids à chaque lien du réseau avec la fonction <code>nb2listw</code>. Le style de poids “B” correspond aux poids binaires, soit 1 pour la présence de lien et 0 pour l’absence de lien entre deux circonscriptions.</p>
@@ -3545,7 +3882,11 @@ override using the `.groups` argument.</code></pre>
 <span id="cb253-5"><a href="#cb253-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb253-6"><a href="#cb253-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-155-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-155-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Nous utilisons le jeu de données <code>gambia.borders</code> du package <em>geoR</em> pour tracer les frontières des pays avec <code>geom_path</code>. Comme ces frontières sont en mètres, nous les divisons par 1000 pour obtenir la même échelle que nos points. Nous utilisons également <code>coord_fixed</code> pour assurer un rapport d’aspect de 1:1 entre les axes et utilisons la palette de couleur <code>viridis</code>, qui permet de visualiser plus facilement une variable continue par rapport à la palette par défaut dans <em>ggplot2</em>.</p>
@@ -3627,7 +3968,11 @@ phc    -0.715 -0.025</code></pre>
 <span id="cb262-2"><a href="#cb262-2" aria-hidden="true" tabindex="-1"></a>res_glmm <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(mod_glmm)</span>
 <span id="cb262-3"><a href="#cb262-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res_glmm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-160-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-160-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Le graphique de gauche est un graphique quantile-quantile des résidus standardisés. Les résultats de trois tests statistiques sont également présentés: un test de Kolmogorov-Smirnov (<em>KS</em>) qui vérifie s’il y a un écart par rapport à la distribution théorique, un test de dispersion qui vérifie s’il y a une sous-dispersion ou une surdispersion et un test de valeurs aberrantes (<em>outlier</em>) basé sur le nombre de résidus qui sont plus extrêmes que toutes les simulations. Ici, nous obtenons un résultat significatif pour les valeurs aberrantes, bien que le message indique que ce résultat pourrait avoir un taux d’erreur de type I plus grand que prévu dans ce cas.</p>
@@ -3638,7 +3983,11 @@ phc    -0.715 -0.025</code></pre>
 <pre><code>DHARMa:testOutliers with type = binomial may have inflated Type I error rates for integer-valued distributions. To get a more exact result, it is recommended to re-run testOutliers with type = 'bootstrap'. See ?testOutliers for details</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-161-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-161-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Le graphique de droite montre les points individuels, ainsi qu’une régression quantile pour le 1er quartile, la médiane et le 3e quartile. En théorie, ces trois courbes devraient être des lignes droites horizontales (pas de tendance des résidus par rapport aux prévisions). La courbe pour le 3e quartile (en rouge) est significativement différente d’une ligne horizontale, ce qui pourrait indiquer un effet systématique manquant dans le modèle.</p>
@@ -3767,21 +4116,33 @@ phc         -0.4984835  0.2604083 -1.9142382 5.558973e-02</code></pre>
 <pre><code>DHARMa:testOutliers with type = binomial may have inflated Type I error rates for integer-valued distributions. To get a more exact result, it is recommended to re-run testOutliers with type = 'bootstrap'. See ?testOutliers for details</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-166-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-166-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb279"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb279-1"><a href="#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">recalculateResiduals</span>(res_spamm, <span class="at">group =</span> gambia<span class="sc">$</span>id_village))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>DHARMa:testOutliers with type = binomial may have inflated Type I error rates for integer-valued distributions. To get a more exact result, it is recommended to re-run testOutliers with type = 'bootstrap'. See ?testOutliers for details</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-166-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-166-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Enfin, bien que nous allons montrer comment calculer et visualiser des prédictions spatiales ci-dessous, nous pouvons produire une carte rapide des effets spatiaux estimés dans un modèle <em>spaMM</em> avec la fonction <code>filled.mapMM</code>.</p>
 <div class="cell" data-hash="index_cache/html/unnamed-chunk-167_e868e1e85e43353fb2484a914c5ac95b">
 <div class="sourceCode cell-code" id="cb281"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb281-1"><a href="#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filled.mapMM</span>(mod_spamm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-167-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-167-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -3800,7 +4161,11 @@ phc         -0.4984835  0.2604083 -1.9142382 5.558973e-02</code></pre>
 <div class="sourceCode cell-code" id="cb283"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb283-1"><a href="#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gratia)</span>
 <span id="cb283-2"><a href="#cb283-2" aria-hidden="true" tabindex="-1"></a><span class="fu">draw</span>(mod_gam)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-169-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-169-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Notez que le graphique de la spline <code>s(x, y)</code> (en haut à droite) ne s’étend pas trop loin des emplacements des données (les autres zones sont vides). Dans ce graphique, on peut également voir que les effets aléatoires des villages suivent la distribution gaussienne attendue (en haut à gauche).</p>
@@ -3816,7 +4181,11 @@ phc         -0.4984835  0.2604083 -1.9142382 5.558973e-02</code></pre>
 <span id="cb284-8"><a href="#cb284-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb284-9"><a href="#cb284-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-170-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-170-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Pour faire des prédictions à partir du modèle GAMM à ces endroits, le code ci-dessous effectue les étapes suivantes:</p>
@@ -3868,7 +4237,11 @@ phc         -0.4984835  0.2604083 -1.9142382 5.558973e-02</code></pre>
 <span id="cb288-6"><a href="#cb288-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_c</span>() <span class="sc">+</span></span>
 <span id="cb288-7"><a href="#cb288-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-174-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-174-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Bien que les deux modèles s’accordent à dire que la prévalence est plus élevée près du groupe de villages de l’est, le GAMM estime également une prévalence plus élevée en quelques points (bord ouest et autour du centre) où il n’y a pas de données. Il s’agit d’un artefact de la forme de la spline autour des points de données, puisqu’une spline est censée correspondre à une tendance globale, bien que non linéaire. En revanche, le modèle géostatistique représente l’effet spatial sous forme de corrélations locales et revient à la prévalence moyenne globale lorsqu’il est éloigné de tout point de données, ce qui est une supposition plus sûre. C’est l’une des raisons pour lesquelles il est préférable de choisir un modèle géostatistique / processus gaussien dans ce cas.</p>
@@ -3888,7 +4261,11 @@ phc         -0.4984835  0.2604083 -1.9142382 5.558973e-02</code></pre>
 <span id="cb289-3"><a href="#cb289-3" aria-hidden="true" tabindex="-1"></a>rls_covid <span class="ot">&lt;-</span> rls_covid[<span class="sc">!</span><span class="fu">is.na</span>(rls_covid<span class="sc">$</span>dens_pop), ]</span>
 <span id="cb289-4"><a href="#cb289-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rls_covid[<span class="st">"taux_1k"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-175-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-175-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Auparavant, nous avions modélisé le logarithme de ce taux comme une fonction linéaire du logarithme de la densité de population, la variance résiduelle étant corrélée entre les unités voisines via une structure CAR (autorégression conditionnelle), comme le montre le code ci-dessous.</p>
@@ -3986,16 +4363,16 @@ logL       (p_v(h)): -709.3234</code></pre>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{marchand2021,
-  author = {Philippe Marchand},
+</div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{marchand2021,
+  author = {Marchand, Philippe},
   title = {Spatial {Statistics} in {Ecology}},
   date = {2021-01-12},
-  url = {https://bios2.github.io/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand},
+  url = {https://bios2.github.io/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-marchand2021" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
-Philippe Marchand. 2021. <span>“Spatial Statistics in Ecology.”</span>
-BIOS<sup>2</sup> Education Resources. January 12, 2021. <a href="https://bios2.github.io/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand">https://bios2.github.io/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand</a>.
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-marchand2021" class="csl-entry quarto-appendix-citeas" role="listitem">
+Marchand, Philippe. 2021. <span>“Spatial Statistics in Ecology.”</span>
+BIOS<sup>2</sup> Education Resources. January 12, 2021. <a href="https://bios2.github.io/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/">https://bios2.github.io/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -4024,12 +4401,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -4061,11 +4441,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/bios2\.github\.io");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -4075,8 +4494,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -4088,9 +4516,245 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -4131,6 +4795,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

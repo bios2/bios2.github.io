@@ -1,0 +1,15 @@
+{
+  "hash": "da9916912209169b674dc97d2a314ba3",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Get data from Atlas by Biodiversité Québec\n\nBelow you will find the documentation to access the public data in Atlas by Biodiversité Québec. This includes information on how to access the data, the data structure, and how to use the data in your research.\n\nTo open the page in a separate window, click [here](https://biodiversite-quebec.ca/en/documentation/acces-atlas).\n\n\n\n\n\n\n```{=html}\n<iframe width=\"1080\" height=\"500\" src=\"https://biodiversite-quebec.ca/en/documentation/acces-atlas\" title=\"Accessing public data in Atlas\"></iframe>\n```\n\n\n\n\n\n\n## Retrieving range maps for Quebec species\n\nUse the code below to get the list of species in Quebec available in the database:\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(sf)\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nquery <-paste0(\"SELECT NOM_SCIENT FROM range\")\nspecies <- st_read('/vsicurl/https://object-arbutus.cloud.computecanada.ca/bq-io/io/qc_range_maps/qc_range_maps2.gpkg', query=query)\n```\n:::\n\n\n\n\n\nThe use this function to return a sf object with the range map of a specific species:\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nquery <-paste0(\"SELECT * FROM range WHERE NOM_SCIENT='Alces americanus'\")\nrm <- st_read('/vsicurl/https://object-arbutus.cloud.computecanada.ca/bq-io/io/qc_range_maps/qc_range_maps2.gpkg', query=query)\n```\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

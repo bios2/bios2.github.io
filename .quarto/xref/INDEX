@@ -79,5 +79,11 @@
   },
   "summer-schools/v2019/pres/index.Rmd": {
     "index.html": "d97dd286"
+  },
+  "summer-schools/v2024/BiodiversityModelling2024.Rmd": {
+    "BiodiversityModelling2024.html": "6a1ff493"
+  },
+  "summer-schools/v2024/tutorials/atlas.qmd": {
+    "atlas.html": "9c37344b"
   }
 }

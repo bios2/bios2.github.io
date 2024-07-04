@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.253">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,7 +12,7 @@
 <meta name="dcterms.date" content="2022-05-19">
 <meta name="description" content="This workshop will give an overview of the theory and practice of using metabarcoding approaches to study the diversity of microbial communities. The workshop will give participants an understanding of 1) the current methods for microbiome diversity quantification using metabarcoding/amplicon sequencing approaches and 2) the normalization and diversity analysis approaches that can be used to quantify the diversity of microbial communities.">
 
-<title>BIOS² Education resources - Introduction to Microbiome Analysis</title>
+<title>Introduction to Microbiome Analysis – BIOS² Education resources</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,11 +22,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -37,7 +38,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -51,43 +52,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -115,7 +86,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -124,8 +100,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script>
@@ -158,7 +136,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   })
   </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -166,10 +172,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../Bios2_reverse.png" alt="" class="navbar-logo">
     </a>
@@ -177,20 +183,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">BIOS² Education resources</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-intensive-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-intensive-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Intensive courses</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-intensive-courses">    
+        <li>
+    <a class="dropdown-item" href="../../summer-schools/v2024/BiodiversityModelling2024.html">
+ <span class="dropdown-text">Biodiversity Modelling Summer School 2024</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="../../summer-schools/v2022/BiodiversityModelling2022.html">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2022</span></a>
@@ -203,29 +214,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <a class="dropdown-item" href="../../summer-schools/v2019/BiodiversityModelling2019.html">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2019</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://poisotlab.io/ddes/">
- <span class="dropdown-text">Data-driven ecological synthesis</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="https://bios2.usherbrooke.ca/">
- <span class="menu-text">About BIOS²</span></a>
+    <a class="nav-link" href="https://bios2.usherbrooke.ca/"> 
+<span class="menu-text">About BIOS²</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/bios2/bios2.github.io"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/bios2/bios2.github.io"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/_bios2"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/_bios2"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -248,33 +256,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     
   <div class="quarto-title-meta-author">
     <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-heading"></div>
+    <div class="quarto-title-meta-heading">Affiliation</div>
     
       <div class="quarto-title-meta-contents">
-      Steven Kembel 
+      <p class="author">Steven Kembel </p>
     </div>
-      <div class="quarto-title-meta-contents">
+    <div class="quarto-title-meta-contents">
           <p class="affiliation">
               Université du Québec à Montréal
             </p>
         </div>
-        <div class="quarto-title-meta-contents">
-      Zihui Wang 
-    </div>
       <div class="quarto-title-meta-contents">
+      <p class="author">Zihui Wang </p>
+    </div>
+    <div class="quarto-title-meta-contents">
           <p class="affiliation">
               Université du Québec à Montréal
             </p>
         </div>
-        <div class="quarto-title-meta-contents">
-      Salix Dubois 
-    </div>
       <div class="quarto-title-meta-contents">
+      <p class="author">Salix Dubois </p>
+    </div>
+    <div class="quarto-title-meta-contents">
           <p class="affiliation">
               Université du Québec à Montréal
             </p>
         </div>
-      </div>
+    </div>
 
   <div class="quarto-title-meta">
 
@@ -298,15 +306,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#workshop-instructors" id="toc-workshop-instructors" class="nav-link active" data-scroll-target="#workshop-instructors"><span class="toc-section-number">1</span>  Workshop instructors</a></li>
-  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="toc-section-number">2</span>  Overview</a></li>
-  <li><a href="#workshop-materials" id="toc-workshop-materials" class="nav-link" data-scroll-target="#workshop-materials"><span class="toc-section-number">3</span>  Workshop materials</a>
+  <li><a href="#workshop-instructors" id="toc-workshop-instructors" class="nav-link active" data-scroll-target="#workshop-instructors"><span class="header-section-number">1</span> Workshop instructors</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview"><span class="header-section-number">2</span> Overview</a></li>
+  <li><a href="#workshop-materials" id="toc-workshop-materials" class="nav-link" data-scroll-target="#workshop-materials"><span class="header-section-number">3</span> Workshop materials</a>
   <ul class="collapse">
   <li><a href="#day-1---microbiome-quantification-using-amplicon-sequencing-approaches" id="toc-day-1---microbiome-quantification-using-amplicon-sequencing-approaches" class="nav-link" data-scroll-target="#day-1---microbiome-quantification-using-amplicon-sequencing-approaches">Day 1 - Microbiome quantification using amplicon sequencing approaches</a></li>
   <li><a href="#day-2---data-normalization-and-ecological-analysis-of-microbiome-data" id="toc-day-2---data-normalization-and-ecological-analysis-of-microbiome-data" class="nav-link" data-scroll-target="#day-2---data-normalization-and-ecological-analysis-of-microbiome-data">Day 2 - Data normalization and ecological analysis of microbiome data</a></li>
   </ul></li>
-  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements"><span class="toc-section-number">4</span>  Requirements</a></li>
-  <li><a href="#microbiome-quantification-using-amplicon-sequencing-approaches" id="toc-microbiome-quantification-using-amplicon-sequencing-approaches" class="nav-link" data-scroll-target="#microbiome-quantification-using-amplicon-sequencing-approaches"><span class="toc-section-number">5</span>  Microbiome quantification using amplicon sequencing approaches</a>
+  <li><a href="#requirements" id="toc-requirements" class="nav-link" data-scroll-target="#requirements"><span class="header-section-number">4</span> Requirements</a></li>
+  <li><a href="#microbiome-quantification-using-amplicon-sequencing-approaches" id="toc-microbiome-quantification-using-amplicon-sequencing-approaches" class="nav-link" data-scroll-target="#microbiome-quantification-using-amplicon-sequencing-approaches"><span class="header-section-number">5</span> Microbiome quantification using amplicon sequencing approaches</a>
   <ul class="collapse">
   <li><a href="#about-the-data-set" id="toc-about-the-data-set" class="nav-link" data-scroll-target="#about-the-data-set">About the data set</a>
   <ul class="collapse">
@@ -329,7 +337,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#final-steps---clean-up-and-save-data-objects-and-workspace" id="toc-final-steps---clean-up-and-save-data-objects-and-workspace" class="nav-link" data-scroll-target="#final-steps---clean-up-and-save-data-objects-and-workspace">Final steps - clean up and save data objects and workspace</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#data-normalization-and-ecological-analysis-of-microbiome-data" id="toc-data-normalization-and-ecological-analysis-of-microbiome-data" class="nav-link" data-scroll-target="#data-normalization-and-ecological-analysis-of-microbiome-data"><span class="toc-section-number">6</span>  Data normalization and ecological analysis of microbiome data</a>
+  <li><a href="#data-normalization-and-ecological-analysis-of-microbiome-data" id="toc-data-normalization-and-ecological-analysis-of-microbiome-data" class="nav-link" data-scroll-target="#data-normalization-and-ecological-analysis-of-microbiome-data"><span class="header-section-number">6</span> Data normalization and ecological analysis of microbiome data</a>
   <ul class="collapse">
   <li><a href="#about-the-data-set-1" id="toc-about-the-data-set-1" class="nav-link" data-scroll-target="#about-the-data-set-1">About the data set</a></li>
   <li><a href="#install-and-load-required-packages-and-data" id="toc-install-and-load-required-packages-and-data" class="nav-link" data-scroll-target="#install-and-load-required-packages-and-data">Install and load required packages and data</a>
@@ -364,6 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
+
 
 
 
@@ -618,7 +627,11 @@ of ggplot2 3.3.4.
 <pre><code>Warning: Removed 937 rows containing missing values (`geom_tile()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can see that the quality is quite good, but around 200-220 nucleotides it begins to decrease. It’s not a sharp drop (a “crash”) but the median quality starts to decline around 200 nucleotides and dips below a median quality of around 20 by around 230-240 nucleotides.</p>
@@ -630,7 +643,11 @@ of ggplot2 3.3.4.
 <pre><code>Warning: Removed 188 rows containing missing values (`geom_tile()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>These are similar to the forward reads, but the quality stays high for longer. This is common (the R1 read tends to be of high quality than the R2). Here, the quality stays quite high almost all the way to the end of the read, although the median quality does begin to decline starting around 230-240 nucleotides.</p>
@@ -1207,7 +1224,11 @@ QLbactNeg20  S.M.C1.3X2    S.M.C2.3  S.M.C2.3X2  S.M.S1.1X1     SF.C1.3
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># visualize log10 number of reads per sample</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log10</span>(<span class="fu">rowSums</span>(comm)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can see that most samples have at least 4000-10000 sequences/sample. But there are some samples with fewer reads. This includes both the negative control samples as well as some of the ‘real’ samples. We will need to remove samples with too few reads - we’ll return to this shortly.</p>
@@ -1216,7 +1237,11 @@ QLbactNeg20  S.M.C1.3X2    S.M.C2.3  S.M.C2.3X2  S.M.S1.1X1     SF.C1.3
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># log10 of number of reads per ASV</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log10</span>(<span class="fu">colSums</span>(comm)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can see that ASV abundances follow a roughly lognormal distribution, meaning that there are a few highly abundant ASVs, but most ASVs are rare. Most ASVs are represented by fewer than 100 sequences (10^2).</p>
@@ -1231,14 +1256,22 @@ QLbactNeg20  S.M.C1.3X2    S.M.C2.3  S.M.C2.3X2  S.M.S1.1X1     SF.C1.3
 <div class="cell">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(comm, <span class="at">step=</span><span class="dv">200</span>, <span class="at">label=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>For these rarefaction curves, the key thing to look for is where ASV richness (number of ASVs per sample) reaches a plateau relative to the number of reads per sample. It does look like the samples we can see have reached a plateau of ASV richness. But it’s hard to see the curve for many of the samples because of the x-axis limits - a few samples with a lot of sequences make it hard to see the less diverse samples. Let’s zoom in to look just at the range from 0 to 5000 sequences/sample.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(comm, <span class="at">step=</span><span class="dv">200</span>, <span class="at">label=</span><span class="cn">TRUE</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">5000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Now we can see that the vast majority of samples reach a plateau in their ASV richness by around 3000-5000 sequences/sample. There are a few samples with very low numbers of both sequences and ASVs. We will now look at the composition of the communities in these different samples.</p>
@@ -1253,7 +1286,11 @@ QLbactNeg20  S.M.C1.3X2    S.M.C2.3  S.M.C2.3X2  S.M.S1.1X1     SF.C1.3
 <span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ordiplot</span>(comm.pca, <span class="at">display=</span><span class="st">"sites"</span>, <span class="at">type=</span><span class="st">"text"</span>,<span class="at">cex=</span><span class="fl">0.5</span>)</span>
 <span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ordiellipse</span>(comm.pca, metadata<span class="sc">$</span>StandType, <span class="at">label=</span><span class="cn">TRUE</span>,<span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>There are two things to note in this ordination figure. First, we can see that along the first axis there is a separation between the negative control samples and a few other samples that cluster with the negative controls, versus all the other samples. Second, we can see that the composition of the communities seems to differ among stand type/biome along the second axis, varying from boreal to mixed to temperate forests. We’ll return to this observation later, but for now the important thing is that we can see that there are some samples that are more similar to the negative control samples than they are to the other ‘real’ samples. Let’s visualize the number of sequences per sample (library size) mapped onto these ordination axes.</p>
@@ -1262,7 +1299,11 @@ QLbactNeg20  S.M.C1.3X2    S.M.C2.3  S.M.C2.3X2  S.M.S1.1X1     SF.C1.3
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ordisurf</span>(comm.pca, <span class="fu">rowSums</span>(comm), <span class="at">bubble=</span><span class="cn">TRUE</span>, <span class="at">cex=</span><span class="dv">2</span>,</span>
 <span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">main=</span><span class="st">"Library size (sequences/sample)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can see that the common characteristic of the samples that cluster on the right side of the ordination plot, next to the negative control samples, is that these samples contain very few sequences.</p>
@@ -1363,12 +1404,20 @@ ASV_1002 "aureus/capitis/caprae/epidermidis/haemolyticus/saccharolyticus/saproph
 <span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="co"># number of sequences per sample</span></span>
 <span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">rowSums</span>(comm.sub))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># log10 number of sequences per ASV</span></span>
 <span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log10</span>(<span class="fu">colSums</span>(comm.sub)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-40-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-40-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <section id="pca-on-subset-data" class="level4">
@@ -1380,7 +1429,11 @@ ASV_1002 "aureus/capitis/caprae/epidermidis/haemolyticus/saccharolyticus/saproph
 <span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ordiplot</span>(comm.sub.pca, <span class="at">display=</span><span class="st">"sites"</span>, <span class="at">type=</span><span class="st">"text"</span>,<span class="at">cex=</span><span class="fl">0.5</span>)</span>
 <span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ordiellipse</span>(comm.sub.pca, metadata.sub<span class="sc">$</span>StandType, <span class="at">label=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This looks much better, there are no longer negative controls or ‘outlier’ samples that are highly distinct compositionally from the other sampes. We can still clearly see the gradient in composition from boreal-mixed-temperate stand types, which is now falling along the first two axes of the ordination. As mentioned previously, we now need to normalize the data to account for the remaining variation in sequence depth per sample.</p>
@@ -1406,7 +1459,11 @@ ASV_1002 "aureus/capitis/caprae/epidermidis/haemolyticus/saccharolyticus/saproph
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rarefaction curve for subset of samples</span></span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rarecurve</span>(comm.sub, <span class="at">step=</span><span class="dv">200</span>, <span class="at">label=</span><span class="cn">FALSE</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">8000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-42-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can see that nearly all samples have reached a plateau of ASV richness by around 3000-4000 sequences/sample. The sample with the smallest number of sequences remaining contains 4966 sequences. We will randomly rarefy our data to this number of sequences. This way, we can feel confident that our samples contain enough sequences to adequately quantify the diversity of ASVs present in the sample even after rarefaction.</p>
@@ -1428,7 +1485,11 @@ ASV_1002 "aureus/capitis/caprae/epidermidis/haemolyticus/saccharolyticus/saproph
 <span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>richness_rarfy <span class="ot">&lt;-</span> <span class="fu">rowSums</span>((comm_rarfy<span class="sc">&gt;</span><span class="dv">0</span>)<span class="sc">*</span><span class="dv">1</span>)</span>
 <span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(richness_rarfy<span class="sc">~</span>richness_raw,<span class="at">xlab=</span><span class="st">'number of ASVs in raw data'</span>,<span class="at">ylab=</span><span class="st">'number of ASVs in rarefied data'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-44-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This supports the idea that rarefaction is not expected to have a major influence on diversity, since we saw in the rarefaction curves that richness reaches a plateau below the threshold number of sequences that we used for rarefaction. However, now that we have normalized the number of reads per sample, any differences in diversity among samples are not due to potential differences in library size. We are ready to begin our diversity analyses. We will use the rarefied community data set for these analyses.</p>
@@ -1470,11 +1531,15 @@ ASV_1002 "aureus/capitis/caprae/epidermidis/haemolyticus/saccharolyticus/saproph
 <span id="cb94-17"><a href="#cb94-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">width =</span> .<span class="dv">7</span>, <span class="at">position =</span> <span class="st">'fill'</span>) <span class="sc">+</span></span>
 <span id="cb94-18"><a href="#cb94-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">y =</span> <span class="st">'Relative abundance (%)'</span>) <span class="sc">+</span></span>
 <span id="cb94-19"><a href="#cb94-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb94-20"><a href="#cb94-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">direction =</span> <span class="sc">-</span>1L) <span class="sc">+</span></span>
+<span id="cb94-20"><a href="#cb94-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>L) <span class="sc">+</span></span>
 <span id="cb94-21"><a href="#cb94-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
 <span id="cb94-22"><a href="#cb94-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-45-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1491,10 +1556,14 @@ ASV_1002 "aureus/capitis/caprae/epidermidis/haemolyticus/saccharolyticus/saproph
 <span id="cb95-7"><a href="#cb95-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">width =</span> .<span class="dv">7</span>, <span class="at">position =</span> <span class="st">'fill'</span>) <span class="sc">+</span></span>
 <span id="cb95-8"><a href="#cb95-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">y =</span> <span class="st">'Relative abundance (%)'</span>) <span class="sc">+</span></span>
 <span id="cb95-9"><a href="#cb95-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb95-10"><a href="#cb95-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">direction =</span> <span class="sc">-</span>1L) <span class="sc">+</span></span>
+<span id="cb95-10"><a href="#cb95-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>(<span class="at">direction =</span> <span class="sc">-</span><span class="dv">1</span>L) <span class="sc">+</span></span>
 <span id="cb95-11"><a href="#cb95-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-46-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1510,11 +1579,19 @@ ASV_1002 "aureus/capitis/caprae/epidermidis/haemolyticus/saccharolyticus/saproph
 <span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>Shannon <span class="ot">&lt;-</span> <span class="fu">diversity</span>(comm_rarfy)</span>
 <span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(richness_rarfy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Shannon)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-47-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-47-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1534,7 +1611,11 @@ ASV_1002 "aureus/capitis/caprae/epidermidis/haemolyticus/saccharolyticus/saproph
 <pre><code>[1] FALSE</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot Shannon index as a function of stand type</span></span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggboxplot</span>(div_standtype, <span class="at">x =</span> <span class="st">"standtype"</span>, <span class="at">y =</span> <span class="st">"Shannon"</span>,<span class="at">hide.ns=</span>F,</span>
@@ -1544,7 +1625,11 @@ ASV_1002 "aureus/capitis/caprae/epidermidis/haemolyticus/saccharolyticus/saproph
 <pre><code>[1] FALSE</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-48-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-48-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>These figures indicate that ASV richness does not differ significantly among pairs of stand types. However, the Shannon index does differ somewhat between temperate and boreal stands, where the Shannon index tends to be lower in boreal stands than in temperate stands. These analyses are limited somewhat by the sample size that remains after removing low quality samples; in the original article (De Bellis et al 2022) we compared more sites which increased sample size enough that we found a significant (P&lt;0.05) difference in the Shannon index between temperate and boreal stand types.</p>
@@ -1558,7 +1643,11 @@ ASV_1002 "aureus/capitis/caprae/epidermidis/haemolyticus/saccharolyticus/saproph
 <span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add best fit line</span></span>
 <span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">glm</span>(richness_rarfy<span class="sc">~</span>metadata.sub<span class="sc">$</span>TransplantedSiteLat), <span class="at">family=</span><span class="st">"poisson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generalized linear model of richness vs. latitude</span></span>
 <span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">glm</span>(richness_rarfy<span class="sc">~</span>metadata.sub<span class="sc">$</span>TransplantedSiteLat, <span class="at">family=</span><span class="st">"poisson"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1596,7 +1685,11 @@ Number of Fisher Scoring iterations: 4</code></pre>
 <span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add best fit line</span></span>
 <span id="cb105-4"><a href="#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(Shannon<span class="sc">~</span>metadata.sub<span class="sc">$</span>TransplantedSiteLat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># linear model of Shannon index vs. latitude</span></span>
 <span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(Shannon<span class="sc">~</span>metadata.sub<span class="sc">$</span>TransplantedSiteLat))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1665,7 +1758,11 @@ Cumulative Proportion  0.95009 0.96491 0.97785 0.98928 1.00000 1.000e+00</code><
 <span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Add ellipses around samples from different stand types</span></span>
 <span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ordiellipse</span>(comm_hel_PCA, metadata.sub<span class="sc">$</span>StandType, <span class="at">label=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-51-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The PCA ordination diagram indicates the overall compositional similarity of samples. Samples that are close together in the ordination space contain similar ASVs with similar abundances. We can see that the gradient in community composition among different stand types is visible along the first two axes. Samples from each stand type tend to contain compositionally similar leaf bacterial communities.</p>
@@ -1686,7 +1783,11 @@ Cumulative Proportion  0.95009 0.96491 0.97785 0.98928 1.00000 1.000e+00</code><
 <span id="cb111-7"><a href="#cb111-7" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(ef<span class="sc">$</span>vectors<span class="sc">$</span>arrows)<span class="ot">=</span><span class="st">'Latitude'</span></span>
 <span id="cb111-8"><a href="#cb111-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ef)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Here we can see that the NMDS ordination based on Bray-Curtis distances among samples looks quite similar to the PCA ordination, with community composition differing among different stand types. We have also added an arrow indicating the correlation between latitude and the ordination axes, which also supports the idea that communities vary as we move from boreal stands in the north to temperate stands in the south.</p>
@@ -1827,7 +1928,11 @@ ASV_44  20.59886       -5.09305  1.001330  -5.08629 3.65139e-07 2.27603e-05</cod
 <span id="cb124-6"><a href="#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(annotation_col)<span class="ot">=</span><span class="fu">rownames</span>(datatoshow)</span>
 <span id="cb124-7"><a href="#cb124-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(<span class="fu">t</span>(datatoshow),<span class="at">scale=</span> <span class="st">"row"</span>, <span class="at">annotation_col =</span> annotation_col,<span class="at">cluster_cols =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1873,7 +1978,11 @@ ASV_129  0.4651886 0.1182296  3.934619 8.332862e-05 6.732952e-02    FALSE</code>
 <span id="cb129-6"><a href="#cb129-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(annotation_col)<span class="ot">=</span><span class="fu">rownames</span>(datatoshow)</span>
 <span id="cb129-7"><a href="#cb129-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(<span class="fu">t</span>(datatoshow),<span class="at">scale=</span> <span class="st">"row"</span>, <span class="at">annotation_col =</span> annotation_col,<span class="at">cluster_cols =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -1894,7 +2003,11 @@ ASV_129  0.4651886 0.1182296  3.934619 8.332862e-05 6.732952e-02    FALSE</code>
 <span id="cb132-5"><a href="#cb132-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(annotation_col)<span class="ot">=</span><span class="fu">rownames</span>(datatoshow)</span>
 <span id="cb132-6"><a href="#cb132-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pheatmap</span>(<span class="fu">t</span>(datatoshow),<span class="at">scale=</span> <span class="st">"row"</span>, <span class="at">annotation_col =</span> annotation_col,<span class="at">cluster_cols =</span> F)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can also inspect the taxonomic annotations of these differentially abundant ASVs.</p>
@@ -1940,17 +2053,17 @@ ASV_101 "Beijerinckiaceae"  "Methylocella"                   NA              </c
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{kembel2022,
-  author = {Steven Kembel and Zihui Wang and Salix Dubois},
+</div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{kembel2022,
+  author = {Kembel, Steven and Wang, Zihui and Dubois, Salix},
   title = {Introduction to {Microbiome} {Analysis}},
   date = {2022-05-19},
-  url = {https://bios2.github.io/posts/2022-05-19-introduction-to-microbiome-analysis},
+  url = {https://bios2.github.io/posts/2022-05-19-introduction-to-microbiome-analysis/},
   langid = {en}
 }
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-kembel2022" class="csl-entry quarto-appendix-citeas" role="doc-biblioentry">
-Steven Kembel, Zihui Wang, and Salix Dubois. 2022. <span>“Introduction
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-kembel2022" class="csl-entry quarto-appendix-citeas" role="listitem">
+Kembel, Steven, Zihui Wang, and Salix Dubois. 2022. <span>“Introduction
 to Microbiome Analysis.”</span> BIOS<sup>2</sup> Education Resources.
-May 19, 2022. <a href="https://bios2.github.io/posts/2022-05-19-introduction-to-microbiome-analysis">https://bios2.github.io/posts/2022-05-19-introduction-to-microbiome-analysis</a>.
+May 19, 2022. <a href="https://bios2.github.io/posts/2022-05-19-introduction-to-microbiome-analysis/">https://bios2.github.io/posts/2022-05-19-introduction-to-microbiome-analysis/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1979,12 +2092,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -2016,11 +2132,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/bios2\.github\.io");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2030,8 +2185,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2043,9 +2207,245 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -2086,6 +2486,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

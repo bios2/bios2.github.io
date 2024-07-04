@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.253">
+<meta name="generator" content="quarto-1.5.53">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,7 +17,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -47,7 +47,12 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,8 +61,10 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script>
@@ -90,7 +97,35 @@ ul.task-list li input[type="checkbox"] {
   })
   </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -99,9 +134,9 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
     <img src="./Bios2_reverse.png" alt="" class="navbar-logo">
     </a>
@@ -109,20 +144,25 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">BIOS² Education resources</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-intensive-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-intensive-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Intensive courses</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-intensive-courses">    
+        <li>
+    <a class="dropdown-item" href="./summer-schools/v2024/BiodiversityModelling2024.html">
+ <span class="dropdown-text">Biodiversity Modelling Summer School 2024</span></a>
+  </li>  
         <li>
     <a class="dropdown-item" href="./summer-schools/v2022/BiodiversityModelling2022.html">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2022</span></a>
@@ -135,29 +175,26 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./summer-schools/v2019/BiodiversityModelling2019.html">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2019</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="https://poisotlab.io/ddes/">
- <span class="dropdown-text">Data-driven ecological synthesis</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="https://bios2.usherbrooke.ca/">
- <span class="menu-text">About BIOS²</span></a>
+    <a class="nav-link" href="https://bios2.usherbrooke.ca/"> 
+<span class="menu-text">About BIOS²</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/bios2/bios2.github.io"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/bios2/bios2.github.io"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/_bios2"><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/_bios2"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -178,7 +215,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -186,7 +223,9 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
+
 
 
 
@@ -212,19 +251,19 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Technical,EN" data-listing-date-sort="1652932800000" data-listing-file-modified-sort="1671219180394" data-listing-reading-time-sort="52.73">
+<div class="quarto-post image-right" data-index="0" data-categories="Technical,EN" data-listing-date-sort="1652943600000" data-listing-file-modified-sort="1714871533570" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="53" data-listing-word-count-sort="10546">
 <div class="thumbnail">
-<p><a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html"> <img src="./posts/2022-05-19-introduction-to-microbiome-analysis/image.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html" class="no-external"></a></p><a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2022-05-19-introduction-to-microbiome-analysis/image.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html">
 <h3 class="no-anchor listing-title">
-Introduction to Microbiome Analysis
+<a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html" class="no-external">Introduction to Microbiome Analysis</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Technical'); return false;">
 Technical
@@ -233,14 +272,12 @@ Technical
 EN
 </div>
 </div>
-<a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html">
 <div class="listing-description">
-<p>This workshop will give an overview of the theory and practice of using metabarcoding approaches to study the diversity of microbial communities. The workshop will give participants an understanding of 1) the current methods for microbiome diversity quantification using metabarcoding/amplicon sequencing approaches and 2) the normalization and diversity analysis approaches that can be used to quantify the diversity of microbial communities.</p>
+<a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html" class="no-external">This workshop will give an overview of the theory and practice of using metabarcoding approaches to study the diversity of microbial communities. The workshop will give participants an understanding of 1) the current methods for microbiome diversity quantification using metabarcoding/amplicon sequencing approaches and 2) the normalization and diversity analysis approaches that can be used to quantify the diversity of microbial communities. </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html">
+<a href="./posts/2022-05-19-introduction-to-microbiome-analysis/index.html" class="no-external">
 <div class="listing-date">
 May 19, 2022
 </div>
@@ -250,19 +287,19 @@ Steven Kembel, Zihui Wang, Salix Dubois
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Technical,EN" data-listing-date-sort="1635825600000" data-listing-file-modified-sort="1671219180393" data-listing-reading-time-sort="4.165">
+<div class="quarto-post image-right" data-index="1" data-categories="Technical,EN" data-listing-date-sort="1635836400000" data-listing-file-modified-sort="1714871533270" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="833">
 <div class="thumbnail">
-<p><a href="./posts/2021-11-02-introduction-to-gams/index.html"> <img src="./posts/2021-11-02-introduction-to-gams/image.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2021-11-02-introduction-to-gams/index.html" class="no-external"></a></p><a href="./posts/2021-11-02-introduction-to-gams/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2021-11-02-introduction-to-gams/image.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2021-11-02-introduction-to-gams/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2021-11-02-introduction-to-gams/index.html">
 <h3 class="no-anchor listing-title">
-Introduction to Generalized Additive Models (GAMs)
+<a href="./posts/2021-11-02-introduction-to-gams/index.html" class="no-external">Introduction to Generalized Additive Models (GAMs)</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2021-11-02-introduction-to-gams/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Technical'); return false;">
 Technical
@@ -271,14 +308,12 @@ Technical
 EN
 </div>
 </div>
-<a href="./posts/2021-11-02-introduction-to-gams/index.html">
 <div class="listing-description">
-<p>To address the increase in both quantity and complexity of available data, ecologists require flexible, robust statistical models, as well as software to perform such analyses. This workshop will focus on how a single tool, the R mgcv package, can be used to fit Generalized Additive Models (GAMs) to data from a wide range of sources.</p>
+<a href="./posts/2021-11-02-introduction-to-gams/index.html" class="no-external">To address the increase in both quantity and complexity of available data, ecologists require flexible, robust statistical models, as well as software to perform such analyses. This workshop will focus on how a single tool, the R mgcv package, can be used to fit Generalized Additive Models (GAMs) to data from a wide range of sources.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2021-11-02-introduction-to-gams/index.html">
+<a href="./posts/2021-11-02-introduction-to-gams/index.html" class="no-external">
 <div class="listing-date">
 Nov 2, 2021
 </div>
@@ -288,19 +323,19 @@ Eric Pedersen
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Technical,Fellow contributed,EN" data-listing-date-sort="1624334400000" data-listing-file-modified-sort="1671219180392" data-listing-reading-time-sort="34.775">
+<div class="quarto-post image-right" data-index="2" data-categories="Technical,Fellow contributed,EN" data-listing-date-sort="1624345200000" data-listing-file-modified-sort="1714871533200" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="35" data-listing-word-count-sort="6955">
 <div class="thumbnail">
-<p><a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html"> <img src="./posts/2021-06-22-introduction-to-shiny-apps/image.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html" class="no-external"></a></p><a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2021-06-22-introduction-to-shiny-apps/image.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html">
 <h3 class="no-anchor listing-title">
-Introduction to Shiny Apps
+<a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html" class="no-external">Introduction to Shiny Apps</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Technical'); return false;">
 Technical
@@ -312,14 +347,12 @@ Fellow contributed
 EN
 </div>
 </div>
-<a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html">
 <div class="listing-description">
-<p>Introduction to interactive app development with R Shiny.</p>
+<a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html" class="no-external">Introduction to interactive app development with R Shiny.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html">
+<a href="./posts/2021-06-22-introduction-to-shiny-apps/index.html" class="no-external">
 <div class="listing-date">
 Jun 22, 2021
 </div>
@@ -329,19 +362,19 @@ Katherine Hébert, Andrew MacDonald, Jake Lawlor, Vincent Bellavance
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Technical,EN" data-listing-date-sort="1621224000000" data-listing-file-modified-sort="1671219180393" data-listing-reading-time-sort="54.35">
+<div class="quarto-post image-right" data-index="3" data-categories="Technical,EN" data-listing-date-sort="1621234800000" data-listing-file-modified-sort="1714871533250" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="55" data-listing-word-count-sort="10870">
 <div class="thumbnail">
-<p><a href="./posts/2021-07-19-glm-community-ecology/index.html"> <img src="./posts/2021-07-19-glm-community-ecology/image.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2021-07-19-glm-community-ecology/index.html" class="no-external"></a></p><a href="./posts/2021-07-19-glm-community-ecology/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2021-07-19-glm-community-ecology/image.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2021-07-19-glm-community-ecology/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2021-07-19-glm-community-ecology/index.html">
 <h3 class="no-anchor listing-title">
-Generalized Linear Models for Community Ecology
+<a href="./posts/2021-07-19-glm-community-ecology/index.html" class="no-external">Generalized Linear Models for Community Ecology</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2021-07-19-glm-community-ecology/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Technical'); return false;">
 Technical
@@ -350,14 +383,12 @@ Technical
 EN
 </div>
 </div>
-<a href="./posts/2021-07-19-glm-community-ecology/index.html">
 <div class="listing-description">
-<p>In this workshop we will explore, discuss, and apply generalized linear models to combine information on species distributions, traits, phylogenies, environmental and landscape variation. We will also discuss inference under spatial and phylogenetic autocorrelation under fixed and random effects implementations. We will discuss technical elements and cover implementations using R.</p>
+<a href="./posts/2021-07-19-glm-community-ecology/index.html" class="no-external">In this workshop we will explore, discuss, and apply generalized linear models to combine information on species distributions, traits, phylogenies, environmental and landscape variation. We will also discuss inference under spatial and phylogenetic autocorrelation under fixed and random effects implementations. We will discuss technical elements and cover implementations using R.</a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2021-07-19-glm-community-ecology/index.html">
+<a href="./posts/2021-07-19-glm-community-ecology/index.html" class="no-external">
 <div class="listing-date">
 May 17, 2021
 </div>
@@ -367,19 +398,19 @@ Pedro Peres-Neto
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Technical,EN" data-listing-date-sort="1620100800000" data-listing-file-modified-sort="1671219180392" data-listing-reading-time-sort="4.785">
+<div class="quarto-post image-right" data-index="4" data-categories="Technical,EN" data-listing-date-sort="1620111600000" data-listing-file-modified-sort="1714871533140" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="957">
 <div class="thumbnail">
-<p><a href="./posts/2021-05-04-building-r-packages/index.html"> <img src="./posts/2021-05-04-building-r-packages/altumcode-PNbDkQ2DDgM-unsplash.jpeg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2021-05-04-building-r-packages/index.html" class="no-external"></a></p><a href="./posts/2021-05-04-building-r-packages/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2021-05-04-building-r-packages/altumcode-PNbDkQ2DDgM-unsplash.jpeg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2021-05-04-building-r-packages/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2021-05-04-building-r-packages/index.html">
 <h3 class="no-anchor listing-title">
-Building R packages
+<a href="./posts/2021-05-04-building-r-packages/index.html" class="no-external">Building R packages</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2021-05-04-building-r-packages/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Technical'); return false;">
 Technical
@@ -388,14 +419,12 @@ Technical
 EN
 </div>
 </div>
-<a href="./posts/2021-05-04-building-r-packages/index.html">
 <div class="listing-description">
-<p>This practical training will cover the basics of modern package development in R with a focus on the following three aspects: (1) how to turn your code into functions, (2) how to write tests and documentation, and (3) how to share your R package on GitHub..</p>
+<a href="./posts/2021-05-04-building-r-packages/index.html" class="no-external">This practical training will cover the basics of modern package development in R with a focus on the following three aspects: (1) how to turn your code into functions, (2) how to write tests and documentation, and (3) how to share your R package on GitHub.. </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2021-05-04-building-r-packages/index.html">
+<a href="./posts/2021-05-04-building-r-packages/index.html" class="no-external">
 <div class="listing-date">
 May 4, 2021
 </div>
@@ -405,19 +434,19 @@ Andrew MacDonald
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Technical,EN" data-listing-date-sort="1616644800000" data-listing-file-modified-sort="1671219180391" data-listing-reading-time-sort="14.685">
+<div class="quarto-post image-right" data-index="5" data-categories="Technical,EN" data-listing-date-sort="1616655600000" data-listing-file-modified-sort="1714871532990" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2937">
 <div class="thumbnail">
-<p><a href="./posts/2021-03-25-point-count-data-analysis/index.html"> <img src="./posts/2021-03-25-point-count-data-analysis/thumb.jpeg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2021-03-25-point-count-data-analysis/index.html" class="no-external"></a></p><a href="./posts/2021-03-25-point-count-data-analysis/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2021-03-25-point-count-data-analysis/thumb.jpeg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2021-03-25-point-count-data-analysis/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2021-03-25-point-count-data-analysis/index.html">
 <h3 class="no-anchor listing-title">
-Point-count Data Analysis
+<a href="./posts/2021-03-25-point-count-data-analysis/index.html" class="no-external">Point-count Data Analysis</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2021-03-25-point-count-data-analysis/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Technical'); return false;">
 Technical
@@ -426,14 +455,12 @@ Technical
 EN
 </div>
 </div>
-<a href="./posts/2021-03-25-point-count-data-analysis/index.html">
 <div class="listing-description">
-<p>Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Péter Sólymos to BIOS2 Fellows in March 2021.</p>
+<a href="./posts/2021-03-25-point-count-data-analysis/index.html" class="no-external">Analysis of point-count data in the presence of variable survey methodologies and detection error offered by Péter Sólymos to BIOS2 Fellows in March 2021. </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2021-03-25-point-count-data-analysis/index.html">
+<a href="./posts/2021-03-25-point-count-data-analysis/index.html" class="no-external">
 <div class="listing-date">
 Mar 25, 2021
 </div>
@@ -443,19 +470,19 @@ Péter Sólymos
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="Transversal competencies,FR,EN" data-listing-date-sort="1611291600000" data-listing-file-modified-sort="1671219180391" data-listing-reading-time-sort="1.595">
+<div class="quarto-post image-right" data-index="6" data-categories="Transversal competencies,FR,EN" data-listing-date-sort="1611302400000" data-listing-file-modified-sort="1714871532990" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="319">
 <div class="thumbnail">
-<p><a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html"> <img src="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/image.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html" class="no-external"></a></p><a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/image.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html">
 <h3 class="no-anchor listing-title">
-Introduction to EDI Concepts in a Scientific Context
+<a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html" class="no-external">Introduction to EDI Concepts in a Scientific Context</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Transversal competencies'); return false;">
 Transversal competencies
@@ -467,14 +494,12 @@ FR
 EN
 </div>
 </div>
-<a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html">
 <div class="listing-description">
-<p>A short introduction to EDI concepts in a scientific context.</p>
+<a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html" class="no-external">A short introduction to EDI concepts in a scientific context. </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html">
+<a href="./posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html" class="no-external">
 <div class="listing-date">
 Jan 22, 2021
 </div>
@@ -484,19 +509,19 @@ Agathe Riallan, Marie-José Naud
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="FR,EN,Technical" data-listing-date-sort="1610427600000" data-listing-file-modified-sort="1671219180390" data-listing-reading-time-sort="153.065">
+<div class="quarto-post image-right" data-index="7" data-categories="FR,EN,Technical" data-listing-date-sort="1610438400000" data-listing-file-modified-sort="1714871531790" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="154" data-listing-word-count-sort="30613">
 <div class="thumbnail">
-<p><a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html"> <img src="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/image.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html" class="no-external"></a></p><a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/image.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html">
 <h3 class="no-anchor listing-title">
-Spatial Statistics in Ecology
+<a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html" class="no-external">Spatial Statistics in Ecology</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('FR'); return false;">
 FR
@@ -508,14 +533,12 @@ EN
 Technical
 </div>
 </div>
-<a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html">
 <div class="listing-description">
-<p>Training session about statistical analysis of spatial data in ecology, hosted by Philippe Marchand (UQAT). | Session de formation sur l’analyse statistique des données spatiales en écologie, animée par Pr. Philippe Marchand (UQAT).</p>
+<a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html" class="no-external">Training session about statistical analysis of spatial data in ecology, hosted by Philippe Marchand (UQAT). | Session de formation sur l’analyse statistique des données spatiales en écologie, animée par Pr. Philippe Marchand (UQAT). </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html">
+<a href="./posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html" class="no-external">
 <div class="listing-date">
 Jan 12, 2021
 </div>
@@ -525,19 +548,19 @@ Philippe Marchand
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="Technical,Transversal competencies,EN" data-listing-date-sort="1607317200000" data-listing-file-modified-sort="1671219180389" data-listing-reading-time-sort="20.225">
+<div class="quarto-post image-right" data-index="8" data-categories="Technical,Transversal competencies,EN" data-listing-date-sort="1607328000000" data-listing-file-modified-sort="1714871531560" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="21" data-listing-word-count-sort="4045">
 <div class="thumbnail">
-<p><a href="./posts/2020-12-07-making-websites-with-hugo/index.html"> <img src="./posts/2020-12-07-making-websites-with-hugo/image.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2020-12-07-making-websites-with-hugo/index.html" class="no-external"></a></p><a href="./posts/2020-12-07-making-websites-with-hugo/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2020-12-07-making-websites-with-hugo/image.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2020-12-07-making-websites-with-hugo/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2020-12-07-making-websites-with-hugo/index.html">
 <h3 class="no-anchor listing-title">
-Making Websites with HUGO
+<a href="./posts/2020-12-07-making-websites-with-hugo/index.html" class="no-external">Making Websites with HUGO</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2020-12-07-making-websites-with-hugo/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Technical'); return false;">
 Technical
@@ -549,14 +572,12 @@ Transversal competencies
 EN
 </div>
 </div>
-<a href="./posts/2020-12-07-making-websites-with-hugo/index.html">
 <div class="listing-description">
-<p>This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming.</p>
+<a href="./posts/2020-12-07-making-websites-with-hugo/index.html" class="no-external">This workshop provides a general introduction to HUGO, a popular open source framework for building websites without requiring a knowledge of HTML/CSS or web programming. </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2020-12-07-making-websites-with-hugo/index.html">
+<a href="./posts/2020-12-07-making-websites-with-hugo/index.html" class="no-external">
 <div class="listing-date">
 Dec 7, 2020
 </div>
@@ -566,19 +587,19 @@ Dominique Gravel, Guillaume Larocque
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="Technical,Fellow contributed,EN" data-listing-date-sort="1600660800000" data-listing-file-modified-sort="1671219180388" data-listing-reading-time-sort="26.01">
+<div class="quarto-post image-right" data-index="9" data-categories="Technical,Fellow contributed,EN" data-listing-date-sort="1600671600000" data-listing-file-modified-sort="1714871531480" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="27" data-listing-word-count-sort="5202">
 <div class="thumbnail">
-<p><a href="./posts/2020-09-21-data-visualization/index.html"> <img src="./posts/2020-09-21-data-visualization/image.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2020-09-21-data-visualization/index.html" class="no-external"></a></p><a href="./posts/2020-09-21-data-visualization/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2020-09-21-data-visualization/image.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2020-09-21-data-visualization/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2020-09-21-data-visualization/index.html">
 <h3 class="no-anchor listing-title">
-Data Visualization
+<a href="./posts/2020-09-21-data-visualization/index.html" class="no-external">Data Visualization</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2020-09-21-data-visualization/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Technical'); return false;">
 Technical
@@ -590,14 +611,12 @@ Fellow contributed
 EN
 </div>
 </div>
-<a href="./posts/2020-09-21-data-visualization/index.html">
 <div class="listing-description">
-<p>General principles of visualization and graphic design, and techniques of tailored visualization. This training was developed and delivered by Alex Arkilanian and Katherine Hébert on September 21st and 22nd, 2020.</p>
+<a href="./posts/2020-09-21-data-visualization/index.html" class="no-external">General principles of visualization and graphic design, and techniques of tailored visualization. This training was developed and delivered by Alex Arkilanian and Katherine Hébert on September 21st and 22nd, 2020. </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2020-09-21-data-visualization/index.html">
+<a href="./posts/2020-09-21-data-visualization/index.html" class="no-external">
 <div class="listing-date">
 Sep 21, 2020
 </div>
@@ -607,19 +626,19 @@ Alex Arkilanian, Katherine Hébert
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="Career,Fellow contributed,EN" data-listing-date-sort="1592193600000" data-listing-file-modified-sort="1671219180387" data-listing-reading-time-sort="1.955">
+<div class="quarto-post image-right" data-index="10" data-categories="Career,Fellow contributed,EN" data-listing-date-sort="1592204400000" data-listing-file-modified-sort="1714871531240" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="391">
 <div class="thumbnail">
-<p><a href="./posts/2020-06-15-science-communication/index.html"> <img src="./posts/2020-06-15-science-communication/image.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2020-06-15-science-communication/index.html" class="no-external"></a></p><a href="./posts/2020-06-15-science-communication/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2020-06-15-science-communication/image.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2020-06-15-science-communication/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2020-06-15-science-communication/index.html">
 <h3 class="no-anchor listing-title">
-Science Communication
+<a href="./posts/2020-06-15-science-communication/index.html" class="no-external">Science Communication</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2020-06-15-science-communication/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Career'); return false;">
 Career
@@ -631,14 +650,12 @@ Fellow contributed
 EN
 </div>
 </div>
-<a href="./posts/2020-06-15-science-communication/index.html">
 <div class="listing-description">
-<p>Recordings, content and handouts from a 6-hour Science Communication workshop held over two days on 15 and 16 June 2020.</p>
+<a href="./posts/2020-06-15-science-communication/index.html" class="no-external">Recordings, content and handouts from a 6-hour Science Communication workshop held over two days on 15 and 16 June 2020. </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2020-06-15-science-communication/index.html">
+<a href="./posts/2020-06-15-science-communication/index.html" class="no-external">
 <div class="listing-date">
 Jun 15, 2020
 </div>
@@ -648,19 +665,19 @@ Gracielle Higino, Katherine Hébert
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="Transversal competencies,FR" data-listing-date-sort="1588046400000" data-listing-file-modified-sort="1671219180386" data-listing-reading-time-sort="2.37">
+<div class="quarto-post image-right" data-index="11" data-categories="Transversal competencies,FR" data-listing-date-sort="1588057200000" data-listing-file-modified-sort="1714871531170" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="474">
 <div class="thumbnail">
-<p><a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html"> <img src="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/image.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html" class="no-external"></a></p><a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/image.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html">
 <h3 class="no-anchor listing-title">
-Sensibilisation aux réalités autochtones et recherche collaborative
+<a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html" class="no-external">Sensibilisation aux réalités autochtones et recherche collaborative</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Transversal competencies'); return false;">
 Transversal competencies
@@ -669,14 +686,12 @@ Transversal competencies
 FR
 </div>
 </div>
-<a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html">
 <div class="listing-description">
-<p>Série de deux webinaires sur la sensibilisation aux réalités autochtones et la recherche en collaboration avec les Autochtones, offert du 28 au 30 avril 2020 par Catherine-Alexandra Gagnon, PhD.</p>
+<a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html" class="no-external">Série de deux webinaires sur la sensibilisation aux réalités autochtones et la recherche en collaboration avec les Autochtones, offert du 28 au 30 avril 2020 par Catherine-Alexandra Gagnon, PhD. </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html">
+<a href="./posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html" class="no-external">
 <div class="listing-date">
 Apr 28, 2020
 </div>
@@ -686,19 +701,19 @@ Catherine-Alexandra Gagnon
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="Technical,EN" data-listing-date-sort="1578978000000" data-listing-file-modified-sort="1670006287710" data-listing-reading-time-sort="5.305">
+<div class="quarto-post image-right" data-index="12" data-categories="Technical,EN" data-listing-date-sort="1578988800000" data-listing-file-modified-sort="1714871531160" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1061">
 <div class="thumbnail">
-<p><a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html"> <img src="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/StabilityPictures.jpg" class="thumnail-image"> </a></p>
+<p><a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html" class="no-external"></a></p><a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html" class="no-external">
+<p><img loading="lazy" src="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/StabilityPictures.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html" class="no-external"></a></p>
 </div>
 <div class="body">
-<a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html">
 <h3 class="no-anchor listing-title">
-Mathematical Modeling in Ecology and Evolution
+<a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html" class="no-external">Mathematical Modeling in Ecology and Evolution</a>
 </h3>
 <div class="listing-subtitle">
-
+<a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html" class="no-external"></a>
 </div>
-</a>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Technical'); return false;">
 Technical
@@ -707,14 +722,12 @@ Technical
 EN
 </div>
 </div>
-<a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html">
 <div class="listing-description">
-<p>This workshop will introduce participants to the logic behind modeling in biology, focusing on developing equations, finding equilibria, analyzing stability, and running simulations.Techniques will be illustrated with the software tools, Mathematica and Maxima. This workshop was held in two parts: January 14 and January 16, 2020.</p>
+<a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html" class="no-external">This workshop will introduce participants to the logic behind modeling in biology, focusing on developing equations, finding equilibria, analyzing stability, and running simulations.Techniques will be illustrated with the software tools, Mathematica and Maxima. This workshop was held in two parts: January 14 and January 16, 2020. </a>
 </div>
-</a>
 </div>
 <div class="metadata">
-<a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html">
+<a href="./posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html" class="no-external">
 <div class="listing-date">
 Jan 14, 2020
 </div>
@@ -756,12 +769,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
     }
-  });
-  clipboard.on('success', function(e) {
+    return false;
+  }
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -793,11 +809,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/bios2\.github\.io");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -807,8 +862,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -820,9 +884,245 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -863,6 +1163,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

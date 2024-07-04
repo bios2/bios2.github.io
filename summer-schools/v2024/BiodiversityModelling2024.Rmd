@@ -1,0 +1,31 @@
+---
+title: "Biodiversity Modelling 2024"
+description: "<br> The 2024 edition of the Biodiversity Modelling Summer School has as the theme “Indicators to monitor biodiversity changes”, and we'll discuss metrics to assess the health, diversity, and distribution of species, ecosystems, and genetic variability within an environment."
+date: "May, 2024"
+toc: true
+number-sections: true
+number-depth: 1
+---
+
+# Foreword
+
+**Welcome to the 2024 edition of our Summer School in Biodiversity Modelling!**
+
+The theme for this year is **“Indicators to monitor biodiversity changes”**, and we'll discuss metrics to assess the health, diversity, and distribution of species, ecosystems, and genetic variability within an environment. These indicators provide valuable insights into the status and trends of biodiversity over time, helping to inform conservation efforts, policy-making, and sustainable development practices. By tracking these indicators, scientists and policymakers can monitor changes in biodiversity, identify areas of concern, prioritize conservation actions, and evaluate the effectiveness of conservation strategies. That's why the program will navigate through a variety of topics, such as data pipelines, finances, communication and policy. We hope to immerse you in the complexity of this task which is the monitoring of biodiversity, and to reassure the need for interdisciplinary thinking.
+
+> If you want to go fast, go alone. If you want to go far, go together.
+
+Here you will find the shared materials to help you prepare, as well as tutorials that you can use during the course.
+
+Enjoy!
+
+*This course is presented by the [Université de Sherbrooke](https://www.usherbrooke.ca/), as part of the [BIOS^2^ training program](https://bios2.usherbrooke.ca/).*
+
+
+# Slides
+
+To access the slides for the presentations made during the Summer School, please click [here](slides/slides.Rmd).
+
+# Other resources
+
+For additional resources, such as tutorials, information and notes documents, please click [here](other_resources.Rmd).
