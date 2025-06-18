@@ -6,7 +6,7 @@ author:
     affiliation: Université de Sherbrooke
   - name: "Andrew MacDonald"
     affiliation: Université de Sherbrooke
-  - name: "Jake Lawlor"
+  - name: "Jake A. Lawlor"
     affiliation: McGill University
 date: "06-22-2021"
 image: image.jpg
