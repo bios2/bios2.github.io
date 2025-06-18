@@ -1,16 +1,10 @@
 [
   {
-    "listing": "/summer-schools/v2024/BiodiversityModelling2024.html",
-    "items": [
-      "/summer-schools/v2024/other_resources.html",
-      "/summer-schools/v2024/slides/slides.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
       "/posts/2022-05-19-introduction-to-microbiome-analysis/index.html",
       "/posts/2021-11-02-introduction-to-gams/index.html",
+      "/posts/2025-07-06-CSEE-intro-shiny/index.html",
       "/posts/2021-06-22-introduction-to-shiny-apps/index.html",
       "/posts/2021-07-19-glm-community-ecology/index.html",
       "/posts/2021-05-04-building-r-packages/index.html",
@@ -25,7 +19,110 @@
     ]
   },
   {
+    "listing": "/posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2021-06-22-introduction-to-shiny-apps/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2020-09-21-data-visualization/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2021-07-19-glm-community-ecology/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2025-07-06-CSEE-intro-shiny/index.html",
+    "items": []
+  },
+  {
+    "listing": "/summer-schools/v2019/BiodiversityModelling2019.html",
+    "items": []
+  },
+  {
+    "listing": "/summer-schools/v2024/other_resources.html",
+    "items": [
+      "/summer-schools/v2024/BiodiversityModelling2024.html",
+      "/summer-schools/v2024/slides/slides.html"
+    ]
+  },
+  {
+    "listing": "/summer-schools/v2022/BiodiversityModelling2022.html",
+    "items": []
+  },
+  {
+    "listing": "/summer-schools/v2024/BiodiversityModelling2024.html",
+    "items": [
+      "/summer-schools/v2024/other_resources.html",
+      "/summer-schools/v2024/slides/slides.html"
+    ]
+  },
+  {
     "listing": "/summer-schools/v2024/slides/slides.html",
+    "items": []
+  },
+  {
+    "listing": "/about.html",
+    "items": [
+      "/index.html",
+      "/summer-schools/v2019/BiodiversityModelling2019.html",
+      "/summer-schools/v2022/BiodiversityModelling2022.html",
+      "/summer-schools/v2024/BiodiversityModelling2024.html",
+      "/posts/2021-05-04-building-r-packages/index.html",
+      "/posts/2020-09-21-data-visualization/index.html",
+      "/posts/2021-07-19-glm-community-ecology/index.html",
+      "/posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html",
+      "/posts/2021-11-02-introduction-to-gams/index.html",
+      "/posts/2022-05-19-introduction-to-microbiome-analysis/index.html",
+      "/posts/2025-07-06-CSEE-intro-shiny/index.html",
+      "/posts/2021-06-22-introduction-to-shiny-apps/index.html",
+      "/posts/2020-12-07-making-websites-with-hugo/index.html",
+      "/posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html",
+      "/summer-schools/v2024/other_resources.html",
+      "/posts/2021-03-25-point-count-data-analysis/index.html",
+      "/posts/2020-06-15-science-communication/index.html",
+      "/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html",
+      "/summer-schools/v2024/slides/slides.html",
+      "/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html"
+    ]
+  },
+  {
+    "listing": "/posts/2021-05-04-building-r-packages/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2020-12-07-making-websites-with-hugo/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2020-06-15-science-communication/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2022-05-19-introduction-to-microbiome-analysis/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2021-03-25-point-count-data-analysis/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html",
+    "items": []
+  },
+  {
+    "listing": "/posts/2021-11-02-introduction-to-gams/index.html",
     "items": []
   }
 ]

@@ -2,10 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.53">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2024-05-13">
 
 <title>Slides – BIOS² Education resources</title>
 <style>
@@ -37,10 +38,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-ecb778d5ef56ea6a42975469c354c5e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -216,6 +217,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 13, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -228,66 +235,28 @@ window.Quarto = {
 <p>Below you will find the slides for the presentations made during the Summer School. Feel free to download them and use them for your own purposes.</p>
 <section id="day-1" class="level2">
 <h2 class="anchored" data-anchor-id="day-1">Day 1</h2>
-<section id="international-negotiations" class="level3">
-<h3 class="anchored" data-anchor-id="international-negotiations">International negotiations</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><embed src="Gouvernance.pdf" class="img-fluid"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="global-biodiversity-framework" class="level3">
-<h3 class="anchored" data-anchor-id="global-biodiversity-framework">Global Biodiversity Framework</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><embed src="GlobalBiodFramework.pdf" class="img-fluid"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
+<ul>
+<li><a href="Gouvernance.pdf">International negociations</a><br>
+</li>
+<li><a href="GlobalBiodFramework.pdf">Global Biodiversity Framework</a></li>
+</ul>
 </section>
 <section id="day-2" class="level2">
 <h2 class="anchored" data-anchor-id="day-2">Day 2</h2>
-<section id="lpi" class="level3">
-<h3 class="anchored" data-anchor-id="lpi">LPI</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><embed src="mardi_1_LPI.pdf" class="img-fluid"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="quebec-indicators" class="level3">
-<h3 class="anchored" data-anchor-id="quebec-indicators">Quebec indicators</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><embed src="mardi_2_quebecindicators.pdf" class="img-fluid"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
+<ul>
+<li><a href="mardi_1_LPI.pdf">LPI</a><br>
+</li>
+<li><a href="mardi_2_quebecindicators.pdf">Quebec indicators</a></li>
+</ul>
 </section>
 <section id="day-3" class="level2">
 <h2 class="anchored" data-anchor-id="day-3">Day 3</h2>
-<section id="accessing-biodiversity-data" class="level3">
-<h3 class="anchored" data-anchor-id="accessing-biodiversity-data"><a href="https://vincent-beauregard-ielab.github.io/Ecole_dete_2024/#1">Accessing Biodiversity Data</a></h3>
+<ul>
+<li><a href="https://vincent-beauregard-ielab.github.io/Ecole_dete_2024/#1">Accessing Biodiversity Data</a></li>
+</ul>
 
 
 
-</section>
 </section>
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
@@ -382,8 +351,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -494,7 +461,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

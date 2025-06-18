@@ -1,15 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://bios2.github.io/summer-schools/v2024/BiodiversityModelling2024.html</loc>
-    <lastmod>2024-07-04T02:39:10.740Z</lastmod>
+    <loc>https://bios2.github.io/index.html</loc>
+    <lastmod>2025-06-18T16:00:14.808Z</lastmod>
   </url>
   <url>
-    <loc>https://bios2.github.io/index.html</loc>
-    <lastmod>2024-07-04T02:39:07.920Z</lastmod>
+    <loc>https://bios2.github.io/posts/2020-01-14-mathematical-modeling-in-ecology-and-evolution/index.html</loc>
+    <lastmod>2025-06-18T16:00:14.822Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2021-06-22-introduction-to-shiny-apps/index.html</loc>
+    <lastmod>2025-06-18T16:00:15.921Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2020-04-28-sensibilisation-aux-ralits-autochtones-et-recherche-collaborative/index.html</loc>
+    <lastmod>2025-06-18T16:00:14.822Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2020-09-21-data-visualization/index.html</loc>
+    <lastmod>2025-06-18T16:00:14.987Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2021-01-22-introduction-aux-concepts-edi-en-contexte-scientifique/index.html</loc>
+    <lastmod>2025-06-18T16:00:15.791Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2021-07-19-glm-community-ecology/index.html</loc>
+    <lastmod>2025-06-18T16:00:15.930Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2025-07-06-CSEE-intro-shiny/index.html</loc>
+    <lastmod>2025-06-18T16:04:31.987Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/summer-schools/v2019/BiodiversityModelling2019.html</loc>
+    <lastmod>2025-06-18T16:00:16.238Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/summer-schools/v2024/other_resources.html</loc>
+    <lastmod>2025-06-18T16:00:16.440Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/summer-schools/v2022/BiodiversityModelling2022.html</loc>
+    <lastmod>2025-06-18T16:00:16.238Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/summer-schools/v2024/BiodiversityModelling2024.html</loc>
+    <lastmod>2025-06-18T16:00:16.440Z</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/summer-schools/v2024/slides/slides.html</loc>
-    <lastmod>2024-07-04T02:37:34.470Z</lastmod>
+    <lastmod>2025-06-18T16:00:16.657Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/about.html</loc>
+    <lastmod>2025-06-18T16:00:14.281Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2021-05-04-building-r-packages/index.html</loc>
+    <lastmod>2025-06-18T16:00:15.888Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2020-12-07-making-websites-with-hugo/index.html</loc>
+    <lastmod>2025-06-18T16:00:15.011Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2020-06-15-science-communication/index.html</loc>
+    <lastmod>2025-06-18T16:00:14.873Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2022-05-19-introduction-to-microbiome-analysis/index.html</loc>
+    <lastmod>2025-06-18T16:00:16.238Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2021-03-25-point-count-data-analysis/index.html</loc>
+    <lastmod>2025-06-18T16:00:15.791Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2021-01-12-4-day-training-in-spatial-statistics-with-philippe-marchand/index.html</loc>
+    <lastmod>2025-06-18T16:00:15.243Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/posts/2021-11-02-introduction-to-gams/index.html</loc>
+    <lastmod>2025-06-18T16:00:15.935Z</lastmod>
   </url>
 </urlset>

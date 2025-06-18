@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.53">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -37,10 +37,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ecb778d5ef56ea6a42975469c354c5e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -264,10 +264,10 @@ window.Quarto = {
   </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1714546800000" data-listing-file-modified-sort="1720060750740" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="217">
+<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1714536000000" data-listing-file-modified-sort="1750262416440" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="217">
 <div class="thumbnail">
 <p><a href="../../summer-schools/v2024/BiodiversityModelling2024.html" class="no-external"></a></p><a href="../../summer-schools/v2024/BiodiversityModelling2024.html" class="no-external">
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:summer-schools/v2024/BiodiversityModelling2024.html -->
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 </a><p><a href="../../summer-schools/v2024/BiodiversityModelling2024.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -289,10 +289,10 @@ May 1, 2024
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1720060654470" data-listing-reading-time-sort="1" data-listing-word-count-sort="45">
+<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1715572800000" data-listing-file-modified-sort="1750262416657" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="46">
 <div class="thumbnail">
 <p><a href="../../summer-schools/v2024/slides/slides.html" class="no-external"></a></p><a href="../../summer-schools/v2024/slides/slides.html" class="no-external">
-<!-- img(9CEB782EFEE6)[progressive=false, height=]:listing:summer-schools/v2024/slides/slides.html -->
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
 </a><p><a href="../../summer-schools/v2024/slides/slides.html" class="no-external"></a></p>
 </div>
 <div class="body">
@@ -303,11 +303,14 @@ May 1, 2024
 <a href="../../summer-schools/v2024/slides/slides.html" class="no-external"></a>
 </div>
 <div class="listing-description">
-<a href="../../summer-schools/v2024/slides/slides.html" class="no-external"><!-- desc(5A0113B34292)[max=175]:summer-schools/v2024/slides/slides.html --></a>
+<a href="../../summer-schools/v2024/slides/slides.html" class="no-external">Below you will find the slides for the presentations made during the Summer School. Feel free to download them and use them for your own purposes.</a>
 </div>
 </div>
 <div class="metadata">
-<p><a href="../../summer-schools/v2024/slides/slides.html" class="no-external"></a></p><a href="../../summer-schools/v2024/slides/slides.html" class="no-external">
+<a href="../../summer-schools/v2024/slides/slides.html" class="no-external">
+<div class="listing-date">
+May 13, 2024
+</div>
 </a>
 </div>
 </div>
@@ -398,8 +401,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -510,7 +511,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
