@@ -1,15 +1,13 @@
 ---
-title: "Introduction to Shiny Apps"
+title: "Introduction to Shiny Apps CSEE"
 description: "Introduction to interactive app development with R Shiny."
 author:
-  - name: "Katherine Hébert"
+  - name: "Nikki Moore"
     affiliation: Université de Sherbrooke
   - name: "Andrew MacDonald"
     affiliation: Université de Sherbrooke
   - name: "Jake Lawlor"
     affiliation: McGill University
-  - name: "Vincent Bellavance"
-    affiliation: Université de Sherbrooke
 date: "06-22-2021"
 image: image.jpg
 categories: [Technical, Fellow contributed, EN]
