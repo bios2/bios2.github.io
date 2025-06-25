@@ -28,7 +28,68 @@ There are many reasons to consider using Shiny for a project:
 -   Helping you explore a model, mathematics, simulations;
 -   Letting non R users use R.
 
-## Hello Shiny!
+# Lists, functions & plotting in R
+
+To ease into things, we will familiarize ourselves with the data that we will use to create a Shiny app together. At the same time, we will practice indexing **lists**, understanding **functions**, and **plotting**. By the end of this section, we will have made a plot that we will add interactivity to using Shiny.
+
+## The data
+*describe Lucas's dataset*
+
+*explain that it is stored in a list*
+
+*explain that each element is the matrix for a university where rows and columns are researchers, nodes are shared publications*
+
+*teach the different ways of indexing lists, getting names (i.e., university names)*
+
+```{r eval = FALSE}
+
+## read in the data 
+data <- readRDS("intra-list_clean.RDS")
+
+## things to show here:
+class(data)
+dim(data)
+names(data)
+element = data[[1]]
+mcgill = data[['McGill University']]
+
+```
+
+*maybe: indexing vectors?*
+
+## Plotting intra-university collaboration networks
+
+*for our shiny app, we want to be able to plot the collaboration network for a university that the user selects. we will learn how to write a function that creates a plot for a selected university*
+
+*explain what a function is, when they are useful, and how it is useful in this particular case (because we want to remake the same plot for each university)*
+
+*explain what arguments are - ours will be the name of the university*
+
+*explain how ggplot works, build up network plot from Lucas's data*
+
+*call function*
+
+```{r eval = FALSE}
+library(ggplot)
+library(?)
+
+plot_network = function(university, network_list) {
+  ## index the network list for the selected university 
+  matrix = network_list[[university]]
+ 
+  ## build a network plot
+  plot = ggplot(data = network, aes()) 
+  
+  ## return the plot
+  return(plot)
+}
+
+## call the function
+my_plot <- plot_network(university = "McGill University", network_list = data)
+
+```
+
+# Hello Shiny!
 
 Here is an example of a Shiny app that RStudio generates when you open a new Shiny Web App file:
 
