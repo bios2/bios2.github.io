@@ -33,52 +33,92 @@ There are many reasons to consider using Shiny for a project:
 To ease into things, we will familiarize ourselves with the data that we will use to create a Shiny app together. At the same time, we will practice indexing **lists**, understanding **functions**, and **plotting**. By the end of this section, we will have made a plot that we will add interactivity to using Shiny.
 
 ## The data
-*describe Lucas's dataset*
+Today, we will be using a dataset on **networks of scientific collaboration** within the ecology and evolution departments of 25 Canadian universities. For each university, we have a count of the number of co-authored publications between each pair of ecology and evolution professors. 
 
-*explain that it is stored in a list*
+Lucas Eckert has kindly provided us with this data, and will be giving a talk on patterns of collaboration on Wednesday July 9th at 4:00pm (don't miss it!).
 
-*explain that each element is the matrix for a university where rows and columns are researchers, nodes are shared publications*
-
-*teach the different ways of indexing lists, getting names (i.e., university names)*
+Let's explore the data a little:
 
 ```{r eval = FALSE}
 
 ## read in the data 
 data <- readRDS("intra-list_clean.RDS")
 
-## things to show here:
+## what type of object are the data are stored in?
 class(data)
-dim(data)
+
+## how many elements are there? 
+length(data)
+
+## are the elements named?
 names(data)
-element = data[[1]]
-mcgill = data[['McGill University']]
+
+```
+
+As you can see, the data are stored in a **list** object. Each **element** of the list holds the data on collaboration within one university, and the names of the list tell us which university. Let's look at an element:
+
+```{r eval = FALSE}
+
+## index the list by element number:
+data[[1]]
+
+## or by element name:
+data[['McGill University']]
+
+## store element in another object:
+network = data[['McGill University']]
+
+## view:
+View(mat)
+
+```
+
+The data for each university collaboration network are represented by a 2D matrix (similar to one used to represent species interactions) where rows and columns represent researchers and nodes contain the number of shared publications between two researchers. 
+
+```{r eval = FALSE}
+
+
 
 ```
 
 *maybe: indexing vectors?*
 
+
 ## Plotting intra-university collaboration networks
 
-*for our shiny app, we want to be able to plot the collaboration network for a university that the user selects. we will learn how to write a function that creates a plot for a selected university*
+Now that we understand the data's structure, we can begin making a plot for our Shiny app.
 
-*explain what a function is, when they are useful, and how it is useful in this particular case (because we want to remake the same plot for each university)*
+*maybe Jake's draw what you want to put in your shiny' thing here?*
 
-*explain what arguments are - ours will be the name of the university*
-
-*explain how ggplot works, build up network plot from Lucas's data*
-
-*call function*
+We want our app to display the collaboration network for a university that the user selects. Let's make a plot using **ggplot2** and **????**.
 
 ```{r eval = FALSE}
+# load packages
 library(ggplot)
-library(?)
+library(???)
+
+## build a network plot
+ggplot(data = network, 
+       aes()) 
+#~~~~# INSERT ANDREW'S PLOT CODE HERE #~~~~#
+
+# While teaching:
+# -explain how ggplot works, build up network plot from Lucas's data
+  
+```
+
+Because we want to be able to create this plot for *every* university, let's wrap our code in a **function**.
+
+```{r eval = FALSE}
 
 plot_network = function(university, network_list) {
   ## index the network list for the selected university 
   matrix = network_list[[university]]
  
   ## build a network plot
-  plot = ggplot(data = network, aes()) 
+  ggplot(data = network, 
+         aes()) 
+  #~~~~# INSERT ANDREW'S PLOT CODE HERE #~~~~#
   
   ## return the plot
   return(plot)
@@ -86,6 +126,11 @@ plot_network = function(university, network_list) {
 
 ## call the function
 my_plot <- plot_network(university = "McGill University", network_list = data)
+
+# While teaching:
+# - explain what a function is, when they are useful, and how it is useful in this particular case (because we want to remake the same plot for each university)
+# - explain what arguments are - ours will be the name of the university
+# - show how to call function
 
 ```
 
