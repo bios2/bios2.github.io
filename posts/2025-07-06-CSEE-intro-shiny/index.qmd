@@ -69,7 +69,7 @@ data[['McGill University']]
 network = data[['McGill University']]
 
 ## view:
-View(mat)
+View(network)
 
 ```
 
