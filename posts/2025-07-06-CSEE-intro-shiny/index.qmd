@@ -51,6 +51,8 @@ class(data)
 
 As you can see, the data are stored in a **list** object. 
 
+## Lists
+
 In R lists act as containers. Unlike atomic vectors, the contents of a list are not restricted to a single mode and can encompass any mixture of data types. Lists are sometimes called generic vectors, because the elements of a list can by of any type of R object, even lists containing further lists. This property makes them fundamentally different from atomic vectors.
 
 A list is a special type of vector. Each element can be a different type.
@@ -189,6 +191,8 @@ library(package)
   #~~~~# INSERT ANDREW'S PLOT CODE HERE #~~~~#
   
 ```
+
+## Writing functions
 
 If we only had one university's network to plot, we could stop here... but we have 24 others to plot. Let's wrap our code in a **function** so that we can repeat several operations with a single command. 
 
