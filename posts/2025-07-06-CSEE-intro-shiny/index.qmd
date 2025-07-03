@@ -3,7 +3,7 @@ title: "Introduction to Shiny Apps CSEE"
 description: "Introduction to interactive app development with R Shiny."
 author:
   - name: "Nikki Moore"
-    affiliation: Université de Sherbrooke
+    affiliation: McGill University
   - name: "Andrew MacDonald"
     affiliation: Université de Sherbrooke
   - name: "Jake Lawlor"
@@ -16,10 +16,6 @@ number-sections: true
 number-depth: 1
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval = FALSE)
-```
-
 ## Why do you want to use Shiny?
 
 There are many reasons to consider using Shiny for a project:
@@ -28,24 +24,35 @@ There are many reasons to consider using Shiny for a project:
 -   Helping you explore a model, mathematics, simulations;
 -   Letting non R users use R.
 
-# Lists, functions & plotting in R
+## Objectives of this workshops
+
+* look at some examples of Shiny apps
+* go over some background content necessary for understanding Shiny syntax
+* Exercise: look at Shiny code
+* working with layouts
+
+## Background content
+
+### Lists, functions & plotting in R
 
 To ease into things, we will familiarize ourselves with the data that we will use to create a Shiny app together. At the same time, we will practice indexing **lists**, **plotting**, and making **functions**. By the end of this section, we will have made a plot that we will add interactivity to using Shiny.
 
-## The data
+### The data 
+
 We will be using a dataset on **networks of scientific collaboration** within the ecology and evolution departments of 25 Canadian universities. For each university, we have a count of the number of co-authored publications between each pair of ecology and evolution professors. 
 
-Lucas Eckert has kindly provided us with this data, and will be giving a talk on patterns of collaboration on Wednesday July 9th at 4:00pm (don't miss it!).
+[Lucas Eckert](https://www.lucaseckert.ca/) has kindly provided us with this data, and will be giving a talk on patterns of collaboration on Wednesday July 9th at 4:00pm (don't miss it!).
 
 Let's explore the data:
 
-```{r eval = FALSE}
+```{r}
+#| warning: false
 
 ## read in the data 
-data <- readRDS("~/Documents/research-networks/intra-list_clean.RDS")
+intra_list <- readr::read_rds(here::here("posts/2025-07-06-CSEE-intro-shiny/intra-list_clean.RDS"))
 
 ## what type of object are the data are stored in?
-class(data)
+class(intra_list)
 
 ```
 
@@ -59,7 +66,7 @@ A list is a special type of vector. Each element can be a different type.
 
 Create lists using ```list()```:
 
-```{r eval = FALSE}
+```{r}
 
 x <- list(5, "a", TRUE)
 x
@@ -68,7 +75,7 @@ x
 
 The content of elements of a list can be retrieved by using double square brackets.
 
-```{r eval = FALSE}
+```{r}
 
 x[[1]]
 
@@ -76,7 +83,7 @@ x[[1]]
 
 Elements of a list can be named (i.e. lists can have the names attribute).
 
-```{r eval = FALSE}
+```{r}
 
 names(x) <- c("number", "string", "boolean")
 names(x)
@@ -85,7 +92,7 @@ names(x)
 
 And elements can be accessed by their names:
 
-```{r eval = FALSE}
+```{r}
 
 x[["string"]]
 x$string
@@ -97,14 +104,14 @@ In our ```data``` list, each **element** of the list stores the collaboration ne
 
 *Practice: try indexing ```data``` to get the collaboration network for McGill University*
 
-```{r eval = FALSE}
+```{r}
 #| code-fold: true
 
 ## get the names of elements on our list
-names(data)
+names(intra_list)
 
 ## access element containing data for McGill University
-network = data[['McGill University']]
+network = intra_list[['McGill University']]
 
 ```
 
@@ -134,7 +141,7 @@ install.packages("ggplot2")
 ```
 
 And load the package using the ```library()``` function:
-```{r eval = FALSE}
+```{r}
 
 # load package
 library(ggplot2)
@@ -142,7 +149,9 @@ library(ggplot2)
 ```
 Let's also load a dataset to practice making a plot with:
 
-```{r eval = FALSE}
+
+
+```{r}
 
 data("iris")
   
@@ -154,7 +163,7 @@ ggplot plots are built step by step by adding new layers, which allows for exten
 
 We use the ```ggplot()``` function to create a plot. In order to tell it what data to use, we need to specify the data argument. An argument is an input that a function takes, and you set arguments using the ```=``` sign.
 
-```{r eval = FALSE}
+```{r}
 ggplot(data = iris)
   
 ```
@@ -162,14 +171,14 @@ ggplot(data = iris)
 We get a blank plot because we haven’t told ```ggplot()``` which variables we want to correspond to parts of the plot. We do this using the ```mapping``` argument. We can specify the “mapping” of variables to plot elements, such as x/y coordinates, size, or shape, by using the ```aes()``` function.
 
 
-```{r eval = FALSE}
+```{r eval = TRUE}
 
 ggplot(data = iris, mapping = aes(x = Petal.Length, y = Petal.Width))
 
 ```
 Now we’ve got a plot with x and y axes corresponding to variables from the iris data. However, we haven’t specified how we want the data to be displayed. We do this using ```geom_``` functions, which specify the type of geometry we want, such as points, lines, or bars. We can add a ```geom_point()``` layer to our plot by using the + sign. We indent onto a new line to make it easier to read, and we have to end the first line with the ```+``` sign.
 
-```{r eval = FALSE}
+```{r}
 
 ggplot(data = iris, mapping = aes(x = Petal.Length, y = Petal.Width)) +
   geom_point()
@@ -180,16 +189,21 @@ We want our app to display the collaboration network for a university that the u
 
 ggplot likes ```tidy``` data, where each row of the data is an observation and each column represents different variables describing that observation. Because our network data are not in this format, we need the help of another package called ```package``` to plot them. Let's install and load it:
 
-```{r eval = FALSE}
+```{r}
 
-install.packages("package")
-library(package)
+# install.packages("tidygraph")
+library(tidygraph)
+library(ggraph)
+# Create graph
+graph <- as_tbl_graph(intra_list[["McGill University"]]) |> 
+    mutate(degree = centrality_degree(mode = 'in'))
 
-## build a network plot
-  ggplot(data = network, 
-         aes()) 
-  #~~~~# INSERT ANDREW'S PLOT CODE HERE #~~~~#
-  
+# plot using ggraph
+ggraph(graph, layout = 'circle') + 
+    geom_edge_fan(aes(alpha = after_stat(index)), show.legend = FALSE) + 
+    geom_node_point(aes(size = degree)) + 
+    theme_graph(foreground = 'steelblue',
+                fg_text_colour = 'white')
 ```
 
 ## Writing functions
@@ -198,9 +212,10 @@ If we only had one university's network to plot, we could stop here... but we ha
 
 You can write your own functions in order to make repetitive operations using a single command. Let’s start by defining our function ```plot_network``` and the input parameter(s) that the user will feed to the function. Afterwards you will define the operation that you desire to program in the body of the function within curly braces ```{ }```. Finally, you need to assign the result (or output) of your function in the ```return()``` statement.
 
-```{r eval = FALSE}
+```{r}
+#| eval: false
 
-plot_network = function(university, network_list) {
+plot_network <-  function(university, network_list) {
   
   # ~~~~ operations to make our plot ~~~~~ #
   
@@ -211,12 +226,12 @@ plot_network = function(university, network_list) {
 
 Our function will take two arguments: ```university``` (a string defining the name of the university to plot) and ```network_list``` (the list of collaboration networks). In the body of the function, we will index the ```network_list``` for the matrix data for the ```university```:
 
-```{r eval = FALSE}
-
-plot_network = function(university, network_list) {
+```{r}
+#| eval: false
+plot_network <-  function(university, network_list) {
   
   ## index the network list for the selected university 
-  matrix = network_list[[university]]
+  matrix <-  network_list[[university]]
   
   return()
 }
@@ -225,36 +240,48 @@ plot_network = function(university, network_list) {
 
 And the we will use that data to make our network plot, and return it using the return statement: 
 
-```{r eval = FALSE}
-
+```{r}
 plot_network = function(university, network_list) {
   
    ## index the network list for the selected university 
-  matrix = network_list[[university]]
+  one_uni_matrix = network_list[[university]]
  
-  ## build a network plot
-  plot = ggplot(data = network, 
-         aes()) 
-  #~~~~# INSERT ANDREW'S PLOT CODE HERE #~~~~#
+  graph <- as_tbl_graph(one_uni_matrix) |> 
+    mutate(degree = centrality_degree(mode = 'in'))
   
-  return(plot)
+  # plot using ggraph
+  one_uni_plot <- ggraph(graph, layout = 'circle') + 
+    geom_edge_fan(aes(alpha = after_stat(index)), show.legend = FALSE) + 
+    geom_node_point(aes(size = degree)) + 
+    theme_graph(foreground = 'steelblue',
+                fg_text_colour = 'white')
+  
+  return(one_uni_plot)
 }
+
+
 
 ```
 
+
 *Practice: We can now call our function ```plot_network```. Using what you know about the arguments it needs, calling the function to make a plot of Trent University's collaboration network.*  
 
-```{r eval = FALSE}
+```{r}
 #| code-fold: true
 
 ## call the function
-plot_network(university = "Trent University", network_list = data)
+plot_network(university = "Trent University", network_list = intra_list)
 
 ```
 
 # Hello Shiny!
 
 Here is an example of a Shiny app that RStudio generates when you open a new Shiny Web App file:
+
+```{r}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
 
 ```{r eval = FALSE}
 # Define UI for app that draws a histogram ----
@@ -288,6 +315,15 @@ ui <- fluidPage(
   )
 )
 ```
+
+
+:::{.callout-note}
+### EXERCISE: Think-Pair-Share
+
+
+:::
+
+
 
 # How a Shiny app works
 
@@ -342,7 +378,7 @@ library(readr)
 
 To add a plot in our Shiny, we need to indicate where the plot should appear in the app. We can do this with `plotOutput()`, a similar function to `tableOutput()` in the previous section that is meant for plot outputs, as the name suggests.
 
-```{r}
+```{r }
 # Define UI for application that makes a table andplots the Volcano Explosivity 
 # Index for the most eruptive volcanoes within a selected range of years
 
