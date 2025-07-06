@@ -693,7 +693,7 @@ Introduction to ggplot2
 <section id="plotting-collaboration-networks" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-collaboration-networks">Plotting collaboration networks</h3>
 <p>We want our app to display the collaboration network for a university that the user of our Shiny app will select, so let’s start by making a plot of the collaboration network for McGill University.</p>
-<p>ggplot likes <code>tidy</code> data, where each row of the data is an observation and each column represents different variables describing that observation. Because our network data are not in this format, we need the help of another package called <code>package</code> to plot them. Let’s install and load it:</p>
+<p>ggplot likes <code>tidy</code> data, where each row of the data is an observation and each column represents different variables describing that observation. Because our network data are not in this format, we need the help of another package called <code>tidygraph</code> to plot them. Let’s install and load it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidygraph")</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidygraph)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -729,7 +729,8 @@ Attaching package: 'tidygraph'</code></pre>
 <section id="writing-functions" class="level3">
 <h3 class="anchored" data-anchor-id="writing-functions">Writing functions</h3>
 <p>If we only had one university’s network to plot, we could stop here… but we have 24 others to plot. Let’s wrap our code in a <strong>function</strong> so that we can repeat several operations with a single command.</p>
-<p>You can write your own functions in order to make repetitive operations using a single command. Let’s start by defining our function <code>plot_network</code> and the input parameter(s) that the user will feed to the function. Afterwards you will define the operation that you desire to program in the body of the function within curly braces <code>{ }</code>. Finally, you need to assign the result (or output) of your function in the <code>return()</code> statement.</p>
+<p>You can write your own functions in order to make repetitive operations using a single command. Let’s start by defining our function <code>plot_network</code> and the input parameter(s) that the user will feed to the function. Our function will take two arguments: <code>university</code> (a string defining the name of the university to plot) and <code>network_list</code> (the list of collaboration networks).</p>
+<p>Afterwards you will define the operation that you desire to program in the body of the function within curly braces <code>{ }</code>. Finally, you need to assign the result (or output) of your function in the <code>return()</code> statement.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>plot_network <span class="ot">&lt;-</span>  <span class="cf">function</span>(university, network_list) {</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -748,17 +749,15 @@ EXERCISE
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Write a function called <code>plot_network</code>. Our function will take two arguments: <code>university</code> (a string defining the name of the university to plot) and <code>network_list</code> (the list of collaboration networks). In the body of the function, we will index the <code>network_list</code> to obtain the matrix of collaborations for the <code>university</code>.</p>
+<p>Write a function called <code>plot_network</code>. In the body of the function, index the <code>network_list</code> to obtain the matrix of collaborations for the <code>university</code> and then produce and return a network plot for that university.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>plot_network <span class="ot">&lt;-</span>  <span class="cf">function</span>(university, network_list) {</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## index the network list for the selected university </span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  matrix <span class="ot">&lt;-</span>  network_list[[university]]</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>()</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>()</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Using what you know about the arguments it needs, call the function to make a plot of <em>Trent University</em>’s collaboration network.</p>
+<p>Then, using what you know about the arguments it needs, call the function to make a plot of <em>Trent University</em>’s collaboration network.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
