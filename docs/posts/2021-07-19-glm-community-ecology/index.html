@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.3.353">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,7 +10,7 @@
 <meta name="dcterms.date" content="2021-05-17">
 <meta name="description" content="In this workshop we will explore, discuss, and apply generalized linear models to combine information on species distributions, traits, phylogenies, environmental and landscape variation. We will also discuss inference under spatial and phylogenetic autocorrelation under fixed and random effects implementations. We will discuss technical elements and cover implementations using R.">
 
-<title>Generalized Linear Models for Community Ecology – BIOS² Education resources</title>
+<title>BIOS² Education resources - Generalized Linear Models for Community Ecology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,7 +25,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -36,7 +36,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -74,22 +74,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-ecb778d5ef56ea6a42975469c354c5e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
+  "limit": 20,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -98,10 +93,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 <script>
@@ -134,35 +127,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   })
   </script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -170,10 +136,10 @@ window.Quarto = {
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
+      <div class="navbar-brand-container">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../Bios2_reverse.png" alt="" class="navbar-logo">
     </a>
@@ -182,56 +148,56 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
-<span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-intensive-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-intensive-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
  <span class="menu-text">Intensive courses</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-intensive-courses">    
         <li>
-    <a class="dropdown-item" href="../../summer-schools/v2024/BiodiversityModelling2024.html">
+    <a class="dropdown-item" href="../../summer-schools/v2024/BiodiversityModelling2024.html" rel="" target="">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2024</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../summer-schools/v2022/BiodiversityModelling2022.html">
+    <a class="dropdown-item" href="../../summer-schools/v2022/BiodiversityModelling2022.html" rel="" target="">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2022</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://bios2.github.io/biodiversity_modelling_2021/">
+    <a class="dropdown-item" href="https://bios2.github.io/biodiversity_modelling_2021/" rel="" target="">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2021</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../summer-schools/v2019/BiodiversityModelling2019.html">
+    <a class="dropdown-item" href="../../summer-schools/v2019/BiodiversityModelling2019.html" rel="" target="">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2019</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="https://bios2.usherbrooke.ca/"> 
-<span class="menu-text">About BIOS²</span></a>
+    <a class="nav-link" href="https://bios2.usherbrooke.ca/" rel="" target="">
+ <span class="menu-text">About BIOS²</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/bios2/bios2.github.io"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/bios2/bios2.github.io" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
-<span class="menu-text"></span></a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/_bios2"> <i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/_bios2" rel="" target=""><i class="bi bi-twitter" role="img">
 </i> 
-<span class="menu-text"></span></a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
-          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
+          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -259,12 +225,12 @@ window.Quarto = {
       <div class="quarto-title-meta-contents">
       <p class="author">Pedro Peres-Neto </p>
     </div>
-    <div class="quarto-title-meta-contents">
+      <div class="quarto-title-meta-contents">
           <p class="affiliation">
               Concordia University
             </p>
         </div>
-    </div>
+      </div>
 
   <div class="quarto-title-meta">
 
@@ -283,12 +249,11 @@ window.Quarto = {
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
-
 
 
 
@@ -340,11 +305,7 @@ Discussion with participants: your research interests, your questions or your da
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>prob.presence <span class="ot">&lt;-</span> <span class="fl">1.</span><span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="sc">-</span>(b0<span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>X)))</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(prob.presence <span class="sc">~</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>This model is pretty simple and its form is:</p>
@@ -368,11 +329,7 @@ Discussion with participants: your research interests, your questions or your da
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model<span class="sc">$</span>fitted.values <span class="sc">~</span> Distribution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>At this point, we won’t cover model diagnostics. Data were simulated according to the model and, as such, assumptions hold well. Plus, this is a single-species model; and this workshop is about community data, i.e., multiple species :).</p>
@@ -381,11 +338,7 @@ Discussion with participants: your research interests, your questions or your da
 <p>Species don’t tend to respond linearly to environmental features:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Gaussian.png" class="img-fluid figure-img" style="width:50.0%"></p>
-</figure>
-</div>
+<p><img src="Gaussian.png" class="img-fluid" style="width:50.0%"></p>
 </div>
 </div>
 <p>Now that we understand some basics of presence-absence data, let’s concentrate on more realistic species distribution data and multi-species data. There are many ways (found in the ecological literature) in which we can simulate these type of data. Below we will generate data using a standard Gaussian model for presence-absence data according to a trait and environmental feature (we will cover abundance data later on). This is a commonly used way to simulate data. Let’s start with a single species and one environmental variable.</p>
@@ -408,11 +361,7 @@ Discussion with participants: your research interests, your questions or your da
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># plot optimum</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>optimum,<span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>Now let’s simulate the distribution, i.e., presences and absences according to the model. Since is a logistic, we use <code>rbinom</code>,i.e., binomial trials:</p>
@@ -427,11 +376,7 @@ Discussion with participants: your research interests, your questions or your da
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>sites.absent <span class="ot">&lt;-</span> <span class="fu">which</span>(Distribution<span class="sc">==</span><span class="dv">0</span>)</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(X[sites.absent],Distribution[sites.absent],<span class="at">col=</span><span class="st">"red"</span>,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">cex=</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>The parameters can be then estimated from the data using a logistic regression:</p>
@@ -480,11 +425,7 @@ Discussion with participants: your research interests, your questions or your da
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(estimation.matrix)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">apply</span>(estimation.matrix,<span class="dv">2</span>,mean),<span class="at">col=</span><span class="st">"firebrick"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="576"></p>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(estimation.matrix,<span class="dv">2</span>,mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -539,22 +480,14 @@ Discussion with participants: your research interests, your questions or your da
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(E.sorted, Probs.sorted, <span class="at">cex.lab=</span><span class="fl">1.5</span>,<span class="at">cex.axis=</span><span class="dv">2</span>,<span class="at">lty =</span> <span class="st">"solid"</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">cex =</span> <span class="fl">0.8</span>,</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Enviroment"</span>, <span class="at">ylab =</span> <span class="st">"Probability of presence"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>And let’s plot presences and absences against ordered environmental and trait values:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap</span>(<span class="fu">as.matrix</span>(Distribution),<span class="at">scale=</span><span class="st">"none"</span>,<span class="at">Rowv=</span>E,<span class="at">Colv=</span>T,<span class="at">col=</span><span class="fu">c</span>(<span class="st">"white"</span>,<span class="st">"black"</span>),<span class="at">labCol=</span><span class="st">"species"</span>,<span class="at">labRow=</span><span class="st">"communities"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <hr style="border:1px solid gray">
@@ -572,11 +505,7 @@ Discussion with participants: your research interests, your questions or your da
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(CWM <span class="sc">~</span> E)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="576"></p>
 </div>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(CWM,E)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -593,11 +522,7 @@ Discussion with participants: your research interests, your questions or your da
 <div class="cell">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(T <span class="sc">~</span> SNC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="576"></p>
 </div>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(T,SNC)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -628,11 +553,7 @@ Discussion with participants: your research interests, your questions or your da
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(CWM.cor)</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(CWM.cor),<span class="at">col=</span><span class="st">"firebrick"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>Note that the variation is quite large for correlations based on a random trait (i.e., T.false). For example, some correlations were greater than 0.7 and smaller than -0.60. We showed that although the variation is quite large, the expected value is zero; we would need 10000 or more simulations to make <code>mean(CWM.cor)</code> approach almost zero. A similar issue (i.e., large variation, low precision) happens for correlations based on SNO but we won’t simulate here for brevity. One can easily adapt the code above to do so though.</p>
@@ -751,11 +672,7 @@ Coefficients:
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(<span class="fu">cbind</span>(CWM.cor,CWM<span class="fl">.4</span>th.cor))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Note how the 4th corner correlation is a much more precise predictor around the true value of zero.</p>
@@ -855,11 +772,7 @@ Fourthcorner 0.04168433 0.01 0.47 0.47</code></pre>
 <p>I hope by now you are convinced that the 4th corner is a more robust metric of bivariate correlation (one trait and one environment). Here we will use the <code>Aravo</code> community plant data set (Massif du Grand Gabilier, France; Choler 2005) contained in the package <code>ade4</code>. We provide more explanation on the data in Dray et al.&nbsp;(2012). Here we will replicate the analysis in that paper. The data contain species abundances for 82 species distributed into 75 sites. Sites are described by 6 environmental variables: mean snowmelt date over the period 1997–1999, slope inclination, aspect, index of microscale landform, index of physical disturbance due to cryoturbation and solifluction, and an index of zoogenic disturbance due to trampling and burrowing activities of the Alpine marmot. All variables are quantitative except the landform and zoogenic disturbance indexes that are categorical variables with five and three categories, respectively. And eight quantitative functional traits (i.e., vegetative height, lateral spread, leaf elevation angle, leaf area, leaf thickness, specific leaf area, mass-based leaf nitrogen content, and seed mass) were measured on the 82 most abundant plant species (out of a total of 132 recorded species).</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="aravo.png" class="img-fluid figure-img" style="width:70.0%"></p>
-</figure>
-</div>
+<p><img src="aravo.png" class="img-fluid" style="width:70.0%"></p>
 </div>
 </div>
 <p>Load the package and the data:</p>
@@ -892,11 +805,7 @@ Fourthcorner 0.04168433 0.01 0.47 0.47</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(four.comb.aravo.adj, <span class="at">alpha =</span> <span class="fl">0.05</span>, <span class="at">stat =</span> <span class="st">"D2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <hr style="border:1px solid gray">
@@ -932,11 +841,7 @@ Fourthcorner 0.04168433 0.01 0.47 0.47</code></pre>
 <p>The 4th corner correlation is pretty high given the highly structured data. Another way to calculate a 4th corner correlation is by using what we refer to as an “inflated approach”. This approach allows understanding the structure of stacked information. This figure demonstrates the process and calculation:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="InflatedApproach4thcorner.png" class="img-fluid figure-img" style="width:80.0%"></p>
-</figure>
-</div>
+<p><img src="InflatedApproach4thcorner.png" class="img-fluid" style="width:80.0%"></p>
 </div>
 </div>
 <p>Next we stack species distributions, environment and trait information:</p>
@@ -974,11 +879,7 @@ Fourthcorner 0.04168433 0.01 0.47 0.47</code></pre>
 <span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>Abundance <span class="ot">&lt;-</span> <span class="fu">rpois</span>(n.sites,Y)</span>
 <span id="cb81-8"><a href="#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Abundance <span class="sc">~</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-48-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>This Poisson model has the following form. Note that multiple predictors can be considered. Here, for simplicity, we considered one predictor. Again, in many ecological simulations, this single predictor is considered an “environmental gradient” containing many environmental predictors. We can consider more gradients and we will discuss that later on in the workshop.</p>
@@ -992,11 +893,7 @@ Fourthcorner 0.04168433 0.01 0.47 0.47</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model<span class="sc">$</span>fitted.values <span class="sc">~</span> Abundance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-49-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>GLMs are linear models because they use link-functions to map non-linear relationships to a linear one. In this way, the link function connects the predictors in a model with the expected (mean) value of the response variable (dependent variable). In other words, the link-functions transforms the response values into new values that can be then regressed using linear approaches (Maximum Likelihood-based approaches and not simple OLS, ordinary least square approaches as in linear regression) against the X values. As we saw in the first example of the Poisson regression above, the relationship is not linear. The link-function for the Poisson distribution is <code>ln</code> of the response. Let’s understand this point by plotting the log(Y) and X. Note that Y has no error and Abundance has error (i.e., based on the <code>rpois</code>, i.e., poisson trials)</p>
@@ -1004,20 +901,12 @@ Fourthcorner 0.04168433 0.01 0.47 0.47</code></pre>
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># without error:</span></span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(Y) <span class="sc">~</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-50-1.png" class="img-fluid" width="576"></p>
 </div>
 <div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># with error</span></span>
 <span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(Abundance) <span class="sc">~</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-50-2.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-50-2.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>What does the passage “the link-function connects the predictors in a model with the expected (mean) value of the response variable (dependent variable)” mean? As you can notice, we used Poisson trials to generate error around the initial Y values. Let’s create a 100 possible trials:</p>
@@ -1031,11 +920,7 @@ Fourthcorner 0.04168433 0.01 0.47 0.47</code></pre>
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>rep.X <span class="ot">&lt;-</span> <span class="fu">rep</span>(X, <span class="at">times =</span> <span class="dv">100</span>)</span>
 <span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">as.vector</span>(mult.Y) <span class="sc">~</span> rep.X,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">cex=</span><span class="fl">0.5</span>,<span class="at">col=</span><span class="st">"firebrick"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-52-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>Note that larger values of abundances tend to have more error under the poisson model (which is also ecologically plausible).</p>
@@ -1045,11 +930,7 @@ Fourthcorner 0.04168433 0.01 0.47 0.47</code></pre>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>mean.mult.Y <span class="ot">&lt;-</span> <span class="fu">apply</span>(mult.Y,<span class="dv">1</span>,mean)</span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mean.mult.Y <span class="sc">~</span> Y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>As we can observe, the mean across all trials (errors) equal the response variable Y, i.e., without error. Hopefully this provides a general understanding of what link functions are. A similar explanation can be given for the logistic regression (i.e., binomial error). In there we use a <code>logit</code> link function (transformation) instead.</p>
@@ -1081,11 +962,7 @@ Residual Deviance: 258.8    AIC: 637.7</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model<span class="sc">$</span>fitted.values <span class="sc">~</span> Abundance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-54-1.png" class="img-fluid" width="576"></p>
 </div>
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1110,11 +987,7 @@ Residual Deviance: 119  AIC: 500</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model<span class="sc">$</span>fitted.values <span class="sc">~</span> Abundance)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-55-1.png" class="img-fluid" width="576"></p>
 </div>
 <div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1136,11 +1009,7 @@ Residual Deviance: 119  AIC: 500</code></pre>
 <span id="cb101-8"><a href="#cb101-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Abundance<span class="sc">~</span>X)</span>
 <span id="cb101-9"><a href="#cb101-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">1.2</span>,<span class="at">col=</span><span class="st">"firebrick"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-56-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>Let’s fit the Poisson model:</p>
@@ -1149,11 +1018,7 @@ Residual Deviance: 119  AIC: 500</code></pre>
 <span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(Abundance <span class="sc">~</span> predictor,<span class="at">family=</span><span class="st">"poisson"</span>)</span>
 <span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model<span class="sc">$</span>fitted <span class="sc">~</span> X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-57-1.png" class="img-fluid" width="576"></p>
 </div>
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>coeffs <span class="ot">&lt;-</span> <span class="fu">coefficients</span>(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1206,11 +1071,7 @@ predictorX          1.179753               0.4726181 104.8035</code></pre>
 <span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(E.sorted, Y.sorted, <span class="at">cex.lab=</span><span class="fl">1.5</span>,<span class="at">cex.axis=</span><span class="dv">2</span>,<span class="at">lty =</span> <span class="st">"solid"</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">cex =</span> <span class="fl">0.8</span>,</span>
 <span id="cb108-5"><a href="#cb108-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Enviroment"</span>, <span class="at">ylab =</span> <span class="st">"Abundance"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-61-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>Y, however, has no error and to create abundance values for each species (i.e., each column of Y; MARGIN = 2) according to a poisson model we can simply:</p>
@@ -1224,11 +1085,7 @@ predictorX          1.179753               0.4726181 104.8035</code></pre>
 <span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>E.sorted <span class="ot">&lt;-</span> E.sorted<span class="sc">$</span>x</span>
 <span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(E.sorted, Abundances.sorted, <span class="at">cex.lab=</span><span class="fl">1.5</span>,<span class="at">cex.axis=</span><span class="dv">2</span>,<span class="at">lty =</span> <span class="st">"solid"</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">pch =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">xlab =</span> <span class="st">"Enviroment"</span>, <span class="at">ylab =</span> <span class="st">"Abundance"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-63-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-63-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>Finally, let’s calculate the 4th corner statistics for these data:</p>
@@ -1257,11 +1114,7 @@ predictorX          1.179753               0.4726181 104.8035</code></pre>
 <p>Let’s go back to our stacked model:</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="bilinear.png" class="img-fluid figure-img" style="width:80.0%"></p>
-</figure>
-</div>
+<p><img src="bilinear.png" class="img-fluid" style="width:80.0%"></p>
 </div>
 </div>
 <p>And now let’s get back to our stacked approach using again the simplest example we used earlier. Let’s enter the data again to make sure that we have the same data.</p>
@@ -1389,11 +1242,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a>sppVec <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">row.names</span>(aravo<span class="sc">$</span>traits),<span class="at">each=</span><span class="fu">nrow</span>(aravo<span class="sc">$</span>spe))</span>
 <span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">residuals</span>(model.bilinear.negBinom),<span class="fu">log</span>(<span class="fu">fitted</span>(model.bilinear.negBinom)),<span class="at">col=</span><span class="fu">as.numeric</span>(<span class="fu">factor</span>(sppVec)),<span class="at">xlab=</span><span class="st">"Fitted values [log scale]"</span>,<span class="at">ylab=</span><span class="st">"residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-74-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-74-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>As we can see, the plot is pretty bad; and that’s a common feature for GLMs.</p>
@@ -1407,22 +1256,14 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>DunnSmyth.res <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> model.bilinear.negBinom, <span class="at">plot =</span> F)</span>
 <span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(DunnSmyth.res<span class="sc">$</span>scaledResiduals<span class="sc">~</span><span class="fu">log</span>(<span class="fu">fitted</span>(model.bilinear.negBinom)),<span class="at">col=</span><span class="fu">as.numeric</span>(<span class="fu">factor</span>(sppVec)),<span class="at">xlab=</span><span class="st">"Fitted values [log scale]"</span>,<span class="at">ylab=</span><span class="st">"residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-75-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-75-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>And now the Q-Q plot to assess residual normality:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotQQunif</span>(DunnSmyth.res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-76-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-76-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>Just for illustration, let’s compare it with the Q-Q plot for the poisson model which had smaller support:</p>
@@ -1433,11 +1274,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <pre><code>DHARMa:testOutliers with type = binomial may have inflated Type I error rates for integer-valued distributions. To get a more exact result, it is recommended to re-run testOutliers with type = 'bootstrap'. See ?testOutliers for details</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-77-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-77-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>The poisson model doesn’t fit as well the expected line as the negative binomial model. As such, the negative binomial model fits better also with the assumption of normality.</p>
@@ -1478,7 +1315,7 @@ instead.</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">Observations</td>
@@ -1503,9 +1340,8 @@ instead.</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">𝛘²(NA)</td>
@@ -1530,9 +1366,8 @@ instead.</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -1719,7 +1554,7 @@ instead.</code></pre>
 <td style="text-align: right;">0.00</td>
 </tr>
 </tbody><tfoot>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding: 0;"><sup></sup> Standard errors: MLE</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -1772,11 +1607,7 @@ instead.</code></pre>
 <pre><code>Loading required namespace: broom.mixed</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-79-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-79-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>One needs to be careful when interpreting these confidence intervals as they were produced parametrically and they may be biased as we discussed in the section on statistical hypothesis testing. Again, this is a strong area of development among quantitative ecologists; but we haven’t yet derived unified views on this issue.</p>
@@ -1803,11 +1634,7 @@ Snow    0.67458707 -0.5011741</code></pre>
 <span id="cb145-4"><a href="#cb145-4" aria-hidden="true" tabindex="-1"></a>colort <span class="ot">=</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"blue"</span>,<span class="st">"white"</span>,<span class="st">"red"</span>))</span>
 <span id="cb145-5"><a href="#cb145-5" aria-hidden="true" tabindex="-1"></a><span class="fu">levelplot</span>(cfInter, <span class="at">xlab=</span><span class="st">"traits"</span>,<span class="at">ylab=</span><span class="st">"environment"</span>, <span class="at">col.regions=</span><span class="fu">colort</span>(<span class="dv">100</span>), <span class="at">at=</span><span class="fu">seq</span>(<span class="sc">-</span>a, a, <span class="at">length=</span><span class="dv">100</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-80-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-80-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <hr style="border:1px solid gray">
@@ -2015,7 +1842,7 @@ instead.</code></pre>
 </div>
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">Observations</td>
@@ -2040,9 +1867,8 @@ instead.</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">𝛘²(NA)</td>
@@ -2067,9 +1893,8 @@ instead.</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -2256,7 +2081,7 @@ instead.</code></pre>
 <td style="text-align: right;">0.00</td>
 </tr>
 </tbody><tfoot>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding: 0;"><sup></sup> Standard errors: MLE</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -2287,11 +2112,7 @@ instead.</code></pre>
 <p>Let’s understand this paradox by simulating some data (code not show here) and graphing it. This sort of demonstration has become somewhat common when explaining the utility of mixed model.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-88-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-88-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>At first glance, the influence of temperature on abundance is positive if we consider the variation across all data points independent of the sites. However, within species, the influence of the environment is negative. As such, it is obvious that there is variation among species that can’t be explained by temperature alone. As such, we should consider a mixed model with temperature as a fixed factor (measured variable) and species as a random factor. Obviously one question of interest is why do species vary in their effects of temperature. But we don’t have other predictors that could assist in explaining these differences (e.g., physiology). Perhaps considering traits could assist in determining this variation (more on that later).</p>
@@ -2303,7 +2124,7 @@ instead.</code></pre>
 <span id="cb160-3"><a href="#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summ</span>(lm.mod,<span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">Observations</td>
@@ -2320,9 +2141,8 @@ instead.</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">F(1,98)</td>
@@ -2339,9 +2159,8 @@ instead.</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -2401,7 +2220,7 @@ Attaching package: 'Matrix'</code></pre>
 <span id="cb165-2"><a href="#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summ</span>(lm.mod.intercept,<span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">Observations</td>
@@ -2418,9 +2237,8 @@ Attaching package: 'Matrix'</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">AIC</td>
@@ -2441,9 +2259,8 @@ Attaching package: 'Matrix'</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 16%">
 <col style="width: 16%">
@@ -2458,7 +2275,7 @@ Attaching package: 'Matrix'</code></pre>
 Fixed Effects
 </div></th>
 </tr>
-<tr class="even">
+<tr class="odd">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Est.</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">S.E.</th>
@@ -2485,7 +2302,7 @@ Fixed Effects
 <td style="text-align: right;">0.00</td>
 </tr>
 </tbody><tfoot>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding: 0;"><sup></sup> p values calculated using Kenward-Roger standard errors and d.f. ; Continuous predictors are mean-centered and scaled by 1 s.d.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -2497,9 +2314,8 @@ Fixed Effects
 
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -2511,7 +2327,7 @@ Fixed Effects
 Random Effects
 </div></th>
 </tr>
-<tr class="even">
+<tr class="odd">
 <th data-quarto-table-cell-role="th">Group</th>
 <th data-quarto-table-cell-role="th">Parameter</th>
 <th data-quarto-table-cell-role="th">Std. Dev.</th>
@@ -2531,9 +2347,8 @@ Random Effects
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -2545,7 +2360,7 @@ Random Effects
 Grouping Variables
 </div></th>
 </tr>
-<tr class="even">
+<tr class="odd">
 <th data-quarto-table-cell-role="th">Group</th>
 <th data-quarto-table-cell-role="th"># groups</th>
 <th data-quarto-table-cell-role="th">ICC</th>
@@ -2582,11 +2397,7 @@ The variation in intercepts can be plotted as follows:</p>
 ℹ Please use `linewidth` instead.</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-91-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-91-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>The black line represents the common model. Since only intercepts were allowed to vary, the species per slope are the same as the fixed model (after controlling for variation across species, which made the overall slope to be negative).<br>
@@ -2596,7 +2407,7 @@ Finally, let’s estimate the random intercept and slope model. Here we estimate
 <span id="cb168-2"><a href="#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summ</span>(lm.mod.interceptSlope,<span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">Observations</td>
@@ -2613,9 +2424,8 @@ Finally, let’s estimate the random intercept and slope model. Here we estimate
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">AIC</td>
@@ -2636,9 +2446,8 @@ Finally, let’s estimate the random intercept and slope model. Here we estimate
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 16%">
 <col style="width: 16%">
@@ -2653,7 +2462,7 @@ Finally, let’s estimate the random intercept and slope model. Here we estimate
 Fixed Effects
 </div></th>
 </tr>
-<tr class="even">
+<tr class="odd">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Est.</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">S.E.</th>
@@ -2680,7 +2489,7 @@ Fixed Effects
 <td style="text-align: right;">0.03</td>
 </tr>
 </tbody><tfoot>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding: 0;"><sup></sup> p values calculated using Kenward-Roger standard errors and d.f. ; Continuous predictors are mean-centered and scaled by 1 s.d.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -2692,9 +2501,8 @@ Fixed Effects
 
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -2706,7 +2514,7 @@ Fixed Effects
 Random Effects
 </div></th>
 </tr>
-<tr class="even">
+<tr class="odd">
 <th data-quarto-table-cell-role="th">Group</th>
 <th data-quarto-table-cell-role="th">Parameter</th>
 <th data-quarto-table-cell-role="th">Std. Dev.</th>
@@ -2731,9 +2539,8 @@ Random Effects
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -2745,7 +2552,7 @@ Random Effects
 Grouping Variables
 </div></th>
 </tr>
-<tr class="even">
+<tr class="odd">
 <th data-quarto-table-cell-role="th">Group</th>
 <th data-quarto-table-cell-role="th"># groups</th>
 <th data-quarto-table-cell-role="th">ICC</th>
@@ -2804,22 +2611,14 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb174-10"><a href="#cb174-10" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
 <span id="cb174-11"><a href="#cb174-11" aria-hidden="true" tabindex="-1"></a><span class="fu">xlab</span>(<span class="st">"Temperature"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"log(Abundance)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-95-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-95-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p><span style="color:firebrick">An extreme example pf the Simpson’s paradox</span></p>
 <p>Let’s consider (just visually) an even more extreme case. The fixed effect is very strong but the within species effect is almost zero. Hopefully the “Simpson’s” examples here provide a good intuition on the importance of mixed models.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-97-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-97-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <div style="text-align:center">
@@ -2861,7 +2660,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb178-2"><a href="#cb178-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summ</span>(glm.mod,<span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">Observations</td>
@@ -2886,9 +2685,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">𝛘²(2)</td>
@@ -2913,9 +2711,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
@@ -2948,7 +2745,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <td style="text-align: right;">0.00</td>
 </tr>
 </tbody><tfoot>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left; padding: 0;"><sup></sup> Standard errors: MLE; Continuous predictors are mean-centered and scaled by 1 s.d.</td>
 <td style="text-align: right;"></td>
 <td style="text-align: right;"></td>
@@ -2968,7 +2765,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb179-2"><a href="#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summ</span>(MLM1.mod,<span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">Observations</td>
@@ -2993,9 +2790,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: left; font-weight: bold;">AIC</td>
@@ -3016,9 +2812,8 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -3032,7 +2827,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 Fixed Effects
 </div></th>
 </tr>
-<tr class="even">
+<tr class="odd">
 <th style="text-align: left;" data-quarto-table-cell-role="th"></th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Est.</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">S.E.</th>
@@ -3074,9 +2869,8 @@ Fixed Effects
 
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -3088,7 +2882,7 @@ Fixed Effects
 Random Effects
 </div></th>
 </tr>
-<tr class="even">
+<tr class="odd">
 <th data-quarto-table-cell-role="th">Group</th>
 <th data-quarto-table-cell-role="th">Parameter</th>
 <th data-quarto-table-cell-role="th">Std. Dev.</th>
@@ -3113,9 +2907,8 @@ Random Effects
 </tbody>
 </table>
 </div>
- 
 <div class="table-responsive">
-<table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <colgroup>
 <col style="width: 33%">
 <col style="width: 33%">
@@ -3127,7 +2920,7 @@ Random Effects
 Grouping Variables
 </div></th>
 </tr>
-<tr class="even">
+<tr class="odd">
 <th data-quarto-table-cell-role="th">Group</th>
 <th data-quarto-table-cell-role="th"># groups</th>
 <th data-quarto-table-cell-role="th">ICC</th>
@@ -3156,11 +2949,7 @@ Grouping Variables
 <span id="cb180-2"><a href="#cb180-2" aria-hidden="true" tabindex="-1"></a>DunnSmyth.res <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> MLM1.mod, <span class="at">plot =</span> F)</span>
 <span id="cb180-3"><a href="#cb180-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(DunnSmyth.res<span class="sc">$</span>scaledResiduals<span class="sc">~</span><span class="fu">log</span>(<span class="fu">fitted</span>(MLM1.mod)),<span class="at">col=</span><span class="fu">as.numeric</span>(<span class="fu">factor</span>(species)),<span class="at">xlab=</span><span class="st">"Fitted values [log scale]"</span>,<span class="at">ylab=</span><span class="st">"residuals"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-102-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-102-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>And now the Q-Q plot to assess residual normality:</p>
@@ -3170,11 +2959,7 @@ Grouping Variables
 <pre><code>DHARMa:testOutliers with type = binomial may have inflated Type I error rates for integer-valued distributions. To get a more exact result, it is recommended to re-run testOutliers with type = 'bootstrap'. See ?testOutliers for details</code></pre>
 </div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-103-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-103-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p>Note that the Kolmogorov-Smirnov (KS) provides indication that the residuals cannot be assumed to be normal. That said, the distribution of residuals looks somewhat on the expected. The KS becomes quite significant because of the large number of data points. Finally, GLMs and GLMMs tend to be quite robust even when residuals are not normal.</p>
@@ -3183,11 +2968,7 @@ Grouping Variables
 <div class="cell">
 <div class="sourceCode cell-code" id="cb183"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb183-1"><a href="#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">coefficients</span>(MLM1.mod)<span class="sc">$</span>species[,<span class="st">"(Intercept)"</span>],<span class="fu">coefficients</span>(MLM1.mod)<span class="sc">$</span>species[,<span class="st">"snow.melt.days"</span>],<span class="at">xlab=</span><span class="st">"species intercepts"</span>, <span class="at">ylab=</span><span class="st">"species environmental slopes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-104-1.png" class="img-fluid figure-img" width="576"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-104-1.png" class="img-fluid" width="576"></p>
 </div>
 </div>
 <p><span class="math inline">\(\rho_{ac}\)</span> does not appear in summ(MLM1.mod) but can be found in <code>summary(MLM1.mod)</code> intead or calculated directly:</p>
@@ -3279,11 +3060,7 @@ Number of Fisher Scoring iterations: 6</code></pre>
 <span id="cb190-10"><a href="#cb190-10" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
 <span id="cb190-11"><a href="#cb190-11" aria-hidden="true" tabindex="-1"></a><span class="fu">xlab</span>(<span class="st">"snow.melt.days"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"log(Abundance)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-107-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-107-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Finally, the GLMM has good predictive power (relative smaller confidence intervals and large <span class="math inline">\(R^2=0.51\)</span>:</p>
@@ -3292,11 +3069,7 @@ Number of Fisher Scoring iterations: 6</code></pre>
 <span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
 <span id="cb191-3"><a href="#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ggpredict</span>(MLM1.mod, <span class="st">"snow.melt.days"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-108-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
+<p><img src="index_files/figure-html/unnamed-chunk-108-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Finally, as we discussed during the workshop, one needs to be careful while interpreting the significance of interactions between trait and environment. There are bootstrap-based developments to do that for the MLML1 model but they have been show to have inflated type I errors (Miller et al.&nbsp;2019).</p>
@@ -3431,16 +3204,16 @@ MLM3.mod   11 7267.0 7341.0 -3622.5   7245.0 1.0759  2     0.5839</code></pre>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{peres-neto2021,
+</div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{peres-neto2021,
   author = {Peres-Neto, Pedro},
   title = {Generalized {Linear} {Models} for {Community} {Ecology}},
   date = {2021-05-17},
-  url = {https://bios2.github.io/posts/2021-07-19-glm-community-ecology/},
+  url = {https://bios2.github.io/posts/2021-07-19-glm-community-ecology},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-peres-neto2021" class="csl-entry quarto-appendix-citeas" role="listitem">
 Peres-Neto, Pedro. 2021. <span>“Generalized Linear Models for Community
-Ecology.”</span> BIOS<sup>2</sup> Education Resources. May 17, 2021. <a href="https://bios2.github.io/posts/2021-07-19-glm-community-ecology/">https://bios2.github.io/posts/2021-07-19-glm-community-ecology/</a>.
+Ecology.”</span> BIOS<sup>2</sup> Education Resources. May 17, 2021. <a href="https://bios2.github.io/posts/2021-07-19-glm-community-ecology">https://bios2.github.io/posts/2021-07-19-glm-community-ecology</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -3477,7 +3250,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -3509,48 +3293,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/bios2\.github\.io");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -3560,17 +3307,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -3582,129 +3320,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -3748,7 +3364,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -3774,32 +3389,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -3860,7 +3449,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
 
 
 

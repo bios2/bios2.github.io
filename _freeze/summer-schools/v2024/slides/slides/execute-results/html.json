@@ -1,8 +1,7 @@
 {
-  "hash": "2d9b5d191f1bec3cbfa623077e2b4116",
+  "hash": "6a8416b8844050e1e2949d25b6eaecb9",
   "result": {
-    "engine": "knitr",
-    "markdown": "---\ntitle: \"Slides\"\ndate: \"2024-05-13\"\noutput: html_document\n---\n\n\n\n\nBelow you will find the slides for the presentations made during the Summer School. Feel free to download them and use them for your own purposes.\n\n## Day 1\n\n- [International negociations](Gouvernance.pdf)  \n- [Global Biodiversity Framework](GlobalBiodFramework.pdf) \n\n## Day 2\n\n- [LPI](mardi_1_LPI.pdf)  \n- [Quebec indicators](mardi_2_quebecindicators.pdf)\n\n\n## Day 3\n\n- [Accessing Biodiversity Data](https://vincent-beauregard-ielab.github.io/Ecole_dete_2024/#1)\n\n\n",
+    "markdown": "---\ntitle: \"Slides\"\ndate: \"2024-05-13\"\noutput: html_document\n---\n\n\nBelow you will find the slides for the presentations made during the Summer School. Feel free to download them and use them for your own purposes.\n\n## Day 1\n\n- [International negociations](Gouvernance.pdf)  \n- [Global Biodiversity Framework](GlobalBiodFramework.pdf) \n\n## Day 2\n\n- [LPI](mardi_1_LPI.pdf)  \n- [Quebec indicators](mardi_2_quebecindicators.pdf)\n\n\n## Day 3\n\n- [Accessing Biodiversity Data](https://vincent-beauregard-ielab.github.io/Ecole_dete_2024/#1)\n\n\n",
     "supporting": [
       "slides_files"
     ],

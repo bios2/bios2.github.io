@@ -1,9 +1,10 @@
 {
-  "hash": "fd663313cf94b0e58fa3a99abbddd91e",
+  "hash": "0af090c004eb601a174365bf5e1cb8c4",
   "result": {
-    "engine": "knitr",
-    "markdown": "---\ntitle: \"Other resources\"\noutput: html_document\n---\n\n\n\n\n\n# Tutorials\n\n\n\n\n\n::: {.cell}\n<iframe src=\"https://4a517afbbee642bdb5d609351d817048.publish.posit.cloud/?showcase=0\" width=\"672\" height=\"400px\" data-external=\"1\"></iframe>\n:::\n\n\n\n\n\n\n# Notes document\n\n![](BIOS2-SS2024-BiodivModel-notes.pdf){width=85%}\n\n\n# Information document\n\n![](BIOS2-SS-BiodivModelling-2024.pdf){width=85%}",
-    "supporting": [],
+    "markdown": "---\ntitle: \"Other resources\"\noutput: html_document\n---\n\n\n# Tutorials\n\n\n::: {.cell}\n<iframe src=\"https://4a517afbbee642bdb5d609351d817048.publish.posit.cloud/?showcase=0\" width=\"672\" height=\"400px\" data-external=\"1\"></iframe>\n:::\n\n\n\n# Notes document\n\n![](BIOS2-SS2024-BiodivModel-notes.pdf){width=85%}\n\n\n# Information document\n\n![](BIOS2-SS-BiodivModelling-2024.pdf){width=85%}",
+    "supporting": [
+      "other_resources_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],

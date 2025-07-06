@@ -13,23 +13,35 @@ image: image.jpg
 categories: [Technical, Fellow contributed, EN]
 toc: true
 number-sections: true
-number-depth: 1
+number-depth: 2
 ---
 
-## Why do you want to use Shiny?
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dev = "ragg_png")
+```
+
+
+## Introduction
+
+### Why do you want to use Shiny?
 
 There are many reasons to consider using Shiny for a project:
 
--   Sharing results from a paper with your readers;
--   Helping you explore a model, mathematics, simulations;
+-   Sharing results from a paper with your readers
+-   Helping you explore a model, mathematics, or simulations
 -   Letting non R users use R.
 
-## Objectives of this workshops
+### Objectives of this workshop
 
-* look at some examples of Shiny apps
-* go over some background content necessary for understanding Shiny syntax
-* Exercise: look at Shiny code
-* working with layouts
+* Give an overview of how and why to use a Shiny app
+* Provide an introduction to a few important Shiny concepts
+* Give you time to practice on your own!
+
+### Some examples of Shiny in practice! 
+
+* Census aggregator, Sharla Greenfeld: https://censusaggregator.ca/
+* Lake Eerie fish explorer, USGS: https://lebs.shinyapps.io/western-basin/
+* Scotian Shelf MPAs, Jake Lawlor: https://jakelawlor.shinyapps.io/ScotianShelfMPAs/
 
 ## Background content
 
@@ -45,7 +57,7 @@ We will be using a dataset on **networks of scientific collaboration** within th
 
 Let's explore the data:
 
-```{r}
+```{r read-data}
 #| warning: false
 
 ## read in the data 
@@ -58,7 +70,8 @@ class(intra_list)
 
 As you can see, the data are stored in a **list** object. 
 
-## Lists
+:::{.callout-note appearance="minimal" collapse="true"}
+### Introduction to Lists
 
 In R lists act as containers. Unlike atomic vectors, the contents of a list are not restricted to a single mode and can encompass any mixture of data types. Lists are sometimes called generic vectors, because the elements of a list can by of any type of R object, even lists containing further lists. This property makes them fundamentally different from atomic vectors.
 
@@ -66,7 +79,7 @@ A list is a special type of vector. Each element can be a different type.
 
 Create lists using ```list()```:
 
-```{r}
+```{r one-list}
 
 x <- list(5, "a", TRUE)
 x
@@ -75,7 +88,7 @@ x
 
 The content of elements of a list can be retrieved by using double square brackets.
 
-```{r}
+```{r square-bracket}
 
 x[[1]]
 
@@ -83,7 +96,7 @@ x[[1]]
 
 Elements of a list can be named (i.e. lists can have the names attribute).
 
-```{r}
+```{r naming-list}
 
 names(x) <- c("number", "string", "boolean")
 names(x)
@@ -92,33 +105,38 @@ names(x)
 
 And elements can be accessed by their names:
 
-```{r}
+```{r subset-byname}
 
 x[["string"]]
 x$string
 
 ```
 
+:::
+
 In our ```data``` list, each **element** of the list stores the collaboration network within one university, and the **names** attribute tells which university. 
 
+:::{.callout-tip}
+### EXERCISE
+Try indexing ```data``` to get the collaboration network for McGill University. 
+What is the shape of the resulting dataset? (list, matrix, data frame, vector etc)
+:::
 
-*Practice: try indexing ```data``` to get the collaboration network for McGill University*
-
-```{r}
-#| code-fold: true
-
+:::{.callout-note collapse="true"}
+### SOLUTION
+```{r make-network}
 ## get the names of elements on our list
 names(intra_list)
 
 ## access element containing data for McGill University
-network = intra_list[['McGill University']]
+network <-  intra_list[['McGill University']]
 
+network[1:5, 1:5]
 ```
-
 
 Let's look at the format of the list elements:
 
-```{r eval = FALSE}
+```{r view-network, eval = FALSE}
 
 ## view the data:
 View(network)
@@ -126,36 +144,42 @@ View(network)
 ```
 
 Each university collaboration network is represented by a 2D matrix (similar to one used to represent species interaction networks) where rows and columns represent researchers and cells contain the number of shared publications between two researchers. 
+:::
 
-## Plotting intra-university collaboration networks
+## Plotting 
 
-Now that we understand the data's structure, we can begin making the plot for our Shiny app. 
+Our shiny app will feature visualizations of this dataset. Here is a short introduction to plotting in ggplot2, followed by a demonstration of a network plot using ggraph.
+
+:::{.callout-note appearance="minimal" collapse="true"}
+### Introduction to ggplot2
 
 We are going to be using **functions** from the ```ggplot2``` package to create visualizations of data. Functions are predefined bits of code that automate more complicated actions. R itself has many built-in functions, but we can access many more by loading other packages of functions and data into R.
 
 If you don't yet have this package installed, run this line of code:
-```{r eval = FALSE}
+```{r install-ggplot2, eval = FALSE}
 
 install.packages("ggplot2")
 
 ```
 
 And load the package using the ```library()``` function:
-```{r}
-
+```{r load-ggplot2}
 # load package
 library(ggplot2)
   
 ```
+
 Let's also load a dataset to practice making a plot with:
 
-
+```{r load-penguins}
+data("penguins")
+```
 
 ```{r}
-
-data("iris")
-  
+#| results: asis
+knitr::kable(head(penguins))
 ```
+
 
 ggplot2 is a powerful package that allows you to create complex plots from tabular data (data in a table format with rows and columns). The gg in ggplot2 stands for “grammar of graphics”, and the package uses consistent vocabulary to create plots of widely varying types. Therefore, we only need small changes to our code if the underlying data changes or we decide to make a box plot instead of a scatter plot. This approach helps you create publication-quality plots with minimal adjusting and tweaking.
 
@@ -163,34 +187,35 @@ ggplot plots are built step by step by adding new layers, which allows for exten
 
 We use the ```ggplot()``` function to create a plot. In order to tell it what data to use, we need to specify the data argument. An argument is an input that a function takes, and you set arguments using the ```=``` sign.
 
-```{r}
-ggplot(data = iris)
-  
+```{r empty-plot}
+ggplot(data = penguins)
 ```
 
 We get a blank plot because we haven’t told ```ggplot()``` which variables we want to correspond to parts of the plot. We do this using the ```mapping``` argument. We can specify the “mapping” of variables to plot elements, such as x/y coordinates, size, or shape, by using the ```aes()``` function.
 
 
-```{r eval = TRUE}
-
-ggplot(data = iris, mapping = aes(x = Petal.Length, y = Petal.Width))
-
+```{r axisonly-plot, eval = TRUE}
+ggplot(data = penguins, mapping = aes(x = bill_len, y = bill_dep))
 ```
+
 Now we’ve got a plot with x and y axes corresponding to variables from the iris data. However, we haven’t specified how we want the data to be displayed. We do this using ```geom_``` functions, which specify the type of geometry we want, such as points, lines, or bars. We can add a ```geom_point()``` layer to our plot by using the + sign. We indent onto a new line to make it easier to read, and we have to end the first line with the ```+``` sign.
 
-```{r}
+```{r dot-plot}
 
-ggplot(data = iris, mapping = aes(x = Petal.Length, y = Petal.Width)) +
+ggplot(data = penguins, mapping = aes(x = bill_len, y = bill_dep)) +
   geom_point()
 
 ```
+
+:::
+
+### Plotting collaboration networks
 
 We want our app to display the collaboration network for a university that the user of our Shiny app will select, so let's start by making a plot of the collaboration network for McGill University. 
 
 ggplot likes ```tidy``` data, where each row of the data is an observation and each column represents different variables describing that observation. Because our network data are not in this format, we need the help of another package called ```package``` to plot them. Let's install and load it:
 
-```{r}
-
+```{r demo-tidygraph}
 # install.packages("tidygraph")
 library(tidygraph)
 library(ggraph)
@@ -206,7 +231,7 @@ ggraph(graph, layout = 'circle') +
                 fg_text_colour = 'white')
 ```
 
-## Writing functions
+### Writing functions
 
 If we only had one university's network to plot, we could stop here... but we have 24 others to plot. Let's wrap our code in a **function** so that we can repeat several operations with a single command. 
 
@@ -224,9 +249,14 @@ plot_network <-  function(university, network_list) {
 
 ```
 
-Our function will take two arguments: ```university``` (a string defining the name of the university to plot) and ```network_list``` (the list of collaboration networks). In the body of the function, we will index the ```network_list``` for the matrix data for the ```university```:
 
-```{r}
+
+:::{.callout-tip}
+### EXERCISE
+
+Write a function called ```plot_network```. Our function will take two arguments: ```university``` (a string defining the name of the university to plot) and ```network_list``` (the list of collaboration networks). In the body of the function, we will index the ```network_list``` to obtain the matrix of collaborations for the ```university```.
+
+```{r demo-fn}
 #| eval: false
 plot_network <-  function(university, network_list) {
   
@@ -238,10 +268,14 @@ plot_network <-  function(university, network_list) {
 
 ```
 
-And the we will use that data to make our network plot, and return it using the return statement: 
+Using what you know about the arguments it needs, call the function to make a plot of *Trent University*'s collaboration network.
+:::
 
-```{r}
-plot_network = function(university, network_list) {
+:::{.callout-note collapse="true}
+### SOLUTION
+
+```{r plot_network}
+plot_network <-  function(university, network_list) {
   
    ## index the network list for the selected university 
   one_uni_matrix = network_list[[university]]
@@ -259,75 +293,172 @@ plot_network = function(university, network_list) {
   return(one_uni_plot)
 }
 
-
-
 ```
 
 
-*Practice: We can now call our function ```plot_network```. Using what you know about the arguments it needs, calling the function to make a plot of Trent University's collaboration network.*  
-
 ```{r}
-#| code-fold: true
-
 ## call the function
 plot_network(university = "Trent University", network_list = intra_list)
 
 ```
 
-# Hello Shiny!
+:::
 
-Here is an example of a Shiny app that RStudio generates when you open a new Shiny Web App file:
+## Summary statistics
 
-```{r}
-knitr::opts_chunk$set(eval = FALSE)
+Shiny can be useful for performing calculations. However we can reduce the complexity of our app by performing calculations beforehand and simply using Shiny to subset and display the results.
+
+We have a database of summary statistics that Lucas calculated using the collaboration dataset:
+
+```{r load-stats}
+#| results: asis
+stats <-  readr::read_rds(here::here(
+  "posts/2025-07-06-CSEE-intro-shiny/intra-stats_clean.RDS"
+  ))
+
+knitr::kable(head(stats))
 ```
 
+Let's make a simple function which returns a table of summary statistics for just one chosen university:
+
+```{r}
+make_stat_table <- function(university, stats_dataframe){
+  
+  ## get stats for the chosen school
+  df <-  stats_dataframe[which(stats_dataframe$inst == university),]
+  
+  ## reformat the data frame
+  new_df <-  data.frame(
+    Statistic = c("Number of P.I.s", "Mean collab prop", "Mean degree"), 
+    Value = c(df$n_pi, df$mean_collab_prop, df$mean_degree)
+  )
+  
+  ## display table
+  return(new_df)
+}
+
+make_stat_table("Trent University", stats_dataframe = stats)
+```
+
+With these tools, we're ready to start building a Shiny app! 
+
+##  Hello Shiny!
+
+Here is a minimal Shiny app which displays the collaboration dataset.
 
 ```{r eval = FALSE}
-# Define UI for app that draws a histogram ----
-ui <- fluidPage(
+library(shiny)
+library(tidygraph)
+library(ggraph)
+library(ggplot2)
+library(tidyverse)
 
-  # App title ----
-  titlePanel("Hello Shiny!"),
+## read in Lucas's data
+intra_list <-  readRDS("intra-list_clean.RDS")
+## it is a list with 25 elements containing the data for each of the 25 Canadian universities with the most eco/evo PIs
+## each element is a matrix where each node is a PI who received an NSERC discovery grant through the ecology and evolution stream between 2013-22
+## each edge in the matrix represents the number of co-authored publications between each PI
 
-  # Sidebar layout with input and output definitions ----
-  sidebarLayout(
+## read in an extra data frame of summary statistics about each university 
+stats <-  readRDS("intra-stats_clean.RDS")
+## n_pi = number of PIs who received an NSERC discovery grants
+## mean_collab_prop = mean of the proportions of each’s researchers publications that come from intra-institution collaborations
+## mean_degree = mean number of collaborators
 
-    # Sidebar panel for inputs ----
-    sidebarPanel(
+plot_network <-  function(university, network_list) {
+  
+  ## index the network list for the selected university 
+  one_uni_matrix = network_list[[university]]
+  
+  graph <- as_tbl_graph(one_uni_matrix) |> 
+    mutate(degree = centrality_degree(mode = 'in'))
+  
+  # plot using ggraph
+  one_uni_plot <- ggraph(graph, layout = 'circle') + 
+    geom_edge_fan(aes(alpha = after_stat(index)), show.legend = FALSE) + 
+    geom_node_point(aes(size = degree)) + 
+    theme_graph(foreground = 'steelblue',
+                fg_text_colour = 'white')
+  
+  return(one_uni_plot)
+}
 
-      # Input: Slider for the number of bins ----
-      sliderInput(inputId = "bins",
-                  label = "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
-
-    ),
-
-    # Main panel for displaying outputs ----
-    mainPanel(
-
-      # Output: Histogram ----
-      plotOutput(outputId = "distPlot")
-
-    )
+make_stat_table <- function(university, stats_dataframe){
+  
+  ## get stats for the chosen school
+  df <-  stats_dataframe[which(stats_dataframe$inst == university),]
+  
+  ## reformat the data frame
+  new_df <-  data.frame(
+    Statistic = c("Number of P.I.s", "Mean collab prop", "Mean degree"), 
+    Value = c(df$n_pi, df$mean_collab_prop, df$mean_degree)
   )
+  
+  ## display table
+  return(new_df)
+}
+
+
+ui <- fluidPage(
+  
+  ## write title for app: 
+  titlePanel("Intra-university collaboration networks"),
+  
+  ## add a dropdown menu where user can select a university
+  selectInput(
+    inputId = "dropdown_input",
+    label = "Choose a school:",
+    choices = names(intra_list)
+  ),
+  
+  ## display network plot for chosen university
+  plotOutput("schoolPlot"),
+  
+  ## display some stats for the chosen university
+  tableOutput("schoolStats")
 )
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+  
+  ## define plot output
+  output$schoolPlot <- renderPlot({
+    
+    ## get the chosen school from input into dropdown menu
+    choice = input$dropdown_input 
+    
+    ## display network plot for the school that was chosen 
+    plot_network(university = choice, network_list = intra_list)
+  })
+  
+  ## display some statistics for the chosen school
+  output$schoolStats <- renderTable({
+    ## get the chosen school from input into dropdown menu
+    choice = input$dropdown_input 
+    
+    make_stat_table(university = choice, stats_dataframe = stats)
+  })
+}
+
+## run the app
+shinyApp(ui = ui, server = server)
 ```
 
 
 :::{.callout-note}
 ### EXERCISE: Think-Pair-Share
 
+Before we walk through the structure of a Shiny app, take a moment to look at the code above. We'll each take some time to *Think* about the code and guess at what it does. Then we'll encourage you to turn to your neighbours (*Pair*) and to discuss what you think the app does, and what it looks like (*Share*). Consider the following questions as you work through this exercise.
+
+* What does the app look like? How many visual elements are on the screen? 
+* What are the two parts of a Shiny app? 
+* How do the two parts of a Shiny app "talk" to each other?
 
 :::
 
+## How a Shiny app works
 
-
-# How a Shiny app works
-
-## Building blocks
+### Building blocks
 
 We've now seen the basic building blocks of a Shiny app:
 
@@ -339,11 +470,18 @@ We've now seen the basic building blocks of a Shiny app:
 
 The **user interface** and **server** communicate through IDs that we assign to inputs from the user and outputs from the server.
 
-![](images/app-ids.png)
+::: {#fig-appids layout-ncol=2}
+![app-ids](images/app-ids.png)
+![app_01_simple](images/app_01_simple.PNG)
+:::
 
 We use an ID (*in orange*) to link the user input in the UI to the reactive values used in the server:
 
-![](images/app-reactiveid.png)
+
+::: {#fig-appids-reactive layout-ncol=2}
+![app-ids](images/app-ids.png)
+![app_01_simple](images/app_01_simple_input.PNG)
+:::
 
 We use another ID (*in blue*) to link the output created in the server to the output shown in the user interface:
 
@@ -379,6 +517,7 @@ library(readr)
 To add a plot in our Shiny, we need to indicate where the plot should appear in the app. We can do this with `plotOutput()`, a similar function to `tableOutput()` in the previous section that is meant for plot outputs, as the name suggests.
 
 ```{r }
+#| eval: false
 # Define UI for application that makes a table andplots the Volcano Explosivity 
 # Index for the most eruptive volcanoes within a selected range of years
 
@@ -424,6 +563,7 @@ We now need to create the plot we want to show in our app. This plot will change
 We link the UI and server together with IDs that are assigned to each object. Above, we told the UI to expect a plot output with the ID `"ridgePlot"`. In the server, we will create a plot and render it as a plot object using `renderPlot()`, and we will assign this plot output to the ID we call in the UI (as `output$ridgePlot`).
 
 ```{r}
+#| eval: false
 # Define server logic required to make your output(s)
 server <- function(input, output) {
 
@@ -489,6 +629,133 @@ shinyApp(ui = ui, server = server)
 ```
 
 ![](images/plotOutput.png)
+
+
+## Constructing a Shiny app using shinyDashboards
+
+## Taking advantage of good defaults
+
+Here, we will use shiny extension `shinyDashboards` to construct a custom Shiny App to visualize the collaboration dataset. First, we need a few additional packages.
+
+
+```{r}
+# load packages
+library(shiny)
+library(shinydashboard)  # dashboard layout package
+library(dplyr)
+library(ggplot2)
+```
+
+### Using ShinyDashboard
+
+We will create our app using defaults from the ShinyDashboard package, which always includes three main components: a header, using `dashboardHeader()`, a sidebar, using `dashboardSidebar()`, and a body, using `dashboardBody()`. These are then added together using the `dashboardPage()` function.
+
+Building these elements is less like usual R coding, and more like web design, since we are, in fact, designing a unser interface for a web app. Here, we'll make a basic layout before populating it.
+
+
+```{r }
+#| eval: false
+# create the header of our app
+header <- dashboardHeader(
+  title = "Exploring Collaborations",
+  titleWidth = 350 # since we have a long title, we need to extend width element in pixels
+)
+# create dashboard body - this is the major UI element
+body <- dashboardBody(
+  # make first row of elements (actually, this will be the only row)
+  fluidRow(
+    # make first column, 25% of page - width = 3 of 12 columns
+    column(width = 3,
+           # Box 1: text explaining what this app is
+           #-----------------------------------------------
+           box( width = NULL,
+                status="primary", # this line can change the automatic color of the box.
+                title = NULL,
+                p("here, we'll include some info about this app")
+           ), # end box 1
+           
+           # box 2 : input for selecting University
+           #-----------------------------------------------
+           box(width = NULL, status = "primary",
+               title  = "Selection Criteria", solidHeader = TRUE, 
+               
+               p("here, we'll add a UI element for selecting the University"),
+               
+           ), # end box 2
+           
+           # box 3: Table of 
+           #------------------------------------------------
+           box(width = NULL, status = "primary",
+               solidHeader = TRUE, collapsible = T,
+               title = "Summary Statistics",
+               p("here, we'll add a table of summary stats for the chosen University")
+           ) # end box 3
+    ), # end column 1
+    
+    # second column - 75% of page (9 of 12 columns)
+    #--------------------------------------------------
+    column(width = 9,
+           # Box 4: ggplot2 figure
+           box(width = NULL, background = "light-blue", height = 850,
+               p("a ggplot of the network within one University"),
+           ) # end box with map
+    ) # end second column
+    
+  ) # end fluidrow
+) # end body
+
+
+# add elements together
+dashboardPage(
+  skin = "blue",
+  header = header,
+  sidebar = dashboardSidebar(disable = TRUE), # here, we only have one tab of our app, so we don't need a sidebar
+  body = body
+)
+
+
+```
+
+
+![](images/shiny_dashboard_layout.png)
+
+## Populating the Layout
+
+Now, we are going to fill out app with elements. In this app, we will only have one user input: a selection of the volcano type to show. We will use this input (`input$volcano_type`), which will be used to filter data in the server (i.e. make a smaller dataset using only volcanoes of the selected types), then use this filtered dataset to create output elements (plots and maps).
+
+Below, we show the necessary code to include in both the UI and the Server to create each plot element. Notice that after the reactive value `selected_volcanoes` is created in the selection box, this is the only object that is used to create the other elements in the app.
+
+| Location | Element              | UI                                                  | Server                                                                                                                                                |
+|:----------------|:----------------|:------------------|:------------------|
+| Box 1    | **Intro Textbox**    | Markdown/HTML text code                             |                                                                                                                                                       |
+| Box 2    | **Selection Wigets** | `checkboxGroupButtons(` `inputID = "volcano_type")` | `selected_volcanoes <- reactive({` `volcano_df %>% filter(type %in% input$volcano_type)})` to create a filtered dataset that will react to user input |
+| Box 3    | **Bar Graph**        | `plotOutput("continentplot")`                       | `output$continentplot <- renderPlot(...))` which will plot from the `selectied_volcanoes` reactive object                                             |
+| Box 4    | **Leaflet Map**      | `leafletOutput("volcanomap")`                       | `output$volcanomap <- renderLeaflet(...)` to map points from the `selectied_volcanoes` reactive object                                                |
+
+![](images/populated_shiny.png)
+
+## Challenge!
+
+Use the code provided to add your own additional user input to the Shiny App. The code (which you can access [here](https://github.com/bios2/shiny_day_2/tree/main/Jake_volcano_map/Volcano_Leaflet) leaves a space for an additional UI input inside box 2). Then, you'll need to use your new input element to the reactive value in the Server, as noted in the server code.
+
+Use the [Default Shiny Widgets](https://shiny.rstudio.com/gallery/widget-gallery.html) or [shinyWidgets extended package](http://shinyapps.dreamrs.fr/shinyWidgets/) galleries to explore the types of elements you can add.
+
+![](images/add_elements_diagram.png)
+
+### See the completed app
+
+See our completed app [HERE](https://jakelawlor.shinyapps.io/Volcanoes_of_the_World/)
+
+
+
+
+## Bonus Content
+
+```{r EVAL-FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
+
+
 
 ## Customising the theme
 
@@ -675,134 +942,9 @@ Now, our plot's theme follows the app's custom theme as well:
 
 ![](images/thematic_plot.png)
 
-# Constructing a Shiny app using shinyDashboards
-
-## Taking advantage of good defaults
-
-Here, we will use shiny extension `shinyDashboards` and `leaflet` to construct a custom Shiny App to map volcanoes of the world. First, we need a few additional packages.
-
-**Note: All Source code for this app can be found [here](https://github.com/bios2/shiny_day_2/tree/main/Jake_volcano_map/Volcano_Leaflet) on the BIOS2 Github.**
-
-```{r}
-# load packages
-library(shiny)
-library(shinydashboard)  # dashboard layout package
-library(shinyWidgets)  # fancy widgets package
-library(leaflet)  # interactive maps package
-library(dplyr)
-library(ggplot2)
-```
-
-### Using ShinyDashboard
-
-We will create our app using defaults from the ShinyDashboard package, which always includes three main components: a header, using `dashboardHeader()`, a sidebar, using `dashboardSidebar()`, and a body, using `dashboardBody()`. These are then added together using the `dashboardPage()` function.
-
-Building these elements is less like usual R coding, and more like web design, since we are, in fact, designing a unser interface for a web app. Here, we'll make a basic layout before populating it.
-
-```{r, echo=TRUE}
-# create the header of our app
-header <- dashboardHeader(
-    title = "Exploring Volcanoes of the World",
-    titleWidth = 350 # since we have a long title, we need to extend width element in pixels
-)
 
 
-# create dashboard body - this is the major UI element
-body <- dashboardBody(
-
-    # make first row of elements (actually, this will be the only row)
-    fluidRow(
-        
-        # make first column, 25% of page - width = 3 of 12 columns
-        column(width = 3,
-               
-               
-               # Box 1: text explaining what this app is
-               #-----------------------------------------------
-               box( width = NULL,
-                    status="primary", # this line can change the automatic color of the box.
-                    title = NULL,
-                    p("here, we'll include some info about this app")
-
-                 
-               ), # end box 1
-               
-               
-               # box 2 : input for selecting volcano type
-               #-----------------------------------------------
-               box(width = NULL, status = "primary",
-                   title  = "Selection Criteria", solidHeader = T, 
-                   
-                   p("here, we'll add a UI element for selecting volcano types"),
-
-               ), # end box 2
-               
-               
-               
-               # box 3: ggplot of selected volcanoes by continent
-               #------------------------------------------------
-               box(width = NULL, status = "primary",
-                   solidHeader = TRUE, collapsible = T,
-                   title = "Volcanoes by Continent",
-                   p("here, we'll add a bar plot of volcanoes in each continent")
-               ) # end box 3
-               
-        ), # end column 1
-         
-        # second column - 75% of page (9 of 12 columns)
-        #--------------------------------------------------
-        column(width = 9,
-               # Box 4: leaflet map
-               box(width = NULL, background = "light-blue", height = 850,
-                   p("here, we'll show volcanoes on a map"),
-               ) # end box with map
-        ) # end second column
-        
-    ) # end fluidrow
-) # end body
-
-
-# add elements together
-dashboardPage(
-    skin = "blue",
-    header = header,
-    sidebar = dashboardSidebar(disable = TRUE), # here, we only have one tab of our app, so we don't need a sidebar
-    body = body
-)
-
-
-```
-
-![](images/shiny_dashboard_layout.png)
-
-## Populating the Layout
-
-Now, we are going to fill out app with elements. In this app, we will only have one user input: a selection of the volcano type to show. We will use this input (`input$volcano_type`), which will be used to filter data in the server (i.e. make a smaller dataset using only volcanoes of the selected types), then use this filtered dataset to create output elements (plots and maps).
-
-Below, we show the necessary code to include in both the UI and the Server to create each plot element. Notice that after the reactive value `selected_volcanoes` is created in the selection box, this is the only object that is used to create the other elements in the app.
-
-| Location | Element              | UI                                                  | Server                                                                                                                                                |
-|:----------------|:----------------|:------------------|:------------------|
-| Box 1    | **Intro Textbox**    | Markdown/HTML text code                             |                                                                                                                                                       |
-| Box 2    | **Selection Wigets** | `checkboxGroupButtons(` `inputID = "volcano_type")` | `selected_volcanoes <- reactive({` `volcano_df %>% filter(type %in% input$volcano_type)})` to create a filtered dataset that will react to user input |
-| Box 3    | **Bar Graph**        | `plotOutput("continentplot")`                       | `output$continentplot <- renderPlot(...))` which will plot from the `selectied_volcanoes` reactive object                                             |
-| Box 4    | **Leaflet Map**      | `leafletOutput("volcanomap")`                       | `output$volcanomap <- renderLeaflet(...)` to map points from the `selectied_volcanoes` reactive object                                                |
-
-![](images/populated_shiny.png)
-
-## Challenge!
-
-Use the code provided to add your own additional user input to the Shiny App. The code (which you can access [here](https://github.com/bios2/shiny_day_2/tree/main/Jake_volcano_map/Volcano_Leaflet) leaves a space for an additional UI input inside box 2). Then, you'll need to use your new input element to the reactive value in the Server, as noted in the server code.
-
-Use the [Default Shiny Widgets](https://shiny.rstudio.com/gallery/widget-gallery.html) or [shinyWidgets extended package](http://shinyapps.dreamrs.fr/shinyWidgets/) galleries to explore the types of elements you can add.
-
-![](images/add_elements_diagram.png)
-
-### See the completed app
-
-See our completed app [HERE](https://jakelawlor.shinyapps.io/Volcanoes_of_the_World/)
-
-# Constructing a Shiny app using Golem
+## Constructing a Shiny app using Golem
 
 First step is creating your own golem project:
 
