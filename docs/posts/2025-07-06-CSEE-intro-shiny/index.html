@@ -1000,36 +1000,65 @@ EXERCISE: Think-Pair-Share
 <section id="ids" class="level3">
 <h3 class="anchored" data-anchor-id="ids">IDs</h3>
 <p>The <strong>user interface</strong> and <strong>server</strong> communicate through IDs that we assign to inputs from the user and outputs from the server.</p>
-<div id="fig-appids" class="quarto-layout-panel">
+<div id="fig-appids" class="quarto-layout-panel" width="400">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/app-ids.png" class="img-fluid figure-img" alt="app-ids"> <img src="images/app_01_simple.PNG" class="img-fluid figure-img" alt="app_01_simple"></p>
+<p><img src="images/app-ids.png" class="img-fluid figure-img" style="width:50.0%" alt="app-ids"> <img src="images/app_01_simple.PNG" class="img-fluid figure-img" style="width:50.0%" alt="app_01_simple"></p>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: <strong>?(caption)</strong></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Shiny apps use identifiers (“id”) to link a visual element in the UI to objects on the server. The programmer chooses the names for these IDs. Here the colour (orange or blue) indicates different IDs; in a real app the orange squares would both be the same ID (e.g.&nbsp;<code>user_selection</code>) and the blue squares would both be a different id (e.g.&nbsp;<code>app_output</code>).</figcaption><p></p>
 </figure>
 </div>
-<p>We use an ID (<em>in orange</em>) to link the user input in the UI to the reactive values used in the server:</p>
+<p>We use an ID (<em>in orange</em>) to link the user input in the UI to the reactive values used in the server</p>
 <div id="fig-appids-reactive" class="quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/app-ids.png" class="img-fluid figure-img" alt="app-ids"> <img src="images/app_01_simple_input.PNG" class="img-fluid figure-img" alt="app_01_simple"></p>
+<p><img src="images/app-ids.png" class="img-fluid figure-img" alt="app-ids"> <img src="images/app_01_simple_input.png" class="img-fluid figure-img" alt="app_01_simple"></p>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: <strong>?(caption)</strong></figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: The orange-coloured ID refers to the selection dropdown. In the UI portion it refers to the visual element the user interacts with. In the server portion it refers to the value given by the user.</figcaption><p></p>
 </figure>
 </div>
 <p>We use another ID (<em>in blue</em>) to link the output created in the server to the output shown in the user interface:</p>
-<p><img src="images/app-output.png" class="img-fluid"></p>
+<div id="fig-appids-reactive" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/app-ids.png" class="img-fluid figure-img" alt="app-ids"> <img src="images/app_01_simple_output.png" class="img-fluid figure-img" alt="app_01_simple"> The blue-coloured ID refers to the network figure. In the UI portion it refers to the plot image that the user sees. In the server portion it refers to the R object created by the <code>renderSomething</code> function.</p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: <strong>?(caption)</strong></figcaption><p></p>
+</figure>
+</div>
 </section>
 <section id="organisation" class="level3">
 <h3 class="anchored" data-anchor-id="organisation">Organisation</h3>
 <p>These elements can all be placed in one script named <code>app.R</code> or separately in scripts named <code>ui.R</code> and <code>server.R</code>. The choice is up to you, although it becomes easier to work in separate <code>ui.R</code> and <code>server.R</code> scripts when the Shiny app becomes more complex.</p>
-<p><strong>Example 1: Everything in <code>app.R</code></strong></p>
-<p><img src="images/app-in1.png" class="img-fluid"> <strong>Example 2: Split things into <code>ui.R</code> and <code>server.R</code></strong></p>
-<p><img src="images/app-in2.png" class="img-fluid"></p>
+<div id="fig-org" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/app-in1.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Example 1: Everything in <code>app.R</code></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/app-in2.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Example 2: Split things into <code>ui.R</code> and <code>server.R</code></figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Shiny apps can be created in a single file or split into two for easier organization</figcaption><p></p>
+</figure>
+</div>
 </section>
 </section>
 <section id="plots" class="level2" data-number="7">

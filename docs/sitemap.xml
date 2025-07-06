@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://bios2.github.io/posts/2025-07-06-CSEE-intro-shiny/index.html</loc>
-    <lastmod>2025-07-06T02:38:49.594Z</lastmod>
+    <lastmod>2025-07-06T10:54:45.356Z</lastmod>
   </url>
   <url>
     <loc>https://bios2.github.io/about.html</loc>
@@ -75,5 +75,9 @@
   <url>
     <loc>https://bios2.github.io/summer-schools/v2024/slides/slides.html</loc>
     <lastmod>2025-07-06T02:38:39.965Z</lastmod>
+  </url>
+  <url>
+    <loc>https://bios2.github.io/index.html</loc>
+    <lastmod>2025-07-06T10:54:47.913Z</lastmod>
   </url>
 </urlset>

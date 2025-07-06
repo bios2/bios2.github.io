@@ -470,32 +470,42 @@ We've now seen the basic building blocks of a Shiny app:
 
 The **user interface** and **server** communicate through IDs that we assign to inputs from the user and outputs from the server.
 
-::: {#fig-appids layout-ncol=2}
-![app-ids](images/app-ids.png)
-![app_01_simple](images/app_01_simple.PNG)
+::: {#fig-appids layout-ncol=2 width=400}
+![app-ids](images/app-ids.png){width=50%}
+![app_01_simple](images/app_01_simple.PNG){width=50%}
+
+Shiny apps use identifiers ("id") to link a visual element in the UI to objects on the server. The programmer chooses the names for these IDs. Here the colour (orange or blue) indicates different IDs; in a real app the orange squares would both be the same ID (e.g. `user_selection`) and the blue squares would both be a different id (e.g. `app_output`).
 :::
 
-We use an ID (*in orange*) to link the user input in the UI to the reactive values used in the server:
+We use an ID (*in orange*) to link the user input in the UI to the reactive values used in the server
 
 
 ::: {#fig-appids-reactive layout-ncol=2}
 ![app-ids](images/app-ids.png)
-![app_01_simple](images/app_01_simple_input.PNG)
+![app_01_simple](images/app_01_simple_input.png)
+
+The orange-coloured ID refers to the selection dropdown. In the UI portion it refers to the visual element the user interacts with. In the server portion it refers to the value given by the user.
 :::
 
 We use another ID (*in blue*) to link the output created in the server to the output shown in the user interface:
 
-![](images/app-output.png)
+::: {#fig-appids-reactive layout-ncol=2}
+![app-ids](images/app-ids.png)
+![app_01_simple](images/app_01_simple_output.png)
+The blue-coloured ID refers to the network figure. In the UI portion it refers to the plot image that the user sees. In the server portion it refers to the R object created by the `renderSomething` function.
+:::
 
 ### Organisation
 
 These elements can all be placed in one script named `app.R` or separately in scripts named `ui.R` and `server.R`. The choice is up to you, although it becomes easier to work in separate `ui.R` and `server.R` scripts when the Shiny app becomes more complex.
 
-**Example 1: Everything in `app.R`**
+::: {#fig-org layout-ncol=2}
+![Example 1: Everything in `app.R`](images/app-in1.png) 
 
-![](images/app-in1.png) **Example 2: Split things into `ui.R` and `server.R`**
+![Example 2: Split things into `ui.R` and `server.R`](images/app-in2.png)
 
-![](images/app-in2.png)
+Shiny apps can be created in a single file or split into two for easier organization
+:::
 
 ## Plots
 
