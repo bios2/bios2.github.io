@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,7 +12,7 @@
 <meta name="dcterms.date" content="2025-07-06">
 <meta name="description" content="Introduction to interactive app development with R Shiny.">
 
-<title>BIOS² Education resources - Introduction to Shiny Apps CSEE</title>
+<title>Introduction to Shiny Apps CSEE – BIOS² Education resources</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -27,7 +27,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -38,7 +38,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -76,17 +76,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ecb778d5ef56ea6a42975469c354c5e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -95,8 +100,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script>
@@ -129,8 +136,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   })
   </script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -138,10 +172,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../Bios2_reverse.png" alt="" class="navbar-logo">
     </a>
@@ -150,56 +184,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-intensive-courses" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-intensive-courses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Intensive courses</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-intensive-courses">    
         <li>
-    <a class="dropdown-item" href="../../summer-schools/v2024/BiodiversityModelling2024.html" rel="" target="">
+    <a class="dropdown-item" href="../../summer-schools/v2024/BiodiversityModelling2024.html">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2024</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../summer-schools/v2022/BiodiversityModelling2022.html" rel="" target="">
+    <a class="dropdown-item" href="../../summer-schools/v2022/BiodiversityModelling2022.html">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2022</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://bios2.github.io/biodiversity_modelling_2021/" rel="" target="">
+    <a class="dropdown-item" href="https://bios2.github.io/biodiversity_modelling_2021/">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2021</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../summer-schools/v2019/BiodiversityModelling2019.html" rel="" target="">
+    <a class="dropdown-item" href="../../summer-schools/v2019/BiodiversityModelling2019.html">
  <span class="dropdown-text">Biodiversity Modelling Summer School 2019</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="https://bios2.usherbrooke.ca/" rel="" target="">
- <span class="menu-text">About BIOS²</span></a>
+    <a class="nav-link" href="https://bios2.usherbrooke.ca/"> 
+<span class="menu-text">About BIOS²</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/bios2/bios2.github.io" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/bios2/bios2.github.io"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/_bios2" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/_bios2"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
+          </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -228,28 +262,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="quarto-title-meta-contents">
       <p class="author">Nikki Moore </p>
     </div>
-      <div class="quarto-title-meta-contents">
+    <div class="quarto-title-meta-contents">
           <p class="affiliation">
               McGill University
             </p>
         </div>
-        <div class="quarto-title-meta-contents">
+      <div class="quarto-title-meta-contents">
       <p class="author">Andrew MacDonald </p>
     </div>
-      <div class="quarto-title-meta-contents">
+    <div class="quarto-title-meta-contents">
           <p class="affiliation">
               Université de Sherbrooke
             </p>
         </div>
-        <div class="quarto-title-meta-contents">
+      <div class="quarto-title-meta-contents">
       <p class="author">Jake Lawlor </p>
     </div>
-      <div class="quarto-title-meta-contents">
+    <div class="quarto-title-meta-contents">
           <p class="affiliation">
               McGill University
             </p>
         </div>
-      </div>
+    </div>
 
   <div class="quarto-title-meta">
 
@@ -297,39 +331,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ids" id="toc-ids" class="nav-link" data-scroll-target="#ids">IDs</a></li>
   <li><a href="#organisation" id="toc-organisation" class="nav-link" data-scroll-target="#organisation">Organisation</a></li>
   </ul></li>
-  <li><a href="#plots" id="toc-plots" class="nav-link" data-scroll-target="#plots"><span class="header-section-number">7</span> Plots</a>
-  <ul class="collapse">
-  <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User interface</a></li>
-  <li><a href="#server" id="toc-server" class="nav-link" data-scroll-target="#server">Server</a></li>
-  <li><a href="#the-shiny-app" id="toc-the-shiny-app" class="nav-link" data-scroll-target="#the-shiny-app">The Shiny app</a></li>
-  </ul></li>
-  <li><a href="#constructing-a-shiny-app-using-shinydashboards" id="toc-constructing-a-shiny-app-using-shinydashboards" class="nav-link" data-scroll-target="#constructing-a-shiny-app-using-shinydashboards"><span class="header-section-number">8</span> Constructing a Shiny app using shinyDashboards</a></li>
-  <li><a href="#taking-advantage-of-good-defaults" id="toc-taking-advantage-of-good-defaults" class="nav-link" data-scroll-target="#taking-advantage-of-good-defaults"><span class="header-section-number">9</span> Taking advantage of good defaults</a>
+  <li><a href="#constructing-a-shiny-app-using-shinydashboards-taking-advantage-of-good-defaults" id="toc-constructing-a-shiny-app-using-shinydashboards-taking-advantage-of-good-defaults" class="nav-link" data-scroll-target="#constructing-a-shiny-app-using-shinydashboards-taking-advantage-of-good-defaults"><span class="header-section-number">7</span> Constructing a Shiny app using shinyDashboards: taking advantage of good defaults</a>
   <ul class="collapse">
   <li><a href="#using-shinydashboard" id="toc-using-shinydashboard" class="nav-link" data-scroll-target="#using-shinydashboard">Using ShinyDashboard</a></li>
   </ul></li>
-  <li><a href="#populating-the-layout" id="toc-populating-the-layout" class="nav-link" data-scroll-target="#populating-the-layout"><span class="header-section-number">10</span> Populating the Layout</a></li>
-  <li><a href="#challenge" id="toc-challenge" class="nav-link" data-scroll-target="#challenge"><span class="header-section-number">11</span> Challenge!</a>
-  <ul class="collapse">
-  <li><a href="#see-the-completed-app" id="toc-see-the-completed-app" class="nav-link" data-scroll-target="#see-the-completed-app">See the completed app</a></li>
-  </ul></li>
-  <li><a href="#bonus-content" id="toc-bonus-content" class="nav-link" data-scroll-target="#bonus-content"><span class="header-section-number">12</span> Bonus Content</a></li>
-  <li><a href="#customising-the-theme" id="toc-customising-the-theme" class="nav-link" data-scroll-target="#customising-the-theme"><span class="header-section-number">13</span> Customising the theme</a>
-  <ul class="collapse">
-  <li><a href="#using-built-in-themes" id="toc-using-built-in-themes" class="nav-link" data-scroll-target="#using-built-in-themes">Using built-in themes</a></li>
-  <li><a href="#using-a-custom-theme" id="toc-using-a-custom-theme" class="nav-link" data-scroll-target="#using-a-custom-theme">Using a custom theme</a></li>
-  </ul></li>
-  <li><a href="#constructing-a-shiny-app-using-golem" id="toc-constructing-a-shiny-app-using-golem" class="nav-link" data-scroll-target="#constructing-a-shiny-app-using-golem"><span class="header-section-number">14</span> Constructing a Shiny app using Golem</a>
-  <ul class="collapse">
-  <li><a href="#golem-modules" id="toc-golem-modules" class="nav-link" data-scroll-target="#golem-modules">Golem modules</a></li>
-  <li><a href="#selecting-the-volcanoes" id="toc-selecting-the-volcanoes" class="nav-link" data-scroll-target="#selecting-the-volcanoes">Selecting the volcanoes</a></li>
-  <li><a href="#barplot-of-continents" id="toc-barplot-of-continents" class="nav-link" data-scroll-target="#barplot-of-continents">Barplot of continents</a></li>
-  </ul></li>
+  <li><a href="#reducing-duplication-introducing-reactive" id="toc-reducing-duplication-introducing-reactive" class="nav-link" data-scroll-target="#reducing-duplication-introducing-reactive"><span class="header-section-number">8</span> Reducing duplication: introducing <code>reactive()</code></a></li>
+  <li><a href="#adding-one-more-figure-university-level-statistics" id="toc-adding-one-more-figure-university-level-statistics" class="nav-link" data-scroll-target="#adding-one-more-figure-university-level-statistics"><span class="header-section-number">9</span> Adding one more figure: University-level statistics</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
+
 
 
 
@@ -539,33 +552,33 @@ Introduction to ggplot2
 <p>And load the package using the <code>library()</code> function:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s also load a dataset to practice making a plot with:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"penguins"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(penguins))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table class="table">
+<table class="caption-top table">
 <colgroup>
+<col style="width: 8%">
 <col style="width: 11%">
-<col style="width: 14%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 17%">
-<col style="width: 14%">
-<col style="width: 10%">
+<col style="width: 16%">
+<col style="width: 15%">
+<col style="width: 20%">
+<col style="width: 13%">
 <col style="width: 7%">
+<col style="width: 5%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">species</th>
 <th style="text-align: left;">island</th>
-<th style="text-align: right;">bill_len</th>
-<th style="text-align: right;">bill_dep</th>
-<th style="text-align: right;">flipper_len</th>
-<th style="text-align: right;">body_mass</th>
+<th style="text-align: right;">bill_length_mm</th>
+<th style="text-align: right;">bill_depth_mm</th>
+<th style="text-align: right;">flipper_length_mm</th>
+<th style="text-align: right;">body_mass_g</th>
 <th style="text-align: left;">sex</th>
 <th style="text-align: right;">year</th>
 </tr>
@@ -633,33 +646,44 @@ Introduction to ggplot2
 </tr>
 </tbody>
 </table>
-</div>
 <p>ggplot2 is a powerful package that allows you to create complex plots from tabular data (data in a table format with rows and columns). The gg in ggplot2 stands for “grammar of graphics”, and the package uses consistent vocabulary to create plots of widely varying types. Therefore, we only need small changes to our code if the underlying data changes or we decide to make a box plot instead of a scatter plot. This approach helps you create publication-quality plots with minimal adjusting and tweaking.</p>
 <p>ggplot plots are built step by step by adding new layers, which allows for extensive flexibility and customization of plots.</p>
 <p>We use the <code>ggplot()</code> function to create a plot. In order to tell it what data to use, we need to specify the data argument. An argument is an input that a function takes, and you set arguments using the <code>=</code> sign.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/empty-plot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/empty-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We get a blank plot because we haven’t told <code>ggplot()</code> which variables we want to correspond to parts of the plot. We do this using the <code>mapping</code> argument. We can specify the “mapping” of variables to plot elements, such as x/y coordinates, size, or shape, by using the <code>aes()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_len, <span class="at">y =</span> bill_dep))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/axisonly-plot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/axisonly-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Now we’ve got a plot with x and y axes corresponding to variables from the iris data. However, we haven’t specified how we want the data to be displayed. We do this using <code>geom_</code> functions, which specify the type of geometry we want, such as points, lines, or bars. We can add a <code>geom_point()</code> layer to our plot by using the + sign. We indent onto a new line to make it easier to read, and we have to end the first line with the <code>+</code> sign.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_len, <span class="at">y =</span> bill_dep)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm)) <span class="sc">+</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/dot-plot-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/dot-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -693,7 +717,11 @@ Attaching package: 'tidygraph'</code></pre>
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_graph</span>(<span class="at">foreground =</span> <span class="st">'steelblue'</span>,</span>
 <span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">fg_text_colour =</span> <span class="st">'white'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/demo-tidygraph-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/demo-tidygraph-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -767,7 +795,11 @@ SOLUTION
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="do">## call the function</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_network</span>(<span class="at">university =</span> <span class="st">"Trent University"</span>, <span class="at">network_list =</span> intra_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -784,8 +816,7 @@ SOLUTION
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  ))</span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(stats))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 51%">
 <col style="width: 7%">
@@ -839,7 +870,6 @@ SOLUTION
 </tr>
 </tbody>
 </table>
-</div>
 <p>Let’s make a simple function which returns a table of summary statistics for just one chosen university:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>make_stat_table <span class="ot">&lt;-</span> <span class="cf">function</span>(university, stats_dataframe){</span>
@@ -1000,36 +1030,77 @@ EXERCISE: Think-Pair-Share
 <section id="ids" class="level3">
 <h3 class="anchored" data-anchor-id="ids">IDs</h3>
 <p>The <strong>user interface</strong> and <strong>server</strong> communicate through IDs that we assign to inputs from the user and outputs from the server.</p>
-<div id="fig-appids" class="quarto-layout-panel" width="400">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="fig-appids" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-appids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/app-ids.png" class="img-fluid figure-img" style="width:50.0%" alt="app-ids"> <img src="images/app_01_simple.PNG" class="img-fluid figure-img" style="width:50.0%" alt="app_01_simple"></p>
+<p><img src="images/app-ids.png" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="images/app_01_simple.PNG" class="img-fluid figure-img"></p>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Shiny apps use identifiers (“id”) to link a visual element in the UI to objects on the server. The programmer chooses the names for these IDs. Here the colour (orange or blue) indicates different IDs; in a real app the orange squares would both be the same ID (e.g.&nbsp;<code>user_selection</code>) and the blue squares would both be a different id (e.g.&nbsp;<code>app_output</code>).</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-appids-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Shiny apps use identifiers (“id”) to link a visual element in the UI to objects on the server. The programmer chooses the names for these IDs. Here the colour (orange or blue) indicates different IDs; in a real app the orange squares would both be the same ID (e.g.&nbsp;<code>user_selection</code>) and the blue squares would both be a different id (e.g.&nbsp;<code>app_output</code>).
+</figcaption>
 </figure>
 </div>
 <p>We use an ID (<em>in orange</em>) to link the user input in the UI to the reactive values used in the server</p>
 <div id="fig-appids-reactive" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-appids-reactive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/app-ids.png" class="img-fluid figure-img" alt="app-ids"> <img src="images/app_01_simple_input.png" class="img-fluid figure-img" alt="app_01_simple"></p>
+<p><img src="images/app-ids.png" class="img-fluid figure-img"></p>
+<figcaption>The same ID refers to the value input by the user ..</figcaption>
+</figure>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: The orange-coloured ID refers to the selection dropdown. In the UI portion it refers to the visual element the user interacts with. In the server portion it refers to the value given by the user.</figcaption><p></p>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/app_01_simple_input.png" class="img-fluid figure-img"></p>
+<figcaption>.. and to the visual element the user interacts with</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-appids-reactive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: The orange-coloured ID refers to the selection dropdown. In the UI portion it refers to the visual element the user interacts with. In the server portion it refers to the value given by the user.
+</figcaption>
 </figure>
 </div>
 <p>We use another ID (<em>in blue</em>) to link the output created in the server to the output shown in the user interface:</p>
 <div id="fig-appids-reactive" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-appids-reactive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/app-ids.png" class="img-fluid figure-img" alt="app-ids"> <img src="images/app_01_simple_output.png" class="img-fluid figure-img" alt="app_01_simple"> The blue-coloured ID refers to the network figure. In the UI portion it refers to the plot image that the user sees. In the server portion it refers to the R object created by the <code>renderSomething</code> function.</p>
+<p><img src="images/app-ids.png" class="img-fluid figure-img"></p>
+<figcaption>The same ID refers to an object created on the server</figcaption>
+</figure>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: <strong>?(caption)</strong></figcaption><p></p>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/app_01_simple_output.png" class="img-fluid figure-img"></p>
+<figcaption>and visual part of the app</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-appids-reactive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: The blue-coloured ID refers to the network figure. In the UI portion it refers to the plot image that the user sees. In the server portion it refers to the R object created by the <code>renderSomething</code> function.
+</figcaption>
 </figure>
 </div>
 </section>
@@ -1037,166 +1108,41 @@ EXERCISE: Think-Pair-Share
 <h3 class="anchored" data-anchor-id="organisation">Organisation</h3>
 <p>These elements can all be placed in one script named <code>app.R</code> or separately in scripts named <code>ui.R</code> and <code>server.R</code>. The choice is up to you, although it becomes easier to work in separate <code>ui.R</code> and <code>server.R</code> scripts when the Shiny app becomes more complex.</p>
 <div id="fig-org" class="quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-org-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/app-in1.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Example 1: Everything in <code>app.R</code></figcaption>
+<figcaption>Example 1: Everything in <code>app.R</code></figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/app-in2.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Example 2: Split things into <code>ui.R</code> and <code>server.R</code></figcaption>
+<figcaption>Example 2: Split things into <code>ui.R</code> and <code>server.R</code></figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;4: Shiny apps can be created in a single file or split into two for easier organization</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-org-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Shiny apps can be created in a single file or split into two for easier organization
+</figcaption>
 </figure>
 </div>
 </section>
 </section>
-<section id="plots" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="plots"><span class="header-section-number">7</span> Plots</h2>
-<p>Shiny is an excellent tool for visual exploration - it is at its most useful when a user can <em>see</em> something change before their eyes according to some selections. This is a great way to allow users to explore a dataset, explore the results of some analyses according to different parameters, and so on!</p>
-<p>Let’s now add a plot to our Shiny app, to visualize the distribution of a variable depending on user input. We’ll be adding the <code>ggplot2</code> and <code>ggridges</code> packages in the set-up step at the top of our <code>app.R</code> to allow us to make a plot.</p>
+<section id="constructing-a-shiny-app-using-shinydashboards-taking-advantage-of-good-defaults" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="constructing-a-shiny-app-using-shinydashboards-taking-advantage-of-good-defaults"><span class="header-section-number">7</span> Constructing a Shiny app using shinyDashboards: taking advantage of good defaults</h2>
+<p>Now that we understand the basic structure of a Shiny app, we will use the extension <code>shinyDashboards</code> to construct a custom Shiny App to visualize the collaboration dataset. First, we need a few additional packages.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>here() starts at C:/Users/Utilisateur/Documents/projects/bios2.github.io</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="user-interface" class="level3">
-<h3 class="anchored" data-anchor-id="user-interface">User interface</h3>
-<p>To add a plot in our Shiny, we need to indicate where the plot should appear in the app. We can do this with <code>plotOutput()</code>, a similar function to <code>tableOutput()</code> in the previous section that is meant for plot outputs, as the name suggests.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI for application that makes a table andplots the Volcano Explosivity </span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Index for the most eruptive volcanoes within a selected range of years</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Application title ----</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Exploring volcano explosivity"</span>),</span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Input interface ----</span></span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Sidebar with a slider range input</span></span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">"years"</span>, <span class="co"># the id your server needs to use the selected value</span></span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">label =</span> <span class="fu">h3</span>(<span class="st">"Years"</span>),</span>
-<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">min =</span> <span class="dv">1900</span>, <span class="at">max =</span> <span class="dv">2020</span>, <span class="co"># maximum range that can be selected</span></span>
-<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">2010</span>, <span class="dv">2020</span>) <span class="co"># this is the default slider position</span></span>
-<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Show the outputs from the server ---------------</span></span>
-<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mainPanel</span>(</span>
-<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show a ridgeplot of explosivity index for selected volcanoes</span></span>
-<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plotOutput</span>(<span class="st">"ridgePlot"</span>),</span>
-<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># then, show the table we made in the previous step</span></span>
-<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tableOutput</span>(<span class="st">"erupt_table"</span>)</span>
-<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Now our Shiny app knows where we want to place our plot.</p>
-</section>
-<section id="server" class="level3">
-<h3 class="anchored" data-anchor-id="server">Server</h3>
-<p>We now need to create the plot we want to show in our app. This plot will change depending on one or several reactive values that the user can input or select in our UI.</p>
-<p>We link the UI and server together with IDs that are assigned to each object. Above, we told the UI to expect a plot output with the ID <code>"ridgePlot"</code>. In the server, we will create a plot and render it as a plot object using <code>renderPlot()</code>, and we will assign this plot output to the ID we call in the UI (as <code>output$ridgePlot</code>).</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define server logic required to make your output(s)</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># prepare the data</span></span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># read the dataset</span></span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>  eruptions <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_rds</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"eruptions.rds"</span>))</span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># filter the dataset to avoid overloading the plot </span></span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>  eruptions <span class="ot">&lt;-</span> eruptions[<span class="fu">which</span>(eruptions<span class="sc">$</span>volcano_name <span class="sc">%in%</span> <span class="fu">names</span>(<span class="fu">which</span>(<span class="fu">table</span>(eruptions<span class="sc">$</span>volcano_name) <span class="sc">&gt;</span> <span class="dv">30</span>))),]</span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># this subsets to volcanoes that have erupted more than 30 times</span></span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make reactive dataset</span></span>
-<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># subset volcano data with input year range</span></span>
-<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>  eruptions_filtered <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">subset</span>(eruptions, start_year <span class="sc">&gt;=</span> input<span class="sc">$</span>years[<span class="dv">1</span>] <span class="sc">&amp;</span> end_year <span class="sc">&lt;=</span> input<span class="sc">$</span>years[<span class="dv">2</span>])</span>
-<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create and render the outputs</span></span>
-<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ----------------------------------------------------------</span></span>
-<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create the table of volcanoes</span></span>
-<span id="cb42-29"><a href="#cb42-29" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>erupt_table <span class="ot">&lt;-</span> <span class="fu">renderTable</span>({</span>
-<span id="cb42-30"><a href="#cb42-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(<span class="fu">eruptions_filtered</span>())</span>
-<span id="cb42-31"><a href="#cb42-31" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb42-32"><a href="#cb42-32" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb42-33"><a href="#cb42-33" aria-hidden="true" tabindex="-1"></a>  <span class="co"># render the plot output</span></span>
-<span id="cb42-34"><a href="#cb42-34" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>ridgePlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb42-35"><a href="#cb42-35" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb42-36"><a href="#cb42-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create the plot</span></span>
-<span id="cb42-37"><a href="#cb42-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">eruptions_filtered</span>(),</span>
-<span id="cb42-38"><a href="#cb42-38" aria-hidden="true" tabindex="-1"></a>           <span class="fu">aes</span>(<span class="at">x =</span> vei,</span>
-<span id="cb42-39"><a href="#cb42-39" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> volcano_name,</span>
-<span id="cb42-40"><a href="#cb42-40" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> volcano_name)) <span class="sc">+</span></span>
-<span id="cb42-41"><a href="#cb42-41" aria-hidden="true" tabindex="-1"></a>      <span class="co"># we are using a ridgeplot geom here, from the ggridges package</span></span>
-<span id="cb42-42"><a href="#cb42-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_density_ridges</span>( <span class="at">size =</span> .<span class="dv">5</span>) <span class="sc">+</span> <span class="co"># line width</span></span>
-<span id="cb42-43"><a href="#cb42-43" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb42-44"><a href="#cb42-44" aria-hidden="true" tabindex="-1"></a>      <span class="co"># label the axes</span></span>
-<span id="cb42-45"><a href="#cb42-45" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Volcano Explosivity Index"</span>, <span class="at">y =</span> <span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb42-46"><a href="#cb42-46" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb42-47"><a href="#cb42-47" aria-hidden="true" tabindex="-1"></a>      <span class="co"># adjust the ggplot theme to make the plot "prettier"</span></span>
-<span id="cb42-48"><a href="#cb42-48" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb42-49"><a href="#cb42-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb42-50"><a href="#cb42-50" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb42-51"><a href="#cb42-51" aria-hidden="true" tabindex="-1"></a>            <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
-<span id="cb42-52"><a href="#cb42-52" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb42-53"><a href="#cb42-53" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="the-shiny-app" class="level3">
-<h3 class="anchored" data-anchor-id="the-shiny-app">The Shiny app</h3>
-<p>Now, if we run the Shiny app, we have a plot above the table we made previously. They are positioned in this way because the <code>plotOutput()</code> comes before the <code>tableOutput()</code> in the UI.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the application</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><img src="images/plotOutput.png" class="img-fluid"></p>
-</section>
-</section>
-<section id="constructing-a-shiny-app-using-shinydashboards" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="constructing-a-shiny-app-using-shinydashboards"><span class="header-section-number">8</span> Constructing a Shiny app using shinyDashboards</h2>
-</section>
-<section id="taking-advantage-of-good-defaults" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="taking-advantage-of-good-defaults"><span class="header-section-number">9</span> Taking advantage of good defaults</h2>
-<p>Here, we will use shiny extension <code>shinyDashboards</code> to construct a custom Shiny App to visualize the collaboration dataset. First, we need a few additional packages.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shinydashboard)  <span class="co"># dashboard layout package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shinydashboard)  <span class="co"># dashboard layout package</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'shinydashboard'</code></pre>
@@ -1206,7 +1152,7 @@ Attaching package: 'shinydashboard'</code></pre>
 
     box</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'dplyr'</code></pre>
@@ -1221,576 +1167,529 @@ Attaching package: 'dplyr'</code></pre>
 
     intersect, setdiff, setequal, union</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="using-shinydashboard" class="level3">
 <h3 class="anchored" data-anchor-id="using-shinydashboard">Using ShinyDashboard</h3>
 <p>We will create our app using defaults from the ShinyDashboard package, which always includes three main components: a header, using <code>dashboardHeader()</code>, a sidebar, using <code>dashboardSidebar()</code>, and a body, using <code>dashboardBody()</code>. These are then added together using the <code>dashboardPage()</code> function.</p>
 <p>Building these elements is less like usual R coding, and more like web design, since we are, in fact, designing a unser interface for a web app. Here, we’ll make a basic layout before populating it.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create the header of our app</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>header <span class="ot">&lt;-</span> <span class="fu">dashboardHeader</span>(</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Exploring Collaborations"</span>,</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">titleWidth =</span> <span class="dv">350</span> <span class="co"># since we have a long title, we need to extend width element in pixels</span></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create dashboard body - this is the major UI element</span></span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>body <span class="ot">&lt;-</span> <span class="fu">dashboardBody</span>(</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make first row of elements (actually, this will be the only row)</span></span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># make first column, 25% of page - width = 3 of 12 columns</span></span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="at">width =</span> <span class="dv">3</span>,</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>           <span class="co"># Box 1: text explaining what this app is</span></span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>           <span class="co">#-----------------------------------------------</span></span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>           <span class="fu">box</span>( <span class="at">width =</span> <span class="cn">NULL</span>,</span>
-<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">status=</span><span class="st">"primary"</span>, <span class="co"># this line can change the automatic color of the box.</span></span>
-<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="cn">NULL</span>,</span>
-<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>                <span class="fu">p</span>(<span class="st">"here, we'll include some info about this app"</span>)</span>
-<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>           ), <span class="co"># end box 1</span></span>
-<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>           </span>
-<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>           <span class="co"># box 2 : input for selecting University</span></span>
-<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>           <span class="co">#-----------------------------------------------</span></span>
-<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>           <span class="fu">box</span>(<span class="at">width =</span> <span class="cn">NULL</span>, <span class="at">status =</span> <span class="st">"primary"</span>,</span>
-<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a>               <span class="at">title  =</span> <span class="st">"Selection Criteria"</span>, <span class="at">solidHeader =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a>               </span>
-<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a>               <span class="fu">p</span>(<span class="st">"here, we'll add a UI element for selecting the University"</span>),</span>
-<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a>               </span>
-<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a>           ), <span class="co"># end box 2</span></span>
-<span id="cb52-28"><a href="#cb52-28" aria-hidden="true" tabindex="-1"></a>           </span>
-<span id="cb52-29"><a href="#cb52-29" aria-hidden="true" tabindex="-1"></a>           <span class="co"># box 3: Table of </span></span>
-<span id="cb52-30"><a href="#cb52-30" aria-hidden="true" tabindex="-1"></a>           <span class="co">#------------------------------------------------</span></span>
-<span id="cb52-31"><a href="#cb52-31" aria-hidden="true" tabindex="-1"></a>           <span class="fu">box</span>(<span class="at">width =</span> <span class="cn">NULL</span>, <span class="at">status =</span> <span class="st">"primary"</span>,</span>
-<span id="cb52-32"><a href="#cb52-32" aria-hidden="true" tabindex="-1"></a>               <span class="at">solidHeader =</span> <span class="cn">TRUE</span>, <span class="at">collapsible =</span> T,</span>
-<span id="cb52-33"><a href="#cb52-33" aria-hidden="true" tabindex="-1"></a>               <span class="at">title =</span> <span class="st">"Summary Statistics"</span>,</span>
-<span id="cb52-34"><a href="#cb52-34" aria-hidden="true" tabindex="-1"></a>               <span class="fu">p</span>(<span class="st">"here, we'll add a table of summary stats for the chosen University"</span>)</span>
-<span id="cb52-35"><a href="#cb52-35" aria-hidden="true" tabindex="-1"></a>           ) <span class="co"># end box 3</span></span>
-<span id="cb52-36"><a href="#cb52-36" aria-hidden="true" tabindex="-1"></a>    ), <span class="co"># end column 1</span></span>
-<span id="cb52-37"><a href="#cb52-37" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb52-38"><a href="#cb52-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># second column - 75% of page (9 of 12 columns)</span></span>
-<span id="cb52-39"><a href="#cb52-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">#--------------------------------------------------</span></span>
-<span id="cb52-40"><a href="#cb52-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="at">width =</span> <span class="dv">9</span>,</span>
-<span id="cb52-41"><a href="#cb52-41" aria-hidden="true" tabindex="-1"></a>           <span class="co"># Box 4: ggplot2 figure</span></span>
-<span id="cb52-42"><a href="#cb52-42" aria-hidden="true" tabindex="-1"></a>           <span class="fu">box</span>(<span class="at">width =</span> <span class="cn">NULL</span>, <span class="at">background =</span> <span class="st">"light-blue"</span>, <span class="at">height =</span> <span class="dv">850</span>,</span>
-<span id="cb52-43"><a href="#cb52-43" aria-hidden="true" tabindex="-1"></a>               <span class="fu">p</span>(<span class="st">"a ggplot of the network within one University"</span>),</span>
-<span id="cb52-44"><a href="#cb52-44" aria-hidden="true" tabindex="-1"></a>           ) <span class="co"># end box with map</span></span>
-<span id="cb52-45"><a href="#cb52-45" aria-hidden="true" tabindex="-1"></a>    ) <span class="co"># end second column</span></span>
-<span id="cb52-46"><a href="#cb52-46" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb52-47"><a href="#cb52-47" aria-hidden="true" tabindex="-1"></a>  ) <span class="co"># end fluidrow</span></span>
-<span id="cb52-48"><a href="#cb52-48" aria-hidden="true" tabindex="-1"></a>) <span class="co"># end body</span></span>
-<span id="cb52-49"><a href="#cb52-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-50"><a href="#cb52-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-51"><a href="#cb52-51" aria-hidden="true" tabindex="-1"></a><span class="co"># add elements together</span></span>
-<span id="cb52-52"><a href="#cb52-52" aria-hidden="true" tabindex="-1"></a><span class="fu">dashboardPage</span>(</span>
-<span id="cb52-53"><a href="#cb52-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">skin =</span> <span class="st">"blue"</span>,</span>
-<span id="cb52-54"><a href="#cb52-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> header,</span>
-<span id="cb52-55"><a href="#cb52-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">sidebar =</span> <span class="fu">dashboardSidebar</span>(<span class="at">disable =</span> <span class="cn">TRUE</span>), <span class="co"># here, we only have one tab of our app, so we don't need a sidebar</span></span>
-<span id="cb52-56"><a href="#cb52-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> body</span>
-<span id="cb52-57"><a href="#cb52-57" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shinydashboard)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create the header of our app</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>header <span class="ot">&lt;-</span> <span class="fu">dashboardHeader</span>(</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">"Exploring Collaborations"</span>,</span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">titleWidth =</span> <span class="dv">350</span> <span class="co"># since we have a long title, we need to extend width element in pixels</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co"># create dashboard body - this is the major UI element</span></span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>body <span class="ot">&lt;-</span> <span class="fu">dashboardBody</span>(</span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make first row of elements (actually, this will be the only row)</span></span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># make first column, 25% of page - width = 3 of 12 columns</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="at">width =</span> <span class="dv">3</span>,</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>           <span class="co"># Box 1: text explaining what this app is</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>           <span class="co">#-----------------------------------------------</span></span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>           <span class="fu">box</span>( <span class="at">width =</span> <span class="cn">NULL</span>,</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">status=</span><span class="st">"primary"</span>, <span class="co"># this line can change the automatic color of the box.</span></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>                <span class="fu">p</span>(<span class="st">"here, we'll include some info about this app"</span>)</span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>           ), <span class="co"># end box 1</span></span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a>           </span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>           <span class="co"># box 2 : input for selecting University</span></span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>           <span class="co">#-----------------------------------------------</span></span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>           <span class="fu">box</span>(<span class="at">width =</span> <span class="cn">NULL</span>, <span class="at">status =</span> <span class="st">"primary"</span>,</span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>               <span class="at">title  =</span> <span class="st">"Selection Criteria"</span>, <span class="at">solidHeader =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>               </span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>               <span class="fu">p</span>(<span class="st">"here, we'll add a UI element for selecting the University"</span>),</span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a>               </span>
+<span id="cb46-29"><a href="#cb46-29" aria-hidden="true" tabindex="-1"></a>           ), <span class="co"># end box 2</span></span>
+<span id="cb46-30"><a href="#cb46-30" aria-hidden="true" tabindex="-1"></a>           </span>
+<span id="cb46-31"><a href="#cb46-31" aria-hidden="true" tabindex="-1"></a>           <span class="co"># box 3: Table of </span></span>
+<span id="cb46-32"><a href="#cb46-32" aria-hidden="true" tabindex="-1"></a>           <span class="co">#------------------------------------------------</span></span>
+<span id="cb46-33"><a href="#cb46-33" aria-hidden="true" tabindex="-1"></a>           <span class="fu">box</span>(<span class="at">width =</span> <span class="cn">NULL</span>, <span class="at">status =</span> <span class="st">"primary"</span>,</span>
+<span id="cb46-34"><a href="#cb46-34" aria-hidden="true" tabindex="-1"></a>               <span class="at">solidHeader =</span> <span class="cn">TRUE</span>, <span class="at">collapsible =</span> T,</span>
+<span id="cb46-35"><a href="#cb46-35" aria-hidden="true" tabindex="-1"></a>               <span class="at">title =</span> <span class="st">"Summary Statistics"</span>,</span>
+<span id="cb46-36"><a href="#cb46-36" aria-hidden="true" tabindex="-1"></a>               <span class="fu">p</span>(<span class="st">"here, we'll add a table of summary stats for the chosen University"</span>)</span>
+<span id="cb46-37"><a href="#cb46-37" aria-hidden="true" tabindex="-1"></a>           ) <span class="co"># end box 3</span></span>
+<span id="cb46-38"><a href="#cb46-38" aria-hidden="true" tabindex="-1"></a>    ), <span class="co"># end column 1</span></span>
+<span id="cb46-39"><a href="#cb46-39" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-40"><a href="#cb46-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># second column - 75% of page (9 of 12 columns)</span></span>
+<span id="cb46-41"><a href="#cb46-41" aria-hidden="true" tabindex="-1"></a>    <span class="co">#--------------------------------------------------</span></span>
+<span id="cb46-42"><a href="#cb46-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="at">width =</span> <span class="dv">9</span>,</span>
+<span id="cb46-43"><a href="#cb46-43" aria-hidden="true" tabindex="-1"></a>           <span class="co"># Box 4: ggplot2 figure</span></span>
+<span id="cb46-44"><a href="#cb46-44" aria-hidden="true" tabindex="-1"></a>           <span class="fu">box</span>(<span class="at">width =</span> <span class="cn">NULL</span>, <span class="at">background =</span> <span class="st">"light-blue"</span>, <span class="at">height =</span> <span class="dv">850</span>,</span>
+<span id="cb46-45"><a href="#cb46-45" aria-hidden="true" tabindex="-1"></a>               <span class="fu">p</span>(<span class="st">"a ggplot of the network within one University"</span>),</span>
+<span id="cb46-46"><a href="#cb46-46" aria-hidden="true" tabindex="-1"></a>           ) <span class="co"># end box with map</span></span>
+<span id="cb46-47"><a href="#cb46-47" aria-hidden="true" tabindex="-1"></a>    ) <span class="co"># end second column</span></span>
+<span id="cb46-48"><a href="#cb46-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb46-49"><a href="#cb46-49" aria-hidden="true" tabindex="-1"></a>  ) <span class="co"># end fluidrow</span></span>
+<span id="cb46-50"><a href="#cb46-50" aria-hidden="true" tabindex="-1"></a>) <span class="co"># end body</span></span>
+<span id="cb46-51"><a href="#cb46-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-52"><a href="#cb46-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-53"><a href="#cb46-53" aria-hidden="true" tabindex="-1"></a><span class="co"># add elements together</span></span>
+<span id="cb46-54"><a href="#cb46-54" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">dashboardPage</span>(</span>
+<span id="cb46-55"><a href="#cb46-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">skin =</span> <span class="st">"blue"</span>,</span>
+<span id="cb46-56"><a href="#cb46-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> header,</span>
+<span id="cb46-57"><a href="#cb46-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">sidebar =</span> <span class="fu">dashboardSidebar</span>(<span class="at">disable =</span> <span class="cn">TRUE</span>), <span class="co"># here, we only have one tab of our app, so we don't need a sidebar</span></span>
+<span id="cb46-58"><a href="#cb46-58" aria-hidden="true" tabindex="-1"></a>  <span class="at">body =</span> body</span>
+<span id="cb46-59"><a href="#cb46-59" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb46-60"><a href="#cb46-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-61"><a href="#cb46-61" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output){}</span>
+<span id="cb46-62"><a href="#cb46-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-63"><a href="#cb46-63" aria-hidden="true" tabindex="-1"></a><span class="do">## run the app</span></span>
+<span id="cb46-64"><a href="#cb46-64" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><img src="images/shiny_dashboard_layout.png" class="img-fluid"></p>
+<p>This Shiny app code produces the app below. It is also in the course folder as <code>app_shinydashboard_blank.png</code>.</p>
+<p><img src="images/app_shinydashboard_blank.png" class="img-fluid"></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+EXERCISE: Populating the layout
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Lets practice putting the parts of a Shiny app together. Starting from the blank dashboard above, add in the UI and server components from our previous minimal app.</p>
+<p>Box 1, the information about the app, can include the following text:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>for each of the 25 Canadian universities with the most eco/evo PIs</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>each element is a matrix where each node is a PI who received an NSERC</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>discovery grant through the ecology and evolution stream between 2013-22 </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>each edge in the matrix represents the number of co-authored publications</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>between each PI</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>BONUS exercise: add a new box which contains the sentence “The selected University is <em>X</em>” where <em>X</em> is replaced with whatever the user selects from the dropdown menu</p>
+</div>
+</div>
+<p>A finished version of this app is in the course folder under the name <code>app_02_shinydashboard.R</code></p>
 </section>
 </section>
-<section id="populating-the-layout" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="populating-the-layout"><span class="header-section-number">10</span> Populating the Layout</h2>
-<p>Now, we are going to fill out app with elements. In this app, we will only have one user input: a selection of the volcano type to show. We will use this input (<code>input$volcano_type</code>), which will be used to filter data in the server (i.e.&nbsp;make a smaller dataset using only volcanoes of the selected types), then use this filtered dataset to create output elements (plots and maps).</p>
-<p>Below, we show the necessary code to include in both the UI and the Server to create each plot element. Notice that after the reactive value <code>selected_volcanoes</code> is created in the selection box, this is the only object that is used to create the other elements in the app.</p>
-<table class="table">
-<colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 26%">
-<col style="width: 26%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Location</th>
-<th style="text-align: left;">Element</th>
-<th style="text-align: left;">UI</th>
-<th style="text-align: left;">Server</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Box 1</td>
-<td style="text-align: left;"><strong>Intro Textbox</strong></td>
-<td style="text-align: left;">Markdown/HTML text code</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Box 2</td>
-<td style="text-align: left;"><strong>Selection Wigets</strong></td>
-<td style="text-align: left;"><code>checkboxGroupButtons(</code> <code>inputID = "volcano_type")</code></td>
-<td style="text-align: left;"><code>selected_volcanoes &lt;- reactive({</code> <code>volcano_df %&gt;% filter(type %in% input$volcano_type)})</code> to create a filtered dataset that will react to user input</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Box 3</td>
-<td style="text-align: left;"><strong>Bar Graph</strong></td>
-<td style="text-align: left;"><code>plotOutput("continentplot")</code></td>
-<td style="text-align: left;"><code>output$continentplot &lt;- renderPlot(...))</code> which will plot from the <code>selectied_volcanoes</code> reactive object</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Box 4</td>
-<td style="text-align: left;"><strong>Leaflet Map</strong></td>
-<td style="text-align: left;"><code>leafletOutput("volcanomap")</code></td>
-<td style="text-align: left;"><code>output$volcanomap &lt;- renderLeaflet(...)</code> to map points from the <code>selectied_volcanoes</code> reactive object</td>
-</tr>
-</tbody>
-</table>
-<p><img src="images/populated_shiny.png" class="img-fluid"></p>
+<section id="reducing-duplication-introducing-reactive" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="reducing-duplication-introducing-reactive"><span class="header-section-number">8</span> Reducing duplication: introducing <code>reactive()</code></h2>
+<p>In the code we’ve written so far, we reference the same input value in three different parts of the app. We can approach this in a different way, by creating an intermediate reactive value that depends on the user input. All the reactive elements (the figure and the text box) will then depend on this new value, instead of the original input. Note that in this case this is NOT necessary, but in many more advanced Shiny projects this becomes essential. Read more about it here:</p>
+<p>Here is the server code from <code>app_02_shinydashboard.R</code>, which we just wrote:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">## define plot output</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>schoolPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="do">## get the chosen school from input into dropdown menu</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    choice <span class="ot">=</span> input<span class="sc">$</span>dropdown_input </span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>    <span class="do">## display network plot for the school that was chosen </span></span>
+<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_network</span>(<span class="at">university =</span> choice, <span class="at">network_list =</span> intra_list)</span>
+<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>  <span class="do">## display some statistics for the chosen school</span></span>
+<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>schoolStats <span class="ot">&lt;-</span> <span class="fu">renderTable</span>({</span>
+<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>    <span class="do">## get the chosen school from input into dropdown menu</span></span>
+<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    choice <span class="ot">=</span> input<span class="sc">$</span>dropdown_input </span>
+<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">make_stat_table</span>(<span class="at">university =</span> choice, <span class="at">stats_dataframe =</span> stats)</span>
+<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>choice_name <span class="ot">&lt;-</span> <span class="fu">renderText</span>({input<span class="sc">$</span>dropdown_input})</span>
+<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And here is a version using <code>reactive()</code></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="do">## get the chosen school from input into dropdown menu</span></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  choice <span class="ot">&lt;-</span> <span class="fu">reactive</span>(input<span class="sc">$</span>dropdown_input)</span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">## display network plot for the school that was chosen </span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>schoolPlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_network</span>(<span class="at">university =</span> <span class="fu">choice</span>(), <span class="at">network_list =</span> intra_list)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="do">## display some statistics for the chosen school</span></span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>schoolStats <span class="ot">&lt;-</span> <span class="fu">renderTable</span>({</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">make_stat_table</span>(<span class="at">university =</span> <span class="fu">choice</span>(), <span class="at">stats_dataframe =</span> stats)</span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get the school name to print that too</span></span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>choice_name <span class="ot">&lt;-</span> <span class="fu">renderText</span>(<span class="fu">choice</span>())</span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="challenge" class="level2" data-number="11">
-<h2 data-number="11" class="anchored" data-anchor-id="challenge"><span class="header-section-number">11</span> Challenge!</h2>
-<p>Use the code provided to add your own additional user input to the Shiny App. The code (which you can access <a href="https://github.com/bios2/shiny_day_2/tree/main/Jake_volcano_map/Volcano_Leaflet">here</a> leaves a space for an additional UI input inside box 2). Then, you’ll need to use your new input element to the reactive value in the Server, as noted in the server code.</p>
-<p>Use the <a href="https://shiny.rstudio.com/gallery/widget-gallery.html">Default Shiny Widgets</a> or <a href="http://shinyapps.dreamrs.fr/shinyWidgets/">shinyWidgets extended package</a> galleries to explore the types of elements you can add.</p>
-<p><img src="images/add_elements_diagram.png" class="img-fluid"></p>
-<section id="see-the-completed-app" class="level3">
-<h3 class="anchored" data-anchor-id="see-the-completed-app">See the completed app</h3>
-<p>See our completed app <a href="https://jakelawlor.shinyapps.io/Volcanoes_of_the_World/">HERE</a></p>
-</section>
-</section>
-<section id="bonus-content" class="level2" data-number="12">
-<h2 data-number="12" class="anchored" data-anchor-id="bonus-content"><span class="header-section-number">12</span> Bonus Content</h2>
+<section id="adding-one-more-figure-university-level-statistics" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="adding-one-more-figure-university-level-statistics"><span class="header-section-number">9</span> Adding one more figure: University-level statistics</h2>
+<p>In this section, we’ll practice adding something to the Server side of the app as well. Here is a ggplot2 figure, based on the stats table, showing a relationship between two University-level variables:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">eval =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>stats <span class="sc">|&gt;</span> </span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_selected =</span> inst <span class="sc">==</span> <span class="st">"Dalhousie University"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mean_collab_prop, <span class="at">y =</span> mean_degree, <span class="at">size =</span> n_pi, <span class="at">colour =</span> is_selected)) <span class="sc">+</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"black"</span>, <span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-</section>
-<section id="customising-the-theme" class="level2" data-number="13">
-<h2 data-number="13" class="anchored" data-anchor-id="customising-the-theme"><span class="header-section-number">13</span> Customising the theme</h2>
-<p>If you’d like to go one step further, you can also customize the appearance of your Shiny app using built-in themes, or creating your own themes.</p>
-<section id="using-built-in-themes" class="level3">
-<h3 class="anchored" data-anchor-id="using-built-in-themes">Using built-in themes</h3>
-<p>There are several built-in themes in Shiny, which allow you to quickly change the appearance of your app. You can browse a gallery of available themes here <a href="https://rstudio.github.io/shinythemes/">here</a>, or test themes out interactively <a href="https://shiny.rstudio.com/gallery/shiny-theme-selector.html">here</a>.</p>
-<p>Let’s try the <em>darkly</em> theme on our Shiny app. To do this, we will need the <code>shinythemes</code> package.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shinythemes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can change the theme of our previous app with one line of code:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI for application that makes a table andplots the Volcano Explosivity </span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Index for the most eruptive volcanoes within a selected range of years</span></span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Application title ----</span></span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Exploring volcano explosivity"</span>),</span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Input interface ----</span></span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Sidebar with a slider range input</span></span>
-<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">"years"</span>, <span class="co"># the id your server needs to use the selected value</span></span>
-<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">label =</span> <span class="fu">h3</span>(<span class="st">"Years"</span>),</span>
-<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">min =</span> <span class="dv">1900</span>, <span class="at">max =</span> <span class="dv">2020</span>, <span class="co"># maximum range that can be selected</span></span>
-<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a>                  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">2010</span>, <span class="dv">2020</span>) <span class="co"># this is the default slider position</span></span>
-<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-24"><a href="#cb55-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Show the outputs from the server ---------------</span></span>
-<span id="cb55-25"><a href="#cb55-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mainPanel</span>(</span>
-<span id="cb55-26"><a href="#cb55-26" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb55-27"><a href="#cb55-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show a ridgeplot of explosivity index for selected volcanoes</span></span>
-<span id="cb55-28"><a href="#cb55-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plotOutput</span>(<span class="st">"ridgePlot"</span>),</span>
-<span id="cb55-29"><a href="#cb55-29" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb55-30"><a href="#cb55-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># then, show the table we made in the previous step</span></span>
-<span id="cb55-31"><a href="#cb55-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tableOutput</span>(<span class="st">"erupt_table"</span>)</span>
-<span id="cb55-32"><a href="#cb55-32" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb55-33"><a href="#cb55-33" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb55-34"><a href="#cb55-34" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-35"><a href="#cb55-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customize the theme ----------------------</span></span>
-<span id="cb55-36"><a href="#cb55-36" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb55-37"><a href="#cb55-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use the darkly theme</span></span>
-<span id="cb55-38"><a href="#cb55-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">theme =</span> shinythemes<span class="sc">::</span><span class="fu">shinytheme</span>(<span class="st">"darkly"</span>)</span>
-<span id="cb55-39"><a href="#cb55-39" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now, if we run the app, it looks a little different:</p>
-<p><img src="images/darklytheme.png" class="img-fluid"></p>
-</section>
-<section id="using-a-custom-theme" class="level3">
-<h3 class="anchored" data-anchor-id="using-a-custom-theme">Using a custom theme</h3>
-<p>You can also go beyond the built-in themes, and create your own custom theme with the fonts and colours of your choice. You can also apply this theme to the outputs rendered in the app, to bring all the visuals together for a more cohesive look.</p>
-<section id="customizing-a-theme" class="level4">
-<h4 class="anchored" data-anchor-id="customizing-a-theme">Customizing a theme</h4>
-<p>To create a custom theme, we will be using the <code>bs_theme()</code> function from the <code>bslib</code> package.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bslib)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a custom theme </span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>cute_theme <span class="ot">&lt;-</span> bslib<span class="sc">::</span><span class="fu">bs_theme</span>(</span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">bg =</span> <span class="st">"#36393B"</span>, <span class="co"># background colour</span></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">fg =</span> <span class="st">"#FFD166"</span>, <span class="co"># most of the text on your app</span></span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">primary =</span> <span class="st">"#F26430"</span>, <span class="co"># buttons, ...</span></span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># you can also choose fonts</span></span>
-<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">base_font =</span> <span class="fu">font_google</span>(<span class="st">"Open Sans"</span>),</span>
-<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">heading_font =</span> <span class="fu">font_google</span>(<span class="st">"Open Sans"</span>)</span>
-<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+EXERCISE
 </div>
-<p>To apply this theme to our Shiny app (and the outputs), we will be using the <code>thematic</code> package.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(thematic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>There are two essential steps to apply a custom theme to a Shiny app:</p>
-<ol type="1">
-<li>Activating thematic.</li>
-<li>Setting the user interface’s theme to the custom theme (<code>cute_theme</code>).</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate thematic</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co"># so your R outputs will be changed to match up with your chosen styling</span></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>thematic<span class="sc">::</span><span class="fu">thematic_shiny</span>()</span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI for application that makes a table andplots the Volcano Explosivity </span></span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Index for the most eruptive volcanoes within a selected range of years</span></span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Application title ----</span></span>
-<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">"Exploring volcano explosivity"</span>),</span>
-<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Input interface ----</span></span>
-<span id="cb59-15"><a href="#cb59-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb59-16"><a href="#cb59-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb59-17"><a href="#cb59-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb59-18"><a href="#cb59-18" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb59-19"><a href="#cb59-19" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Sidebar with a slider range input</span></span>
-<span id="cb59-20"><a href="#cb59-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">"years"</span>, <span class="co"># the id your server needs to use the selected value</span></span>
-<span id="cb59-21"><a href="#cb59-21" aria-hidden="true" tabindex="-1"></a>                  <span class="at">label =</span> <span class="fu">h3</span>(<span class="st">"Years"</span>),</span>
-<span id="cb59-22"><a href="#cb59-22" aria-hidden="true" tabindex="-1"></a>                  <span class="at">min =</span> <span class="dv">1900</span>, <span class="at">max =</span> <span class="dv">2020</span>, <span class="co"># maximum range that can be selected</span></span>
-<span id="cb59-23"><a href="#cb59-23" aria-hidden="true" tabindex="-1"></a>                  <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">2010</span>, <span class="dv">2020</span>) <span class="co"># this is the default slider position</span></span>
-<span id="cb59-24"><a href="#cb59-24" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb59-25"><a href="#cb59-25" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb59-26"><a href="#cb59-26" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb59-27"><a href="#cb59-27" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb59-28"><a href="#cb59-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Show the outputs from the server ---------------</span></span>
-<span id="cb59-29"><a href="#cb59-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mainPanel</span>(</span>
-<span id="cb59-30"><a href="#cb59-30" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb59-31"><a href="#cb59-31" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show a ridgeplot of explosivity index for selected volcanoes</span></span>
-<span id="cb59-32"><a href="#cb59-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plotOutput</span>(<span class="st">"ridgePlot"</span>),</span>
-<span id="cb59-33"><a href="#cb59-33" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb59-34"><a href="#cb59-34" aria-hidden="true" tabindex="-1"></a>    <span class="co"># then, show the table we made in the previous step</span></span>
-<span id="cb59-35"><a href="#cb59-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tableOutput</span>(<span class="st">"erupt_table"</span>)</span>
-<span id="cb59-36"><a href="#cb59-36" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb59-37"><a href="#cb59-37" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb59-38"><a href="#cb59-38" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb59-39"><a href="#cb59-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Customize the theme ----------------------</span></span>
-<span id="cb59-40"><a href="#cb59-40" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb59-41"><a href="#cb59-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use our custom theme</span></span>
-<span id="cb59-42"><a href="#cb59-42" aria-hidden="true" tabindex="-1"></a>  <span class="at">theme =</span> cute_theme</span>
-<span id="cb59-43"><a href="#cb59-43" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-body-container callout-body">
+<p>Add this figure to our app. Connect it to the input selected by the user, so that the selected point changes along with everything else when a University is chosen.</p>
+<p>Solution is in the app <code>app_04_highlight_figure.R</code></p>
 </div>
-<p>Now, if we run the app, the user interface and plot theme is set to the colours and fonts we set in <code>cute_theme</code>:</p>
-<p><img src="images/thematic.png" class="img-fluid"></p>
-<p>Here, <code>thematic</code> is not changing the colours used to represent a variable in our plot, because this is an informative colour scale (unlike the colour of axis labels, lines, and the plot background). However, if we remove this colour variable in our ridgeplot in the server, thematic will change the plot colours as well. Here is a simplified example of our server to see what these changes would look like:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define server logic required to make your output(s)</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#... (all the good stuff we wrote above)</span></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># render the plot output</span></span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>ridgePlot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># create the plot</span></span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">data =</span> <span class="fu">eruptions_filtered</span>(),</span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>           <span class="fu">aes</span>(<span class="at">x =</span> vei,</span>
-<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> volcano_name)) <span class="sc">+</span> <span class="co"># we are no longer setting </span></span>
-<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>             <span class="co"># the fill argument to a variable</span></span>
-<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>             </span>
-<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>             <span class="co"># we are using a ridgeplot geom here, from the ggridges package</span></span>
-<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>             <span class="fu">geom_density_ridges</span>(<span class="at">size =</span> .<span class="dv">5</span>) <span class="sc">+</span> </span>
-<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>             </span>
-<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>             <span class="co"># label the axes</span></span>
-<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a>             <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Volcano Explosivity Index"</span>, <span class="at">y =</span> <span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a>             </span>
-<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a>             <span class="co"># remove the "classic" ggplot2 so it doesn't override thematic's changes</span></span>
-<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a>             <span class="co"># theme_classic() + </span></span>
-<span id="cb60-23"><a href="#cb60-23" aria-hidden="true" tabindex="-1"></a>             <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
-<span id="cb60-24"><a href="#cb60-24" aria-hidden="true" tabindex="-1"></a>                   <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
-<span id="cb60-25"><a href="#cb60-25" aria-hidden="true" tabindex="-1"></a>                   <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>, <span class="at">face =</span> <span class="st">"bold"</span>))</span>
-<span id="cb60-26"><a href="#cb60-26" aria-hidden="true" tabindex="-1"></a>           })</span>
-<span id="cb60-27"><a href="#cb60-27" aria-hidden="true" tabindex="-1"></a>    }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Now, our plot’s theme follows the app’s custom theme as well:</p>
-<p><img src="images/thematic_plot.png" class="img-fluid"></p>
-</section>
-</section>
-</section>
-<section id="constructing-a-shiny-app-using-golem" class="level2" data-number="14">
-<h2 data-number="14" class="anchored" data-anchor-id="constructing-a-shiny-app-using-golem"><span class="header-section-number">14</span> Constructing a Shiny app using Golem</h2>
-<p>First step is creating your own golem project:</p>
-<p><img src="Capture d’écran, le 2021-06-23 à 05.25.32.png" class="img-fluid"></p>
-<p>Golem provides you with some very helpful “workflow” scripts:</p>
-<p>Edit the Description by filling in this function in <code>01_dev.R</code></p>
-<p>Then, add all the dependencies</p>
-<p>Together, this edits the <code>DESCRIPTION</code> of your R package to look something like this:</p>
-<p>Now we can start building the app.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>app_ui <span class="ot">&lt;-</span> <span class="cf">function</span>(request) {</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tagList</span>(</span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Leave this function for adding external resources</span></span>
-<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">golem_add_external_resources</span>(),</span>
-<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Your application UI logic </span></span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>    shinydashboard<span class="sc">::</span><span class="fu">dashboardPage</span>(</span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">header =</span> shinydashboard<span class="sc">::</span><span class="fu">dashboardHeader</span>(</span>
-<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Exploring Volcanoes of the World"</span>,</span>
-<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">titleWidth =</span> <span class="dv">350</span> <span class="co"># since we have a long title, we need to extend width element in pixels</span></span>
-<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">sidebar =</span> shinydashboard<span class="sc">::</span><span class="fu">dashboardSidebar</span>(<span class="at">disable =</span> <span class="cn">TRUE</span>), <span class="co"># here, we only have one tab, so we don't need a sidebar</span></span>
-<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">body =</span> shinydashboard<span class="sc">::</span><span class="fu">dashboardBody</span>(</span>
-<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a>        <span class="co"># make first row of elements (actually, this will be the only row)</span></span>
-<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">fluidRow</span>(</span>
-<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a>          <span class="co"># make first column, 25% of page - width = 3 of 12 colums</span></span>
-<span id="cb61-16"><a href="#cb61-16" aria-hidden="true" tabindex="-1"></a>          <span class="fu">column</span>(<span class="at">width =</span> <span class="dv">3</span>,</span>
-<span id="cb61-17"><a href="#cb61-17" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># box 1 : input for selecting volcano type</span></span>
-<span id="cb61-18"><a href="#cb61-18" aria-hidden="true" tabindex="-1"></a>                 <span class="co">#-----------------------------------------------</span></span>
-<span id="cb61-19"><a href="#cb61-19" aria-hidden="true" tabindex="-1"></a>                 shinydashboard<span class="sc">::</span><span class="fu">box</span>(<span class="at">width =</span> <span class="cn">NULL</span>, <span class="at">status =</span> <span class="st">"primary"</span>,</span>
-<span id="cb61-20"><a href="#cb61-20" aria-hidden="true" tabindex="-1"></a>                     <span class="at">title  =</span> <span class="st">"Selection Criteria"</span>, <span class="at">solidHeader =</span> T</span>
-<span id="cb61-21"><a href="#cb61-21" aria-hidden="true" tabindex="-1"></a>                     </span>
-<span id="cb61-22"><a href="#cb61-22" aria-hidden="true" tabindex="-1"></a>                     <span class="do">## CHECKBOX HERE</span></span>
-<span id="cb61-23"><a href="#cb61-23" aria-hidden="true" tabindex="-1"></a>                     </span>
-<span id="cb61-24"><a href="#cb61-24" aria-hidden="true" tabindex="-1"></a>                 ), <span class="co"># end box 1</span></span>
-<span id="cb61-25"><a href="#cb61-25" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># box 2: ggplot of selected volcanoes by continent</span></span>
-<span id="cb61-26"><a href="#cb61-26" aria-hidden="true" tabindex="-1"></a>                 <span class="co">#------------------------------------------------</span></span>
-<span id="cb61-27"><a href="#cb61-27" aria-hidden="true" tabindex="-1"></a>                 shinydashboard<span class="sc">::</span><span class="fu">box</span>(<span class="at">width =</span> <span class="cn">NULL</span>, <span class="at">status =</span> <span class="st">"primary"</span>,</span>
-<span id="cb61-28"><a href="#cb61-28" aria-hidden="true" tabindex="-1"></a>                     <span class="at">solidHeader =</span> <span class="cn">TRUE</span>, <span class="at">collapsible =</span> T,</span>
-<span id="cb61-29"><a href="#cb61-29" aria-hidden="true" tabindex="-1"></a>                     <span class="at">title =</span> <span class="st">"Volcanoes by Continent"</span></span>
-<span id="cb61-30"><a href="#cb61-30" aria-hidden="true" tabindex="-1"></a>                     </span>
-<span id="cb61-31"><a href="#cb61-31" aria-hidden="true" tabindex="-1"></a>                     <span class="do">## PLOT HERE</span></span>
-<span id="cb61-32"><a href="#cb61-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb61-33"><a href="#cb61-33" aria-hidden="true" tabindex="-1"></a>                 ) <span class="co"># end box 2</span></span>
-<span id="cb61-34"><a href="#cb61-34" aria-hidden="true" tabindex="-1"></a>          ), <span class="co"># end column 1</span></span>
-<span id="cb61-35"><a href="#cb61-35" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb61-36"><a href="#cb61-36" aria-hidden="true" tabindex="-1"></a>          <span class="co"># second column - 75% of page (9 of 12 columns)</span></span>
-<span id="cb61-37"><a href="#cb61-37" aria-hidden="true" tabindex="-1"></a>          <span class="fu">column</span>(<span class="at">width =</span> <span class="dv">9</span>,</span>
-<span id="cb61-38"><a href="#cb61-38" aria-hidden="true" tabindex="-1"></a>                 </span>
-<span id="cb61-39"><a href="#cb61-39" aria-hidden="true" tabindex="-1"></a>                 <span class="co"># Box 3: leaflet map</span></span>
-<span id="cb61-40"><a href="#cb61-40" aria-hidden="true" tabindex="-1"></a>                 shinydashboard<span class="sc">::</span><span class="fu">box</span>(<span class="at">width =</span> <span class="cn">NULL</span>, <span class="at">background =</span> <span class="st">"light-blue"</span></span>
-<span id="cb61-41"><a href="#cb61-41" aria-hidden="true" tabindex="-1"></a>                                     </span>
-<span id="cb61-42"><a href="#cb61-42" aria-hidden="true" tabindex="-1"></a>                                     <span class="do">## MAP HERE </span></span>
-<span id="cb61-43"><a href="#cb61-43" aria-hidden="true" tabindex="-1"></a>                                     </span>
-<span id="cb61-44"><a href="#cb61-44" aria-hidden="true" tabindex="-1"></a>                 ) <span class="co"># end box with map</span></span>
-<span id="cb61-45"><a href="#cb61-45" aria-hidden="true" tabindex="-1"></a>          ) <span class="co"># end second column</span></span>
-<span id="cb61-46"><a href="#cb61-46" aria-hidden="true" tabindex="-1"></a>        ) <span class="co"># end fluidrow</span></span>
-<span id="cb61-47"><a href="#cb61-47" aria-hidden="true" tabindex="-1"></a>      ) <span class="co"># end body</span></span>
-<span id="cb61-48"><a href="#cb61-48" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb61-49"><a href="#cb61-49" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb61-50"><a href="#cb61-50" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>This indicates where each of the three components of the app would go.</p>
-<p>At this point we can run the app to get a very empty-looking UI:</p>
-<p><img src="Capture d’écran, le 2021-06-23 à 05.58.08.png" class="img-fluid"></p>
-<section id="golem-modules" class="level3">
-<h3 class="anchored" data-anchor-id="golem-modules">Golem modules</h3>
-<p>We could split this app into three different sections, corresponding to each of the three boxes:</p>
-<ol type="1">
-<li>Filter the type of volcano we see</li>
-<li>take the filtered volcanoes and plot a stacked bar chart</li>
-<li>take the filtered volcanoes and plot a map</li>
-</ol>
-</section>
-<section id="selecting-the-volcanoes" class="level3">
-<h3 class="anchored" data-anchor-id="selecting-the-volcanoes">Selecting the volcanoes</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' volcano_select UI Function</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description A shiny Module.</span></span>
-<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param id,input,output,session Internal parameters for {shiny}.</span></span>
-<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb62-7"><a href="#cb62-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @noRd </span></span>
-<span id="cb62-8"><a href="#cb62-8" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb62-9"><a href="#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @importFrom shiny NS tagList </span></span>
-<span id="cb62-10"><a href="#cb62-10" aria-hidden="true" tabindex="-1"></a>mod_volcano_select_ui <span class="ot">&lt;-</span> <span class="cf">function</span>(id){</span>
-<span id="cb62-11"><a href="#cb62-11" aria-hidden="true" tabindex="-1"></a>  ns <span class="ot">&lt;-</span> <span class="fu">NS</span>(id)</span>
-<span id="cb62-12"><a href="#cb62-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tagList</span>(</span>
-<span id="cb62-13"><a href="#cb62-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Widget specifying the species to be included on the plot</span></span>
-<span id="cb62-14"><a href="#cb62-14" aria-hidden="true" tabindex="-1"></a>    shinyWidgets<span class="sc">::</span><span class="fu">checkboxGroupButtons</span>(</span>
-<span id="cb62-15"><a href="#cb62-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">inputId =</span> <span class="fu">ns</span>(<span class="st">"volcano_type"</span>),</span>
-<span id="cb62-16"><a href="#cb62-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Volcano Type"</span>,</span>
-<span id="cb62-17"><a href="#cb62-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"Stratovolcano"</span> , <span class="st">"Shield"</span> ,<span class="st">"Cone"</span> ,   <span class="st">"Caldera"</span> ,    <span class="st">"Volcanic Field"</span>,</span>
-<span id="cb62-18"><a href="#cb62-18" aria-hidden="true" tabindex="-1"></a>                  <span class="st">"Complex"</span> , <span class="st">"Other"</span>,   <span class="st">"Lava Dome"</span>  , <span class="st">"Submarine"</span>    ),</span>
-<span id="cb62-19"><a href="#cb62-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">checkIcon =</span> <span class="fu">list</span>(</span>
-<span id="cb62-20"><a href="#cb62-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">yes =</span> tags<span class="sc">$</span><span class="fu">i</span>(<span class="at">class =</span> <span class="st">"fa fa-check-square"</span>, </span>
-<span id="cb62-21"><a href="#cb62-21" aria-hidden="true" tabindex="-1"></a>                     <span class="at">style =</span> <span class="st">"color: steelblue"</span>),</span>
-<span id="cb62-22"><a href="#cb62-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">no =</span> tags<span class="sc">$</span><span class="fu">i</span>(<span class="at">class =</span> <span class="st">"fa fa-square-o"</span>, </span>
-<span id="cb62-23"><a href="#cb62-23" aria-hidden="true" tabindex="-1"></a>                    <span class="at">style =</span> <span class="st">"color: steelblue"</span>))</span>
-<span id="cb62-24"><a href="#cb62-24" aria-hidden="true" tabindex="-1"></a>    ) <span class="co"># end checkboxGroupButtons</span></span>
-<span id="cb62-25"><a href="#cb62-25" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb62-26"><a href="#cb62-26" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb62-27"><a href="#cb62-27" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb62-28"><a href="#cb62-28" aria-hidden="true" tabindex="-1"></a><span class="co">#' volcano_select Server Functions</span></span>
-<span id="cb62-29"><a href="#cb62-29" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb62-30"><a href="#cb62-30" aria-hidden="true" tabindex="-1"></a><span class="co">#' @noRd </span></span>
-<span id="cb62-31"><a href="#cb62-31" aria-hidden="true" tabindex="-1"></a>mod_volcano_select_server <span class="ot">&lt;-</span> <span class="cf">function</span>(id, volcano){</span>
-<span id="cb62-32"><a href="#cb62-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">moduleServer</span>( id, <span class="cf">function</span>(input, output, session){</span>
-<span id="cb62-33"><a href="#cb62-33" aria-hidden="true" tabindex="-1"></a>    ns <span class="ot">&lt;-</span> session<span class="sc">$</span>ns</span>
-<span id="cb62-34"><a href="#cb62-34" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb62-35"><a href="#cb62-35" aria-hidden="true" tabindex="-1"></a>    <span class="co"># make reactive dataset</span></span>
-<span id="cb62-36"><a href="#cb62-36" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ------------------------------------------------</span></span>
-<span id="cb62-37"><a href="#cb62-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make a subset of the data as a reactive value</span></span>
-<span id="cb62-38"><a href="#cb62-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># this subset pulls volcano rows only in the selected types of volcano</span></span>
-<span id="cb62-39"><a href="#cb62-39" aria-hidden="true" tabindex="-1"></a>    selected_volcanoes <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb62-40"><a href="#cb62-40" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb62-41"><a href="#cb62-41" aria-hidden="true" tabindex="-1"></a>      <span class="fu">req</span>(input<span class="sc">$</span>volcano_type)</span>
-<span id="cb62-42"><a href="#cb62-42" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb62-43"><a href="#cb62-43" aria-hidden="true" tabindex="-1"></a>      volcano <span class="sc">%&gt;%</span></span>
-<span id="cb62-44"><a href="#cb62-44" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb62-45"><a href="#cb62-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># select only volcanoes in the selected volcano type (by checkboxes in the UI)</span></span>
-<span id="cb62-46"><a href="#cb62-46" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(volcano_type_consolidated <span class="sc">%in%</span> input<span class="sc">$</span>volcano_type) <span class="sc">%&gt;%</span></span>
-<span id="cb62-47"><a href="#cb62-47" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Space to add your suggested filter here!! </span></span>
-<span id="cb62-48"><a href="#cb62-48" aria-hidden="true" tabindex="-1"></a>        <span class="co"># --- --- --- --- --- --- --- --- --- --- --- --- ---</span></span>
-<span id="cb62-49"><a href="#cb62-49" aria-hidden="true" tabindex="-1"></a>        <span class="co"># filter() %&gt;%</span></span>
-<span id="cb62-50"><a href="#cb62-50" aria-hidden="true" tabindex="-1"></a>        <span class="co"># --- --- --- --- --- --- --- --- --- --- --- --- ---</span></span>
-<span id="cb62-51"><a href="#cb62-51" aria-hidden="true" tabindex="-1"></a>        <span class="co"># change volcano type into factor (this makes plotting it more consistent)</span></span>
-<span id="cb62-52"><a href="#cb62-52" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">volcano_type_consolidated =</span> <span class="fu">factor</span>(volcano_type_consolidated,</span>
-<span id="cb62-53"><a href="#cb62-53" aria-hidden="true" tabindex="-1"></a>                                                  <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Stratovolcano"</span> , <span class="st">"Shield"</span>,  <span class="st">"Cone"</span>,   <span class="st">"Caldera"</span>, <span class="st">"Volcanic Field"</span>,</span>
-<span id="cb62-54"><a href="#cb62-54" aria-hidden="true" tabindex="-1"></a>                                                             <span class="st">"Complex"</span> ,  <span class="st">"Other"</span> ,  <span class="st">"Lava Dome"</span> , <span class="st">"Submarine"</span> ) ) )</span>
-<span id="cb62-55"><a href="#cb62-55" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb62-56"><a href="#cb62-56" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb62-57"><a href="#cb62-57" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb62-58"><a href="#cb62-58" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb62-59"><a href="#cb62-59" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb62-60"><a href="#cb62-60" aria-hidden="true" tabindex="-1"></a><span class="do">## To be copied in the UI</span></span>
-<span id="cb62-61"><a href="#cb62-61" aria-hidden="true" tabindex="-1"></a><span class="co"># mod_volcano_select_ui("volcano_select_1")</span></span>
-<span id="cb62-62"><a href="#cb62-62" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb62-63"><a href="#cb62-63" aria-hidden="true" tabindex="-1"></a><span class="do">## To be copied in the server</span></span>
-<span id="cb62-64"><a href="#cb62-64" aria-hidden="true" tabindex="-1"></a><span class="co"># mod_volcano_select_server("volcano_select_1")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>I also like to test my modules by using them to create a toy Shiny app. The best place to do this is by using a testthat directory. This is another great advantage of using a package workflow. You can set this up easily with <code>usethis::use_test()</code>: just run <code>usethis::use_test</code> from the R console when you have the module open.</p>
-<p>Then write a simple test like this</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"volcano selection module works"</span>, {</span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not</span>(<span class="fu">interactive</span>())</span>
-<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">## To be copied in the UI</span></span>
-<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mod_volcano_select_ui</span>(<span class="st">"volcano_select_1"</span>),</span>
-<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tableOutput</span>(<span class="st">"table"</span>)</span>
-<span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-12"><a href="#cb63-12" aria-hidden="true" tabindex="-1"></a>  server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb63-13"><a href="#cb63-13" aria-hidden="true" tabindex="-1"></a>    <span class="do">## To be copied in the server</span></span>
-<span id="cb63-14"><a href="#cb63-14" aria-hidden="true" tabindex="-1"></a>    volcano_data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/volcanoes.rds"</span>)</span>
-<span id="cb63-15"><a href="#cb63-15" aria-hidden="true" tabindex="-1"></a>    selected_data <span class="ot">&lt;-</span> <span class="fu">mod_volcano_select_server</span>(<span class="st">"volcano_select_1"</span>,</span>
-<span id="cb63-16"><a href="#cb63-16" aria-hidden="true" tabindex="-1"></a>                                               <span class="at">volcano =</span> volcano_data)</span>
-<span id="cb63-17"><a href="#cb63-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb63-18"><a href="#cb63-18" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>table <span class="ot">&lt;-</span> <span class="fu">renderTable</span>(<span class="fu">selected_data</span>())</span>
-<span id="cb63-19"><a href="#cb63-19" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb63-20"><a href="#cb63-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-21"><a href="#cb63-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span>
-<span id="cb63-22"><a href="#cb63-22" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb63-23"><a href="#cb63-23" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Which generates the following simple app:</p>
-<p><img src="Capture d’écran, le 2021-06-23 à 06.25.38.png" class="img-fluid"></p>
-</section>
-<section id="barplot-of-continents" class="level3">
-<h3 class="anchored" data-anchor-id="barplot-of-continents">Barplot of continents</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' continentplot UI Function</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' @description A shiny Module.</span></span>
-<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param id,input,output,session Internal parameters for {shiny}.</span></span>
-<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @noRd </span></span>
-<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' @importFrom shiny NS tagList </span></span>
-<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a>mod_continentplot_ui <span class="ot">&lt;-</span> <span class="cf">function</span>(id){</span>
-<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a>  ns <span class="ot">&lt;-</span> <span class="fu">NS</span>(id)</span>
-<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tagList</span>(</span>
-<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plotOutput</span>(<span class="fu">ns</span>(<span class="st">"barplot"</span>), <span class="co"># this calls to object continentplot that is made in the server page</span></span>
-<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">height =</span> <span class="dv">350</span>)</span>
-<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb64-17"><a href="#cb64-17" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb64-18"><a href="#cb64-18" aria-hidden="true" tabindex="-1"></a><span class="co">#' continentplot Server Functions</span></span>
-<span id="cb64-19"><a href="#cb64-19" aria-hidden="true" tabindex="-1"></a><span class="co">#'</span></span>
-<span id="cb64-20"><a href="#cb64-20" aria-hidden="true" tabindex="-1"></a><span class="co">#' @noRd </span></span>
-<span id="cb64-21"><a href="#cb64-21" aria-hidden="true" tabindex="-1"></a>mod_continentplot_server <span class="ot">&lt;-</span> <span class="cf">function</span>(id, volcano, selected_volcanoes){</span>
-<span id="cb64-22"><a href="#cb64-22" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb64-23"><a href="#cb64-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># kind of helpful</span></span>
-<span id="cb64-24"><a href="#cb64-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.reactive</span>(selected_volcanoes))</span>
-<span id="cb64-25"><a href="#cb64-25" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb64-26"><a href="#cb64-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">moduleServer</span>( id, <span class="cf">function</span>(input, output, session){</span>
-<span id="cb64-27"><a href="#cb64-27" aria-hidden="true" tabindex="-1"></a>    ns <span class="ot">&lt;-</span> session<span class="sc">$</span>ns</span>
-<span id="cb64-28"><a href="#cb64-28" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb64-29"><a href="#cb64-29" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>barplot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb64-30"><a href="#cb64-30" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb64-31"><a href="#cb64-31" aria-hidden="true" tabindex="-1"></a>      <span class="co"># create basic barplot</span></span>
-<span id="cb64-32"><a href="#cb64-32" aria-hidden="true" tabindex="-1"></a>      barplot <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="at">data =</span> volcano,</span>
-<span id="cb64-33"><a href="#cb64-33" aria-hidden="true" tabindex="-1"></a>                                 ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x=</span>continent,</span>
-<span id="cb64-34"><a href="#cb64-34" aria-hidden="true" tabindex="-1"></a>                            <span class="at">fill =</span> volcano_type_consolidated))<span class="sc">+</span></span>
-<span id="cb64-35"><a href="#cb64-35" aria-hidden="true" tabindex="-1"></a>        <span class="co"># update theme and axis labels:</span></span>
-<span id="cb64-36"><a href="#cb64-36" aria-hidden="true" tabindex="-1"></a>        ggplot2<span class="sc">::</span><span class="fu">theme_bw</span>()<span class="sc">+</span></span>
-<span id="cb64-37"><a href="#cb64-37" aria-hidden="true" tabindex="-1"></a>        ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">plot.background  =</span> ggplot2<span class="sc">::</span><span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"transparent"</span>,<span class="at">fill =</span> <span class="st">"transparent"</span>),</span>
-<span id="cb64-38"><a href="#cb64-38" aria-hidden="true" tabindex="-1"></a>                       <span class="at">panel.background =</span> ggplot2<span class="sc">::</span><span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"transparent"</span>,<span class="at">fill=</span><span class="st">"transparent"</span>),</span>
-<span id="cb64-39"><a href="#cb64-39" aria-hidden="true" tabindex="-1"></a>                       <span class="at">panel.border     =</span> ggplot2<span class="sc">::</span><span class="fu">element_rect</span>(<span class="at">color=</span><span class="st">"transparent"</span>,<span class="at">fill=</span><span class="st">"transparent"</span>))<span class="sc">+</span></span>
-<span id="cb64-40"><a href="#cb64-40" aria-hidden="true" tabindex="-1"></a>        ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">x=</span><span class="cn">NULL</span>, <span class="at">y=</span><span class="cn">NULL</span>, <span class="at">title =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb64-41"><a href="#cb64-41" aria-hidden="true" tabindex="-1"></a>        ggplot2<span class="sc">::</span><span class="fu">theme</span>(<span class="at">axis.text.x =</span> ggplot2<span class="sc">::</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">45</span>,<span class="at">hjust=</span><span class="dv">1</span>))</span>
-<span id="cb64-42"><a href="#cb64-42" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb64-43"><a href="#cb64-43" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb64-44"><a href="#cb64-44" aria-hidden="true" tabindex="-1"></a>      <span class="co"># IF a selected_volcanoes() object exists, update the blank ggplot. </span></span>
-<span id="cb64-45"><a href="#cb64-45" aria-hidden="true" tabindex="-1"></a>      <span class="co"># basically this makes it not mess up when nothing is selected</span></span>
-<span id="cb64-46"><a href="#cb64-46" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb64-47"><a href="#cb64-47" aria-hidden="true" tabindex="-1"></a>      barplot <span class="ot">&lt;-</span> barplot <span class="sc">+</span></span>
-<span id="cb64-48"><a href="#cb64-48" aria-hidden="true" tabindex="-1"></a>        ggplot2<span class="sc">::</span><span class="fu">geom_bar</span>(<span class="at">data =</span> <span class="fu">selected_volcanoes</span>(), <span class="at">show.legend =</span> F) <span class="sc">+</span></span>
-<span id="cb64-49"><a href="#cb64-49" aria-hidden="true" tabindex="-1"></a>        ggplot2<span class="sc">::</span><span class="fu">scale_fill_manual</span>(<span class="at">values =</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">9</span>,<span class="st">"Set1"</span>), <span class="at">drop=</span>F) <span class="sc">+</span></span>
-<span id="cb64-50"><a href="#cb64-50" aria-hidden="true" tabindex="-1"></a>        ggplot2<span class="sc">::</span><span class="fu">scale_x_discrete</span>(<span class="at">drop=</span>F)</span>
-<span id="cb64-51"><a href="#cb64-51" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb64-52"><a href="#cb64-52" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb64-53"><a href="#cb64-53" aria-hidden="true" tabindex="-1"></a>      <span class="co"># print the plot</span></span>
-<span id="cb64-54"><a href="#cb64-54" aria-hidden="true" tabindex="-1"></a>      barplot</span>
-<span id="cb64-55"><a href="#cb64-55" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb64-56"><a href="#cb64-56" aria-hidden="true" tabindex="-1"></a>    }) <span class="co"># end renderplot command</span></span>
-<span id="cb64-57"><a href="#cb64-57" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb64-58"><a href="#cb64-58" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb64-59"><a href="#cb64-59" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb64-60"><a href="#cb64-60" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb64-61"><a href="#cb64-61" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb64-62"><a href="#cb64-62" aria-hidden="true" tabindex="-1"></a><span class="do">## To be copied in the UI</span></span>
-<span id="cb64-63"><a href="#cb64-63" aria-hidden="true" tabindex="-1"></a><span class="co"># mod_continentplot_ui("continentplot_1")</span></span>
-<span id="cb64-64"><a href="#cb64-64" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb64-65"><a href="#cb64-65" aria-hidden="true" tabindex="-1"></a><span class="do">## To be copied in the server</span></span>
-<span id="cb64-66"><a href="#cb64-66" aria-hidden="true" tabindex="-1"></a><span class="co"># mod_continentplot_server("continentplot_1")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>the test</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"volano barplot works"</span>, {</span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  testthat<span class="sc">::</span><span class="fu">skip_if_not</span>(<span class="fu">interactive</span>())</span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>  ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>    <span class="do">## To be copied in the UI</span></span>
-<span id="cb65-8"><a href="#cb65-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mod_continentplot_ui</span>(<span class="st">"continentplot_1"</span>),</span>
-<span id="cb65-9"><a href="#cb65-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tableOutput</span>(<span class="st">"table"</span>)</span>
-<span id="cb65-10"><a href="#cb65-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb65-11"><a href="#cb65-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb65-12"><a href="#cb65-12" aria-hidden="true" tabindex="-1"></a>  server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb65-13"><a href="#cb65-13" aria-hidden="true" tabindex="-1"></a>    <span class="do">## To be copied in the server</span></span>
-<span id="cb65-14"><a href="#cb65-14" aria-hidden="true" tabindex="-1"></a>    volcano_data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"data/volcanoes.rds"</span>)</span>
-<span id="cb65-15"><a href="#cb65-15" aria-hidden="true" tabindex="-1"></a>    volcano_recent <span class="ot">&lt;-</span> <span class="fu">subset</span>(volcano_data, last_eruption_year <span class="sc">&gt;</span> <span class="dv">2000</span>)</span>
-<span id="cb65-16"><a href="#cb65-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mod_continentplot_server</span>(<span class="st">"continentplot_1"</span>,</span>
-<span id="cb65-17"><a href="#cb65-17" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">volcano =</span> volcano_data,</span>
-<span id="cb65-18"><a href="#cb65-18" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">selected_volcanoes =</span> <span class="fu">reactive</span>(volcano_recent))</span>
-<span id="cb65-19"><a href="#cb65-19" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb65-20"><a href="#cb65-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb65-21"><a href="#cb65-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span>
-<span id="cb65-22"><a href="#cb65-22" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<!-- ## Bonus Content -->
+<!-- ```{r EVAL-FALSE} -->
+<!-- knitr::opts_chunk$set(eval = FALSE) -->
+<!-- ``` -->
+<!-- ## Customising the theme -->
+<!-- If you'd like to go one step further, you can also customize the appearance of your Shiny app using built-in themes, or creating your own themes. -->
+<!-- ### Using built-in themes -->
+<!-- There are several built-in themes in Shiny, which allow you to quickly change the appearance of your app. You can browse a gallery of available themes here [here](https://rstudio.github.io/shinythemes/), or test themes out interactively [here](https://shiny.rstudio.com/gallery/shiny-theme-selector.html). -->
+<!-- Let's try the *darkly* theme on our Shiny app. To do this, we will need the `shinythemes` package. -->
+<!-- ```{r} -->
+<!-- library(shinythemes) -->
+<!-- ``` -->
+<!-- We can change the theme of our previous app with one line of code: -->
+<!-- ```{r} -->
+<!-- # Define UI for application that makes a table andplots the Volcano Explosivity  -->
+<!-- # Index for the most eruptive volcanoes within a selected range of years -->
+<!-- ui <- fluidPage( -->
+<!--   # Application title ---- -->
+<!--   titlePanel("Exploring volcano explosivity"), -->
+<!--   # Input interface ---- -->
+<!--   sidebarLayout( -->
+<!--     sidebarPanel( -->
+<!--       # Sidebar with a slider range input -->
+<!--       sliderInput("years", # the id your server needs to use the selected value -->
+<!--                   label = h3("Years"), -->
+<!--                   min = 1900, max = 2020, # maximum range that can be selected -->
+<!--                   value = c(2010, 2020) # this is the default slider position -->
+<!--       ) -->
+<!--     ) -->
+<!--   ), -->
+<!--   # Show the outputs from the server --------------- -->
+<!--   mainPanel( -->
+<!--     # Show a ridgeplot of explosivity index for selected volcanoes -->
+<!--     plotOutput("ridgePlot"), -->
+<!--     # then, show the table we made in the previous step -->
+<!--     tableOutput("erupt_table") -->
+<!--   ), -->
+<!--   # Customize the theme ---------------------- -->
+<!--   # Use the darkly theme -->
+<!--   theme = shinythemes::shinytheme("darkly") -->
+<!-- ) -->
+<!-- ``` -->
+<!-- Now, if we run the app, it looks a little different: -->
+<!-- ![](images/darklytheme.png) -->
+<!-- ### Using a custom theme -->
+<!-- You can also go beyond the built-in themes, and create your own custom theme with the fonts and colours of your choice. You can also apply this theme to the outputs rendered in the app, to bring all the visuals together for a more cohesive look. -->
+<!-- #### Customizing a theme -->
+<!-- To create a custom theme, we will be using the `bs_theme()` function from the `bslib` package. -->
+<!-- ```{r} -->
+<!-- library(bslib) -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- # Create a custom theme  -->
+<!-- cute_theme <- bslib::bs_theme( -->
+<!--   bg = "#36393B", # background colour -->
+<!--   fg = "#FFD166", # most of the text on your app -->
+<!--   primary = "#F26430", # buttons, ... -->
+<!--   # you can also choose fonts -->
+<!--   base_font = font_google("Open Sans"), -->
+<!--   heading_font = font_google("Open Sans") -->
+<!-- ) -->
+<!-- ``` -->
+<!-- To apply this theme to our Shiny app (and the outputs), we will be using the `thematic` package. -->
+<!-- ```{r} -->
+<!-- library(thematic) -->
+<!-- ``` -->
+<!-- There are two essential steps to apply a custom theme to a Shiny app: -->
+<!-- 1.  Activating thematic. -->
+<!-- 2.  Setting the user interface's theme to the custom theme (`cute_theme`). -->
+<!-- ```{r} -->
+<!-- # Activate thematic -->
+<!-- # so your R outputs will be changed to match up with your chosen styling -->
+<!-- thematic::thematic_shiny() -->
+<!-- # Define UI for application that makes a table andplots the Volcano Explosivity  -->
+<!-- # Index for the most eruptive volcanoes within a selected range of years -->
+<!-- ui <- fluidPage( -->
+<!--   # Application title ---- -->
+<!--   titlePanel("Exploring volcano explosivity"), -->
+<!--   # Input interface ---- -->
+<!--   sidebarLayout( -->
+<!--     sidebarPanel( -->
+<!--       # Sidebar with a slider range input -->
+<!--       sliderInput("years", # the id your server needs to use the selected value -->
+<!--                   label = h3("Years"), -->
+<!--                   min = 1900, max = 2020, # maximum range that can be selected -->
+<!--                   value = c(2010, 2020) # this is the default slider position -->
+<!--       ) -->
+<!--     ) -->
+<!--   ), -->
+<!--   # Show the outputs from the server --------------- -->
+<!--   mainPanel( -->
+<!--     # Show a ridgeplot of explosivity index for selected volcanoes -->
+<!--     plotOutput("ridgePlot"), -->
+<!--     # then, show the table we made in the previous step -->
+<!--     tableOutput("erupt_table") -->
+<!--   ), -->
+<!--   # Customize the theme ---------------------- -->
+<!--   # Use our custom theme -->
+<!--   theme = cute_theme -->
+<!-- ) -->
+<!-- ``` -->
+<!-- Now, if we run the app, the user interface and plot theme is set to the colours and fonts we set in `cute_theme`: -->
+<!-- ![](images/thematic.png) -->
+<!-- Here, `thematic` is not changing the colours used to represent a variable in our plot, because this is an informative colour scale (unlike the colour of axis labels, lines, and the plot background). However, if we remove this colour variable in our ridgeplot in the server, thematic will change the plot colours as well. Here is a simplified example of our server to see what these changes would look like: -->
+<!-- ```{r} -->
+<!-- # Define server logic required to make your output(s) -->
+<!-- server <- function(input, output) { -->
+<!--   #... (all the good stuff we wrote above) -->
+<!--   # render the plot output -->
+<!--   output$ridgePlot <- renderPlot({ -->
+<!--     # create the plot -->
+<!--     ggplot(data = eruptions_filtered(), -->
+<!--            aes(x = vei, -->
+<!--                y = volcano_name)) + # we are no longer setting  -->
+<!--              # the fill argument to a variable -->
+<!--              # we are using a ridgeplot geom here, from the ggridges package -->
+<!--              geom_density_ridges(size = .5) +  -->
+<!--              # label the axes -->
+<!--              labs(x = "Volcano Explosivity Index", y = "") + -->
+<!--              # remove the "classic" ggplot2 so it doesn't override thematic's changes -->
+<!--              # theme_classic() +  -->
+<!--              theme(legend.position = "none", -->
+<!--                    axis.text = element_text(size = 12, face = "bold"), -->
+<!--                    axis.title = element_text(size = 14, face = "bold")) -->
+<!--            }) -->
+<!--     } -->
+<!-- ``` -->
+<!-- Now, our plot's theme follows the app's custom theme as well: -->
+<!-- ![](images/thematic_plot.png) -->
+<!-- ## Constructing a Shiny app using Golem -->
+<!-- First step is creating your own golem project: -->
+<!-- ![](Capture%20d%E2%80%99e%CC%81cran,%20le%202021-06-23%20a%CC%80%2005.25.32.png) -->
+<!-- Golem provides you with some very helpful "workflow" scripts: -->
+<!-- Edit the Description by filling in this function in `01_dev.R` -->
+<!-- Then, add all the dependencies -->
+<!-- Together, this edits the `DESCRIPTION` of your R package to look something like this: -->
+<!-- Now we can start building the app. -->
+<!-- ```{r eval = FALSE} -->
+<!-- app_ui <- function(request) { -->
+<!--   tagList( -->
+<!--     # Leave this function for adding external resources -->
+<!--     golem_add_external_resources(), -->
+<!--     # Your application UI logic  -->
+<!--     shinydashboard::dashboardPage( -->
+<!--       header = shinydashboard::dashboardHeader( -->
+<!--         title = "Exploring Volcanoes of the World", -->
+<!--         titleWidth = 350 # since we have a long title, we need to extend width element in pixels -->
+<!--       ), -->
+<!--       sidebar = shinydashboard::dashboardSidebar(disable = TRUE), # here, we only have one tab, so we don't need a sidebar -->
+<!--       body = shinydashboard::dashboardBody( -->
+<!--         # make first row of elements (actually, this will be the only row) -->
+<!--         fluidRow( -->
+<!--           # make first column, 25% of page - width = 3 of 12 colums -->
+<!--           column(width = 3, -->
+<!--                  # box 1 : input for selecting volcano type -->
+<!--                  #----------------------------------------------- -->
+<!--                  shinydashboard::box(width = NULL, status = "primary", -->
+<!--                      title  = "Selection Criteria", solidHeader = T -->
+<!--                      ## CHECKBOX HERE -->
+<!--                  ), # end box 1 -->
+<!--                  # box 2: ggplot of selected volcanoes by continent -->
+<!--                  #------------------------------------------------ -->
+<!--                  shinydashboard::box(width = NULL, status = "primary", -->
+<!--                      solidHeader = TRUE, collapsible = T, -->
+<!--                      title = "Volcanoes by Continent" -->
+<!--                      ## PLOT HERE -->
+<!--                  ) # end box 2 -->
+<!--           ), # end column 1 -->
+<!--           # second column - 75% of page (9 of 12 columns) -->
+<!--           column(width = 9, -->
+<!--                  # Box 3: leaflet map -->
+<!--                  shinydashboard::box(width = NULL, background = "light-blue" -->
+<!--                                      ## MAP HERE  -->
+<!--                  ) # end box with map -->
+<!--           ) # end second column -->
+<!--         ) # end fluidrow -->
+<!--       ) # end body -->
+<!--     ) -->
+<!--   ) -->
+<!-- } -->
+<!-- ``` -->
+<!-- This indicates where each of the three components of the app would go. -->
+<!-- At this point we can run the app to get a very empty-looking UI: -->
+<!-- ![](Capture%20d%E2%80%99e%CC%81cran,%20le%202021-06-23%20a%CC%80%2005.58.08.png) -->
+<!-- ### Golem modules -->
+<!-- We could split this app into three different sections, corresponding to each of the three boxes: -->
+<!-- 1.  Filter the type of volcano we see -->
+<!-- 2.  take the filtered volcanoes and plot a stacked bar chart -->
+<!-- 3.  take the filtered volcanoes and plot a map -->
+<!-- ### Selecting the volcanoes -->
+<!-- ```{r, eval=FALSE} -->
+<!-- #' volcano_select UI Function -->
+<!-- #' -->
+<!-- #' @description A shiny Module. -->
+<!-- #' -->
+<!-- #' @param id,input,output,session Internal parameters for {shiny}. -->
+<!-- #' -->
+<!-- #' @noRd  -->
+<!-- #' -->
+<!-- #' @importFrom shiny NS tagList  -->
+<!-- mod_volcano_select_ui <- function(id){ -->
+<!--   ns <- NS(id) -->
+<!--   tagList( -->
+<!--     # Widget specifying the species to be included on the plot -->
+<!--     shinyWidgets::checkboxGroupButtons( -->
+<!--       inputId = ns("volcano_type"), -->
+<!--       label = "Volcano Type", -->
+<!--       choices = c("Stratovolcano" , "Shield" ,"Cone" ,   "Caldera" ,    "Volcanic Field", -->
+<!--                   "Complex" , "Other",   "Lava Dome"  , "Submarine"    ), -->
+<!--       checkIcon = list( -->
+<!--         yes = tags$i(class = "fa fa-check-square",  -->
+<!--                      style = "color: steelblue"), -->
+<!--         no = tags$i(class = "fa fa-square-o",  -->
+<!--                     style = "color: steelblue")) -->
+<!--     ) # end checkboxGroupButtons -->
+<!--   ) -->
+<!-- } -->
+<!-- #' volcano_select Server Functions -->
+<!-- #' -->
+<!-- #' @noRd  -->
+<!-- mod_volcano_select_server <- function(id, volcano){ -->
+<!--   moduleServer( id, function(input, output, session){ -->
+<!--     ns <- session$ns -->
+<!--     # make reactive dataset -->
+<!--     # ------------------------------------------------ -->
+<!--     # Make a subset of the data as a reactive value -->
+<!--     # this subset pulls volcano rows only in the selected types of volcano -->
+<!--     selected_volcanoes <- reactive({ -->
+<!--       req(input$volcano_type) -->
+<!--       volcano %>% -->
+<!--         # select only volcanoes in the selected volcano type (by checkboxes in the UI) -->
+<!--         dplyr::filter(volcano_type_consolidated %in% input$volcano_type) %>% -->
+<!--         # Space to add your suggested filter here!!  -->
+<!--         # --- --- --- --- --- --- --- --- --- --- --- --- --- -->
+<!--         # filter() %>% -->
+<!--         # --- --- --- --- --- --- --- --- --- --- --- --- --- -->
+<!--         # change volcano type into factor (this makes plotting it more consistent) -->
+<!--         dplyr::mutate(volcano_type_consolidated = factor(volcano_type_consolidated, -->
+<!--                                                   levels = c("Stratovolcano" , "Shield",  "Cone",   "Caldera", "Volcanic Field", -->
+<!--                                                              "Complex" ,  "Other" ,  "Lava Dome" , "Submarine" ) ) ) -->
+<!--     }) -->
+<!--   }) -->
+<!-- } -->
+<!-- ## To be copied in the UI -->
+<!-- # mod_volcano_select_ui("volcano_select_1") -->
+<!-- ## To be copied in the server -->
+<!-- # mod_volcano_select_server("volcano_select_1") -->
+<!-- ``` -->
+<!-- I also like to test my modules by using them to create a toy Shiny app. The best place to do this is by using a testthat directory. This is another great advantage of using a package workflow. You can set this up easily with `usethis::use_test()`: just run `usethis::use_test` from the R console when you have the module open. -->
+<!-- Then write a simple test like this -->
+<!-- ```{r eval=FALSE} -->
+<!-- test_that("volcano selection module works", { -->
+<!--   testthat::skip_if_not(interactive()) -->
+<!--   ui <- fluidPage( -->
+<!--   ## To be copied in the UI -->
+<!--   mod_volcano_select_ui("volcano_select_1"), -->
+<!--   tableOutput("table") -->
+<!--   ) -->
+<!--   server <- function(input, output) { -->
+<!--     ## To be copied in the server -->
+<!--     volcano_data <- readRDS("data/volcanoes.rds") -->
+<!--     selected_data <- mod_volcano_select_server("volcano_select_1", -->
+<!--                                                volcano = volcano_data) -->
+<!--     output$table <- renderTable(selected_data()) -->
+<!--   } -->
+<!--   shinyApp(ui = ui, server = server) -->
+<!-- }) -->
+<!-- ``` -->
+<!-- Which generates the following simple app: -->
+<!-- ![](Capture%20d%E2%80%99e%CC%81cran,%20le%202021-06-23%20a%CC%80%2006.25.38.png) -->
+<!-- ### Barplot of continents -->
+<!-- ```{r eval=FALSE} -->
+<!-- #' continentplot UI Function -->
+<!-- #' -->
+<!-- #' @description A shiny Module. -->
+<!-- #' -->
+<!-- #' @param id,input,output,session Internal parameters for {shiny}. -->
+<!-- #' -->
+<!-- #' @noRd  -->
+<!-- #' -->
+<!-- #' @importFrom shiny NS tagList  -->
+<!-- mod_continentplot_ui <- function(id){ -->
+<!--   ns <- NS(id) -->
+<!--   tagList( -->
+<!--     plotOutput(ns("barplot"), # this calls to object continentplot that is made in the server page -->
+<!--                height = 350) -->
+<!--   ) -->
+<!-- } -->
+<!-- #' continentplot Server Functions -->
+<!-- #' -->
+<!-- #' @noRd  -->
+<!-- mod_continentplot_server <- function(id, volcano, selected_volcanoes){ -->
+<!--   # kind of helpful -->
+<!--   stopifnot(is.reactive(selected_volcanoes)) -->
+<!--   moduleServer( id, function(input, output, session){ -->
+<!--     ns <- session$ns -->
+<!--     output$barplot <- renderPlot({ -->
+<!--       # create basic barplot -->
+<!--       barplot <- ggplot2::ggplot(data = volcano, -->
+<!--                                  ggplot2::aes(x=continent, -->
+<!--                             fill = volcano_type_consolidated))+ -->
+<!--         # update theme and axis labels: -->
+<!--         ggplot2::theme_bw()+ -->
+<!--         ggplot2::theme(plot.background  = ggplot2::element_rect(color="transparent",fill = "transparent"), -->
+<!--                        panel.background = ggplot2::element_rect(color="transparent",fill="transparent"), -->
+<!--                        panel.border     = ggplot2::element_rect(color="transparent",fill="transparent"))+ -->
+<!--         ggplot2::labs(x=NULL, y=NULL, title = NULL) + -->
+<!--         ggplot2::theme(axis.text.x = ggplot2::element_text(angle=45,hjust=1)) -->
+<!--       # IF a selected_volcanoes() object exists, update the blank ggplot.  -->
+<!--       # basically this makes it not mess up when nothing is selected -->
+<!--       barplot <- barplot + -->
+<!--         ggplot2::geom_bar(data = selected_volcanoes(), show.legend = F) + -->
+<!--         ggplot2::scale_fill_manual(values = RColorBrewer::brewer.pal(9,"Set1"), drop=F) + -->
+<!--         ggplot2::scale_x_discrete(drop=F) -->
+<!--       # print the plot -->
+<!--       barplot -->
+<!--     }) # end renderplot command -->
+<!--   }) -->
+<!-- } -->
+<!-- ## To be copied in the UI -->
+<!-- # mod_continentplot_ui("continentplot_1") -->
+<!-- ## To be copied in the server -->
+<!-- # mod_continentplot_server("continentplot_1") -->
+<!-- ``` -->
+<!-- the test -->
+<!-- ```{r eval=FALSE} -->
+<!-- test_that("volano barplot works", { -->
+<!--   testthat::skip_if_not(interactive()) -->
+<!--   ui <- fluidPage( -->
+<!--     ## To be copied in the UI -->
+<!--     mod_continentplot_ui("continentplot_1"), -->
+<!--     tableOutput("table") -->
+<!--   ) -->
+<!--   server <- function(input, output) { -->
+<!--     ## To be copied in the server -->
+<!--     volcano_data <- readRDS("data/volcanoes.rds") -->
+<!--     volcano_recent <- subset(volcano_data, last_eruption_year > 2000) -->
+<!--     mod_continentplot_server("continentplot_1", -->
+<!--                                               volcano = volcano_data, -->
+<!--                                               selected_volcanoes = reactive(volcano_recent)) -->
+<!--   } -->
+<!--   shinyApp(ui = ui, server = server) -->
+<!-- }) -->
+<!-- ``` -->
 
 
 
-</section>
 </section>
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
@@ -1802,17 +1701,17 @@ Attaching package: 'dplyr'</code></pre>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{moore2025,
+</div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-citation"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@online{moore2025,
   author = {Moore, Nikki and MacDonald, Andrew and Lawlor, Jake},
   title = {Introduction to {Shiny} {Apps} {CSEE}},
   date = {2025-07-06},
-  url = {https://bios2.github.io/posts/2025-07-06-CSEE-intro-shiny},
+  url = {https://bios2.github.io/posts/2025-07-06-CSEE-intro-shiny/},
   langid = {en}
 }
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-moore2025" class="csl-entry quarto-appendix-citeas" role="listitem">
 Moore, Nikki, Andrew MacDonald, and Jake Lawlor. 2025.
 <span>“Introduction to Shiny Apps CSEE.”</span> BIOS<sup>2</sup>
-Education Resources. July 6, 2025. <a href="https://bios2.github.io/posts/2025-07-06-CSEE-intro-shiny">https://bios2.github.io/posts/2025-07-06-CSEE-intro-shiny</a>.
+Education Resources. July 6, 2025. <a href="https://bios2.github.io/posts/2025-07-06-CSEE-intro-shiny/">https://bios2.github.io/posts/2025-07-06-CSEE-intro-shiny/</a>.
 </div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1849,18 +1748,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1892,11 +1780,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/bios2\.github\.io");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1906,8 +1831,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1919,7 +1853,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1963,6 +2019,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1988,6 +2045,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -2048,6 +2131,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
