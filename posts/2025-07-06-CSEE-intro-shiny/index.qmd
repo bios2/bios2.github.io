@@ -41,9 +41,9 @@ There are many reasons to consider using Shiny for a project:
 
 ### Some examples of Shiny in practice! 
 
-* Census aggregator, Sharla Greenfeld: https://censusaggregator.ca/
-* Lake Eerie fish explorer, USGS: https://lebs.shinyapps.io/western-basin/
-* Scotian Shelf MPAs, Jake Lawlor: https://jakelawlor.shinyapps.io/ScotianShelfMPAs/
+* [Census aggregator, Sharla Greenfeld](https://censusaggregator.ca/)
+* [Lake Eerie fish explorer, USGS](https://lebs.shinyapps.io/western-basin/)
+* [Scotian Shelf MPAs, Jake Lawlor](https://jakelawlor.shinyapps.io/ScotianShelfMPAs/)
 
 ## Background content
 
@@ -120,7 +120,7 @@ In our ```data``` list, each **element** of the list stores the collaboration ne
 
 :::{.callout-tip}
 ### EXERCISE
-Try indexing ```data``` to get the collaboration network for McGill University. 
+Try indexing ```intra_list``` to get the collaboration network for McGill University. 
 What is the shape of the resulting dataset? (list, matrix, data frame, vector etc)
 :::
 
@@ -707,6 +707,15 @@ Add this figure to our app. Connect it to the input selected by the user, so tha
 
 Solution is in the app `app_04_highlight_figure.R`
 :::
+
+## Where can my Shiny app live?
+
+* On your computer
+   * In an R package
+   * As a file
+* On a server
+  * [shinyapps.io](https://www.shinyapps.io/) 
+  * University or Government servers ($)
 
 
 <!-- ## Bonus Content -->
