@@ -100,5 +100,8 @@
   },
   "docs/site_libs/shinydashboard-0.7.3/NEWS.md": {
     "NEWS.html": "26030aae"
+  },
+  "posts/2021-05-04-building-r-packages/R packages.qmd": {
+    "R packages.html": "c2ff8483"
   }
 }

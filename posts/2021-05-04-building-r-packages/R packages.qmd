@@ -1,0 +1,26 @@
+---
+title: "Building R packages"
+format: revealjs
+---
+
+## Cookies
+
+<iframe src="https://giphy.com/embed/HGe4zsOVo7Jvy" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen>
+
+</iframe>
+
+<p><a href="https://giphy.com/gifs/sesame-street-cookies-cookie-monster-HGe4zsOVo7Jvy">via GIPHY</a></p>
+
+
+## R packages are the fundamental unit of R code
+
+* Reuse and share your code
+* Be rigourous and professional instead of ad-hoc
+* PROBABLY NOT NECESSARY
+
+## Goal today: overview of the process for creating an R package
+
+* important functions for the process
+* workflow practice
+
+## 

@@ -102,6 +102,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2021-05-04-building-r-packages/R packages.html",
       "/posts/2025-07-06-CSEE-intro-shiny/index.html",
       "/posts/2022-05-19-introduction-to-microbiome-analysis/index.html",
       "/posts/2021-11-02-introduction-to-gams/index.html",
